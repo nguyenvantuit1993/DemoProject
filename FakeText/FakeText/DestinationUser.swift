@@ -17,9 +17,10 @@ class DestinationUser: UIView
     @IBOutlet weak var btn_Add: UIButton!
     
     override func awakeFromNib() {
-        
+        super.awakeFromNib()
+        btn_Add.addTarget(self, action: #selector(addUserToList), for: .touchUpInside)
     }
-    @IBAction func addUserToList(_ sender: Any) {
+    func addUserToList() {
         
     }
 }

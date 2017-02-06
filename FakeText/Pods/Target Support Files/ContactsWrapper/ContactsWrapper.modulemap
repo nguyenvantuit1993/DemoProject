@@ -1,0 +1,6 @@
+framework module ContactsWrapper {
+  umbrella header "ContactsWrapper-umbrella.h"
+
+  export *
+  module * { export * }
+}

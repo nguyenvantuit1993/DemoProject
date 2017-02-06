@@ -1,0 +1,12 @@
+PODS:
+  - ContactsWrapper (1.0.1)
+
+DEPENDENCIES:
+  - ContactsWrapper
+
+SPEC CHECKSUMS:
+  ContactsWrapper: f89487bda7862766d756e177ac17251ee118b66b
+
+PODFILE CHECKSUM: 091f875cc8c2a9594cc8bdcb0ebf03f45880d206
+
+COCOAPODS: 1.0.1

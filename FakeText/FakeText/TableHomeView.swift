@@ -32,7 +32,7 @@ class TableHomeView:UITableViewController, ActionHomeView
         
         self.tableView.register(UINib(nibName: "MessageCell", bundle: Bundle.main), forCellReuseIdentifier: "MessCell")
         
-        addBarButtons()
+
         //        if let splitViewController = splitViewController {
         //            let controllers = splitViewController.viewControllers
         //            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -40,12 +40,19 @@ class TableHomeView:UITableViewController, ActionHomeView
     }
     func addBarButtons()
     {
-        let homeButton : UIBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        let logButton : UIBarButtonItem = UIBarButtonItem(title: "RigthButtonTitle", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        
-        self.navigationItem.leftBarButtonItem = homeButton
-        self.navigationItem.rightBarButtonItem = logButton
+//        let homeButton : UIBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+//        let logButton : UIBarButtonItem = UIBarButtonItem(title: "RigthButtonTitle", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TableHomeView.addNewMessage))
+//        
+//        self.navigationItem.leftBarButtonItem = homeButton
+//        self.navigationItem.rightBarButtonItem = logButton
     }
+
+    
+    @IBAction func Edit(_ sender: Any) {
+        
+    }
+
+    
     override func viewWillAppear(_ animated: Bool) {
         //        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
@@ -71,6 +78,10 @@ class TableHomeView:UITableViewController, ActionHomeView
                 //                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
                 //                controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        }
+        else if segue.identifier == "addNewMessage"
+        {
+            
         }
     }
 }
