@@ -31,7 +31,7 @@ class TableHomeView:UITableViewController, ActionHomeView
         messageViewModel.delegate = self
         
         self.tableView.register(UINib(nibName: "MessageCell", bundle: Bundle.main), forCellReuseIdentifier: "MessCell")
-        
+        addBarButtons()
 
         //        if let splitViewController = splitViewController {
         //            let controllers = splitViewController.viewControllers
@@ -40,11 +40,18 @@ class TableHomeView:UITableViewController, ActionHomeView
     }
     func addBarButtons()
     {
-//        let homeButton : UIBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-//        let logButton : UIBarButtonItem = UIBarButtonItem(title: "RigthButtonTitle", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TableHomeView.addNewMessage))
-//        
-//        self.navigationItem.leftBarButtonItem = homeButton
-//        self.navigationItem.rightBarButtonItem = logButton
+        let homeButton : UIBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        let logButton : UIBarButtonItem = UIBarButtonItem(title: "RigthButtonTitle", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        
+        self.navigationItem.leftBarButtonItem = homeButton
+        
+        var buttons = self.navigationItem.rightBarButtonItems
+        if((buttons?.count)! > 0)
+        {
+            buttons?.append(logButton)
+            self.navigationItem.rightBarButtonItems = buttons
+        }
+        
     }
 
     
