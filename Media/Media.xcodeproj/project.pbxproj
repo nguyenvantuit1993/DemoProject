@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB364BFA1E49DB4600C10D91 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */; };
+		CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BFC1E49DD4B00C10D91 /* Constant.swift */; };
 		CB80C7F41E496AA600690D4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80C7F31E496AA600690D4D /* AppDelegate.swift */; };
 		CB80C7F61E496AA600690D4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80C7F51E496AA600690D4D /* ViewController.swift */; };
 		CB80C7F91E496AA600690D4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB80C7F71E496AA600690D4D /* Main.storyboard */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
+		CB364BFC1E49DD4B00C10D91 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CB80C7F01E496AA600690D4D /* Media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Media.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB80C7F31E496AA600690D4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB80C7F51E496AA600690D4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB364BFB1E49DD3F00C10D91 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				CB364BFC1E49DD4B00C10D91 /* Constant.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		CB80C7E71E496AA600690D4D = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +78,7 @@
 		CB80C7F21E496AA600690D4D /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				CB364BFB1E49DD3F00C10D91 /* Utility */,
 				CB80C8091E49751A00690D4D /* Presenters */,
 				CB80C8081E49750D00690D4D /* Models */,
 				CB80C8071E49750400690D4D /* ViewControllers */,
@@ -97,6 +110,7 @@
 		CB80C8061E4974F200690D4D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -195,12 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB364BFA1E49DB4600C10D91 /* ImagesViewModel.swift in Sources */,
 				CB80C7F61E496AA600690D4D /* ViewController.swift in Sources */,
 				CB80C80F1E49791600690D4D /* OtherFilesView.swift in Sources */,
 				CBFB10001E497FF500992989 /* ImagesView.swift in Sources */,
 				CB80C80D1E49773600690D4D /* MediasView.swift in Sources */,
 				CBFB10021E49835200992989 /* BaseClearBarItemsViewController.swift in Sources */,
 				CBFB10041E49845700992989 /* BaseClearBarItemsTableViewController.swift in Sources */,
+				CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */,
 				CB80C7F41E496AA600690D4D /* AppDelegate.swift in Sources */,
 				CB80C80B1E4975F000690D4D /* TableViewAndSearchBar.swift in Sources */,
 			);
