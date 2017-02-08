@@ -10,12 +10,16 @@ import UIKit
 import WebKit
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigationDelegate {
-
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var progressCount: UILabel!
     var webView: WKWebView!
     var longPress = false
     let mainJavascript = "function MyAppGetHTMLElementsAtPoint(x,y) { var tags = \",\"; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName) { tags += e.tagName + ','; } e = e.parentNode; } return tags; } function MyAppGetLinkSRCAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.src) { tags += e.src; break; } e = e.parentNode; } return tags; }  function MyAppGetLinkHREFAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.href) { tags += e.href; break; } e = e.parentNode; } return tags; }"
     
     override func viewDidLoad() {
+        progressBar.setProgress(0.0, animated: true)  //set progressBar to 0 at start
+        
+        
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressRecognizerAction(sender:)))
         longPressRecognizer.delegate = self
@@ -26,17 +30,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         userContentController.addUserScript(script)
         let config = WKWebViewConfiguration()
         config.userContentController = userContentController
-        self.webView = WKWebView(frame: self.view.frame, configuration: config)
         
-        let url = URL (string: "https://www.onlinevideoconverter.com/success?id=i8e4e4f5c2c2e4f5b1")
+        self.webView = WKWebView(frame: CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height), configuration: config)
+        
+        let url = URL (string: "http://fqwimages.com/wp-content/uploads/2014/03/Sunset_Bund_1k.gif")
         let requestObj = URLRequest(url: url!)
 
         
-        self.webView.evaluate(script: mainJavascript, completion: {(result, error) in
-            print(result)
-        })
+        
         self.webView.load(requestObj)
-        self.webView.evaluateJavaScript("document.body.style.webkitTouchCallout='none';", completionHandler: nil)
         webView.navigationDelegate = self
         
         self.webView.scrollView.addGestureRecognizer(longPressRecognizer)
@@ -46,6 +48,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     
     func longPressRecognizerAction(sender: UILongPressGestureRecognizer) {
         longPress = true
+        self.webView.evaluate(script: mainJavascript, completion: {(result, error) in
+            print(result)
+        })
         if sender.state == UIGestureRecognizerState.began {
             
             let tapPostion = sender.location(in: self.webView)
@@ -54,11 +59,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
             })
             self.webView.evaluate(script: "MyAppGetLinkHREFAtPoint(\(tapPostion.x),\(tapPostion.y));", completion: {(result, error) in
 //                self.present(self.actionMenu(), animated: true, completion: nil)
-                self.presentNextWebView()
+//                self.presentNextWebView()
                 print(result)
             })
             self.webView.evaluate(script: "MyAppGetLinkSRCAtPoint(\(tapPostion.x),\(tapPostion.y));", completion: {(result, error) in
-                print(result)
+//                let data = NSData(contentsOf: URL(string: result! as! String)!)
+                self.downloadFileWithURL(urlString: result as! String)
+//                data?.write(toFile: "/Users/nguyenvantu/Desktop/TrekHaGiang.jpg", atomically: true)
             })
 
             
@@ -67,6 +74,16 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         }
     }
 
+    func downloadFileWithURL(urlString: String)
+    {
+        let url = URL(string:urlString)!
+        let req = NSMutableURLRequest(url:url)
+        let configS = URLSessionConfiguration.default
+        let session = URLSession(configuration: configS, delegate: self, delegateQueue: OperationQueue.main)
+        
+        let task : URLSessionDownloadTask = session.downloadTask(with: req as URLRequest)
+        task.resume()
+    }
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated{
 //            UIApplication.shared.openURL(navigationAction.request.url!)
@@ -101,6 +118,26 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         return alertController
     }
 
+}
+extension ViewController: URLSessionDownloadDelegate
+{
+    
+    
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        
+    }
+    
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
+                    didWriteData bytesWritten: Int64, totalBytesWritten writ: Int64, totalBytesExpectedToWrite exp: Int64) {
+        print("downloaded \(100*writ/exp)" as AnyObject)
+        
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL){
+        
+    }
 }
 extension WKWebView {
     func evaluate(script: String, completion: ((Any?, Error?) -> Void)? = nil) {
