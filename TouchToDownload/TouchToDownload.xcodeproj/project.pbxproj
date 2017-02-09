@@ -13,6 +13,14 @@
 		B1EA99FD1E4A17940092B4A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1EA99FC1E4A17940092B4A8 /* Assets.xcassets */; };
 		B1EA9A001E4A17940092B4A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1EA99FE1E4A17940092B4A8 /* LaunchScreen.storyboard */; };
 		B1EA9A0E1E4A41A70092B4A8 /* DisableActionSheetWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA9A0D1E4A41A70092B4A8 /* DisableActionSheetWKWebView.swift */; };
+		CB839AF21E4C0BD7005303A4 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB839AF11E4C0BD7005303A4 /* DownloadView.swift */; };
+		CB839AF51E4C0E18005303A4 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB839AF31E4C0E18005303A4 /* ItemCell.swift */; };
+		CB839AF61E4C0E18005303A4 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB839AF41E4C0E18005303A4 /* ItemCell.xib */; };
+		CB839AFA1E4C10A7005303A4 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB839AF91E4C10A7005303A4 /* Download.swift */; };
+		CB839AFC1E4C10B8005303A4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB839AFB1E4C10B8005303A4 /* Track.swift */; };
+		CB839B041E4C3122005303A4 /* HGPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB839B001E4C3122005303A4 /* HGPageScrollView.m */; };
+		CB839B051E4C3122005303A4 /* HGPageScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB839B011E4C3122005303A4 /* HGPageScrollView.xib */; };
+		CB839B061E4C3122005303A4 /* HGPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB839B031E4C3122005303A4 /* HGPageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,17 @@
 		B1EA99FF1E4A17940092B4A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1EA9A011E4A17940092B4A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1EA9A0D1E4A41A70092B4A8 /* DisableActionSheetWKWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisableActionSheetWKWebView.swift; sourceTree = "<group>"; };
+		CB839AF11E4C0BD7005303A4 /* DownloadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
+		CB839AF31E4C0E18005303A4 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		CB839AF41E4C0E18005303A4 /* ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
+		CB839AF91E4C10A7005303A4 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		CB839AFB1E4C10B8005303A4 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		CB839AFE1E4C3122005303A4 /* TouchToDownload-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TouchToDownload-Bridging-Header.h"; sourceTree = "<group>"; };
+		CB839AFF1E4C3122005303A4 /* HGPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPageScrollView.h; sourceTree = "<group>"; };
+		CB839B001E4C3122005303A4 /* HGPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPageScrollView.m; sourceTree = "<group>"; };
+		CB839B011E4C3122005303A4 /* HGPageScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HGPageScrollView.xib; sourceTree = "<group>"; };
+		CB839B021E4C3122005303A4 /* HGPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPageView.h; sourceTree = "<group>"; };
+		CB839B031E4C3122005303A4 /* HGPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +75,7 @@
 		B1EA99F41E4A17940092B4A8 /* TouchToDownload */ = {
 			isa = PBXGroup;
 			children = (
+				CB839AFD1E4C30FD005303A4 /* PageController */,
 				B1EA99F51E4A17940092B4A8 /* AppDelegate.swift */,
 				B1EA99F71E4A17940092B4A8 /* ViewController.swift */,
 				B1EA99F91E4A17940092B4A8 /* Main.storyboard */,
@@ -63,8 +83,26 @@
 				B1EA99FE1E4A17940092B4A8 /* LaunchScreen.storyboard */,
 				B1EA9A011E4A17940092B4A8 /* Info.plist */,
 				B1EA9A0D1E4A41A70092B4A8 /* DisableActionSheetWKWebView.swift */,
+				CB839AF11E4C0BD7005303A4 /* DownloadView.swift */,
+				CB839AF31E4C0E18005303A4 /* ItemCell.swift */,
+				CB839AF41E4C0E18005303A4 /* ItemCell.xib */,
+				CB839AF91E4C10A7005303A4 /* Download.swift */,
+				CB839AFB1E4C10B8005303A4 /* Track.swift */,
 			);
 			path = TouchToDownload;
+			sourceTree = "<group>";
+		};
+		CB839AFD1E4C30FD005303A4 /* PageController */ = {
+			isa = PBXGroup;
+			children = (
+				CB839AFF1E4C3122005303A4 /* HGPageScrollView.h */,
+				CB839B001E4C3122005303A4 /* HGPageScrollView.m */,
+				CB839B011E4C3122005303A4 /* HGPageScrollView.xib */,
+				CB839B021E4C3122005303A4 /* HGPageView.h */,
+				CB839B031E4C3122005303A4 /* HGPageView.m */,
+				CB839AFE1E4C3122005303A4 /* TouchToDownload-Bridging-Header.h */,
+			);
+			name = PageController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +137,7 @@
 				TargetAttributes = {
 					B1EA99F11E4A17940092B4A8 = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -126,8 +165,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB839AF61E4C0E18005303A4 /* ItemCell.xib in Resources */,
 				B1EA9A001E4A17940092B4A8 /* LaunchScreen.storyboard in Resources */,
 				B1EA99FD1E4A17940092B4A8 /* Assets.xcassets in Resources */,
+				CB839B051E4C3122005303A4 /* HGPageScrollView.xib in Resources */,
 				B1EA99FB1E4A17940092B4A8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,9 +180,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB839AF21E4C0BD7005303A4 /* DownloadView.swift in Sources */,
 				B1EA99F81E4A17940092B4A8 /* ViewController.swift in Sources */,
 				B1EA99F61E4A17940092B4A8 /* AppDelegate.swift in Sources */,
+				CB839B041E4C3122005303A4 /* HGPageScrollView.m in Sources */,
+				CB839AFA1E4C10A7005303A4 /* Download.swift in Sources */,
 				B1EA9A0E1E4A41A70092B4A8 /* DisableActionSheetWKWebView.swift in Sources */,
+				CB839AF51E4C0E18005303A4 /* ItemCell.swift in Sources */,
+				CB839B061E4C3122005303A4 /* HGPageView.m in Sources */,
+				CB839AFC1E4C10B8005303A4 /* Track.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,10 +311,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TouchToDownload/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nvt.TouchToDownload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TouchToDownload/TouchToDownload-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -276,10 +326,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TouchToDownload/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nvt.TouchToDownload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TouchToDownload/TouchToDownload-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -303,6 +355,7 @@
 				B1EA9A061E4A17940092B4A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

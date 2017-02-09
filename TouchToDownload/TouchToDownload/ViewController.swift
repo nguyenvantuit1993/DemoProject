@@ -12,6 +12,8 @@ import WebKit
 class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigationDelegate {
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var progressCount: UILabel!
+    var searchResults = [Track]()
+    var downloadView: DownloadView!
     var webView: WKWebView!
     var longPress = false
     let mainJavascript = "function MyAppGetHTMLElementsAtPoint(x,y) { var tags = \",\"; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName) { tags += e.tagName + ','; } e = e.parentNode; } return tags; } function MyAppGetLinkSRCAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.src) { tags += e.src; break; } e = e.parentNode; } return tags; }  function MyAppGetLinkHREFAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.href) { tags += e.href; break; } e = e.parentNode; } return tags; }"
@@ -33,7 +35,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         
         self.webView = WKWebView(frame: CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height), configuration: config)
         
-        let url = URL (string: "http://fqwimages.com/wp-content/uploads/2014/03/Sunset_Bund_1k.gif")
+        let url = URL (string: "http://www.nhaccuatui.com/")
         let requestObj = URLRequest(url: url!)
 
         
@@ -64,6 +66,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
             })
             self.webView.evaluate(script: "MyAppGetLinkSRCAtPoint(\(tapPostion.x),\(tapPostion.y));", completion: {(result, error) in
 //                let data = NSData(contentsOf: URL(string: result! as! String)!)
+                print(result)
                 self.downloadFileWithURL(urlString: result as! String)
 //                data?.write(toFile: "/Users/nguyenvantu/Desktop/TrekHaGiang.jpg", atomically: true)
             })
@@ -73,16 +76,26 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
             // handle the results, for example with an UIDocumentInteractionController
         }
     }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "downloadView")
+        {
+            if let downloadView = segue.destination as? DownloadView
+            {
+                downloadView.searchResults = self.searchResults
+            }
+        }
+    }
     func downloadFileWithURL(urlString: String)
     {
-        let url = URL(string:urlString)!
-        let req = NSMutableURLRequest(url:url)
-        let configS = URLSessionConfiguration.default
-        let session = URLSession(configuration: configS, delegate: self, delegateQueue: OperationQueue.main)
-        
-        let task : URLSessionDownloadTask = session.downloadTask(with: req as URLRequest)
-        task.resume()
+        let track = Track(name: urlString, artist: nil, previewUrl: urlString)
+        searchResults.append(track)
+//        let url = URL(string:urlString)!
+//        let req = NSMutableURLRequest(url:url)
+//        let configS = URLSessionConfiguration.default
+//        let session = URLSession(configuration: configS, delegate: self, delegateQueue: OperationQueue.main)
+//        
+//        let task : URLSessionDownloadTask = session.downloadTask(with: req as URLRequest)
+//        task.resume()
     }
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated{
