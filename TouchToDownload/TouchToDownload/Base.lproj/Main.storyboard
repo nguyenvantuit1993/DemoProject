@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xyg-fG-786" id="xbO-W7-IfV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -36,6 +36,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xtc-90-AiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1079" y="781"/>
+        </scene>
+        <!--Page Scroll View Sample View Controller-->
+        <scene sceneID="Fn4-rx-2gh">
+            <objects>
+                <viewController id="EKI-uq-5di" customClass="HGPageScrollViewSampleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D8A-Z4-gue"/>
+                        <viewControllerLayoutGuide type="bottom" id="dQ5-MI-5b9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SfV-sG-e3m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtL-WQ-goP">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="AMP-jm-chV"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mtL-WQ-goP" secondAttribute="trailing" id="SzN-fG-baK"/>
+                            <constraint firstItem="mtL-WQ-goP" firstAttribute="leading" secondItem="SfV-sG-e3m" secondAttribute="leading" id="dv6-8z-jP7"/>
+                            <constraint firstItem="dQ5-MI-5b9" firstAttribute="top" secondItem="mtL-WQ-goP" secondAttribute="bottom" id="yWW-VV-JFI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="toolbar" destination="mtL-WQ-goP" id="Lz2-7h-qXg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pkr-tz-ete" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="20" y="844"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -66,6 +100,14 @@
                                 <state key="normal" title="Download"/>
                                 <connections>
                                     <segue destination="dM3-O4-JXw" kind="show" identifier="downloadView" id="Gjo-5C-c22"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsM-3S-GET">
+                                <rect key="frame" x="209" y="38" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="EKI-uq-5di" kind="show" id="Sfu-jZ-O9F"/>
                                 </connections>
                             </button>
                         </subviews>

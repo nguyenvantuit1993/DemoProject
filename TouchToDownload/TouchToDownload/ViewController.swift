@@ -17,6 +17,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     var webView: WKWebView!
     var longPress = false
     let mainJavascript = "function MyAppGetHTMLElementsAtPoint(x,y) { var tags = \",\"; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName) { tags += e.tagName + ','; } e = e.parentNode; } return tags; } function MyAppGetLinkSRCAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.src) { tags += e.src; break; } e = e.parentNode; } return tags; }  function MyAppGetLinkHREFAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.href) { tags += e.href; break; } e = e.parentNode; } return tags; }"
+    let disableCallBackSource = "var style = document.createElement('style'); style.type = 'text/css'; style.innerText = '*:not(input):not(textarea) { -webkit-touch-callout: none; }'; var head = document.getElementsByTagName('head')[0]; head.appendChild(style);"
     
     override func viewDidLoad() {
         progressBar.setProgress(0.0, animated: true)  //set progressBar to 0 at start
@@ -25,9 +26,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressRecognizerAction(sender:)))
         longPressRecognizer.delegate = self
-        
-        let source = "var style = document.createElement('style'); style.type = 'text/css'; style.innerText = '*:not(input):not(textarea) { -webkit-touch-callout: none; }'; var head = document.getElementsByTagName('head')[0]; head.appendChild(style);"
-        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+
+        let script = WKUserScript(source: disableCallBackSource, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         let userContentController = WKUserContentController()
         userContentController.addUserScript(script)
         let config = WKWebViewConfiguration()
@@ -38,8 +38,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         let url = URL (string: "http://www.nhaccuatui.com/")
         let requestObj = URLRequest(url: url!)
 
-        
-        
         self.webView.load(requestObj)
         webView.navigationDelegate = self
         

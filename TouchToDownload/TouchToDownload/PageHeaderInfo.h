@@ -1,9 +1,9 @@
 //
-//  HGPageView.m
-//  HGPageDeckSample
+//  PageHeaderInfo.h
+//  HGPageScrollViewSample
 //
-//  Created by Rotem Rubnov on 11/3/2011.
-//  Copyright 2011 100 grams software.
+//  Created by Rotem Rubnov on 11/4/2011.
+//  Copyright 2011 100 grams. All rights reserved.
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -24,43 +24,13 @@
 //	THE SOFTWARE.
 //
 
-#import "HGPageView.h"
-
-
-@implementation HGPageView
-
-@synthesize reuseIdentifier=_reuseIdentifier;
-@synthesize identityFrame=_identityFrame;
-@synthesize maskLayer;
-
-
-- (id) initWithCoder:(NSCoder *)aDecoder
-{    
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        // Initialization code.
-        _identityFrame = self.frame; //as it is defined in the XIB
-    }
-    return self;
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code.
-}
-*/
+#import <Foundation/Foundation.h>
 
 
 
-
-- (void)prepareForReuse;
-{
-	//reset modified properties
-	self.transform = CGAffineTransformIdentity;
-}
-
-
+@protocol PageHeaderInfo <NSObject>
+@optional
+- (NSString*) pageTitle; 
+- (NSString*) pageSubtitle;
 
 @end

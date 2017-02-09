@@ -1,9 +1,9 @@
 //
-//  HGPageView.m
+//  MyPageData.h
 //  HGPageDeckSample
 //
-//  Created by Rotem Rubnov on 11/3/2011.
-//  Copyright 2011 100 grams software.
+//  Created by Rotem Rubnov on 12/3/2011.
+//	Copyright (C) ___YEAR___ ___ORGANIZATIONNAME___
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -23,44 +23,22 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //	THE SOFTWARE.
 //
+//
 
-#import "HGPageView.h"
+#import <Foundation/Foundation.h>
+#import "PageHeaderInfo.h"
+#import <UIKit/UIKit.h>
+@interface MyPageData : NSObject <PageHeaderInfo> {
 
-
-@implementation HGPageView
-
-@synthesize reuseIdentifier=_reuseIdentifier;
-@synthesize identityFrame=_identityFrame;
-@synthesize maskLayer;
-
-
-- (id) initWithCoder:(NSCoder *)aDecoder
-{    
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        // Initialization code.
-        _identityFrame = self.frame; //as it is defined in the XIB
-    }
-    return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code.
-}
-*/
+// some properties for our pages
+@property (nonatomic, retain) NSString *title; 
+@property (nonatomic, retain) NSString *subtitle; 
+@property (nonatomic, retain) UIImage *image; 
 
-
-
-
-- (void)prepareForReuse;
-{
-	//reset modified properties
-	self.transform = CGAffineTransformIdentity;
-}
-
+// an example of using UINavigationController as the owner of the page. 
+@property (nonatomic, retain) UINavigationController *navController; 
 
 
 @end

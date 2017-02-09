@@ -1,9 +1,9 @@
 //
-//  HGPageView.m
+//  MyPageData.m
 //  HGPageDeckSample
 //
-//  Created by Rotem Rubnov on 11/3/2011.
-//  Copyright 2011 100 grams software.
+//  Created by Rotem Rubnov on 12/3/2011.
+//	Copyright (C) ___YEAR___ ___ORGANIZATIONNAME___
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -23,44 +23,35 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //	THE SOFTWARE.
 //
+//
 
-#import "HGPageView.h"
-
-
-@implementation HGPageView
-
-@synthesize reuseIdentifier=_reuseIdentifier;
-@synthesize identityFrame=_identityFrame;
-@synthesize maskLayer;
+#import "MyPageData.h"
 
 
-- (id) initWithCoder:(NSCoder *)aDecoder
-{    
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        // Initialization code.
-        _identityFrame = self.frame; //as it is defined in the XIB
-    }
-    return self;
-}
+@implementation MyPageData
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code.
-}
-*/
+@synthesize title, subtitle, image, navController; 
 
 
+#pragma mark - PageScrollerHeaderInfo
 
-
-- (void)prepareForReuse;
+- (NSString*) pageTitle
 {
-	//reset modified properties
-	self.transform = CGAffineTransformIdentity;
+    return self.title;
 }
 
 
+- (NSString*) pageSubtitle
+{
+    return self.subtitle;
+}
+
+
+#pragma mark - NSObject 
+
+- (NSString*) description
+{
+    return [NSString stringWithFormat:@"%@ 0x%x: %@", [self class], self, self.title];
+}
 
 @end

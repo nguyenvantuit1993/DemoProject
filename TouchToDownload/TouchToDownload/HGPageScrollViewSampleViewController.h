@@ -1,9 +1,9 @@
 //
-//  HGPageView.m
-//  HGPageDeckSample
+//  HGPageScrollViewSampleViewController.h
+//  HGPageScrollViewSample
 //
-//  Created by Rotem Rubnov on 11/3/2011.
-//  Copyright 2011 100 grams software.
+//  Created by Rotem Rubnov on 13/3/2011.
+//	Copyright (C) 2011 TomTom
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -23,44 +23,22 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //	THE SOFTWARE.
 //
+//
 
-#import "HGPageView.h"
+#import <UIKit/UIKit.h>
+#import "HGPageScrollView.h"
 
+#define kNumPages 10
 
-@implementation HGPageView
-
-@synthesize reuseIdentifier=_reuseIdentifier;
-@synthesize identityFrame=_identityFrame;
-@synthesize maskLayer;
-
-
-- (id) initWithCoder:(NSCoder *)aDecoder
-{    
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        // Initialization code.
-        _identityFrame = self.frame; //as it is defined in the XIB
-    }
-    return self;
+@interface HGPageScrollViewSampleViewController : UIViewController <HGPageScrollViewDelegate, HGPageScrollViewDataSource, UITextFieldDelegate> {
+		
+	HGPageScrollView *_myPageScrollView;
+    NSMutableArray   *_myPageDataArray;
+	
+	IBOutlet UIToolbar *toolbar;
+            
+    NSMutableIndexSet *indexesToDelete, *indexesToInsert, *indexesToReload;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code.
-}
-*/
-
-
-
-
-- (void)prepareForReuse;
-{
-	//reset modified properties
-	self.transform = CGAffineTransformIdentity;
-}
-
-
 
 @end
+

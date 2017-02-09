@@ -1,5 +1,5 @@
 //
-//  HGPageView.m
+//  HGPageView.h
 //  HGPageDeckSample
 //
 //  Created by Rotem Rubnov on 11/3/2011.
@@ -24,43 +24,20 @@
 //	THE SOFTWARE.
 //
 
-#import "HGPageView.h"
+#import <UIKit/UIKit.h>
 
 
-@implementation HGPageView
+@interface HGPageView : UIView {
 
-@synthesize reuseIdentifier=_reuseIdentifier;
-@synthesize identityFrame=_identityFrame;
-@synthesize maskLayer;
-
-
-- (id) initWithCoder:(NSCoder *)aDecoder
-{    
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        // Initialization code.
-        _identityFrame = self.frame; //as it is defined in the XIB
-    }
-    return self;
+	@private
+	CGRect	  _identityFrame;
+	NSString *_reuseIdentifier;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code.
-}
-*/
+@property (nonatomic,readwrite,copy) NSString *reuseIdentifier;
+@property (nonatomic, assign) CGRect identityFrame;
+@property (nonatomic, retain) CALayer *maskLayer;
 
-
-
-
-- (void)prepareForReuse;
-{
-	//reset modified properties
-	self.transform = CGAffineTransformIdentity;
-}
-
-
+- (void)prepareForReuse;    // if the page is reusable (has a reuse identifier), this is called just before the cell is returned from HGPageScrollView method dequeueReusablePageWithIdentifier:.  If you override, you MUST call super.
 
 @end
