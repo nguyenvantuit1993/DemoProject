@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyPagedFlowView" customModule="CustomWebView" customModuleProvider="target">
+            <connections>
+                <outlet property="lbl_SubTitle" destination="e87-a4-Xkc" id="oer-OR-e9X"/>
+                <outlet property="lbl_Title" destination="8OJ-xu-CF9" id="6pa-vy-sc2"/>
+                <outlet property="pageController" destination="d6W-1O-KcN" id="jBR-PQ-4mH"/>
+                <outlet property="scrollView" destination="wuh-jf-rPK" id="OrE-bH-akX"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HV-BR-d18">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8OJ-xu-CF9">
+                            <rect key="frame" x="8" y="8" width="359" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="eWd-se-FpL"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e87-a4-Xkc">
+                            <rect key="frame" x="8" y="44" width="359" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="94" id="8fY-YG-cym"/>
+                        <constraint firstItem="e87-a4-Xkc" firstAttribute="top" secondItem="8OJ-xu-CF9" secondAttribute="bottom" id="MBa-oc-43n"/>
+                        <constraint firstItem="8OJ-xu-CF9" firstAttribute="top" secondItem="4HV-BR-d18" secondAttribute="top" constant="8" id="NBV-Od-BtQ"/>
+                        <constraint firstAttribute="bottom" secondItem="e87-a4-Xkc" secondAttribute="bottom" id="Wbx-BJ-2DB"/>
+                        <constraint firstAttribute="trailing" secondItem="8OJ-xu-CF9" secondAttribute="trailing" constant="8" id="YZT-1j-PwD"/>
+                        <constraint firstAttribute="trailing" secondItem="e87-a4-Xkc" secondAttribute="trailing" constant="8" id="n8a-Os-BPX"/>
+                        <constraint firstItem="8OJ-xu-CF9" firstAttribute="leading" secondItem="4HV-BR-d18" secondAttribute="leading" constant="8" id="pJk-gm-3sf"/>
+                        <constraint firstItem="e87-a4-Xkc" firstAttribute="leading" secondItem="4HV-BR-d18" secondAttribute="leading" constant="8" id="tQC-hj-x9O"/>
+                    </constraints>
+                </view>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="d6W-1O-KcN">
+                    <rect key="frame" x="16" y="600" width="343" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="she-l3-M5t"/>
+                    </constraints>
+                </pageControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-jf-rPK" customClass="PagedFlowView">
+                    <rect key="frame" x="8" y="102" width="359" height="490"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="wuh-jf-rPK" secondAttribute="trailing" constant="8" id="1yO-Ms-mDb"/>
+                <constraint firstItem="4HV-BR-d18" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3bX-d3-XLU"/>
+                <constraint firstAttribute="trailing" secondItem="4HV-BR-d18" secondAttribute="trailing" id="5Hv-vN-zki"/>
+                <constraint firstItem="d6W-1O-KcN" firstAttribute="top" secondItem="wuh-jf-rPK" secondAttribute="bottom" constant="8" id="CdQ-8g-tSw"/>
+                <constraint firstItem="wuh-jf-rPK" firstAttribute="top" secondItem="4HV-BR-d18" secondAttribute="bottom" constant="8" id="PBS-Pj-gfa"/>
+                <constraint firstItem="wuh-jf-rPK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="RLG-C1-Icg"/>
+                <constraint firstItem="d6W-1O-KcN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="UUm-jk-S5N"/>
+                <constraint firstAttribute="bottom" secondItem="d6W-1O-KcN" secondAttribute="bottom" constant="30" id="Vql-sj-OPT"/>
+                <constraint firstAttribute="trailing" secondItem="d6W-1O-KcN" secondAttribute="trailing" constant="16" id="aEe-B9-FVb"/>
+                <constraint firstItem="4HV-BR-d18" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pdM-dh-f1j"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <point key="canvasLocation" x="25.5" y="52.5"/>
+        </view>
+    </objects>
+</document>
