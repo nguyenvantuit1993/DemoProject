@@ -13,16 +13,12 @@
 		CB3EB5DE1E4C67D9000237A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3EB5DD1E4C67D9000237A5 /* Assets.xcassets */; };
 		CB3EB5E11E4C67D9000237A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3EB5DF1E4C67D9000237A5 /* LaunchScreen.storyboard */; };
 		CB3EB5EF1E4C68A3000237A5 /* NVTWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5EE1E4C68A3000237A5 /* NVTWebView.swift */; };
+		CB3EB5F71E4C68D1000237A5 /* HGPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5F31E4C68D1000237A5 /* HGPageScrollView.m */; };
+		CB3EB5F81E4C68D1000237A5 /* HGPageScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3EB5F41E4C68D1000237A5 /* HGPageScrollView.xib */; };
+		CB3EB5F91E4C68D1000237A5 /* HGPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5F61E4C68D1000237A5 /* HGPageView.m */; };
 		CB3EB5FB1E4C6A75000237A5 /* NVTWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5FA1E4C6A75000237A5 /* NVTWebViewModel.swift */; };
 		CB3EB5FF1E4C72A2000237A5 /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5FE1E4C72A2000237A5 /* CustomWebView.swift */; };
 		CB3EB6021E4C73DE000237A5 /* WKWebViewCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB6011E4C73DE000237A5 /* WKWebViewCallBack.swift */; };
-		CB3F01651E4DD69F00224278 /* PagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3F01631E4DD69F00224278 /* PagedFlowView.m */; };
-		CB3F01671E4DD99600224278 /* MyPagedFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3F01661E4DD99600224278 /* MyPagedFlowView.swift */; };
-		CB3F01691E4DD9A100224278 /* MyPagedFlowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3F01681E4DD9A100224278 /* MyPagedFlowView.xib */; };
-		CB91131E1E4D6A4700779C37 /* ToolBarNewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB91131C1E4D6A4700779C37 /* ToolBarNewPage.swift */; };
-		CB91131F1E4D6A4700779C37 /* ToolBarNewPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB91131D1E4D6A4700779C37 /* ToolBarNewPage.xib */; };
-		CB9113211E4D6A5B00779C37 /* ToolBarDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9113201E4D6A5B00779C37 /* ToolBarDetail.swift */; };
-		CB9113231E4D6A6600779C37 /* ToolBarDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB9113221E4D6A6600779C37 /* ToolBarDetail.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,18 +31,14 @@
 		CB3EB5E21E4C67D9000237A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB3EB5EE1E4C68A3000237A5 /* NVTWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVTWebView.swift; sourceTree = "<group>"; };
 		CB3EB5F11E4C68D0000237A5 /* CustomWebView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CustomWebView-Bridging-Header.h"; sourceTree = "<group>"; };
+		CB3EB5F21E4C68D1000237A5 /* HGPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPageScrollView.h; sourceTree = "<group>"; };
+		CB3EB5F31E4C68D1000237A5 /* HGPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPageScrollView.m; sourceTree = "<group>"; };
+		CB3EB5F41E4C68D1000237A5 /* HGPageScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HGPageScrollView.xib; sourceTree = "<group>"; };
+		CB3EB5F51E4C68D1000237A5 /* HGPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPageView.h; sourceTree = "<group>"; };
+		CB3EB5F61E4C68D1000237A5 /* HGPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPageView.m; sourceTree = "<group>"; };
 		CB3EB5FA1E4C6A75000237A5 /* NVTWebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVTWebViewModel.swift; sourceTree = "<group>"; };
 		CB3EB5FE1E4C72A2000237A5 /* CustomWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
 		CB3EB6011E4C73DE000237A5 /* WKWebViewCallBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKWebViewCallBack.swift; sourceTree = "<group>"; };
-		CB3F01621E4DD69F00224278 /* PagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedFlowView.h; sourceTree = "<group>"; };
-		CB3F01631E4DD69F00224278 /* PagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedFlowView.m; sourceTree = "<group>"; };
-		CB3F01641E4DD69F00224278 /* KKPagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPagedFlowView.h; sourceTree = "<group>"; };
-		CB3F01661E4DD99600224278 /* MyPagedFlowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPagedFlowView.swift; sourceTree = "<group>"; };
-		CB3F01681E4DD9A100224278 /* MyPagedFlowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPagedFlowView.xib; sourceTree = "<group>"; };
-		CB91131C1E4D6A4700779C37 /* ToolBarNewPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarNewPage.swift; sourceTree = "<group>"; };
-		CB91131D1E4D6A4700779C37 /* ToolBarNewPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolBarNewPage.xib; sourceTree = "<group>"; };
-		CB9113201E4D6A5B00779C37 /* ToolBarDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarDetail.swift; sourceTree = "<group>"; };
-		CB9113221E4D6A6600779C37 /* ToolBarDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolBarDetail.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +121,7 @@
 		CB3EB5EC1E4C6830000237A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CB3F01611E4DD69000224278 /* PagedFlowView */,
-				CB91130D1E4D60F400779C37 /* ToolBar */,
+				CB3EB5F01E4C68B3000237A5 /* PageScrollView */,
 				CB3EB5EE1E4C68A3000237A5 /* NVTWebView.swift */,
 			);
 			name = Views;
@@ -144,35 +135,24 @@
 			name = ViewModels;
 			sourceTree = "<group>";
 		};
+		CB3EB5F01E4C68B3000237A5 /* PageScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				CB3EB5F21E4C68D1000237A5 /* HGPageScrollView.h */,
+				CB3EB5F31E4C68D1000237A5 /* HGPageScrollView.m */,
+				CB3EB5F41E4C68D1000237A5 /* HGPageScrollView.xib */,
+				CB3EB5F51E4C68D1000237A5 /* HGPageView.h */,
+				CB3EB5F61E4C68D1000237A5 /* HGPageView.m */,
+			);
+			name = PageScrollView;
+			sourceTree = "<group>";
+		};
 		CB3EB6001E4C73B8000237A5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				CB3EB6011E4C73DE000237A5 /* WKWebViewCallBack.swift */,
 			);
 			name = Extensions;
-			sourceTree = "<group>";
-		};
-		CB3F01611E4DD69000224278 /* PagedFlowView */ = {
-			isa = PBXGroup;
-			children = (
-				CB3F01621E4DD69F00224278 /* PagedFlowView.h */,
-				CB3F01631E4DD69F00224278 /* PagedFlowView.m */,
-				CB3F01641E4DD69F00224278 /* KKPagedFlowView.h */,
-				CB3F01661E4DD99600224278 /* MyPagedFlowView.swift */,
-				CB3F01681E4DD9A100224278 /* MyPagedFlowView.xib */,
-			);
-			name = PagedFlowView;
-			sourceTree = "<group>";
-		};
-		CB91130D1E4D60F400779C37 /* ToolBar */ = {
-			isa = PBXGroup;
-			children = (
-				CB91131C1E4D6A4700779C37 /* ToolBarNewPage.swift */,
-				CB91131D1E4D6A4700779C37 /* ToolBarNewPage.xib */,
-				CB9113201E4D6A5B00779C37 /* ToolBarDetail.swift */,
-				CB9113221E4D6A6600779C37 /* ToolBarDetail.xib */,
-			);
-			name = ToolBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,9 +219,7 @@
 				CB3EB5E11E4C67D9000237A5 /* LaunchScreen.storyboard in Resources */,
 				CB3EB5DE1E4C67D9000237A5 /* Assets.xcassets in Resources */,
 				CB3EB5DC1E4C67D9000237A5 /* Main.storyboard in Resources */,
-				CB9113231E4D6A6600779C37 /* ToolBarDetail.xib in Resources */,
-				CB3F01691E4DD9A100224278 /* MyPagedFlowView.xib in Resources */,
-				CB91131F1E4D6A4700779C37 /* ToolBarNewPage.xib in Resources */,
+				CB3EB5F81E4C68D1000237A5 /* HGPageScrollView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,15 +230,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB3F01671E4DD99600224278 /* MyPagedFlowView.swift in Sources */,
 				CB3EB5FB1E4C6A75000237A5 /* NVTWebViewModel.swift in Sources */,
-				CB91131E1E4D6A4700779C37 /* ToolBarNewPage.swift in Sources */,
 				CB3EB5D91E4C67D9000237A5 /* ViewController.swift in Sources */,
-				CB3F01651E4DD69F00224278 /* PagedFlowView.m in Sources */,
 				CB3EB5FF1E4C72A2000237A5 /* CustomWebView.swift in Sources */,
 				CB3EB5EF1E4C68A3000237A5 /* NVTWebView.swift in Sources */,
-				CB9113211E4D6A5B00779C37 /* ToolBarDetail.swift in Sources */,
 				CB3EB5D71E4C67D9000237A5 /* AppDelegate.swift in Sources */,
+				CB3EB5F71E4C68D1000237A5 /* HGPageScrollView.m in Sources */,
+				CB3EB5F91E4C68D1000237A5 /* HGPageView.m in Sources */,
 				CB3EB6021E4C73DE000237A5 /* WKWebViewCallBack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,7 +408,6 @@
 				CB3EB5E71E4C67D9000237A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
