@@ -10,17 +10,36 @@ import Foundation
 import UIKit
 import WebKit
 
-class CustomWebView: HGPageView, UIGestureRecognizerDelegate, WKNavigationDelegate {
+protocol CustomWebViewDelegate {
+    func closeView()
+}
+
+class CustomWebView: PagedFlowView, UIGestureRecognizerDelegate, WKNavigationDelegate {
+    var delegateWebView: CustomWebViewDelegate!
     var webView: WKWebView!
+    var button: UIButton!
     let mainJavascript = "function MyAppGetHTMLElementsAtPoint(x,y) { var tags = \",\"; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName) { tags += e.tagName + ','; } e = e.parentNode; } return tags; } function MyAppGetLinkSRCAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.src) { tags += e.src; break; } e = e.parentNode; } return tags; }  function MyAppGetLinkHREFAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.href) { tags += e.href; break; } e = e.parentNode; } return tags; }"
     let disableCallBackSource = "var style = document.createElement('style'); style.type = 'text/css'; style.innerText = '*:not(input):not(textarea) { -webkit-touch-callout: none; }'; var head = document.getElementsByTagName('head')[0]; head.appendChild(style);"
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        addWebView()
+        setup()
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setup()
+    }
+    func setup()
+    {
         addWebView()
+        loadRequest()
+        addCloseButton()
+    }
+    func addCloseButton()
+    {
+        button = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        button.addTarget(self, action: #selector(actionButton), for: .touchUpInside)
+        button.backgroundColor = UIColor.red
+        self.addSubview(self.button)
     }
     func addWebView()
     {
@@ -39,6 +58,11 @@ class CustomWebView: HGPageView, UIGestureRecognizerDelegate, WKNavigationDelega
         
         self.webView.scrollView.addGestureRecognizer(longPressRecognizer)
         self.addSubview(self.webView)
+    }
+    
+    func actionButton()
+    {
+        delegateWebView.closeView()
     }
     func loadRequest()
     {
