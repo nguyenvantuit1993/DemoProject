@@ -183,9 +183,9 @@
         pageContentsScrollView.scrollEnabled = NO; //initially disable scroll
         
         // set the pageView frame height
-        CGRect frame = pageView.frame;
-        frame.size.height = 420; 
-        pageView.frame = frame; 
+//        CGRect frame = pageView.frame;
+//        frame.size.height = 420; 
+//        pageView.frame = frame; 
         return pageView;
         
     }

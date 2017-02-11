@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToolBarDetail" customModule="CustomWebView" customModuleProvider="target">
+            <connections>
+                <outlet property="btn_Bookmark" destination="X43-iB-bjA" id="cyS-Ic-uRZ"/>
+                <outlet property="btn_Browser" destination="vCj-3m-6K4" id="gNw-WS-kK2"/>
+                <outlet property="btn_Download" destination="udb-Np-DEq" id="8wf-cY-YGt"/>
+                <outlet property="btn_Forward" destination="9BL-h3-wuK" id="KL9-Hr-JDK"/>
+                <outlet property="btn_Previous" destination="j4c-mp-Ekw" id="a12-Kt-CKQ"/>
+                <outlet property="btn_Zoom" destination="MHT-yY-wok" id="rCp-XM-lXS"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wMS-Yq-5iP">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <items>
+                        <barButtonItem title="&lt;" id="j4c-mp-Ekw">
+                            <connections>
+                                <action selector="actionPrevious:" destination="-1" id="R2O-69-Apd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="&gt;" id="9BL-h3-wuK">
+                            <connections>
+                                <action selector="actionForward:" destination="-1" id="Rvz-Oi-wje"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Book" id="X43-iB-bjA">
+                            <connections>
+                                <action selector="actionBookmark:" destination="-1" id="ecg-Xa-nLW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Browser" id="vCj-3m-6K4">
+                            <connections>
+                                <action selector="actionBrowser:" destination="-1" id="Per-9H-jdC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Download" id="udb-Np-DEq">
+                            <connections>
+                                <action selector="actionDownload:" destination="-1" id="CpD-bp-rQj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Zoom" id="MHT-yY-wok">
+                            <connections>
+                                <action selector="actionZoom:" destination="-1" id="g0F-Mq-lTw"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="wMS-Yq-5iP" secondAttribute="trailing" id="2Bs-Ry-ecP"/>
+                <constraint firstAttribute="bottom" secondItem="wMS-Yq-5iP" secondAttribute="bottom" id="8fN-ub-zCV"/>
+                <constraint firstItem="wMS-Yq-5iP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ICb-z9-ebK"/>
+                <constraint firstItem="wMS-Yq-5iP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ukn-XR-thd"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="41" y="64"/>
+        </view>
+    </objects>
+</document>
