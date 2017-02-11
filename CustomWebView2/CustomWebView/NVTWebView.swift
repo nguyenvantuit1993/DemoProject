@@ -44,10 +44,10 @@ extension NVTWebView: HGPageScrollViewDataSource
         var customWebView = scrollView.dequeueReusablePage(withIdentifier: pageId) as? CustomWebView
         if (customWebView == nil)
         {
-           customWebView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?.first as? CustomWebView
-            //customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: 303, height: 284))
+//           customWebView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?.first as? CustomWebView
+
+            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.view.frame.width*0.75, height: 400))
         }
-        print(customWebView?.frame)
         customWebView?.loadRequest()
 //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
         return customWebView
@@ -65,6 +65,7 @@ extension NVTWebView: HGPageScrollViewDelegate
     func pageScrollView(_ scrollView: HGPageScrollView!, didDeselectPageAt index: Int) {
         
     }
+    
 }
 class CustomView: HGPageView
 {}

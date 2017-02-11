@@ -14,9 +14,8 @@ class NVTWebViewModel{
     var indexesToDelete, indexesToInsert, indexesToReload: NSMutableIndexSet!
     init() {
         self.myPageDataArray = NSMutableArray()
-        let webview = CustomView(frame: CGRect(x: 0, y: 0, width: 320, height: 460))
-        webview.backgroundColor = UIColor.green
-        let webview2 = CustomView(frame: CGRect(x: 0, y: 0, width: 320, height: 460))
+        let webview = CustomView(frame: CGRect(x: 0, y: 0, width: 400, height: 600))
+        let webview2 = CustomView(frame: CGRect(x: 0, y: 0, width: 400, height: 600))
         self.myPageDataArray.add(webview)
         self.myPageDataArray.add(webview2)
     }

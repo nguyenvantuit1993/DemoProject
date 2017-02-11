@@ -748,7 +748,7 @@ typedef enum{
 
 - (void) setFrameForPage : (UIView*) page atIndex : (NSInteger) index;
 {
-    page.transform = CGAffineTransformMakeScale(0.6, 0.6);;
+    page.transform = CGAffineTransformMakeScale(0.6, 0.6);
 	CGFloat contentOffset = index * _scrollView.frame.size.width;
 	CGFloat margin = (_scrollView.frame.size.width - page.frame.size.width) / 2; 
 	CGRect frame = page.frame;

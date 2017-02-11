@@ -23,7 +23,7 @@
                     <rect key="frame" x="10" y="20" width="300" height="34"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="34" id="8ZY-MS-kwq"/>
+                        <constraint firstAttribute="height" constant="34" id="lv9-VU-9q3"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -35,19 +35,26 @@
                     <rect key="frame" x="10" y="53" width="300" height="24"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="24" id="xp6-YV-uVj"/>
+                        <constraint firstAttribute="height" constant="24" id="Izn-N5-Wgp"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="224" userLabel="page control">
+                    <rect key="frame" x="0.0" y="364" width="320" height="36"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="vuY-cP-L7V"/>
+                    </constraints>
+                </pageControl>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="226" userLabel="page scroller touch view" customClass="HGTouchView">
                     <rect key="frame" x="0.0" y="85" width="320" height="260"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <scrollView contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="225" userLabel="page scroller">
-                    <rect key="frame" x="49" y="85" width="222" height="260"/>
+                    <rect key="frame" x="0.0" y="85" width="320" height="260"/>
                     <connections>
                         <outlet property="delegate" destination="98" id="300"/>
                     </connections>
@@ -56,43 +63,36 @@
                     <rect key="frame" x="0.0" y="345" width="320" height="71"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="71" id="hqw-73-KIc"/>
+                        <constraint firstAttribute="height" constant="71" id="9Gk-Mp-KYl"/>
                     </constraints>
                 </view>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="224" userLabel="page control">
-                    <rect key="frame" x="0.0" y="364" width="320" height="36"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="jbf-5K-0pl"/>
-                    </constraints>
-                </pageControl>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="226" secondAttribute="trailing" id="7xL-sO-Ixe"/>
-                <constraint firstItem="232" firstAttribute="leading" secondItem="98" secondAttribute="leading" constant="10" id="ARo-2u-Dwa"/>
-                <constraint firstItem="222" firstAttribute="leading" secondItem="98" secondAttribute="leading" id="EgG-nL-O26"/>
-                <constraint firstAttribute="bottom" secondItem="222" secondAttribute="bottom" id="FyB-hj-Jpq"/>
-                <constraint firstItem="223" firstAttribute="top" secondItem="226" secondAttribute="bottom" id="KvJ-9e-k1i"/>
-                <constraint firstAttribute="trailing" secondItem="232" secondAttribute="trailing" constant="10" id="M1e-cG-Jdy"/>
-                <constraint firstItem="223" firstAttribute="top" secondItem="225" secondAttribute="bottom" id="NMf-bO-Cx3"/>
-                <constraint firstAttribute="bottom" secondItem="224" secondAttribute="bottom" constant="16" id="P8a-Ye-YAC"/>
-                <constraint firstItem="222" firstAttribute="top" secondItem="98" secondAttribute="top" id="PZg-OD-UTh"/>
-                <constraint firstAttribute="trailing" secondItem="227" secondAttribute="trailing" constant="10" id="RSw-xL-L7A"/>
-                <constraint firstItem="225" firstAttribute="leading" secondItem="98" secondAttribute="leading" constant="49" id="RaT-yh-tVS"/>
-                <constraint firstItem="226" firstAttribute="leading" secondItem="98" secondAttribute="leading" id="V0b-Ae-qDV"/>
-                <constraint firstItem="232" firstAttribute="top" secondItem="98" secondAttribute="top" constant="53" id="cvy-ny-5by"/>
-                <constraint firstItem="226" firstAttribute="top" secondItem="232" secondAttribute="bottom" constant="8" id="etS-LL-C9e"/>
-                <constraint firstAttribute="trailing" secondItem="224" secondAttribute="trailing" id="f8q-IB-953"/>
-                <constraint firstAttribute="trailing" secondItem="225" secondAttribute="trailing" constant="49" id="g9K-GK-cMW"/>
-                <constraint firstItem="223" firstAttribute="leading" secondItem="98" secondAttribute="leading" id="gza-UA-TR6"/>
-                <constraint firstAttribute="trailing" secondItem="223" secondAttribute="trailing" id="iKg-ov-oCF"/>
-                <constraint firstItem="227" firstAttribute="top" secondItem="98" secondAttribute="top" constant="20" id="jke-Ni-1tO"/>
-                <constraint firstItem="225" firstAttribute="top" secondItem="232" secondAttribute="bottom" constant="8" id="juw-Up-lfX"/>
-                <constraint firstAttribute="trailing" secondItem="222" secondAttribute="trailing" id="lCU-zg-6C5"/>
-                <constraint firstAttribute="bottom" secondItem="223" secondAttribute="bottom" id="mme-X0-20a"/>
-                <constraint firstItem="227" firstAttribute="leading" secondItem="98" secondAttribute="leading" constant="10" id="onX-Bn-LCt"/>
-                <constraint firstItem="224" firstAttribute="leading" secondItem="98" secondAttribute="leading" id="tng-4Q-Us2"/>
+                <constraint firstItem="226" firstAttribute="leading" secondItem="98" secondAttribute="leading" id="1GV-Bj-nJR"/>
+                <constraint firstItem="227" firstAttribute="top" secondItem="98" secondAttribute="top" constant="20" id="1L3-K2-LGl"/>
+                <constraint firstItem="222" firstAttribute="top" secondItem="98" secondAttribute="top" id="4O4-4U-TzZ"/>
+                <constraint firstItem="222" firstAttribute="leading" secondItem="98" secondAttribute="leading" id="6Xu-EI-1J0"/>
+                <constraint firstItem="225" firstAttribute="top" secondItem="232" secondAttribute="bottom" constant="8" id="7RO-hb-sFr"/>
+                <constraint firstAttribute="trailing" secondItem="227" secondAttribute="trailing" constant="10" id="8y0-3f-oog"/>
+                <constraint firstAttribute="bottom" secondItem="222" secondAttribute="bottom" id="95F-Az-jaM"/>
+                <constraint firstItem="224" firstAttribute="leading" secondItem="98" secondAttribute="leading" id="B3U-Cc-mUq"/>
+                <constraint firstItem="226" firstAttribute="top" secondItem="232" secondAttribute="bottom" constant="8" id="EMB-jr-03k"/>
+                <constraint firstAttribute="bottom" secondItem="223" secondAttribute="bottom" id="EiT-Na-s6X"/>
+                <constraint firstItem="232" firstAttribute="top" secondItem="98" secondAttribute="top" constant="53" id="ISp-6o-6j9"/>
+                <constraint firstItem="227" firstAttribute="leading" secondItem="98" secondAttribute="leading" constant="10" id="Ktf-Vh-OuQ"/>
+                <constraint firstItem="232" firstAttribute="leading" secondItem="98" secondAttribute="leading" constant="10" id="V3K-iL-jCB"/>
+                <constraint firstAttribute="trailing" secondItem="223" secondAttribute="trailing" id="Xqo-eZ-Q88"/>
+                <constraint firstAttribute="trailing" secondItem="226" secondAttribute="trailing" id="Y0m-bF-4cA"/>
+                <constraint firstItem="223" firstAttribute="leading" secondItem="98" secondAttribute="leading" id="Y0u-OO-3iG"/>
+                <constraint firstItem="223" firstAttribute="top" secondItem="226" secondAttribute="bottom" id="ade-XC-LkW"/>
+                <constraint firstAttribute="trailing" secondItem="232" secondAttribute="trailing" constant="10" id="bVu-Ag-b1s"/>
+                <constraint firstAttribute="trailing" secondItem="224" secondAttribute="trailing" id="fGh-cR-Lkg"/>
+                <constraint firstItem="223" firstAttribute="top" secondItem="225" secondAttribute="bottom" id="hMS-kX-pzK"/>
+                <constraint firstAttribute="trailing" secondItem="222" secondAttribute="trailing" id="ilh-Gf-1RA"/>
+                <constraint firstAttribute="bottom" secondItem="224" secondAttribute="bottom" constant="16" id="mVt-01-44D"/>
+                <constraint firstAttribute="trailing" secondItem="225" secondAttribute="trailing" id="uXp-hl-Uti"/>
+                <constraint firstItem="225" firstAttribute="leading" secondItem="98" secondAttribute="leading" id="zkD-gD-fuB"/>
             </constraints>
             <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -107,7 +107,6 @@
                 <outlet property="_scrollView" destination="225" id="299"/>
                 <outlet property="_scrollViewTouch" destination="226" id="298"/>
             </connections>
-            <point key="canvasLocation" x="18" y="25"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

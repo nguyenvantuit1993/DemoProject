@@ -11,20 +11,30 @@ import UIKit
 import WebKit
 
 class CustomWebView: HGPageView, UIGestureRecognizerDelegate, WKNavigationDelegate {
+    @IBOutlet weak var view: UIView!
     var webView: WKWebView!
     let mainJavascript = "function MyAppGetHTMLElementsAtPoint(x,y) { var tags = \",\"; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName) { tags += e.tagName + ','; } e = e.parentNode; } return tags; } function MyAppGetLinkSRCAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.src) { tags += e.src; break; } e = e.parentNode; } return tags; }  function MyAppGetLinkHREFAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.href) { tags += e.href; break; } e = e.parentNode; } return tags; }"
     let disableCallBackSource = "var style = document.createElement('style'); style.type = 'text/css'; style.innerText = '*:not(input):not(textarea) { -webkit-touch-callout: none; }'; var head = document.getElementsByTagName('head')[0]; head.appendChild(style);"
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        addWebView()
+        setup()
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setup()
+    }
+
+    func setup() {
         addWebView()
     }
+    func loadViewFromNib() -> UIView {
+        let subView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?[0]
+        return subView as! UIView
+    }
+
     func addWebView()
     {
-        
+        self.layoutIfNeeded()
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressRecognizerAction(sender:)))
         longPressRecognizer.delegate = self
         
@@ -48,6 +58,8 @@ class CustomWebView: HGPageView, UIGestureRecognizerDelegate, WKNavigationDelega
         let heightConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
         
         self.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+        
+        self.layoutIfNeeded()
    
     }
     func loadRequest()

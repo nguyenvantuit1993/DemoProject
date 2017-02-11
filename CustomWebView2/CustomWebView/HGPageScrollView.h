@@ -133,7 +133,7 @@ typedef enum{
 @property(nonatomic,assign)   id <HGPageScrollViewDelegate>   delegate;
 
 // Info 
-- (void) loadSubViews;
+
 - (NSInteger) numberOfPages; 
 - (HGPageView *)pageAtIndex:(NSInteger)index;            // returns nil if page is not visible or the index is out of range
 
@@ -160,7 +160,7 @@ typedef enum{
 
 // Data
 - (void) reloadData; 
-
+- (void)loadSubViews;
 
 
 // Page insertion/deletion/reloading.

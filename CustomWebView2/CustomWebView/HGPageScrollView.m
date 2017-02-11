@@ -136,7 +136,7 @@ typedef enum{
 @synthesize indexesAfterVisibleRange; 
 
 
--(void)loadSubViews
+- (void)loadSubViews
 {
     [self layoutIfNeeded];
     // release IB reference (we do not want to keep a circular reference to our delegate & dataSource, or it will prevent them from properly deallocating).
@@ -186,7 +186,7 @@ typedef enum{
 
 	[super awakeFromNib];
     
- 
+    
 
 
 }
@@ -430,7 +430,7 @@ typedef enum{
 		
         // add the page back to the scrollView and transform it
         [_scrollView addSubview:_selectedPage];
-		_selectedPage.transform = CGAffineTransformMakeScale(0.6, 0.6);	
+//		_selectedPage.transform = CGAffineTransformMakeScale(0.6, 0.6);	
  		CGRect frame = _selectedPage.frame;
         frame.origin.y = 0;
         _selectedPage.frame = frame;
@@ -752,7 +752,7 @@ typedef enum{
 
 - (void) setFrameForPage : (UIView*) page atIndex : (NSInteger) index;
 {
-    page.transform = CGAffineTransformMakeScale(0.6, 0.6);;
+//    page.transform = CGAffineTransformMakeScale(0.6, 0.6);;
 	CGFloat contentOffset = index * _scrollView.frame.size.width;
 	CGFloat margin = (_scrollView.frame.size.width - page.frame.size.width) / 2; 
 	CGRect frame = page.frame;

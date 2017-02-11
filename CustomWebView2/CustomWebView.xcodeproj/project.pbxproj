@@ -13,19 +13,18 @@
 		CB3EB5DE1E4C67D9000237A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3EB5DD1E4C67D9000237A5 /* Assets.xcassets */; };
 		CB3EB5E11E4C67D9000237A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3EB5DF1E4C67D9000237A5 /* LaunchScreen.storyboard */; };
 		CB3EB5EF1E4C68A3000237A5 /* NVTWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5EE1E4C68A3000237A5 /* NVTWebView.swift */; };
-		CB3EB5F71E4C68D1000237A5 /* HGPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5F31E4C68D1000237A5 /* HGPageScrollView.m */; };
-		CB3EB5F81E4C68D1000237A5 /* HGPageScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3EB5F41E4C68D1000237A5 /* HGPageScrollView.xib */; };
 		CB3EB5F91E4C68D1000237A5 /* HGPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5F61E4C68D1000237A5 /* HGPageView.m */; };
 		CB3EB5FB1E4C6A75000237A5 /* NVTWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5FA1E4C6A75000237A5 /* NVTWebViewModel.swift */; };
 		CB3EB5FF1E4C72A2000237A5 /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5FE1E4C72A2000237A5 /* CustomWebView.swift */; };
 		CB3EB6021E4C73DE000237A5 /* WKWebViewCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB6011E4C73DE000237A5 /* WKWebViewCallBack.swift */; };
+		CB6316C31E4F108E00B5C2C9 /* HGPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6316C11E4F108E00B5C2C9 /* HGPageScrollView.m */; };
+		CB6316C41E4F108E00B5C2C9 /* HGPageScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB6316C21E4F108E00B5C2C9 /* HGPageScrollView.xib */; };
 		CB997F601E4EBCDE0074359B /* ToolBarNewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB997F5C1E4EBCDE0074359B /* ToolBarNewPage.swift */; };
 		CB997F611E4EBCDE0074359B /* ToolBarNewPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB997F5D1E4EBCDE0074359B /* ToolBarNewPage.xib */; };
 		CB997F621E4EBCDE0074359B /* ToolBarDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB997F5E1E4EBCDE0074359B /* ToolBarDetail.swift */; };
 		CB997F631E4EBCDE0074359B /* ToolBarDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB997F5F1E4EBCDE0074359B /* ToolBarDetail.xib */; };
 		CB997F671E4ECF6B0074359B /* MyPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB997F641E4ECF6B0074359B /* MyPageView.xib */; };
 		CB997F681E4ECF6B0074359B /* MyPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB997F661E4ECF6B0074359B /* MyPageView.m */; };
-		CB997F6C1E4ED7B00074359B /* CustomWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB997F6B1E4ED7B00074359B /* CustomWebView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,14 +37,14 @@
 		CB3EB5E21E4C67D9000237A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB3EB5EE1E4C68A3000237A5 /* NVTWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVTWebView.swift; sourceTree = "<group>"; };
 		CB3EB5F11E4C68D0000237A5 /* CustomWebView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CustomWebView-Bridging-Header.h"; sourceTree = "<group>"; };
-		CB3EB5F21E4C68D1000237A5 /* HGPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPageScrollView.h; sourceTree = "<group>"; };
-		CB3EB5F31E4C68D1000237A5 /* HGPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPageScrollView.m; sourceTree = "<group>"; };
-		CB3EB5F41E4C68D1000237A5 /* HGPageScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HGPageScrollView.xib; sourceTree = "<group>"; };
 		CB3EB5F51E4C68D1000237A5 /* HGPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPageView.h; sourceTree = "<group>"; };
 		CB3EB5F61E4C68D1000237A5 /* HGPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPageView.m; sourceTree = "<group>"; };
 		CB3EB5FA1E4C6A75000237A5 /* NVTWebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVTWebViewModel.swift; sourceTree = "<group>"; };
 		CB3EB5FE1E4C72A2000237A5 /* CustomWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
 		CB3EB6011E4C73DE000237A5 /* WKWebViewCallBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKWebViewCallBack.swift; sourceTree = "<group>"; };
+		CB6316C01E4F108E00B5C2C9 /* HGPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPageScrollView.h; sourceTree = "<group>"; };
+		CB6316C11E4F108E00B5C2C9 /* HGPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPageScrollView.m; sourceTree = "<group>"; };
+		CB6316C21E4F108E00B5C2C9 /* HGPageScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HGPageScrollView.xib; sourceTree = "<group>"; };
 		CB997F5C1E4EBCDE0074359B /* ToolBarNewPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarNewPage.swift; sourceTree = "<group>"; };
 		CB997F5D1E4EBCDE0074359B /* ToolBarNewPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolBarNewPage.xib; sourceTree = "<group>"; };
 		CB997F5E1E4EBCDE0074359B /* ToolBarDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarDetail.swift; sourceTree = "<group>"; };
@@ -53,7 +52,6 @@
 		CB997F641E4ECF6B0074359B /* MyPageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPageView.xib; sourceTree = "<group>"; };
 		CB997F651E4ECF6B0074359B /* MyPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageView.h; sourceTree = "<group>"; };
 		CB997F661E4ECF6B0074359B /* MyPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageView.m; sourceTree = "<group>"; };
-		CB997F6B1E4ED7B00074359B /* CustomWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomWebView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				CB3EB5FE1E4C72A2000237A5 /* CustomWebView.swift */,
-				CB997F6B1E4ED7B00074359B /* CustomWebView.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -158,11 +155,11 @@
 				CB997F641E4ECF6B0074359B /* MyPageView.xib */,
 				CB997F651E4ECF6B0074359B /* MyPageView.h */,
 				CB997F661E4ECF6B0074359B /* MyPageView.m */,
-				CB3EB5F21E4C68D1000237A5 /* HGPageScrollView.h */,
-				CB3EB5F31E4C68D1000237A5 /* HGPageScrollView.m */,
-				CB3EB5F41E4C68D1000237A5 /* HGPageScrollView.xib */,
 				CB3EB5F51E4C68D1000237A5 /* HGPageView.h */,
 				CB3EB5F61E4C68D1000237A5 /* HGPageView.m */,
+				CB6316C01E4F108E00B5C2C9 /* HGPageScrollView.h */,
+				CB6316C11E4F108E00B5C2C9 /* HGPageScrollView.m */,
+				CB6316C21E4F108E00B5C2C9 /* HGPageScrollView.xib */,
 			);
 			name = PageScrollView;
 			sourceTree = "<group>";
@@ -249,11 +246,10 @@
 			files = (
 				CB997F611E4EBCDE0074359B /* ToolBarNewPage.xib in Resources */,
 				CB3EB5E11E4C67D9000237A5 /* LaunchScreen.storyboard in Resources */,
+				CB6316C41E4F108E00B5C2C9 /* HGPageScrollView.xib in Resources */,
 				CB3EB5DE1E4C67D9000237A5 /* Assets.xcassets in Resources */,
 				CB3EB5DC1E4C67D9000237A5 /* Main.storyboard in Resources */,
 				CB997F631E4EBCDE0074359B /* ToolBarDetail.xib in Resources */,
-				CB3EB5F81E4C68D1000237A5 /* HGPageScrollView.xib in Resources */,
-				CB997F6C1E4ED7B00074359B /* CustomWebView.xib in Resources */,
 				CB997F671E4ECF6B0074359B /* MyPageView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,8 +267,8 @@
 				CB997F621E4EBCDE0074359B /* ToolBarDetail.swift in Sources */,
 				CB3EB5FF1E4C72A2000237A5 /* CustomWebView.swift in Sources */,
 				CB3EB5EF1E4C68A3000237A5 /* NVTWebView.swift in Sources */,
+				CB6316C31E4F108E00B5C2C9 /* HGPageScrollView.m in Sources */,
 				CB3EB5D71E4C67D9000237A5 /* AppDelegate.swift in Sources */,
-				CB3EB5F71E4C68D1000237A5 /* HGPageScrollView.m in Sources */,
 				CB3EB5F91E4C68D1000237A5 /* HGPageView.m in Sources */,
 				CB3EB6021E4C73DE000237A5 /* WKWebViewCallBack.swift in Sources */,
 				CB997F601E4EBCDE0074359B /* ToolBarNewPage.swift in Sources */,

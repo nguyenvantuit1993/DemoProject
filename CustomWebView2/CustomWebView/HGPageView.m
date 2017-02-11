@@ -37,13 +37,17 @@
 - (id) initWithCoder:(NSCoder *)aDecoder
 {    
     self = [super initWithCoder:aDecoder];
-    if (self) {
-        // Initialization code.
-        _identityFrame = self.frame; //as it is defined in the XIB
+    return self;
+}
+- (id) initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        _identityFrame = self.frame;
     }
     return self;
 }
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
