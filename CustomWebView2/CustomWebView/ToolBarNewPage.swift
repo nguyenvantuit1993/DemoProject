@@ -45,6 +45,7 @@ class ToolBarNewPage: BaseToolBar  {
     func setup() {
         isToolBarNewPage = true
         view = loadViewFromNib()
+        self.view.frame = self.frame
         self.addSubview(view)
     }
     func loadViewFromNib() -> UIView {

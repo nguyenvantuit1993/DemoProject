@@ -11,13 +11,53 @@ import UIKit
 class NVTWebView: UIViewController{
     var myPageScrollView: HGPageScrollView!
     var webviewModel = NVTWebViewModel()
+    var toolBar: BaseToolBar!
     let pageId = "pageId"
     override func viewDidLoad() {
         super.viewDidLoad()
         addPageScrollView()
+        addToolBar()
+    }
+    func addToolBar()
+    {
+        if(toolBar == nil)
+        {
+            toolBar = ToolBarNewPage(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
+        }
+        else
+        {
+            toolBar.removeFromSuperview()
+            if(toolBar.isToolBarNewPage == true)
+            {
+                toolBar = ToolBarDetail(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
+            
+            }
+            else
+            {
+                 toolBar = ToolBarNewPage(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
+            }
+            
+        }
+        toolBar.delegate = self
+        self.view.addSubview(self.toolBar)
+        layoutToolBar()
+    }
+    func layoutToolBar()
+    {
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        let horizontalConstraint = NSLayoutConstraint(item: toolBar, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: toolBar, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0)
+        
+        let heightConstraint = NSLayoutConstraint(item: toolBar, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 40)
+        
+        let verticalConstraint = NSLayoutConstraint(item: toolBar, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+        
+        view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+        toolBar.layoutIfNeeded()
     }
     func addPageScrollView()
     {
+        self.view.layoutIfNeeded()
         myPageScrollView = Bundle.main.loadNibNamed("HGPageScrollView", owner: self, options: nil)?.first as! HGPageScrollView!
         self.view.addSubview(myPageScrollView)
 
@@ -28,7 +68,7 @@ class NVTWebView: UIViewController{
         let horizontalConstraint = NSLayoutConstraint(item: myPageScrollView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0)
         let verticalConstraint = NSLayoutConstraint(item: myPageScrollView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
         let widthConstraint = NSLayoutConstraint(item: myPageScrollView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0)
-        let heightConstraint = NSLayoutConstraint(item: myPageScrollView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -100)
+        let heightConstraint = NSLayoutConstraint(item: myPageScrollView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -40)
         
         view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
         myPageScrollView.loadSubViews()
@@ -46,7 +86,7 @@ extension NVTWebView: HGPageScrollViewDataSource
         {
 //           customWebView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?.first as? CustomWebView
 
-            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.view.frame.width*0.75, height: 400))
+            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
         }
         customWebView?.loadRequest()
 //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
@@ -63,9 +103,54 @@ extension NVTWebView: HGPageScrollViewDataSource
 extension NVTWebView: HGPageScrollViewDelegate
 {
     func pageScrollView(_ scrollView: HGPageScrollView!, didDeselectPageAt index: Int) {
-        
+        self.addToolBar()
+    }
+    func pageScrollView(_ scrollView: HGPageScrollView!, didSelectPageAt index: Int) {
+       self.addToolBar()
     }
     
 }
-class CustomView: HGPageView
-{}
+extension NVTWebView: ToolBarDelegate
+{
+    func actionBrowser()
+    {
+        self.webviewModel.browserWith(pageScrollView: self.myPageScrollView)
+    }
+    func addNewPage()
+    {
+        self.webviewModel.addNewLastPageTo(pageScrollView: self.myPageScrollView)
+//        actionBrowser()
+    }
+    func showCurrentPage()
+    {
+        self.actionBrowser()
+    }
+    func showPreviousPage()
+    {
+        
+    }
+    func showForwardPage()
+    {
+        
+    }
+    func actionBookMark()
+    {
+        
+    }
+    func showBrowser()
+    {
+        self.actionBrowser()
+    }
+    func showDownloadView()
+    {
+        
+    }
+    func zoom()
+    {
+        
+    }
+    func switchToolBar()
+    {
+        
+    }
+}

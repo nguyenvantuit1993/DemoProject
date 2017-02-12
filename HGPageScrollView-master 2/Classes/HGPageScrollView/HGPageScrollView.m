@@ -901,7 +901,11 @@ typedef enum{
     if ([self.indexesAfterVisibleRange count] > 0) {
         [self setNumberOfPages:_numberOfPages +[self.indexesAfterVisibleRange count]];
     }
-        
+    
+    [UIView animateWithDuration:0.6 animations:^{
+        _scrollView.contentOffset = CGPointMake(_scrollView.frame.size.width*(_numberOfPages-1), 0);
+    }];
+    
 
 }
 

@@ -34,6 +34,7 @@ class ToolBarDetail: BaseToolBar {
     func setup() {
         isToolBarNewPage = false
         view = loadViewFromNib()
+        self.view.frame = self.frame
         self.addSubview(view)
     }
     func loadViewFromNib() -> UIView {

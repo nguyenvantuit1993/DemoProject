@@ -414,8 +414,10 @@ typedef enum{
 		headerView.alpha = 1.0;
 		
 		//remove unnecessary views
-		[_scrollViewTouch removeFromSuperview];
-		[_pageSelectorTouch removeFromSuperview];
+        _scrollViewTouch.hidden = true;
+        _pageSelectorTouch.hidden = true;
+//		[_scrollViewTouch removeFromSuperview];
+//		[_pageSelectorTouch removeFromSuperview];
 	} : ^{
 		
         [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -464,11 +466,12 @@ typedef enum{
 
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
 
-		_scrollView.scrollEnabled = YES;				
+		_scrollView.scrollEnabled = YES;
 		//_scrollView.frame = CGRectMake(0, _scrollViewTouch.frame.origin.y, self.frame.size.width, _scrollViewTouch.frame.size.height);
-		[self addSubview:_scrollViewTouch];
-		[self addSubview: _pageSelectorTouch];
-		
+//		[self addSubview:_scrollViewTouch];
+//		[self addSubview: _pageSelectorTouch];
+        _scrollViewTouch.hidden = false;
+        _pageSelectorTouch.hidden = false;
         if (!_selectedPage.maskLayer) {
             [self setLayerPropertiesForPage:_selectedPage];
         }
@@ -886,10 +889,17 @@ typedef enum{
     if ([self.indexesAfterVisibleRange count] > 0) {
         [self setNumberOfPages:_numberOfPages +[self.indexesAfterVisibleRange count]];
     }
-        
-
+    [self moveToTheLastPage];
+    
 }
-
+//newcode
+- (void)moveToTheLastPage
+{
+    [UIView animateWithDuration:0.6 animations:^{
+        _scrollView.contentOffset = CGPointMake(_scrollView.frame.size.width*(_numberOfPages-1), 0);
+    }];
+    [_pageSelector setCurrentPage:_numberOfPages];
+}
 
 - (void)deletePagesAtIndexes:(NSIndexSet *)indexes animated:(BOOL)animated;
 {

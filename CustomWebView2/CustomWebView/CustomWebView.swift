@@ -58,8 +58,6 @@ class CustomWebView: HGPageView, UIGestureRecognizerDelegate, WKNavigationDelega
         let heightConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
         
         self.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
-        
-        self.layoutIfNeeded()
    
     }
     func loadRequest()
