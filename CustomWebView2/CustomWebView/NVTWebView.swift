@@ -85,8 +85,8 @@ extension NVTWebView: HGPageScrollViewDataSource
         if (customWebView == nil)
         {
 //           customWebView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?.first as? CustomWebView
-
-            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
+            customWebView = self.webviewModel.myPageDataArray[index] as? CustomWebView
+//            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
         }
         customWebView?.loadRequest()
 //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
@@ -127,11 +127,11 @@ extension NVTWebView: ToolBarDelegate
     }
     func showPreviousPage()
     {
-        
+        self.webviewModel.goBack(indexPage:self.myPageScrollView.indexForSelectedPage())
     }
     func showForwardPage()
     {
-        
+        self.webviewModel.goForward(indexPage:self.myPageScrollView.indexForSelectedPage())
     }
     func actionBookMark()
     {

@@ -899,6 +899,8 @@ typedef enum{
         _scrollView.contentOffset = CGPointMake(_scrollView.frame.size.width*(_numberOfPages-1), 0);
     }];
     [_pageSelector setCurrentPage:_numberOfPages];
+    [self selectPageAtIndex:_numberOfPages-1 animated:true];
+    
 }
 
 - (void)deletePagesAtIndexes:(NSIndexSet *)indexes animated:(BOOL)animated;

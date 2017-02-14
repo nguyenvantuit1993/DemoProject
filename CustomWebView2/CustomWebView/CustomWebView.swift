@@ -67,6 +67,26 @@ class CustomWebView: HGPageView, UIGestureRecognizerDelegate, WKNavigationDelega
         
         self.webView.load(requestObj)
     }
+    func goBackPage()
+    {
+        if self.webView.canGoBack {
+            print("Can go back")
+            self.webView.goBack()
+//            self.webView.reload()
+        } else {
+            print("Can't go back")
+        }
+    }
+    func goForwardPage()
+    {
+        if self.webView.canGoForward {
+            print("Can go foward")
+            self.webView.goForward()
+//            self.webView.reload()
+        } else {
+            print("Can't go foward")
+        }
+    }
     func longPressRecognizerAction(sender: UILongPressGestureRecognizer) {
         self.webView.evaluate(script: mainJavascript, completion: {(result, error) in
             print(result)

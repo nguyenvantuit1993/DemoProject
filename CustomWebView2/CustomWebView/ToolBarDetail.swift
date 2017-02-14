@@ -42,17 +42,22 @@ class ToolBarDetail: BaseToolBar {
         return subView as! UIView
     }
     @IBAction func actionPrevious(_ sender: Any) {
+        self.delegate?.showPreviousPage()
     }
     @IBAction func actionForward(_ sender: Any) {
+        self.delegate?.showForwardPage()
     }
     @IBAction func actionBookmark(_ sender: Any) {
+        self.delegate?.actionBookMark()
     }
     @IBAction func actionBrowser(_ sender: Any) {
         self.delegate?.showBrowser()
     }
     @IBAction func actionDownload(_ sender: Any) {
+        self.delegate?.showDownloadView()
     }
     @IBAction func actionZoom(_ sender: Any) {
+        self.delegate?.zoom()
     }
 
     

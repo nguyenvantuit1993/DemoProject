@@ -14,14 +14,28 @@ class NVTWebViewModel{
     var indexesToDelete, indexesToInsert, indexesToReload: NSMutableIndexSet!
     init() {
         self.myPageDataArray = NSMutableArray()
-        let webview = MyPageView(frame: CGRect(x: 0, y: 0, width: 400, height: 600))
-        let webview2 = MyPageView(frame: CGRect(x: 0, y: 0, width: 400, height: 600))
+        let webview = CustomWebView(frame: CGRect(x: 0, y: 0, width: 400, height: 600))
+        let webview2 = CustomWebView(frame: CGRect(x: 0, y: 0, width: 400, height: 600))
         self.myPageDataArray.add(webview)
         self.myPageDataArray.add(webview2)
     }
     func setupDataToView(currentView: CustomWebView) -> CustomWebView
     {
         return currentView
+    }
+    func goBack(indexPage: Int)
+    {
+        let webView = getPage(indexPage: indexPage)
+        webView?.goBackPage()
+    }
+    func goForward(indexPage: Int)
+    {
+        let webView = getPage(indexPage: indexPage)
+        webView?.goForwardPage()
+    }
+    func getPage(indexPage: Int) -> CustomWebView?
+    {
+        return self.myPageDataArray[indexPage] as? CustomWebView
     }
     func browserWith(pageScrollView: HGPageScrollView)
     {
