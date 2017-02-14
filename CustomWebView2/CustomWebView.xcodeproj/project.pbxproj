@@ -18,6 +18,7 @@
 		CB3EB5FB1E4C6A75000237A5 /* NVTWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5FA1E4C6A75000237A5 /* NVTWebViewModel.swift */; };
 		CB3EB5FF1E4C72A2000237A5 /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB5FE1E4C72A2000237A5 /* CustomWebView.swift */; };
 		CB3EB6021E4C73DE000237A5 /* WKWebViewCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EB6011E4C73DE000237A5 /* WKWebViewCallBack.swift */; };
+		CB46A1651E52FEBC004FBD5E /* BookMarkData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB46A1631E52FEBC004FBD5E /* BookMarkData.xcdatamodeld */; };
 		CB6316C31E4F108E00B5C2C9 /* HGPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6316C11E4F108E00B5C2C9 /* HGPageScrollView.m */; };
 		CB997F601E4EBCDE0074359B /* ToolBarNewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB997F5C1E4EBCDE0074359B /* ToolBarNewPage.swift */; };
 		CB997F611E4EBCDE0074359B /* ToolBarNewPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB997F5D1E4EBCDE0074359B /* ToolBarNewPage.xib */; };
@@ -43,6 +44,7 @@
 		CB3EB5FA1E4C6A75000237A5 /* NVTWebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVTWebViewModel.swift; sourceTree = "<group>"; };
 		CB3EB5FE1E4C72A2000237A5 /* CustomWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
 		CB3EB6011E4C73DE000237A5 /* WKWebViewCallBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKWebViewCallBack.swift; sourceTree = "<group>"; };
+		CB46A1641E52FEBC004FBD5E /* BookMarkData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookMarkData.xcdatamodel; sourceTree = "<group>"; };
 		CB6316C01E4F108E00B5C2C9 /* HGPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPageScrollView.h; sourceTree = "<group>"; };
 		CB6316C11E4F108E00B5C2C9 /* HGPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPageScrollView.m; sourceTree = "<group>"; };
 		CB997F5C1E4EBCDE0074359B /* ToolBarNewPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarNewPage.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		CB3EB5D51E4C67D9000237A5 /* CustomWebView */ = {
 			isa = PBXGroup;
 			children = (
+				CB46A15E1E52F829004FBD5E /* Utils */,
 				CB3EB6001E4C73B8000237A5 /* Extensions */,
 				CB3EB5ED1E4C6835000237A5 /* ViewModels */,
 				CB3EB5EC1E4C6830000237A5 /* Views */,
@@ -98,6 +101,7 @@
 				CB3EB5DF1E4C67D9000237A5 /* LaunchScreen.storyboard */,
 				CB3EB5E21E4C67D9000237A5 /* Info.plist */,
 				CB3EB5F11E4C68D0000237A5 /* CustomWebView-Bridging-Header.h */,
+				CB46A1631E52FEBC004FBD5E /* BookMarkData.xcdatamodeld */,
 			);
 			path = CustomWebView;
 			sourceTree = "<group>";
@@ -135,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				CB997F5B1E4EBCC70074359B /* ToolBars */,
-				CB3EB5F01E4C68B3000237A5 /* PageScrollView */,
 				CB3EB5EE1E4C68A3000237A5 /* NVTWebView.swift */,
 			);
 			name = Views;
@@ -170,6 +173,14 @@
 				CB3EB6011E4C73DE000237A5 /* WKWebViewCallBack.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		CB46A15E1E52F829004FBD5E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CB3EB5F01E4C68B3000237A5 /* PageScrollView */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		CB997F5B1E4EBCC70074359B /* ToolBars */ = {
@@ -262,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB3EB5FB1E4C6A75000237A5 /* NVTWebViewModel.swift in Sources */,
+				CB46A1651E52FEBC004FBD5E /* BookMarkData.xcdatamodeld in Sources */,
 				CB997F681E4ECF6B0074359B /* MyPageView.m in Sources */,
 				CB3EB5D91E4C67D9000237A5 /* ViewController.swift in Sources */,
 				CB997F621E4EBCDE0074359B /* ToolBarDetail.swift in Sources */,
@@ -445,6 +457,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CB46A1631E52FEBC004FBD5E /* BookMarkData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CB46A1641E52FEBC004FBD5E /* BookMarkData.xcdatamodel */,
+			);
+			currentVersion = CB46A1641E52FEBC004FBD5E /* BookMarkData.xcdatamodel */;
+			path = BookMarkData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CB3EB5CB1E4C67D9000237A5 /* Project object */;
 }

@@ -80,7 +80,7 @@ class CustomWebView: HGPageView, UIGestureRecognizerDelegate, WKNavigationDelega
     func goForwardPage()
     {
         if self.webView.canGoForward {
-            print("Can go foward")
+            
             self.webView.goForward()
 //            self.webView.reload()
         } else {

@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class NVTWebViewModel{
+class NVTWebViewModel: NSObject{
     var myPageDataArray: NSMutableArray!
     var indexesToDelete, indexesToInsert, indexesToReload: NSMutableIndexSet!
-    init() {
+    override init() {
         self.myPageDataArray = NSMutableArray()
         let webview = CustomWebView(frame: CGRect(x: 0, y: 0, width: 400, height: 600))
         let webview2 = CustomWebView(frame: CGRect(x: 0, y: 0, width: 400, height: 600))
@@ -32,6 +32,10 @@ class NVTWebViewModel{
     {
         let webView = getPage(indexPage: indexPage)
         webView?.goForwardPage()
+    }
+    func actionBookMark()
+    {
+        
     }
     func getPage(indexPage: Int) -> CustomWebView?
     {
@@ -79,3 +83,4 @@ class NVTWebViewModel{
         pageScrollView.reloadPages(at: indexSet as IndexSet!)
     }
 }
+
