@@ -16,10 +16,9 @@ class ImagesView: BaseClearBarItemsViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self
-//        self.collectionView.dataSource = self
-        
+        self.collectionView.dataSource = self
+        self.collectionView.register(UINib(nibName: "CustomCollectionCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ImagesViewCell")
         self.view.backgroundColor = UIColor.black
-        
         imageViewModel = ImagesViewModel(withFolderPath: URL(string:documentsPath! + "/\(kImageFolder)")!)
     }
 }
@@ -27,12 +26,15 @@ extension ImagesView: UICollectionViewDelegate
 {
     
 }
-//extension ImagesView: UICollectionViewDataSource
-//{
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return imageViewModel.count()
-//    }
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        
-//    }
-//}
+extension ImagesView: UICollectionViewDataSource
+{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imageViewModel.count()
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagesViewCell", for: indexPath) as! CustomCollectionCell
+        cell.imageView.image = UIImage(data: imageViewModel.getMedia(withIndex: indexPath.row))
+        return cell
+        
+    }
+}

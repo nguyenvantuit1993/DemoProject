@@ -7,11 +7,23 @@
 //
 
 import UIKit
-
+enum CompassPoint: Int {
+    case north = 1
+    case south
+    case east
+    case west
+}
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let a = CompassPoint.init(rawValue: 1)
+        switch a! {
+        case .north: break
+            
+        default: break
+            
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 

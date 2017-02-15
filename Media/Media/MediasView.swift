@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 class MediasView: TableViewAndSearchBar {
-    
+    var mediasViewModel: MediasViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        addButtonList()
+        mediasViewModel = MediasViewModel(withFolderPath: URL(string:documentsPath! + "/\(kVideoFolder)")!)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,5 +32,18 @@ class MediasView: TableViewAndSearchBar {
     func showPlayList()
     {
         print("ShowPlayList")
+    }
+}
+extension MediasView{
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return mediasViewModel == nil ? 0 : 1
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return mediasViewModel.count()
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.imageView?.image = UIImage(data: mediasViewModel.getMedia(withIndex: indexPath.row))
+        return cell
     }
 }
