@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Photos
 
 class ImagesViewModel: FileManagerMedia{
     override init()
@@ -19,6 +20,15 @@ class ImagesViewModel: FileManagerMedia{
         super.init(withFolderPath: folderPath)
         isImageView = true
         getListFiles()
+    }
+    override func saveMediaToCameraRoll(atIndex: Int) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: self.getSourcePath(atIndex: atIndex))
+        }) { completed, error in
+            if completed {
+                print("Video is saved!")
+            }
+        }
     }
     
 }
@@ -81,7 +91,19 @@ class FileManagerMedia
         }
         return items
     }
-    
+    func saveMediaToCameraRoll(atIndex: Int)
+    {
+        
+
+    }
+    func getSourcePath(atIndex index: Int) -> URL
+    {
+        return self.items[index].filePath
+    }
+    func getNameItem(atIndex index: Int) -> String
+    {
+        return self.items[index].name
+    }
     func getMedia(withIndex index: Int) -> Data
     {
         let filePath = isImageView == true ? items[index].filePath:items[index].thumbPath

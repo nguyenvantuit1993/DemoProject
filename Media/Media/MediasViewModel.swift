@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import AVKit
+import Photos
 
 class MediasViewModel: FileManagerMedia {
     override init()
@@ -19,4 +21,14 @@ class MediasViewModel: FileManagerMedia {
         isImageView = false
         getListFiles()
     }
+    override func saveMediaToCameraRoll(atIndex: Int) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.getSourcePath(atIndex: atIndex))
+        }) { completed, error in
+            if completed {
+                print("Video is saved!")
+            }
+        }
+    }
+    
 }

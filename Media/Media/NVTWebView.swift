@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AssetsLibrary
 class NVTWebView: UIViewController{
     var myPageScrollView: HGPageScrollView!
     var webviewModel = NVTWebViewModel()
@@ -19,7 +20,6 @@ class NVTWebView: UIViewController{
         addPageScrollView()
         addToolBar()
     }
-    
     func addToolBar()
     {
         if(toolBar == nil)
