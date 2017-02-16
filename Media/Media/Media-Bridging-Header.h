@@ -3,3 +3,4 @@
 //
 
 #import "HGPageScrollView.h"
+#import "TTopenInAppActivity.h"

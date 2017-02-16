@@ -42,6 +42,14 @@
 		CB8294731E5410860013A064 /* CustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8294711E5410860013A064 /* CustomCollectionCell.xib */; };
 		CB8294771E5414F10013A064 /* MediasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8294761E5414F10013A064 /* MediasViewModel.swift */; };
 		CB8294791E5416590013A064 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8294781E5416590013A064 /* Item.swift */; };
+		CBD33B311E554B510004D374 /* TTOpenInAppActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD33B291E554B510004D374 /* TTOpenInAppActivity.m */; };
+		CBD33B321E554B510004D374 /* TTOpenInAppActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2A1E554B510004D374 /* TTOpenInAppActivity.png */; };
+		CBD33B331E554B510004D374 /* TTOpenInAppActivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2B1E554B510004D374 /* TTOpenInAppActivity@2x.png */; };
+		CBD33B341E554B510004D374 /* TTOpenInAppActivity7.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2C1E554B510004D374 /* TTOpenInAppActivity7.png */; };
+		CBD33B351E554B510004D374 /* TTOpenInAppActivity7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2D1E554B510004D374 /* TTOpenInAppActivity7@2x.png */; };
+		CBD33B361E554B510004D374 /* TTOpenInAppActivity8.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2E1E554B510004D374 /* TTOpenInAppActivity8.png */; };
+		CBD33B371E554B510004D374 /* TTOpenInAppActivity8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2F1E554B510004D374 /* TTOpenInAppActivity8@2x.png */; };
+		CBD33B381E554B510004D374 /* TTOpenInAppActivity8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B301E554B510004D374 /* TTOpenInAppActivity8@3x.png */; };
 		CBFB10001E497FF500992989 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB0FFF1E497FF500992989 /* ImagesView.swift */; };
 		CBFB10021E49835200992989 /* BaseClearBarItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB10011E49835200992989 /* BaseClearBarItemsViewController.swift */; };
 		CBFB10041E49845700992989 /* BaseClearBarItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB10031E49845700992989 /* BaseClearBarItemsTableViewController.swift */; };
@@ -88,6 +96,15 @@
 		CB8294711E5410860013A064 /* CustomCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCollectionCell.xib; sourceTree = "<group>"; };
 		CB8294761E5414F10013A064 /* MediasViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediasViewModel.swift; sourceTree = "<group>"; };
 		CB8294781E5416590013A064 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		CBD33B281E554B510004D374 /* TTOpenInAppActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTOpenInAppActivity.h; sourceTree = "<group>"; };
+		CBD33B291E554B510004D374 /* TTOpenInAppActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTOpenInAppActivity.m; sourceTree = "<group>"; };
+		CBD33B2A1E554B510004D374 /* TTOpenInAppActivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity.png; sourceTree = "<group>"; };
+		CBD33B2B1E554B510004D374 /* TTOpenInAppActivity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity@2x.png"; sourceTree = "<group>"; };
+		CBD33B2C1E554B510004D374 /* TTOpenInAppActivity7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity7.png; sourceTree = "<group>"; };
+		CBD33B2D1E554B510004D374 /* TTOpenInAppActivity7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity7@2x.png"; sourceTree = "<group>"; };
+		CBD33B2E1E554B510004D374 /* TTOpenInAppActivity8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity8.png; sourceTree = "<group>"; };
+		CBD33B2F1E554B510004D374 /* TTOpenInAppActivity8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity8@2x.png"; sourceTree = "<group>"; };
+		CBD33B301E554B510004D374 /* TTOpenInAppActivity8@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity8@3x.png"; sourceTree = "<group>"; };
 		CBFB0FFF1E497FF500992989 /* ImagesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
 		CBFB10011E49835200992989 /* BaseClearBarItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClearBarItemsViewController.swift; sourceTree = "<group>"; };
 		CBFB10031E49845700992989 /* BaseClearBarItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClearBarItemsTableViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +221,7 @@
 		CB80C8051E49735C00690D4D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CBD33B271E554B3F0004D374 /* TTOpenInAppActivity */,
 				CB82946F1E5410640013A064 /* CollectionCell */,
 				B1B2B3031E53B5CC0069E3C9 /* DownloadCell */,
 				B1B2B2E61E53B03F0069E3C9 /* ToolBars */,
@@ -263,6 +281,22 @@
 				CB8294711E5410860013A064 /* CustomCollectionCell.xib */,
 			);
 			name = CollectionCell;
+			sourceTree = "<group>";
+		};
+		CBD33B271E554B3F0004D374 /* TTOpenInAppActivity */ = {
+			isa = PBXGroup;
+			children = (
+				CBD33B281E554B510004D374 /* TTOpenInAppActivity.h */,
+				CBD33B291E554B510004D374 /* TTOpenInAppActivity.m */,
+				CBD33B2A1E554B510004D374 /* TTOpenInAppActivity.png */,
+				CBD33B2B1E554B510004D374 /* TTOpenInAppActivity@2x.png */,
+				CBD33B2C1E554B510004D374 /* TTOpenInAppActivity7.png */,
+				CBD33B2D1E554B510004D374 /* TTOpenInAppActivity7@2x.png */,
+				CBD33B2E1E554B510004D374 /* TTOpenInAppActivity8.png */,
+				CBD33B2F1E554B510004D374 /* TTOpenInAppActivity8@2x.png */,
+				CBD33B301E554B510004D374 /* TTOpenInAppActivity8@3x.png */,
+			);
+			name = TTOpenInAppActivity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,14 +360,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD33B381E554B510004D374 /* TTOpenInAppActivity8@3x.png in Resources */,
+				CBD33B361E554B510004D374 /* TTOpenInAppActivity8.png in Resources */,
 				CB8294731E5410860013A064 /* CustomCollectionCell.xib in Resources */,
 				B1B2B2F81E53B1910069E3C9 /* ToolBarNewPage.xib in Resources */,
 				CB80C7FE1E496AA600690D4D /* LaunchScreen.storyboard in Resources */,
+				CBD33B321E554B510004D374 /* TTOpenInAppActivity.png in Resources */,
 				B1B2B2E01E53B0180069E3C9 /* HGPageScrollView.xib in Resources */,
+				CBD33B341E554B510004D374 /* TTOpenInAppActivity7.png in Resources */,
 				CB80C7FB1E496AA600690D4D /* Assets.xcassets in Resources */,
 				B1B2B3071E53B5D80069E3C9 /* ItemCell.xib in Resources */,
+				CBD33B371E554B510004D374 /* TTOpenInAppActivity8@2x.png in Resources */,
 				B1B2B2FA1E53B1910069E3C9 /* ToolBarDetail.xib in Resources */,
 				CB80C7F91E496AA600690D4D /* Main.storyboard in Resources */,
+				CBD33B331E554B510004D374 /* TTOpenInAppActivity@2x.png in Resources */,
+				CBD33B351E554B510004D374 /* TTOpenInAppActivity7@2x.png in Resources */,
 				CB39F5971E5450F80043BB89 /* test.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +395,7 @@
 				B1B2B2DF1E53B0180069E3C9 /* HGPageScrollView.m in Sources */,
 				CB80C7F61E496AA600690D4D /* ViewController.swift in Sources */,
 				CB8294721E5410860013A064 /* CustomCollectionCell.swift in Sources */,
+				CBD33B311E554B510004D374 /* TTOpenInAppActivity.m in Sources */,
 				B1B2B3061E53B5D80069E3C9 /* ItemCell.swift in Sources */,
 				B1B2B30C1E53CDC20069E3C9 /* ManageDataBase.swift in Sources */,
 				CB8294771E5414F10013A064 /* MediasViewModel.swift in Sources */,

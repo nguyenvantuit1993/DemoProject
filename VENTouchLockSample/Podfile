@@ -1,0 +1,11 @@
+platform :ios, "7.0"
+
+target "VENTouchLockSample" do
+	pod 'SSKeychain', '~> 1.2.2'
+	pod 'VENTouchLock', '~> 1.0'
+end
+
+target "VENTouchLockSampleTests" do
+  pod 'KIF', '~> 3.0'
+  pod 'VENTouchLock', '~> 1.0'
+end

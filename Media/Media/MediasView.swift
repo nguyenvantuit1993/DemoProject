@@ -11,13 +11,12 @@ import UIKit
 import AVKit
 import AVFoundation
 
+
 class MediasView: TableViewAndSearchBar {
     var mediasViewModel: MediasViewModel!
-    var docController:UIDocumentInteractionController!
     override func viewDidLoad() {
         super.viewDidLoad()
         mediasViewModel = MediasViewModel(withFolderPath: URL(string:documentsPath! + "/\(kVideoFolder)")!)
-        self.docController = UIDocumentInteractionController(url: Bundle.main.url(forResource: "test", withExtension: "mp4")!)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -71,15 +70,21 @@ extension MediasView
         }
         
         let openInOthers: UIAlertAction = UIAlertAction(title: "Open in Other Apps", style: .default) { action -> Void in
-    
-            self.docController.presentOpenInMenu(from: CGRect(x: 100, y: 200, width: 100, height: 100), in: self.view, animated: true)
+            
+            
+            
+            let docController = UIDocumentInteractionController(url: Bundle.main.url(forResource: "test", withExtension: "mp4")!)
+            docController.presentOptionsMenu(from: CGRect(x: 50, y: 50, width: 100, height: 100), in:self.view, animated:true)
+            
         }
         let saveToCameraRoll: UIAlertAction = UIAlertAction(title: "Save to Camera Roll", style: .default) { action -> Void in
             self.mediasViewModel.saveMediaToCameraRoll(atIndex: index)
             
         }
         let exportFile: UIAlertAction = UIAlertAction(title: "Export File", style: .default) { action -> Void in
-            
+            let openInApp = TTOpenInAppActivity(view: self.view, andRect: CGRect(x: 0, y: 0, width: 0, height: 0))
+            let activityView = UIActivityViewController(activityItems: [Bundle.main.url(forResource: "test", withExtension: "mp4")!], applicationActivities: [openInApp!])
+            self.present(activityView, animated: true, completion: nil)
             
         }
         actionSheet.addAction(cancelAction)
