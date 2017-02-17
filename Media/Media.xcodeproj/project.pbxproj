@@ -30,6 +30,8 @@
 		CB364BFA1E49DB4600C10D91 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */; };
 		CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BFC1E49DD4B00C10D91 /* Constant.swift */; };
 		CB39F5971E5450F80043BB89 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB39F5961E544E850043BB89 /* test.mp4 */; };
+		CB5119921E56B80B009D38E9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5119911E56B80B009D38E9 /* SettingsViewController.swift */; };
+		CB5119941E56B8A2009D38E9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5119931E56B8A2009D38E9 /* SettingsViewModel.swift */; };
 		CB80C7F41E496AA600690D4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80C7F31E496AA600690D4D /* AppDelegate.swift */; };
 		CB80C7F61E496AA600690D4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80C7F51E496AA600690D4D /* ViewController.swift */; };
 		CB80C7F91E496AA600690D4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB80C7F71E496AA600690D4D /* Main.storyboard */; };
@@ -82,6 +84,8 @@
 		CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		CB364BFC1E49DD4B00C10D91 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CB39F5961E544E850043BB89 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
+		CB5119911E56B80B009D38E9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CB5119931E56B8A2009D38E9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		CB80C7F01E496AA600690D4D /* Media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Media.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB80C7F31E496AA600690D4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB80C7F51E496AA600690D4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +183,56 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
+		CB51198B1E56B798009D38E9 /* MediasView */ = {
+			isa = PBXGroup;
+			children = (
+				CB80C80C1E49773600690D4D /* MediasView.swift */,
+			);
+			name = MediasView;
+			sourceTree = "<group>";
+		};
+		CB51198C1E56B7A6009D38E9 /* OtherFilesView */ = {
+			isa = PBXGroup;
+			children = (
+				CB80C80E1E49791600690D4D /* OtherFilesView.swift */,
+			);
+			name = OtherFilesView;
+			sourceTree = "<group>";
+		};
+		CB51198D1E56B7AF009D38E9 /* ImagesView */ = {
+			isa = PBXGroup;
+			children = (
+				CBFB0FFF1E497FF500992989 /* ImagesView.swift */,
+			);
+			name = ImagesView;
+			sourceTree = "<group>";
+		};
+		CB51198E1E56B7BB009D38E9 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				B1B2B2E91E53B0990069E3C9 /* CustomWebView.swift */,
+			);
+			name = WebView;
+			sourceTree = "<group>";
+		};
+		CB51198F1E56B7C2009D38E9 /* BaseViews */ = {
+			isa = PBXGroup;
+			children = (
+				CB80C80A1E4975F000690D4D /* TableViewAndSearchBar.swift */,
+				CBFB10011E49835200992989 /* BaseClearBarItemsViewController.swift */,
+				CBFB10031E49845700992989 /* BaseClearBarItemsTableViewController.swift */,
+			);
+			name = BaseViews;
+			sourceTree = "<group>";
+		};
+		CB5119901E56B7D1009D38E9 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				CB5119911E56B80B009D38E9 /* SettingsViewController.swift */,
+			);
+			name = SettingsView;
+			sourceTree = "<group>";
+		};
 		CB80C7E71E496AA600690D4D = {
 			isa = PBXGroup;
 			children = (
@@ -221,17 +275,16 @@
 		CB80C8051E49735C00690D4D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CB5119901E56B7D1009D38E9 /* SettingsView */,
+				CB51198F1E56B7C2009D38E9 /* BaseViews */,
+				CB51198E1E56B7BB009D38E9 /* WebView */,
+				CB51198D1E56B7AF009D38E9 /* ImagesView */,
+				CB51198C1E56B7A6009D38E9 /* OtherFilesView */,
+				CB51198B1E56B798009D38E9 /* MediasView */,
 				CBD33B271E554B3F0004D374 /* TTOpenInAppActivity */,
 				CB82946F1E5410640013A064 /* CollectionCell */,
 				B1B2B3031E53B5CC0069E3C9 /* DownloadCell */,
 				B1B2B2E61E53B03F0069E3C9 /* ToolBars */,
-				CB80C80A1E4975F000690D4D /* TableViewAndSearchBar.swift */,
-				CB80C80C1E49773600690D4D /* MediasView.swift */,
-				CB80C80E1E49791600690D4D /* OtherFilesView.swift */,
-				CBFB0FFF1E497FF500992989 /* ImagesView.swift */,
-				CBFB10011E49835200992989 /* BaseClearBarItemsViewController.swift */,
-				CBFB10031E49845700992989 /* BaseClearBarItemsTableViewController.swift */,
-				B1B2B2E91E53B0990069E3C9 /* CustomWebView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -239,6 +292,7 @@
 		CB80C8061E4974F200690D4D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CB5119931E56B8A2009D38E9 /* SettingsViewModel.swift */,
 				B1B2B2E41E53B0390069E3C9 /* NVTWebViewModel.swift */,
 				CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */,
 				B1B2B2FD1E53B58B0069E3C9 /* CustomWebViewModel.swift */,
@@ -401,12 +455,14 @@
 				CB8294771E5414F10013A064 /* MediasViewModel.swift in Sources */,
 				CB80C80F1E49791600690D4D /* OtherFilesView.swift in Sources */,
 				B1B2B2DE1E53B0180069E3C9 /* HGPageView.m in Sources */,
+				CB5119941E56B8A2009D38E9 /* SettingsViewModel.swift in Sources */,
 				CBFB10001E497FF500992989 /* ImagesView.swift in Sources */,
 				CB80C80D1E49773600690D4D /* MediasView.swift in Sources */,
 				B1B2B2E31E53B02D0069E3C9 /* WKWebViewCallBack.swift in Sources */,
 				CBFB10021E49835200992989 /* BaseClearBarItemsViewController.swift in Sources */,
 				B1B2B3011E53B5C50069E3C9 /* Download.swift in Sources */,
 				CBFB10041E49845700992989 /* BaseClearBarItemsTableViewController.swift in Sources */,
+				CB5119921E56B80B009D38E9 /* SettingsViewController.swift in Sources */,
 				CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */,
 				CB80C7F41E496AA600690D4D /* AppDelegate.swift in Sources */,
 				B1B2B2E81E53B0470069E3C9 /* NVTWebView.swift in Sources */,
