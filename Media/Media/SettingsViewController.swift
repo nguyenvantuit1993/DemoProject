@@ -9,35 +9,30 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-    @IBOutlet weak var settingsTable: UITableView!
+    @IBOutlet weak var switch_SetPassCode: UISwitch!
     var settingsViewModel = SettingsViewModel()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        settingsViewModel.configTouchID()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.settingsTable.delegate = self
-        self.settingsTable.dataSource = self
-        // Do any additional setup after loading the view.
+        settingsViewModel.delegate = self
+    }
+    @IBAction func userTappedSetPasscode(_ sender: UISwitch) {
+        self.settingsViewModel.setPassCode()
     }
 
 }
-extension SettingsViewController: UITableViewDataSource
+extension SettingsViewController: SettingsViewModelDelegate
 {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.settingsViewModel.headerForSection.count
+    func configureTouchIDToogle(enable: Bool) {
+        switch_SetPassCode.isOn = enable
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.settingsViewModel.itemsToShow[section].count
+    func userTappedSetPassCode(view: VENTouchLockCreatePasscodeViewController) {
+        self.present(view.embeddedInNavigationController(), animated: true, completion: nil)
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellText = self.settingsViewModel.itemsToShow[indexPath.section][indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = cellText
-        return cell
+    func userShowPassCode(view: CustomVENTouchLockEnterPasscodeViewController) {
+        self.present(view.embeddedInNavigationController(), animated: true, completion: nil)
     }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.settingsViewModel.headerForSection[section]
-    }
-}
-extension SettingsViewController: UITableViewDelegate
-{
-    
 }

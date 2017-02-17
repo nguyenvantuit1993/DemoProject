@@ -7,4 +7,5 @@
  */
 + (void)resetPasscodeAttemptHistory;
 
+-(id)init:(Boolean)isDelete;
 @end

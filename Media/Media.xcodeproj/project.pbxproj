@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7BA7CFCF013012E3C6E268E5 /* libPods-Media.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 309BEB45B5F3933BADACFC59 /* libPods-Media.a */; };
 		B1B2B2D21E53AF960069E3C9 /* BookMarkData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B1B2B2D01E53AF960069E3C9 /* BookMarkData.xcdatamodeld */; };
 		B1B2B2DE1E53B0180069E3C9 /* HGPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2B2D81E53B0180069E3C9 /* HGPageView.m */; };
 		B1B2B2DF1E53B0180069E3C9 /* HGPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2B2DA1E53B0180069E3C9 /* HGPageScrollView.m */; };
@@ -27,6 +28,7 @@
 		B1B2B3071E53B5D80069E3C9 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B2B3051E53B5D80069E3C9 /* ItemCell.xib */; };
 		B1B2B3091E53C1A70069E3C9 /* BookMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B2B3081E53C1A70069E3C9 /* BookMarkView.swift */; };
 		B1B2B30C1E53CDC20069E3C9 /* ManageDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B2B30B1E53CDC20069E3C9 /* ManageDataBase.swift */; };
+		CB3225D71E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3225D61E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m */; };
 		CB364BFA1E49DB4600C10D91 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */; };
 		CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BFC1E49DD4B00C10D91 /* Constant.swift */; };
 		CB39F5971E5450F80043BB89 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB39F5961E544E850043BB89 /* test.mp4 */; };
@@ -58,6 +60,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		309BEB45B5F3933BADACFC59 /* libPods-Media.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Media.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5143D60D9E350926874D3D4C /* Pods-Media.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Media.release.xcconfig"; path = "Pods/Target Support Files/Pods-Media/Pods-Media.release.xcconfig"; sourceTree = "<group>"; };
 		B1B2B2CD1E53AF7E0069E3C9 /* Media-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Media-Bridging-Header.h"; sourceTree = "<group>"; };
 		B1B2B2D11E53AF960069E3C9 /* BookMarkData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookMarkData.xcdatamodel; sourceTree = "<group>"; };
 		B1B2B2D71E53B0180069E3C9 /* HGPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPageView.h; sourceTree = "<group>"; };
@@ -81,6 +85,9 @@
 		B1B2B3051E53B5D80069E3C9 /* ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
 		B1B2B3081E53C1A70069E3C9 /* BookMarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookMarkView.swift; sourceTree = "<group>"; };
 		B1B2B30B1E53CDC20069E3C9 /* ManageDataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageDataBase.swift; sourceTree = "<group>"; };
+		B6EB16488B717E2081CD1BFD /* Pods-Media.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Media.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Media/Pods-Media.debug.xcconfig"; sourceTree = "<group>"; };
+		CB3225D51E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVENTouchLockEnterPasscodeViewController.h; sourceTree = "<group>"; };
+		CB3225D61E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVENTouchLockEnterPasscodeViewController.m; sourceTree = "<group>"; };
 		CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		CB364BFC1E49DD4B00C10D91 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CB39F5961E544E850043BB89 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
@@ -119,12 +126,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BA7CFCF013012E3C6E268E5 /* libPods-Media.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BD374D7DFE851F70AB7262D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6EB16488B717E2081CD1BFD /* Pods-Media.debug.xcconfig */,
+				5143D60D9E350926874D3D4C /* Pods-Media.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		52880B4AC9D9B36A2A1BBB85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				309BEB45B5F3933BADACFC59 /* libPods-Media.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B1B2B2D31E53B0030069E3C9 /* PageScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,9 +198,19 @@
 			name = DataBase;
 			sourceTree = "<group>";
 		};
+		CB3225D21E57012B005A729B /* PassCode */ = {
+			isa = PBXGroup;
+			children = (
+				CB3225D51E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.h */,
+				CB3225D61E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m */,
+			);
+			name = PassCode;
+			sourceTree = "<group>";
+		};
 		CB364BFB1E49DD3F00C10D91 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CB3225D21E57012B005A729B /* PassCode */,
 				B1B2B2E11E53B0200069E3C9 /* Extentions */,
 				B1B2B2D31E53B0030069E3C9 /* PageScrollView */,
 				CB364BFC1E49DD4B00C10D91 /* Constant.swift */,
@@ -238,6 +273,8 @@
 			children = (
 				CB80C7F21E496AA600690D4D /* Media */,
 				CB80C7F11E496AA600690D4D /* Products */,
+				3BD374D7DFE851F70AB7262D /* Pods */,
+				52880B4AC9D9B36A2A1BBB85 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -360,9 +397,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB80C8021E496AA600690D4D /* Build configuration list for PBXNativeTarget "Media" */;
 			buildPhases = (
+				77C7FDB5E6F96C8D1D7B4AA0 /* [CP] Check Pods Manifest.lock */,
 				CB80C7EC1E496AA600690D4D /* Sources */,
 				CB80C7ED1E496AA600690D4D /* Frameworks */,
 				CB80C7EE1E496AA600690D4D /* Resources */,
+				7D66EB5A77DE63AB7B680725 /* [CP] Embed Pods Frameworks */,
+				0A0B8EB0BEF56E51CBD36307 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -435,6 +475,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0A0B8EB0BEF56E51CBD36307 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Media/Pods-Media-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77C7FDB5E6F96C8D1D7B4AA0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7D66EB5A77DE63AB7B680725 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Media/Pods-Media-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CB80C7EC1E496AA600690D4D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -463,6 +551,7 @@
 				B1B2B3011E53B5C50069E3C9 /* Download.swift in Sources */,
 				CBFB10041E49845700992989 /* BaseClearBarItemsTableViewController.swift in Sources */,
 				CB5119921E56B80B009D38E9 /* SettingsViewController.swift in Sources */,
+				CB3225D71E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m in Sources */,
 				CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */,
 				CB80C7F41E496AA600690D4D /* AppDelegate.swift in Sources */,
 				B1B2B2E81E53B0470069E3C9 /* NVTWebView.swift in Sources */,
@@ -592,6 +681,7 @@
 		};
 		CB80C8031E496AA600690D4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6EB16488B717E2081CD1BFD /* Pods-Media.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -609,6 +699,7 @@
 		};
 		CB80C8041E496AA600690D4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5143D60D9E350926874D3D4C /* Pods-Media.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

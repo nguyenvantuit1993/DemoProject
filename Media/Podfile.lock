@@ -1,0 +1,16 @@
+PODS:
+  - SSKeychain (1.2.3)
+  - VENTouchLock (1.12.0):
+    - SSKeychain (~> 1.0)
+
+DEPENDENCIES:
+  - SSKeychain (~> 1.2.2)
+  - VENTouchLock (~> 1.0)
+
+SPEC CHECKSUMS:
+  SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
+  VENTouchLock: 20d378b9c6173e2c054448aeb3fb2f40822a9f3f
+
+PODFILE CHECKSUM: 63b9d47759b9d7e291995d755d9c8358a4ab0804
+
+COCOAPODS: 1.0.1

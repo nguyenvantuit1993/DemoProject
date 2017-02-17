@@ -9,12 +9,41 @@
 import Foundation
 import UIKit
 
+
+protocol SettingsViewModelDelegate {
+    func configureTouchIDToogle(enable: Bool)
+    func userTappedSetPassCode(view: VENTouchLockCreatePasscodeViewController)
+    func userShowPassCode(view: CustomVENTouchLockEnterPasscodeViewController)
+}
 class SettingsViewModel{
-    let headerForSection = [" ", "IN-APP PURCHASES", " ", " ", " ", "BROWSER"]
-    let itemsToShow = [["Passcode Lock"],
-                       ["Remove Ads", "Retrieve Purchases"],
-                       ["Rate this app"],
-                       ["WIFI Transfer"],
-                       ["iTunes/iCloud Backup"],
-                       [" ", "Private Browsing", "Clear Browser History"]]
+    var delegate: SettingsViewModelDelegate!
+    
+    func checkValidPass()
+    {
+        if(VENTouchLock.sharedInstance().isPasscodeSet())
+        {
+            print("unLock")
+        }
+    }
+    func setPassCode()
+    {
+        if(VENTouchLock.sharedInstance().isPasscodeSet())
+        {
+            self.delegate.userShowPassCode(view: CustomVENTouchLockEnterPasscodeViewController(true))
+        }
+        else
+        {
+            let view = VENTouchLockCreatePasscodeViewController()
+            self.delegate.userTappedSetPassCode(view: view)
+        }
+    }
+    func deletePassCode()
+    {
+        VENTouchLock.sharedInstance().deletePasscode()
+        configTouchID()
+    }
+    func configTouchID()
+    {
+      delegate.configureTouchIDToogle(enable:VENTouchLock.sharedInstance().isPasscodeSet())
+    }
 }

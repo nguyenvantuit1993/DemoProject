@@ -3,7 +3,9 @@
 #import "VENTouchLock.h"
 
 NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttempts = @"VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttempts";
-
+@interface VENTouchLockEnterPasscodeViewController()
+@property (assign) Boolean isDelete;
+@end
 @implementation VENTouchLockEnterPasscodeViewController
 
 #pragma mark - Class Methods
@@ -26,7 +28,13 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
     }
     return self;
 }
-
+-(id)init:(Boolean)isDelete {
+    if ( self = [super init] ) {
+        self.title = [self.touchLock appearance].enterPasscodeViewControllerTitle;
+        self.isDelete = isDelete;
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,6 +47,10 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
     if ([self.touchLock isPasscodeValid:passcode]) {
         [[self class] resetPasscodeAttemptHistory];
         [self finishWithResult:YES animated:YES];
+        if(self.isDelete)
+        {
+            [[VENTouchLock sharedInstance] deletePasscode];
+        }
     }
     else {
         [self.passcodeView shakeAndVibrateCompletion:^{

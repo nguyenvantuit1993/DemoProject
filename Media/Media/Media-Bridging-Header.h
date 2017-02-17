@@ -4,3 +4,5 @@
 
 #import "HGPageScrollView.h"
 #import "TTopenInAppActivity.h"
+#import "VENTouchLock.h"
+#import "CustomVENTouchLockEnterPasscodeViewController.h"
