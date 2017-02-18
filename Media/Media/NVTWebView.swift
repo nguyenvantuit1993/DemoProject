@@ -76,6 +76,33 @@ class NVTWebView: UIViewController{
         myPageScrollView.loadSubViews()
     }
 }
+extension NVTWebView: CustomWebViewDelegate
+{
+    func didShowAler(title: String) {
+        self.showActionSheet(title: title)
+    }
+    func showActionSheet(title: String)
+    {
+        let actionSheet = UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            //Just dismiss the action sheet
+        }
+        let dowloadFile: UIAlertAction = UIAlertAction(title: "Download the File", style: .default) { action -> Void in
+            
+        }
+        dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
+        
+        let open: UIAlertAction = UIAlertAction(title: "Open", style: .default) { action -> Void in
+
+            self.webviewModel.getPage(indexPage: self.myPageScrollView.indexForSelectedPage())?.loadRequest(url: title, isPosibleLoad: true)
+        }
+        
+        actionSheet.addAction(cancelAction)
+        actionSheet.addAction(dowloadFile)
+        actionSheet.addAction(open)
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+}
 extension NVTWebView: HGPageScrollViewDataSource
 {
     func numberOfPages(in scrollView: HGPageScrollView!) -> Int {
@@ -90,7 +117,8 @@ extension NVTWebView: HGPageScrollViewDataSource
             customWebView = self.webviewModel.myPageDataArray[index] as? CustomWebView
             //            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
         }
-        customWebView?.loadRequest()
+        customWebView?.delegateCustomWeb = self
+        customWebView?.loadRequest(url: "http://kenh14.vn/", isPosibleLoad: true)
         //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
         return customWebView
         
