@@ -7,7 +7,7 @@
 //
 
 import Foundation
-let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first 
 let kVideoFolder = "Videos"
 let kVideoThumbs = "VideoThumbs"
 let kImageFolder = "Images"

@@ -43,10 +43,12 @@ class NVTWebViewModel: NSObject{
     }
     func getDownloadView(indexPage: Int) -> DownloadView
     {
-        let webView = getPage(indexPage: indexPage)
+//        let webView = getPage(indexPage: indexPage)
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let downloadView = storyBoard.instantiateViewController(withIdentifier: "DownloadView") as! DownloadView
-        downloadView.searchResults = (webView?.getURLs())!
+//        let manageDownload = ManageDownloadTrack.sharedInstance
+//        manageDownload.tracks.append(contentsOf: (webView?.getURLs())!)
+//        downloadView.searchResults = (webView?.getURLs())!
         return downloadView
     }
     func getPage(indexPage: Int) -> CustomWebView?

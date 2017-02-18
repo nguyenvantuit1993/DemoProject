@@ -78,28 +78,81 @@ class NVTWebView: UIViewController{
 }
 extension NVTWebView: CustomWebViewDelegate
 {
-    func didShowAler(title: String) {
-        self.showActionSheet(title: title)
+    func didShowAler(tags:String, href:String, src:String) {
+        var title: String!
+        var buttons = [UIAlertAction]()
+        if(tags.range(of: ",IMG,") != nil)
+        {
+            title = src
+            
+            let dowloadFile = UIAlertAction(title: "Download the Image", style: .default) { action -> Void in
+                let newTrack = Track(name: src, artist: "", previewUrl: src)
+                ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
+            }
+            dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
+            buttons.append(dowloadFile)
+        }
+        if(tags.lowercased().range(of: ",A,") != nil || tags.lowercased().range(of:"video") != nil)
+        {
+            let currentWebView = self.webviewModel.getPage(indexPage: self.myPageScrollView.indexForSelectedPage())
+            title = href
+            if(!href.lowercased().hasPrefix("http") && !src.lowercased().hasPrefix("http"))
+            {
+                currentWebView?.isPosibleLoad = true
+                currentWebView?.runScriptString(script: title)
+                return
+            }
+            
+            
+            let dowloadFile = UIAlertAction(title: "Download the File", style: .default) { action -> Void in
+                let titleAlert = href == "" ? src:href
+                let newTrack = Track(name: titleAlert, artist: "", previewUrl: titleAlert)
+                ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
+            }
+            dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
+            let open: UIAlertAction = UIAlertAction(title: "Open", style: .default) { action -> Void in
+                if(title.hasPrefix("http"))
+                {
+                    currentWebView?.loadRequest(url: title, isPosibleLoad: true)
+                }
+                
+            }
+            
+            buttons.append(dowloadFile)
+            buttons.append(open)
+        }
+        if(buttons.count > 0)
+        {
+            let titleAlert = href == "" ? src:href
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+                //Just dismiss the action sheet
+            }
+            buttons.insert(cancelAction, at: 0)
+            self.showActionSheet(title: titleAlert, buttons: buttons)
+        }
     }
-    func showActionSheet(title: String)
+    
+    func showActionSheet(title: String, buttons:[UIAlertAction])
     {
         let actionSheet = UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-            //Just dismiss the action sheet
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+//            //Just dismiss the action sheet
+//        }
+//        let dowloadFile: UIAlertAction = UIAlertAction(title: "Download the File", style: .default) { action -> Void in
+//            
+//        }
+//        dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
+//        
+//        let open: UIAlertAction = UIAlertAction(title: "Open", style: .default) { action -> Void in
+//
+//            self.webviewModel.getPage(indexPage: self.myPageScrollView.indexForSelectedPage())?.loadRequest(url: title, isPosibleLoad: true)
+//        }
+//        actionSheet.addAction(dowloadFile)
+//        actionSheet.addAction(open)
+        for button in buttons
+        {
+            actionSheet.addAction(button)
         }
-        let dowloadFile: UIAlertAction = UIAlertAction(title: "Download the File", style: .default) { action -> Void in
-            
-        }
-        dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
-        
-        let open: UIAlertAction = UIAlertAction(title: "Open", style: .default) { action -> Void in
-
-            self.webviewModel.getPage(indexPage: self.myPageScrollView.indexForSelectedPage())?.loadRequest(url: title, isPosibleLoad: true)
-        }
-        
-        actionSheet.addAction(cancelAction)
-        actionSheet.addAction(dowloadFile)
-        actionSheet.addAction(open)
         self.present(actionSheet, animated: true, completion: nil)
     }
 }
@@ -118,7 +171,7 @@ extension NVTWebView: HGPageScrollViewDataSource
             //            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
         }
         customWebView?.delegateCustomWeb = self
-        customWebView?.loadRequest(url: "http://kenh14.vn/", isPosibleLoad: true)
+        customWebView?.loadRequest(url: "https://www.youtube.com/", isPosibleLoad: true)
         //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
         return customWebView
         

@@ -11,7 +11,7 @@ import UIKit
 import WebKit
 
 protocol CustomWebViewDelegate {
-    func didShowAler(title: String)
+    func didShowAler(tags:String, href:String, src:String)
 }
 
 class CustomWebView: HGPageView {
@@ -19,7 +19,7 @@ class CustomWebView: HGPageView {
     @IBOutlet weak var view: UIView!
     var customWebViewModel = CustomWebViewModel()
     var webView: WKWebView!
-    var isPosibleLoad: Bool!
+    var isPosibleLoad = false
     let mainJavascript = "function MyAppGetHTMLElementsAtPoint(x,y) { var tags = \",\"; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName) { tags += e.tagName + ','; } e = e.parentNode; } return tags; } function MyAppGetLinkSRCAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.src) { tags += e.src; break; } e = e.parentNode; } return tags; }  function MyAppGetLinkHREFAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.href) { tags += e.href; break; } e = e.parentNode; } return tags; }"
     let disableCallBackSource = "var style = document.createElement('style'); style.type = 'text/css'; style.innerText = '*:not(input):not(textarea) { -webkit-touch-callout: none; }'; var head = document.getElementsByTagName('head')[0]; head.appendChild(style);"
     required init?(coder aDecoder: NSCoder) {
@@ -82,6 +82,10 @@ class CustomWebView: HGPageView {
         
         self.webView.load(requestObj)
     }
+    func runScriptString(script: String)
+    {
+        self.webView.evaluate(script: "window.location = '/';")
+    }
     func goBackPage()
     {
         if self.webView.canGoBack {
@@ -105,66 +109,48 @@ class CustomWebView: HGPageView {
         return self.customWebViewModel.urls
     }
     func longPressRecognizerAction(sender: UILongPressGestureRecognizer) {
-        self.webView.evaluate(script: mainJavascript, completion: {(result, error) in
-            print(result)
-        })
         if sender.state == UIGestureRecognizerState.began {
-            
             let tapPostion = sender.location(in: self.webView)
-            self.webView.evaluate(script: "MyAppGetHTMLElementsAtPoint(\(tapPostion.x),\(tapPostion.y));", completion: {(result, error) in
-                print(result)
-            })
-            self.webView.evaluate(script: "MyAppGetLinkHREFAtPoint(\(tapPostion.x),\(tapPostion.y));", completion: {(result, error) in
-                //                self.present(self.actionMenu(), animated: true, completion: nil)
-                //                self.presentNextWebView()
-                print(result)
-            })
-            self.webView.evaluate(script: "MyAppGetLinkSRCAtPoint(\(tapPostion.x),\(tapPostion.y));", completion: {(result, error) in
-                self.customWebViewModel.addURL(urlString: result as! String)
-                print(result)
-            })
+            self.getLink(tapPostion: tapPostion)
         }
     }
-    func tapRecognizerAction(sender: UITapGestureRecognizer) {
+    func getLink(tapPostion: CGPoint)
+    {
+        isPosibleLoad = false
         self.webView.evaluate(script: mainJavascript)
+        let tags = self.webView.evaluateReturn(script: "MyAppGetHTMLElementsAtPoint(\(tapPostion.x),\(tapPostion.y));")
+        let tagsHREF = self.webView.evaluateReturn(script: "MyAppGetLinkHREFAtPoint(\(tapPostion.x),\(tapPostion.y));")
+        let tagsSRC = self.webView.evaluateReturn(script: "MyAppGetLinkSRCAtPoint(\(tapPostion.x),\(tapPostion.y));")
+        self.showActionSheet(tags: tags, href: tagsHREF, src: tagsSRC)
         
+    }
+    func tapRecognizerAction(sender: UITapGestureRecognizer) {
         let tapPostion = sender.location(in: self.webView)
-        self.webView.evaluate(script: "MyAppGetHTMLElementsAtPoint(\(tapPostion.x),\(tapPostion.y));", completion: {(result, error) in
-            print(result)
-        })
-        self.webView.evaluate(script: "MyAppGetLinkHREFAtPoint(\(tapPostion.x),\(tapPostion.y));", completion: {(result, error) in
-            //                self.present(self.actionMenu(), animated: true, completion: nil)
-            //                self.presentNextWebView()
-            print(result)
-        })
-        self.webView.evaluate(script: "MyAppGetLinkSRCAtPoint(\(tapPostion.x),\(tapPostion.y));", completion: {(result, error) in
-            self.customWebViewModel.addURL(urlString: result as! String)
-            print(result)
-        })
-        
+        self.getLink(tapPostion: tapPostion)
     }
 }
 extension CustomWebView: WKNavigationDelegate
 {
     //    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
     //    }
-    //        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-    //            if(isPosibleLoad == false && navigationAction.navigationType == .linkActivated)
-    //            {
-    //                //            decisionHandler(.cancel)
-    //                self.showActionSheet(title: (webView.url?.relativeString)!)
-    //            }
-    //            isPosibleLoad = false
-    //
-    //            decisionHandler(.allow)
-    //        }
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        print(navigationAction)
+        if(isPosibleLoad == false)
+        {
+            decisionHandler(.cancel)
+        }
+        else
+        {
+            decisionHandler(.allow)
+        }
+    }
     
 }
 extension CustomWebView
 {
-    func showActionSheet(title: String)
+    func showActionSheet(tags:String, href:String, src:String)
     {
-        self.delegateCustomWeb.didShowAler(title: title)
+        self.delegateCustomWeb!.didShowAler(tags:tags, href:href, src:src)
     }
 }
 extension CustomWebView: UIGestureRecognizerDelegate

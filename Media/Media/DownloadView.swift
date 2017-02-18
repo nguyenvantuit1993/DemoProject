@@ -46,6 +46,8 @@ class DownloadView: UITableViewController {
         tableView.register(UINib(nibName: "ItemCell", bundle: Bundle.main), forCellReuseIdentifier: "ItemCell")
         tableView.tableFooterView = UIView()
         // calling the lazily-loaded downloadsSession ensures the app creates exactly one background session upon initialization of SearchViewController
+        let array = ManageDownloadTrack.sharedInstance.activeDownloads
+        searchResults = ManageDownloadTrack.sharedInstance.tracks
         _ = self.downloadsSession
     }
     

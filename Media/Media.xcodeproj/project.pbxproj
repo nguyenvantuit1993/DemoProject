@@ -32,6 +32,7 @@
 		CB364BFA1E49DB4600C10D91 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */; };
 		CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BFC1E49DD4B00C10D91 /* Constant.swift */; };
 		CB39F5971E5450F80043BB89 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB39F5961E544E850043BB89 /* test.mp4 */; };
+		CB4DB6661E58527500F6F640 /* ManageDownloadTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4DB6651E58527500F6F640 /* ManageDownloadTrack.swift */; };
 		CB5119921E56B80B009D38E9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5119911E56B80B009D38E9 /* SettingsViewController.swift */; };
 		CB5119941E56B8A2009D38E9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5119931E56B8A2009D38E9 /* SettingsViewModel.swift */; };
 		CB80C7F41E496AA600690D4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80C7F31E496AA600690D4D /* AppDelegate.swift */; };
@@ -91,6 +92,7 @@
 		CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		CB364BFC1E49DD4B00C10D91 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CB39F5961E544E850043BB89 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
+		CB4DB6651E58527500F6F640 /* ManageDownloadTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageDownloadTrack.swift; sourceTree = "<group>"; };
 		CB5119911E56B80B009D38E9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CB5119931E56B8A2009D38E9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		CB80C7F01E496AA600690D4D /* Media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Media.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,12 +212,37 @@
 		CB364BFB1E49DD3F00C10D91 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CB4DB66B1E58699400F6F640 /* Category */,
 				CB3225D21E57012B005A729B /* PassCode */,
 				B1B2B2E11E53B0200069E3C9 /* Extentions */,
 				B1B2B2D31E53B0030069E3C9 /* PageScrollView */,
 				CB364BFC1E49DD4B00C10D91 /* Constant.swift */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		CB4DB6681E58599300F6F640 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				B1B2B2FB1E53B4B20069E3C9 /* DownloadView.swift */,
+				B1B2B3031E53B5CC0069E3C9 /* DownloadCell */,
+			);
+			name = Download;
+			sourceTree = "<group>";
+		};
+		CB4DB6691E5859A300F6F640 /* BookMark */ = {
+			isa = PBXGroup;
+			children = (
+				B1B2B3081E53C1A70069E3C9 /* BookMarkView.swift */,
+			);
+			name = BookMark;
+			sourceTree = "<group>";
+		};
+		CB4DB66B1E58699400F6F640 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 		CB51198B1E56B798009D38E9 /* MediasView */ = {
@@ -245,6 +272,7 @@
 		CB51198E1E56B7BB009D38E9 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				B1B2B2E71E53B0470069E3C9 /* NVTWebView.swift */,
 				B1B2B2E91E53B0990069E3C9 /* CustomWebView.swift */,
 			);
 			name = WebView;
@@ -312,6 +340,8 @@
 		CB80C8051E49735C00690D4D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CB4DB6691E5859A300F6F640 /* BookMark */,
+				CB4DB6681E58599300F6F640 /* Download */,
 				CB5119901E56B7D1009D38E9 /* SettingsView */,
 				CB51198F1E56B7C2009D38E9 /* BaseViews */,
 				CB51198E1E56B7BB009D38E9 /* WebView */,
@@ -320,7 +350,6 @@
 				CB51198B1E56B798009D38E9 /* MediasView */,
 				CBD33B271E554B3F0004D374 /* TTOpenInAppActivity */,
 				CB82946F1E5410640013A064 /* CollectionCell */,
-				B1B2B3031E53B5CC0069E3C9 /* DownloadCell */,
 				B1B2B2E61E53B03F0069E3C9 /* ToolBars */,
 			);
 			name = Views;
@@ -341,9 +370,6 @@
 		CB80C8071E49750400690D4D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B1B2B2E71E53B0470069E3C9 /* NVTWebView.swift */,
-				B1B2B2FB1E53B4B20069E3C9 /* DownloadView.swift */,
-				B1B2B3081E53C1A70069E3C9 /* BookMarkView.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -354,6 +380,7 @@
 				B1B2B2FF1E53B5C50069E3C9 /* Download.swift */,
 				B1B2B3001E53B5C50069E3C9 /* Track.swift */,
 				CB8294781E5416590013A064 /* Item.swift */,
+				CB4DB6651E58527500F6F640 /* ManageDownloadTrack.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -542,6 +569,7 @@
 				B1B2B30C1E53CDC20069E3C9 /* ManageDataBase.swift in Sources */,
 				CB8294771E5414F10013A064 /* MediasViewModel.swift in Sources */,
 				CB80C80F1E49791600690D4D /* OtherFilesView.swift in Sources */,
+				CB4DB6661E58527500F6F640 /* ManageDownloadTrack.swift in Sources */,
 				B1B2B2DE1E53B0180069E3C9 /* HGPageView.m in Sources */,
 				CB5119941E56B8A2009D38E9 /* SettingsViewModel.swift in Sources */,
 				CBFB10001E497FF500992989 /* ImagesView.swift in Sources */,
