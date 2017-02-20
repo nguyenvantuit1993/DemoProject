@@ -13,7 +13,7 @@ class CustomWebViewModel {
     
     func addURL(urlString: String)
     {
-        let track = Track(name: urlString, artist: nil, previewUrl: urlString)
+        let track = Track(name: urlString, type: nil, previewUrl: urlString)
         urls.append(track)
     }
 }

@@ -86,14 +86,13 @@ extension NVTWebView: CustomWebViewDelegate
             title = src
             
             let dowloadFile = UIAlertAction(title: "Download the Image", style: .default) { action -> Void in
-                let newTrack = Track(name: src, artist: "", previewUrl: src)
+                let newTrack = Track(name: src, type: "", previewUrl: src)
                 ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
             }
             dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
             buttons.append(dowloadFile)
         }
-        if(tags.lowercased().range(of: ",A,") != nil || tags.lowercased().range(of:"video") != nil)
-        {
+
             let currentWebView = self.webviewModel.getPage(indexPage: self.myPageScrollView.indexForSelectedPage())
             title = href
             if(!href.lowercased().hasPrefix("http") && !src.lowercased().hasPrefix("http"))
@@ -106,7 +105,7 @@ extension NVTWebView: CustomWebViewDelegate
             
             let dowloadFile = UIAlertAction(title: "Download the File", style: .default) { action -> Void in
                 let titleAlert = href == "" ? src:href
-                let newTrack = Track(name: titleAlert, artist: "", previewUrl: titleAlert)
+                let newTrack = Track(name: titleAlert, type: "", previewUrl: titleAlert)
                 ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
             }
             dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
@@ -120,7 +119,7 @@ extension NVTWebView: CustomWebViewDelegate
             
             buttons.append(dowloadFile)
             buttons.append(open)
-        }
+        
         if(buttons.count > 0)
         {
             let titleAlert = href == "" ? src:href
@@ -159,19 +158,19 @@ extension NVTWebView: CustomWebViewDelegate
 extension NVTWebView: HGPageScrollViewDataSource
 {
     func numberOfPages(in scrollView: HGPageScrollView!) -> Int {
-        return webviewModel.myPageDataArray.count
+        return 1
     }
     func pageScrollView(_ scrollView: HGPageScrollView!, viewForPageAt index: Int) -> HGPageView! {
         //        var currentWebView = webviewModel.myPageDataArray[index] as! MyPageView
-        var customWebView = scrollView.dequeueReusablePage(withIdentifier: pageId) as? CustomWebView
-        if (customWebView == nil)
-        {
+        var customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
+//        if (customWebView == nil)
+//        {
             //           customWebView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?.first as? CustomWebView
-            customWebView = self.webviewModel.myPageDataArray[index] as? CustomWebView
+//            customWebView = self.webviewModel.myPageDataArray[index] as? CustomWebView
             //            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
-        }
-        customWebView?.delegateCustomWeb = self
-        customWebView?.loadRequest(url: "https://www.youtube.com/", isPosibleLoad: true)
+//        }
+        customWebView.delegateCustomWeb = self
+        customWebView.loadRequest(url: "http://kenh14.vn/", isPosibleLoad: true)
         //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
         return customWebView
         

@@ -33,8 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         let imageFolderPath = documentsPath?.appending("/\(kImageFolder)")
         let otherFolderPath = documentsPath?.appending("/\(kOtherFolder)")
+        let thumbFolderPath = videoFolderPath?.appending("/\(kVideoThumbs)")
         createFolderWithPath(path: videoFolderPath!)
         createFolderWithPath(path: imageFolderPath!)
+        createFolderWithPath(path: thumbFolderPath!)
         createFolderWithPath(path: otherFolderPath!)
     }
     func createFolderWithPath(path: String)

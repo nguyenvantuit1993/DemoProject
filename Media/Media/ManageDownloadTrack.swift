@@ -52,14 +52,86 @@ class ManageDownloadTrack: NSObject {
             activeDownloads[download.url] = download
         }
     }
-}
-
-extension ManageDownloadTrack: URLSessionDownloadDelegate {
-    func localFilePathForUrl(_ previewUrl: String) -> URL? {
+    func createThumnails(name: String)
+    {
+        let folderVideoPath = documentsPath!.appending("/\(kVideoFolder)")
+        let videoPath = folderVideoPath.appending("/\(name)")
+        let thumnailPath = folderVideoPath.appending("/\(kVideoThumbs)").appending("/\((name as NSString).deletingPathExtension).png")
+        do {
+            let asset = AVURLAsset(url: URL(fileURLWithPath: videoPath) , options: nil)
+            let imgGenerator = AVAssetImageGenerator(asset: asset)
+            imgGenerator.appliesPreferredTrackTransform = true
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+            let thumbnail = UIImage(cgImage: cgImage)
+            try? UIImagePNGRepresentation(thumbnail)!.write(to: URL(fileURLWithPath: thumnailPath))
+            // thumbnail here
+            
+        } catch let error {
+            print("*** Error generating thumbnail: \(error.localizedDescription)")
+        }
+    }
+    
+    func localFolder(mime: String) -> (folderName: String, extentionFile: String)
+    {
+        var extentionFile: String!
+        var folderName: String!
+        var type = MimeTypes.Other
+        switch mime {
+        case "video/x-flv": extentionFile = ".flv"; type = .Video
+            break
+        case "video/mp4" : extentionFile = ".mp4"; type = .Video
+            break
+        case "application/x-mpegURL" : extentionFile = ".m3u8"; type = .Video
+            break
+        case "video/MP2T" : extentionFile = ".ts"; type = .Video
+            break
+        case "video/3gpp" : extentionFile = ".3gp"; type = .Video
+            break
+        case "video/quicktime" : extentionFile = ".mov"; type = .Video
+            break
+        case "video/x-msvideo" : extentionFile = ".avi"; type = .Video
+            break
+        case "video/x-ms-wmv" : extentionFile = ".wmv"; type = .Video
+            break
+        case "image/gif" : extentionFile = ".gif"; type = .Image
+            break
+        case "image/x-icon" : extentionFile = ".ico"; type = .Image
+            break
+        case "image/jpeg" : extentionFile = ".jpg"; type = .Image
+            break
+        case "image/svg+xml" : extentionFile = ".svg"; type = .Image
+            break
+        case "image/tiff" : extentionFile = ".tif"; type = .Image
+            break
+        case "image/webp" : extentionFile = ".webp"; type = .Image
+            break
+        default: extentionFile = ""; type = .Other
+            break
+        }
+        
+        switch type {
+        case .Image: folderName = kImageFolder
+            break
+        case .Video: folderName = kVideoFolder
+            break
+        case .Other: folderName = kOtherFolder
+            break
+        }
+        
+        return (folderName, extentionFile)
+    }
+    func localFilePathForUrl(_ previewUrl: String, mime type:String) -> (url: URL?, lastComponent: String)? {
         if let url = URL(string: previewUrl) {
-            //      , let lastPathComponent = url.lastPathComponent
-            let fullPath = (documentsPath! as NSString).appendingPathComponent(url.lastPathComponent)
-            return URL(fileURLWithPath:fullPath)
+            let infoLocalFile = self.localFolder(mime: type)
+            let extentionFile = infoLocalFile.extentionFile
+            var lastComponent = url.lastPathComponent as NSString
+            if(extentionFile != "")
+            {
+                lastComponent = lastComponent.deletingPathExtension.appending("\(extentionFile)") as NSString
+            }
+            
+            let fullPath = documentsPath?.appending("/\(infoLocalFile.folderName)").appending("/\(lastComponent)")
+            return (URL(fileURLWithPath:fullPath!), lastComponent as String)
         }
         return nil
     }
@@ -73,23 +145,33 @@ extension ManageDownloadTrack: URLSessionDownloadDelegate {
         }
         return nil
     }
+}
+
+extension ManageDownloadTrack: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        var extensionURL: String!
+        if let extensionURLCheck = downloadTask.response?.mimeType
+        {
+            extensionURL = extensionURLCheck
+        }
+        extensionURL = extensionURL == nil ? "":"\(extensionURL!)"
         // extract the original request URL from the task and pass it to the provided localFilePathForUrl(_:) helper method.
         // localFilePathForUrl(_:) then generates a permanent local file path to save to by appending the lastPastComponent of the URL
         // (i.e. the file name and extension of the file) to the path of the app's Documents directory
-        if let originalURL = downloadTask.originalRequest?.url?.absoluteString, let destinationURL = localFilePathForUrl(originalURL) {
-            print(destinationURL)
+        if let originalURL = downloadTask.originalRequest?.url?.absoluteString, let destinationURLAndName = localFilePathForUrl(originalURL, mime: extensionURL) {
+            print(destinationURLAndName.url)
             
             // with FileManager you move the downloaded file from its temporary file location to the desired destination file path by
             // clearing out any item at that location before you start the copy task
             let fileManager = FileManager.default
             do {
-                try fileManager.removeItem(at: destinationURL)
+                try fileManager.removeItem(at: destinationURLAndName.url!)
             } catch {
                 // Non-fatal: file probably doesn't exist
             }
             do {
-                try fileManager.copyItem(at: location, to: destinationURL)
+                try fileManager.copyItem(at: location, to: destinationURLAndName.url!)
+                self.createThumnails(name: destinationURLAndName.lastComponent)
             } catch let error as NSError {
                 print("Could not copy file to disk: \(error.localizedDescription)")
             }
@@ -101,45 +183,13 @@ extension ManageDownloadTrack: URLSessionDownloadDelegate {
             // look up the Track in your table view and reload the corresponding cell
             if let trackIndex = trackIndexForDownloadTask(downloadTask: downloadTask) {
                 DispatchQueue.main.async {
-//                    self.tableView.reloadRows(at: [IndexPath(row: trackIndex, section: 0)], with: .none)
+                    //                    self.tableView.reloadRows(at: [IndexPath(row: trackIndex, section: 0)], with: .none)
                 }
             }
         }
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        var intData = bytesWritten
-        var data = NSData(bytes: &intData, length: MemoryLayout<Int64>.size)
-        var c = [UInt32](repeating: 0, count: 1)
-        (data as! NSData).getBytes(&c, length: 1)
-        switch (c[0]) {
-        case 0xFF:
-            print("image/jpeg")
-            break
-        case 0x89:
-            print("image/png")
-            break;
-        case 0x47:
-             print("image/gif")
-            break
-        case 0x49:
-            print("image/gif")
-            break;
-        case 0x4D:
-             print("image/tiff")
-            break;
-        case 0x25:
-             print("application/pdf")
-            break;
-        case 0xD0:
-             print("application/vnd")
-            break;
-        case 0x46:
-             print("text/plain")
-            break;
-        default:
-             print("application/octet-stream");
-        }
         // using the provided downloadTask, you extract the URL and use it to find the Download in your dictionary of active downloads.
         if let downloadUrl = downloadTask.originalRequest?.url?.absoluteString, let download = activeDownloads[downloadUrl] {
             // method returns total bytes written and the total bytes expected to be written. You calculate the progress as the ratio of the two
@@ -150,27 +200,26 @@ extension ManageDownloadTrack: URLSessionDownloadDelegate {
             // find the cell responsible for displaying the Track and update both its progress view and progress label with the values derived form the previous steps
             
             print(download.progress * 100)
-//            if let trackIndex = trackIndexForDownloadTask(downloadTask: downloadTask), let trackCell = tableView.cellForRow(at: IndexPath(row: trackIndex, section: 0)) as? ItemCell {
-//                DispatchQueue.main.async {
-//                    trackCell.progressView.progress = download.progress
-//                    trackCell.progressLabel.text = String(format: "%.1f%% of %@", download.progress * 100, totalSize)
-//                }
-//            }
+            //            if let trackIndex = trackIndexForDownloadTask(downloadTask: downloadTask), let trackCell = tableView.cellForRow(at: IndexPath(row: trackIndex, section: 0)) as? ItemCell {
+            //                DispatchQueue.main.async {
+            //                    trackCell.progressView.progress = download.progress
+            //                    trackCell.progressLabel.text = String(format: "%.1f%% of %@", download.progress * 100, totalSize)
+            //                }
+            //            }
         }
     }
 }
-
 // MARK: URLSessionDelegate
-//extension ManageDownloadTrack: URLSessionDelegate {
-    // simply grabs the stored completion handler from the app delegate and invokes it on the main thread
-//    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-//        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-//            if let completionHandler = appDelegate.backgroundSessionCompletionHandler {
-//                appDelegate.backgroundSessionCompletionHandler = nil
-//                DispatchQueue.main.async {
-//                    completionHandler()
-//                }
-//            }
-//        }
-//    }
-//}
+extension ManageDownloadTrack: URLSessionDelegate {
+    //     simply grabs the stored completion handler from the app delegate and invokes it on the main thread
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            if let completionHandler = appDelegate.backgroundSessionCompletionHandler {
+                appDelegate.backgroundSessionCompletionHandler = nil
+                DispatchQueue.main.async {
+                    completionHandler()
+                }
+            }
+        }
+    }
+}

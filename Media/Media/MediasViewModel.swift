@@ -14,11 +14,11 @@ class MediasViewModel: FileManagerMedia {
     override init()
     {
         super.init()
-        isImageView = false
+        isImageView = .Video
     }
     override init(withFolderPath folderPath: URL) {
         super.init(withFolderPath: folderPath)
-        isImageView = false
+        isImageView = .Video
         getListFiles()
     }
     override func saveMediaToCameraRoll(atIndex: Int) {

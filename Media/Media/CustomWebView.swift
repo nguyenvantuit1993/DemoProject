@@ -134,7 +134,7 @@ extension CustomWebView: WKNavigationDelegate
     //    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
     //    }
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        print(navigationAction)
+//        print(navigationAction)
         if(isPosibleLoad == false)
         {
             decisionHandler(.cancel)

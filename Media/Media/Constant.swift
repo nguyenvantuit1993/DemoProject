@@ -13,3 +13,16 @@ let kVideoThumbs = "VideoThumbs"
 let kImageFolder = "Images"
 let kOtherFolder = "Others"
 let kHtmlPath = "http"
+
+enum MimeTypes: Int {
+    case Image = 1
+    case Video
+    case Other
+}
+enum CompassPoint: Int {
+    case north = 1
+    case south
+    case east
+    case west
+}
+

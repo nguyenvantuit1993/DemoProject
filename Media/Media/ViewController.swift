@@ -7,17 +7,11 @@
 //
 
 import UIKit
-enum CompassPoint: Int {
-    case north = 1
-    case south
-    case east
-    case west
-}
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let a = CompassPoint.init(rawValue: 1)
+        let a = CompassPoint(rawValue: 1)
         switch a! {
         case .north: break
             

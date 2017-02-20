@@ -70,7 +70,7 @@ class DownloadView: UITableViewController {
                             // Parse the search result
                             let name = trackDictonary["trackName"] as? String
                             let artist = trackDictonary["artistName"] as? String
-                            searchResults.append(Track(name: name, artist: artist, previewUrl: previewUrl))
+                            searchResults.append(Track(name: name, type: artist, previewUrl: previewUrl))
                         } else {
                             print("Not a dictionary")
                         }
@@ -256,7 +256,7 @@ extension DownloadView{
         
         // Configure title and artist labels
         cell.titleLabel.text = track.name
-        cell.artistLabel.text = track.artist
+//        cell.artistLabel.text = track.artist
         
         // for tracks with active downloads, you set showDownloadControls to true; otherwise, you set it to false
         // you then display the progress views and labels, provided with the sample project, in accordance with the value of showDownloadControls
