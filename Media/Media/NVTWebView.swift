@@ -162,15 +162,15 @@ extension NVTWebView: HGPageScrollViewDataSource
     }
     func pageScrollView(_ scrollView: HGPageScrollView!, viewForPageAt index: Int) -> HGPageView! {
         //        var currentWebView = webviewModel.myPageDataArray[index] as! MyPageView
-        var customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
+        var customWebView = self.webviewModel.getPage(indexPage: index)
 //        if (customWebView == nil)
 //        {
             //           customWebView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?.first as? CustomWebView
 //            customWebView = self.webviewModel.myPageDataArray[index] as? CustomWebView
             //            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
 //        }
-        customWebView.delegateCustomWeb = self
-        customWebView.loadRequest(url: "http://kenh14.vn/", isPosibleLoad: true)
+        customWebView?.delegateCustomWeb = self
+        customWebView?.loadRequest(url: "https://www.google.com.vn/", isPosibleLoad: true)
         //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
         return customWebView
         

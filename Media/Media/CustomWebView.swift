@@ -84,7 +84,11 @@ class CustomWebView: HGPageView {
     }
     func runScriptString(script: String)
     {
-        self.webView.evaluate(script: "window.location = '/';")
+        if(script != "")
+        {
+           self.webView.evaluate(script: "window.location = '/';")
+        }
+        
     }
     func goBackPage()
     {
