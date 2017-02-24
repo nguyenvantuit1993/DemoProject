@@ -10,16 +10,22 @@ import Foundation
 import UIKit
 
 class NVTWebViewModel: NSObject{
-    var myPageDataArray: NSMutableArray!
+    var myPageDataArray = [CustomWebView]()
     var indexesToDelete, indexesToInsert, indexesToReload: NSMutableIndexSet!
     var manageDataBase: ManageDataBase!
     override init() {
-        self.myPageDataArray = NSMutableArray()
         self.manageDataBase = ManageDataBase.sharedInstance
         let webview = CustomWebView(frame: CGRect(x: 0, y: 0, width: 300, height: 400))
-        let webview2 = CustomWebView(frame: CGRect(x: 0, y: 0, width: 300, height: 400))
-        self.myPageDataArray.add(webview)
-        self.myPageDataArray.add(webview2)
+        self.myPageDataArray.append(webview)
+    }
+    
+    func getTitle(index: Int) -> String
+    {
+        return self.myPageDataArray[index].webView.title!
+    }
+    func getSubTitle(index: Int) -> String
+    {
+        return (self.myPageDataArray[index].webView.url?.absoluteString)!
     }
     func setupDataToView(currentView: CustomWebView) -> CustomWebView
     {
@@ -79,17 +85,17 @@ class NVTWebViewModel: NSObject{
     }
     func addNewElemnet(index: NSIndexSet)
     {
-        let webview = CustomWebView()
+        let webview = CustomWebView(frame: CGRect(x: 0, y: 0, width: 300, height: 400))
         self.myPageDataArray.insert(webview, at: myPageDataArray.count)
     }
-    func removePageFrom(pageScrollView: HGPageScrollView, atIndexSet indexSet: NSIndexSet)
+    func removePageFrom(pageScrollView: HGPageScrollView, atIndex index: Int)
     {
-        self.myPageDataArray.removeObjects(at: indexSet as IndexSet)
-        pageScrollView.deletePages(at: indexSet as IndexSet!, animated: true)
+        self.myPageDataArray.remove(at: index)
+        pageScrollView.deletePages(at: IndexSet(integer: index), animated: true)
         
-        if (self.myPageDataArray.count == 1)
+        if (self.myPageDataArray.count == 0)
         {
-            //Het phan tu
+            pageScrollView.hidden(forCloseButton: true)
         }
     }
     func reloadFrom(pageScrollView: HGPageScrollView, atIndexSet indexSet: NSIndexSet)

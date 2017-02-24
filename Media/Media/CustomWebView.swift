@@ -16,8 +16,12 @@ protocol CustomWebViewDelegate {
 
 class CustomWebView: HGPageView {
     var delegateCustomWeb: CustomWebViewDelegate!
+    
     @IBOutlet weak var view: UIView!
+
     var customWebViewModel = CustomWebViewModel()
+    var txt_URLText: UITextField!
+    var txt_SearchText: UITextField!
     var webView: WKWebView!
     var isPosibleLoad = false
     let mainJavascript = "function MyAppGetHTMLElementsAtPoint(x,y) { var tags = \",\"; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName) { tags += e.tagName + ','; } e = e.parentNode; } return tags; } function MyAppGetLinkSRCAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.src) { tags += e.src; break; } e = e.parentNode; } return tags; }  function MyAppGetLinkHREFAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.href) { tags += e.href; break; } e = e.parentNode; } return tags; }"
@@ -30,35 +34,57 @@ class CustomWebView: HGPageView {
         super.init(frame: frame)
         setup()
     }
-    
     func setup() {
         addWebView()
+        addHeaderToWebView()
+        updateWebViewScrollViewContentInset()
     }
     func loadViewFromNib() -> UIView {
         let subView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?[0]
         return subView as! UIView
     }
+    func addSearchView()
+    {
+        txt_URLText = UITextField(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+        txt_URLText.backgroundColor = UIColor.red
+        self.webView.scrollView.addSubview(txt_URLText)
+    }
     
+    func addHeaderToWebView(){
+        // We load the headerView from a Nib
+        txt_URLText = UITextField(frame: CGRect(x: 0, y: 0, width: 0, height: 45))
+        txt_URLText.backgroundColor = UIColor.red
+        
+        txt_URLText.translatesAutoresizingMaskIntoConstraints = false
+        
+        webView.scrollView.addSubview(txt_URLText)
+        
+        // the constraints
+        let topConstraint = NSLayoutConstraint(item: txt_URLText, attribute: .bottom, relatedBy: .equal, toItem: webView.scrollView, attribute: .top, multiplier: 1, constant: 0)
+        let leftConstraint = NSLayoutConstraint(item: txt_URLText, attribute: .leading, relatedBy: .equal, toItem: webView, attribute: .leading, multiplier: 1, constant: 0)
+        let rightConstraint = NSLayoutConstraint(item: txt_URLText, attribute: .trailing, relatedBy: .equal, toItem: webView, attribute: .trailing, multiplier: 1, constant: 0)
+        // we add the constraints
+        webView.scrollView.addConstraints([topConstraint])
+        webView.addConstraints([leftConstraint, rightConstraint])
+    }
+    func updateWebViewScrollViewContentInset(){
+        webView.scrollView.contentInset = UIEdgeInsetsMake(txt_URLText.frame.height, 0, 0, 0)
+    }
     func addWebView()
     {
         self.layoutIfNeeded()
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressRecognizerAction(sender:)))
         longPressRecognizer.delegate = self
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapRecognizerAction(sender:)))
-        tapGesture.delegate = self
         
         let script = WKUserScript(source: disableCallBackSource, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         let userContentController = WKUserContentController()
         userContentController.addUserScript(script)
         let config = WKWebViewConfiguration()
         config.userContentController = userContentController
-        
         self.webView = WKWebView(frame: self.frame, configuration: config)
-        
         webView.navigationDelegate = self
         self.webView.scrollView.addGestureRecognizer(longPressRecognizer)
-        self.webView.scrollView.addGestureRecognizer(tapGesture)
         self.addSubview(self.webView)
         addLayoutWebView()
         

@@ -20,6 +20,7 @@ class NVTWebView: UIViewController{
         addPageScrollView()
         addToolBar()
     }
+    
     func addToolBar()
     {
         if(toolBar == nil)
@@ -158,7 +159,7 @@ extension NVTWebView: CustomWebViewDelegate
 extension NVTWebView: HGPageScrollViewDataSource
 {
     func numberOfPages(in scrollView: HGPageScrollView!) -> Int {
-        return 1
+        return self.webviewModel.myPageDataArray.count
     }
     func pageScrollView(_ scrollView: HGPageScrollView!, viewForPageAt index: Int) -> HGPageView! {
         //        var currentWebView = webviewModel.myPageDataArray[index] as! MyPageView
@@ -170,16 +171,23 @@ extension NVTWebView: HGPageScrollViewDataSource
             //            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
 //        }
         customWebView?.delegateCustomWeb = self
-        customWebView?.loadRequest(url: "https://www.google.com.vn/", isPosibleLoad: true)
+        customWebView?.loadRequest(url: Settings.sharedInstance.browser, isPosibleLoad: true)
         //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
         return customWebView
         
     }
     func pageScrollView(_ scrollView: HGPageScrollView!, titleForPageAt index: Int) -> String! {
-        return "title"
+        print(self.webviewModel.getTitle(index: index))
+        return self.webviewModel.getTitle(index: index)
     }
     func pageScrollView(_ scrollView: HGPageScrollView!, subtitleForPageAt index: Int) -> String! {
-        return "subTitle"
+        print(self.webviewModel.getSubTitle(index: index))
+        return self.webviewModel.getSubTitle(index: index)
+    }
+    func pageScrollView(_ scrollView: HGPageScrollView!, headerViewForPageAt index: Int) -> UIView! {
+        let view  = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        view.backgroundColor = UIColor.red
+        return view
     }
 }
 extension NVTWebView: HGPageScrollViewDelegate
@@ -189,6 +197,9 @@ extension NVTWebView: HGPageScrollViewDelegate
     }
     func pageScrollView(_ scrollView: HGPageScrollView!, didSelectPageAt index: Int) {
         self.addToolBar()
+    }
+    func willRemovePage(_ index: Int) {
+        self.webviewModel.removePageFrom(pageScrollView: self.myPageScrollView, atIndex: index)
     }
     
 }

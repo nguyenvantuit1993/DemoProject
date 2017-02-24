@@ -62,7 +62,9 @@ typedef enum{
 @protocol HGPageScrollViewDelegate<NSObject, UIScrollViewDelegate>
 
 @optional
-
+//
+- (void) willRemovePage:(NSInteger)index;
+//
 // Dragging
 - (void) pageScrollViewWillBeginDragging:(HGPageScrollView *)scrollView;
 - (void) pageScrollViewDidEndDragging:(HGPageScrollView *)scrollView willDecelerate:(BOOL)decelerate;
@@ -115,6 +117,7 @@ typedef enum{
 	
 	IBOutlet UIPageControl	*_pageSelector;
 	IBOutlet HGTouchView	*_pageSelectorTouch;
+    IBOutlet UIButton       *_closeButton;
 	
 	NSInteger				 _numberOfPages;
     NSInteger                _numberOfFreshPages;
@@ -147,7 +150,7 @@ typedef enum{
 - (void) scrollToPageAtIndex  : (NSInteger) index animated : (BOOL) animated; 
 - (void) selectPageAtIndex    : (NSInteger) index animated : (BOOL) animated;
 - (void) deselectPageAnimated : (BOOL) animated;
-
+- (void) hiddenForCloseButton:(BOOL)hidden;
 
 // Appearance
 
