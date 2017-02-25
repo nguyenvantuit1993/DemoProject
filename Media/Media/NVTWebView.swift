@@ -20,7 +20,16 @@ class NVTWebView: UIViewController{
         addPageScrollView()
         addToolBar()
     }
-    
+    func interactPage(index: Int, isSelected: Bool)
+    {
+        addToolBar()
+        hidenSearchBar(at: index, isHidden: !isSelected)
+
+    }
+    func hidenSearchBar(at index: Int, isHidden: Bool)
+    {
+        self.webviewModel.getPage(indexPage: index)?.hiddenSearchBar(hidden: isHidden)
+    }
     func addToolBar()
     {
         if(toolBar == nil)
@@ -96,7 +105,7 @@ extension NVTWebView: CustomWebViewDelegate
 
             let currentWebView = self.webviewModel.getPage(indexPage: self.myPageScrollView.indexForSelectedPage())
             title = href
-            if(!href.lowercased().hasPrefix("http") && !src.lowercased().hasPrefix("http"))
+            if(!href.lowercased().hasPrefix(kHtmlPath) && !src.lowercased().hasPrefix(kHtmlPath))
             {
                 currentWebView?.isPosibleLoad = true
                 currentWebView?.runScriptString(script: title)
@@ -111,7 +120,7 @@ extension NVTWebView: CustomWebViewDelegate
             }
             dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
             let open: UIAlertAction = UIAlertAction(title: "Open", style: .default) { action -> Void in
-                if(title.hasPrefix("http"))
+                if(title.hasPrefix(kHtmlPath))
                 {
                     currentWebView?.loadRequest(url: title, isPosibleLoad: true)
                 }
@@ -171,7 +180,7 @@ extension NVTWebView: HGPageScrollViewDataSource
             //            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
 //        }
         customWebView?.delegateCustomWeb = self
-        customWebView?.loadRequest(url: Settings.sharedInstance.browser, isPosibleLoad: true)
+        customWebView?.loadRequest(url: SettingObjects.sharedInstance.browser, isPosibleLoad: true)
         //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
         return customWebView
         
@@ -192,11 +201,11 @@ extension NVTWebView: HGPageScrollViewDataSource
 }
 extension NVTWebView: HGPageScrollViewDelegate
 {
-    func pageScrollView(_ scrollView: HGPageScrollView!, didDeselectPageAt index: Int) {
-        self.addToolBar()
+    func pageScrollView(_ scrollView: HGPageScrollView!, willDeselectPageAt index: Int) {
+        self.interactPage(index: index, isSelected: false)
     }
     func pageScrollView(_ scrollView: HGPageScrollView!, didSelectPageAt index: Int) {
-        self.addToolBar()
+        self.interactPage(index: index, isSelected: true)
     }
     func willRemovePage(_ index: Int) {
         self.webviewModel.removePageFrom(pageScrollView: self.myPageScrollView, atIndex: index)

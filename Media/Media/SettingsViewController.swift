@@ -19,17 +19,18 @@ class SettingsViewController: UIViewController {
     var settingsViewModel = SettingsViewModel()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        showDataFromSettings()
         settingsViewModel.configTouchID()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         settingsViewModel.delegate = self
-        showDataFromSettings()
     }
     func showDataFromSettings()
     {
         let dic = settingsViewModel.getData()
-        defaultBrowserLink.text = dic[SettingTypes.Browser.rawValue] as! String?
+        defaultBrowserLink.text = dic[SettingTypes.browser.rawValue] as! String?
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -37,11 +38,11 @@ class SettingsViewController: UIViewController {
     }
     func getDataFromView() -> Dictionary<String, Any>
     {
-        return [SettingTypes.Browser.rawValue: defaultBrowserLink.text!,
-                    SettingTypes.PassCodeLock.rawValue: switch_SetPassCode.isOn,
-                    SettingTypes.WifiTransfer.rawValue: switch_WifiTransfer.isOn,
-                    SettingTypes.Backup.rawValue: switch_Backup.isOn,
-                    SettingTypes.PriteBrowsing.rawValue: switch_PrivateBrowsing.isOn] as [String : Any]
+        return [SettingTypes.browser.rawValue: defaultBrowserLink.text!,
+                    SettingTypes.passCodeLock.rawValue: switch_SetPassCode.isOn,
+                    SettingTypes.wifiTransfer.rawValue: switch_WifiTransfer.isOn,
+                    SettingTypes.backup.rawValue: switch_Backup.isOn,
+                    SettingTypes.privateBrowsing.rawValue: switch_PrivateBrowsing.isOn] as [String : Any]
     }
     @IBAction func userTappedSetPasscode(_ sender: UISwitch) {
         self.settingsViewModel.setPassCode()

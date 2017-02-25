@@ -11,15 +11,15 @@ import UIKit
 
 enum SettingTypes: String
 {
-    case PassCodeLock,
-    RemoveAds,
-    RetrievePurchases,
-    RateApp,
-    WifiTransfer,
-    Backup,
-    Browser,
-    PriteBrowsing,
-    ClearBrowserHitory
+    case passCodeLock,
+    removeAds,
+    retrievePurchases,
+    rateApp,
+    wifiTransfer,
+    backup,
+    browser,
+    privateBrowsing,
+    clearBrowserHitory
 }
 protocol SettingsViewModelDelegate {
     func configureTouchIDToogle(enable: Bool)
@@ -28,71 +28,61 @@ protocol SettingsViewModelDelegate {
 }
 class SettingsViewModel{
     var delegate: SettingsViewModelDelegate!
-    let settings = Settings.sharedInstance
+    
     //MARK data Settings
     func getData() -> Dictionary<String, Any>
     {
-        let dic = [SettingTypes.PassCodeLock.rawValue :settings.passCodeLock,
-                   SettingTypes.RemoveAds.rawValue:settings.removeAds,
-                   SettingTypes.RetrievePurchases.rawValue:settings.retrievePurchases,
-                   SettingTypes.RateApp.rawValue:settings.rateApp,
-                   SettingTypes.WifiTransfer.rawValue:settings.wifiTransfer,
-                   SettingTypes.Backup.rawValue:settings.backup,
-                   SettingTypes.Browser.rawValue:settings.browser,
-                   SettingTypes.PriteBrowsing.rawValue:settings.priteBrowsing,
-                   SettingTypes.ClearBrowserHitory.rawValue:settings.clearBrowserHitory] as [String : Any]
+        let settings = SettingObjects.sharedInstance
+        let dic = [SettingTypes.passCodeLock.rawValue :settings.passCodeLock,
+                   SettingTypes.removeAds.rawValue:settings.removeAds,
+                   SettingTypes.retrievePurchases.rawValue:settings.retrievePurchases,
+                   SettingTypes.rateApp.rawValue:settings.rateApp,
+                   SettingTypes.wifiTransfer.rawValue:settings.wifiTransfer,
+                   SettingTypes.backup.rawValue:settings.backup,
+                   SettingTypes.browser.rawValue:settings.browser,
+                   SettingTypes.privateBrowsing.rawValue:settings.privateBrowsing,
+                   SettingTypes.clearBrowserHitory.rawValue:settings.clearBrowserHitory] as [String : Any]
         return dic
     }
     func setDataForSettings(dic: Dictionary<String, Any>)
     {
         for key in dic.keys
         {
+            let settings = SettingObjects.sharedInstance
             let value = dic[key]
             switch key {
-            case SettingTypes.PassCodeLock.rawValue:
+            case SettingTypes.passCodeLock.rawValue:
                 settings.passCodeLock = (value as? Bool)!     
                 break
-            case SettingTypes.RemoveAds.rawValue:
+            case SettingTypes.removeAds.rawValue:
                 settings.removeAds = (value as? Bool)!
                 break
-            case SettingTypes.RetrievePurchases.rawValue:
+            case SettingTypes.retrievePurchases.rawValue:
                 settings.retrievePurchases = (value as? Bool)!
                 break
-            case SettingTypes.RateApp.rawValue:
+            case SettingTypes.rateApp.rawValue:
                 settings.rateApp = (value as? Bool)!
                 break
-            case SettingTypes.WifiTransfer.rawValue:
+            case SettingTypes.wifiTransfer.rawValue:
                 settings.wifiTransfer = (value as? Bool)!
                 break
-            case SettingTypes.Backup.rawValue:
+            case SettingTypes.backup.rawValue:
                 settings.backup = (value as? Bool)!
                 break
-            case SettingTypes.Browser.rawValue:
-                settings.browser = self.validLink(link: (value as? String)!)
+            case SettingTypes.browser.rawValue:
+                settings.browser = (((value as? String)?.validLink())?.link)!
                 break
-            case SettingTypes.PriteBrowsing.rawValue:
-                settings.priteBrowsing = (value as? Bool)!
+            case SettingTypes.privateBrowsing.rawValue:
+                settings.privateBrowsing = (value as? Bool)!
                 break
-            case SettingTypes.ClearBrowserHitory.rawValue:
+            case SettingTypes.clearBrowserHitory.rawValue:
                 settings.clearBrowserHitory = (value as? Bool)!
                 break
             default:
                 break
             }
         }
-    }
-    func validLink(link: String) -> String
-    {
-        var linkToReturn: String!
-        if(link.hasPrefix("http") == false)
-        {
-            linkToReturn = "http://\(link)"
-        }
-        else
-        {
-            linkToReturn = link
-        }
-        return linkToReturn
+        SettingObjects.sharedInstance.saveSettings()
     }
     
     func checkValidPass()
@@ -122,5 +112,32 @@ class SettingsViewModel{
     func configTouchID()
     {
         delegate.configureTouchIDToogle(enable:VENTouchLock.sharedInstance().isPasscodeSet())
+    }
+}
+extension String
+{
+    func validLink() -> (link: String, isValid: Bool)
+    {
+        var linkToReturn = self
+        var isValid = false
+        
+        let extention = (self as NSString).pathExtension
+        if(self.hasPrefix(kHtmlPath) == true)
+        {
+            if(extention != "")
+            {
+                isValid = true
+            }
+            
+        }
+        else
+        {
+            if(extention != "")
+            {
+                linkToReturn = "http://\(self)"
+                isValid = true
+            }
+        }
+        return (linkToReturn, isValid)
     }
 }

@@ -13,7 +13,7 @@ let kVideoThumbs = "VideoThumbs"
 let kImageFolder = "Images"
 let kOtherFolder = "Others"
 let kHtmlPath = "http"
-
+let kGoogleSearchLink = "http://www.google.com/search?q="
 enum MimeTypes: Int {
     case Image = 1
     case Video

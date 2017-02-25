@@ -16,12 +16,18 @@ protocol CustomWebViewDelegate {
 
 class CustomWebView: HGPageView {
     var delegateCustomWeb: CustomWebViewDelegate!
-    
     @IBOutlet weak var view: UIView!
-
+    internal var lastContentOffset: CGFloat = 0
+    internal var buttonRefresh: UIButton!
+    private let widthGoogleSearch:CGFloat = 100
+    private let heightSearchField:CGFloat = 35
+    private let margin:CGFloat = 10
+    private let widthRightButton:CGFloat = 30
+    var searchBar: UISearchBar!
+    var title: UILabel!
     var customWebViewModel = CustomWebViewModel()
-    var txt_URLText: UITextField!
     var txt_SearchText: UITextField!
+    var isShowSearchText = false
     var webView: WKWebView!
     var isPosibleLoad = false
     let mainJavascript = "function MyAppGetHTMLElementsAtPoint(x,y) { var tags = \",\"; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName) { tags += e.tagName + ','; } e = e.parentNode; } return tags; } function MyAppGetLinkSRCAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.src) { tags += e.src; break; } e = e.parentNode; } return tags; }  function MyAppGetLinkHREFAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.href) { tags += e.href; break; } e = e.parentNode; } return tags; }"
@@ -36,39 +42,94 @@ class CustomWebView: HGPageView {
     }
     func setup() {
         addWebView()
-        addHeaderToWebView()
-        updateWebViewScrollViewContentInset()
     }
     func loadViewFromNib() -> UIView {
         let subView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?[0]
         return subView as! UIView
     }
-    func addSearchView()
+    func showSearchText()
     {
-        txt_URLText = UITextField(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-        txt_URLText.backgroundColor = UIColor.red
-        self.webView.scrollView.addSubview(txt_URLText)
+        if isShowSearchText == false {
+            self.searchBar.showsCancelButton = true
+            self.isShowSearchText = true
+            
+        } else {
+            self.searchBar.resignFirstResponder()
+            self.searchBar.showsCancelButton = false
+            self.isShowSearchText = false
+        }
     }
     
+    func hiddenSearchBar(hidden: Bool)
+    {
+        if(hidden == true)
+        {
+            self.searchBar.delegate = nil
+            self.searchBar.removeFromSuperview()
+        }
+        else
+        {
+            addHeaderToWebView()
+        }
+        updateWebViewScrollViewContentInset(isHidden: hidden)
+    }
     func addHeaderToWebView(){
-        // We load the headerView from a Nib
-        txt_URLText = UITextField(frame: CGRect(x: 0, y: 0, width: 0, height: 45))
-        txt_URLText.backgroundColor = UIColor.red
-        
-        txt_URLText.translatesAutoresizingMaskIntoConstraints = false
-        
-        webView.scrollView.addSubview(txt_URLText)
+        title = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: self.heightSearchField))
+        title.backgroundColor = UIColor.lightGray
+        title.textColor = UIColor.white
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.textAlignment = .center
+        self.addSubview(title)
         
         // the constraints
-        let topConstraint = NSLayoutConstraint(item: txt_URLText, attribute: .bottom, relatedBy: .equal, toItem: webView.scrollView, attribute: .top, multiplier: 1, constant: 0)
-        let leftConstraint = NSLayoutConstraint(item: txt_URLText, attribute: .leading, relatedBy: .equal, toItem: webView, attribute: .leading, multiplier: 1, constant: 0)
-        let rightConstraint = NSLayoutConstraint(item: txt_URLText, attribute: .trailing, relatedBy: .equal, toItem: webView, attribute: .trailing, multiplier: 1, constant: 0)
+        var topConstraint = NSLayoutConstraint(item: title, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 20)
+        var leftConstraint = NSLayoutConstraint(item: title, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+        var rightConstraint = NSLayoutConstraint(item: title, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+        var heightConstraint = NSLayoutConstraint(item: self.title, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.heightSearchField*0.8)
         // we add the constraints
-        webView.scrollView.addConstraints([topConstraint])
-        webView.addConstraints([leftConstraint, rightConstraint])
+        self.addConstraints([topConstraint, leftConstraint, rightConstraint, heightConstraint])
+        
+        // We load the headerView from a Nib
+        searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 0, height: self.heightSearchField))
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.delegate = self
+        self.addSubview(searchBar)
+
+        // the constraints
+        topConstraint = NSLayoutConstraint(item: searchBar, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 20)
+        leftConstraint = NSLayoutConstraint(item: searchBar, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+        rightConstraint = NSLayoutConstraint(item: searchBar, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -(self.widthRightButton + self.margin))
+        heightConstraint = NSLayoutConstraint(item: self.searchBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.heightSearchField)
+        // we add the constraints
+        self.addConstraints([topConstraint, leftConstraint, rightConstraint, heightConstraint])
+        
+        buttonRefresh = UIButton(type: .custom)
+        buttonRefresh.frame = CGRect(x: 0, y: 0, width: widthRightButton, height: widthRightButton)
+        buttonRefresh.backgroundColor = UIColor.clear
+        buttonRefresh.setImage(UIImage(named: "RefreshButton"), for: .normal)
+        buttonRefresh.contentMode = .scaleToFill
+        buttonRefresh.addTarget(self, action: #selector(refreshButtonPressed), for: .touchUpInside)
+        buttonRefresh.translatesAutoresizingMaskIntoConstraints = false
+
+        self.addSubview(buttonRefresh)
+        
+        // the constraints
+        topConstraint = NSLayoutConstraint(item: buttonRefresh, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 20)
+        let widthConstraint = NSLayoutConstraint(item: buttonRefresh, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: widthRightButton)
+        rightConstraint = NSLayoutConstraint(item: buttonRefresh, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -self.margin)
+        heightConstraint = NSLayoutConstraint(item: self.buttonRefresh, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: widthRightButton)
+        // we add the constraints
+        self.addConstraints([topConstraint, widthConstraint, rightConstraint, heightConstraint])
+        
     }
-    func updateWebViewScrollViewContentInset(){
-        webView.scrollView.contentInset = UIEdgeInsetsMake(txt_URLText.frame.height, 0, 0, 0)
+    func refreshButtonPressed()
+    {
+        print("pressed")
+    }
+    func updateWebViewScrollViewContentInset(isHidden: Bool){
+        let valueToScroll = isHidden == true ? 0 : (self.heightSearchField + 20)
+        self.webView.scrollView.contentInset = UIEdgeInsets(top: valueToScroll, left: 0, bottom: 0, right: 0)
+        self.webView.scrollView.contentOffset = CGPoint(x: 0, y: -valueToScroll)
     }
     func addWebView()
     {
@@ -84,6 +145,7 @@ class CustomWebView: HGPageView {
         config.userContentController = userContentController
         self.webView = WKWebView(frame: self.frame, configuration: config)
         webView.navigationDelegate = self
+        self.webView.scrollView.delegate = self
         self.webView.scrollView.addGestureRecognizer(longPressRecognizer)
         self.addSubview(self.webView)
         addLayoutWebView()
@@ -93,12 +155,12 @@ class CustomWebView: HGPageView {
     func addLayoutWebView()
     {
         self.webView.translatesAutoresizingMaskIntoConstraints = false
-        let horizontalConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0)
-        let verticalConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
-        let widthConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0)
-        let heightConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+        let horizontalConstraint = NSLayoutConstraint(item: webView, attribute: .left, relatedBy: .equal, toItem: self, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0)
+        let topConstraintWebView = NSLayoutConstraint(item: webView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: webView, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: 0)
+        let heightConstraint = NSLayoutConstraint(item: webView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
         
-        self.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+        self.addConstraints([horizontalConstraint, topConstraintWebView, widthConstraint, heightConstraint])
     }
     func loadRequest(url: String, isPosibleLoad: Bool)
     {
@@ -176,6 +238,35 @@ extension CustomWebView: WKNavigationDelegate
     }
     
 }
+extension CustomWebView: UISearchBarDelegate
+{
+    func loadRequestFromString(string: String)
+    {
+        let validString = string.lowercased().validLink()
+        var link = validString.link
+        if(validString.isValid == false)
+        {
+            link = "\(kGoogleSearchLink)\(link)"
+        }
+        self.loadRequest(url: link, isPosibleLoad: true)
+    }
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        showSearchText()
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        showSearchText()
+        return true
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        showSearchText()
+        loadRequestFromString(string: searchBar.text!)
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        showSearchText()
+    }
+}
 extension CustomWebView
 {
     func showActionSheet(tags:String, href:String, src:String)
@@ -188,5 +279,41 @@ extension CustomWebView: UIGestureRecognizerDelegate
     // Without this function, the customLongPressRecognizer would be replaced by the original UIWebView LongPressRecognizer
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+extension CustomWebView: UIScrollViewDelegate
+{
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        
+//        if (scrollView.contentOffset.y > 0)
+//        {
+////            self.searchBar?.isHidden = true
+//        }
+//        else
+//        {
+//            self.searchBar?.isHidden = false
+//        }
+//    
+//    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if (self.lastContentOffset < scrollView.contentOffset.y)
+        {
+            UIView.animate(withDuration: 2, animations: {
+                self.searchBar?.isHidden = true
+                self.title.text = self.webView.title
+            })
+            
+        }
+        else
+        {
+            UIView.animate(withDuration: 2, animations: {
+                self.searchBar?.isHidden = false
+            })
+            
+        }
+        self.lastContentOffset = scrollView.contentOffset.y
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
     }
 }

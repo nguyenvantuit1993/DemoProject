@@ -31,7 +31,7 @@
 		CB3225D71E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3225D61E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m */; };
 		CB364BFA1E49DB4600C10D91 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */; };
 		CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BFC1E49DD4B00C10D91 /* Constant.swift */; };
-		CB3651501E602EA5006EFAB6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB36514F1E602EA5006EFAB6 /* Settings.swift */; };
+		CB3651501E602EA5006EFAB6 /* SettingObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB36514F1E602EA5006EFAB6 /* SettingObjects.swift */; };
 		CB39F5971E5450F80043BB89 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB39F5961E544E850043BB89 /* test.mp4 */; };
 		CB4180511E5ADF0F00283B28 /* OtherFilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4180501E5ADF0F00283B28 /* OtherFilesViewModel.swift */; };
 		CB4180541E5AFE3000283B28 /* DetailFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4180531E5AFE3000283B28 /* DetailFile.swift */; };
@@ -94,7 +94,7 @@
 		CB3225D61E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVENTouchLockEnterPasscodeViewController.m; sourceTree = "<group>"; };
 		CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		CB364BFC1E49DD4B00C10D91 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		CB36514F1E602EA5006EFAB6 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		CB36514F1E602EA5006EFAB6 /* SettingObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingObjects.swift; sourceTree = "<group>"; };
 		CB39F5961E544E850043BB89 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		CB4180501E5ADF0F00283B28 /* OtherFilesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherFilesViewModel.swift; sourceTree = "<group>"; };
 		CB4180531E5AFE3000283B28 /* DetailFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFile.swift; sourceTree = "<group>"; };
@@ -202,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				B1B2B30B1E53CDC20069E3C9 /* ManageDataBase.swift */,
+				CB36514F1E602EA5006EFAB6 /* SettingObjects.swift */,
 			);
 			name = DataBase;
 			sourceTree = "<group>";
@@ -397,7 +398,6 @@
 				B1B2B3001E53B5C50069E3C9 /* Track.swift */,
 				CB8294781E5416590013A064 /* Item.swift */,
 				CB4DB6651E58527500F6F640 /* ManageDownloadTrack.swift */,
-				CB36514F1E602EA5006EFAB6 /* Settings.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -589,7 +589,7 @@
 				CB80C80F1E49791600690D4D /* OtherFilesView.swift in Sources */,
 				CB4DB6661E58527500F6F640 /* ManageDownloadTrack.swift in Sources */,
 				B1B2B2DE1E53B0180069E3C9 /* HGPageView.m in Sources */,
-				CB3651501E602EA5006EFAB6 /* Settings.swift in Sources */,
+				CB3651501E602EA5006EFAB6 /* SettingObjects.swift in Sources */,
 				CB5119941E56B8A2009D38E9 /* SettingsViewModel.swift in Sources */,
 				CBFB10001E497FF500992989 /* ImagesView.swift in Sources */,
 				CB80C80D1E49773600690D4D /* MediasView.swift in Sources */,
