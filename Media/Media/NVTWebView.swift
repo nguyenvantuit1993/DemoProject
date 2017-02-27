@@ -248,7 +248,8 @@ extension NVTWebView: ToolBarDelegate
         addbookmark.setValue(UIColor.red, forKey: "titleTextColor")
         let gotoBookmark: UIAlertAction = UIAlertAction(title: "Go to Bookmark", style: .default) { action -> Void in
             let bookmarView = self.webviewModel.getBookMark()
-            self.tabBarController?.navigationController?.pushViewController(bookmarView, animated: true)
+            self.present(bookmarView, animated: true, completion: nil)
+//            self.tabBarController?.navigationController?.pushViewController(bookmarView, animated: true)
             //Just dismiss the action sheet
         }
         let settings: UIAlertAction = UIAlertAction(title: "Settings", style: .default) { action -> Void in

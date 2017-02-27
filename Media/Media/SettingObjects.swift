@@ -19,11 +19,9 @@ class SettingObjects{
     var browser: String!
     var privateBrowsing: Bool!
     var clearBrowserHitory: Bool!
-    var settings = [NSManagedObject]()
-    var managedContext: NSManagedObjectContext!
+    var settings: Settings!
     
     //MARK: Shared Instance
-    
     static let sharedInstance : SettingObjects = {
         let instance = SettingObjects()
         return instance
@@ -31,78 +29,75 @@ class SettingObjects{
     //MARK: Init
     
     init() {
-        
-        //1
-        let appDelegate =
-            UIApplication.shared.delegate as! AppDelegate
-        
-        managedContext = appDelegate.managedObjectContext
-        
-        //2
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
-        
-        //3
-        do {
-            let results =
-                try managedContext.fetch(fetchRequest)
-            settings = results as! [NSManagedObject]
-            getDataToProperties()
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
+        getData()
+    }
+    func getData()
+    {
+        if let currentSettings = ManageDataBase.sharedInstance.fetchEntity(name: "Settings").first as? Settings
+        {
+            settings = currentSettings
         }
+        
+        
+        getDataToProperties()
     }
     func getDataToProperties()
     {
-        let setting = settings.first
-        passCodeLock = ((setting?.value(forKey: SettingTypes.passCodeLock.rawValue)) != nil)
-        removeAds = ((setting?.value(forKey: SettingTypes.removeAds.rawValue)) != nil)
-        retrievePurchases = ((setting?.value(forKey: SettingTypes.retrievePurchases.rawValue)) != nil)
-        rateApp = ((setting?.value(forKey: SettingTypes.rateApp.rawValue)) != nil)
-        wifiTransfer = ((setting?.value(forKey: SettingTypes.wifiTransfer.rawValue)) != nil)
-        backup = ((setting?.value(forKey: SettingTypes.backup.rawValue)) != nil)
-        browser = (setting?.value(forKey: SettingTypes.browser.rawValue) as! String)
-        privateBrowsing = ((setting?.value(forKey: SettingTypes.clearBrowserHitory.rawValue)) != nil)
-        clearBrowserHitory = ((setting?.value(forKey: "clearBrowserHitory")) != nil)
+
+        let settings = self.settings
+        passCodeLock = settings?.passCodeLock ?? false
+        removeAds = settings?.removeAds ?? false
+        retrievePurchases = settings?.retrievePurchases ?? false
+        rateApp = settings?.rateApp ?? false
+        wifiTransfer = settings?.wifiTransfer ?? false
+        backup = settings?.backup ?? false
+        browser = settings?.browser ?? ""
+        privateBrowsing = settings?.privateBrowsing ?? false
+        clearBrowserHitory = settings?.clearBrowserHitory ?? false
     }
-    func removeObjectAt(index: Int)
-    {
-        if let bookmark =  settings[index] as? NSManagedObject
-        {
-            managedContext.delete(bookmark)
-            try? managedContext.save()
-        }
-    }
+
     func saveSettings() {
-        
-        for index in 0..<self.settings.count
-        {
-            removeObjectAt(index: index)
-        }
-        settings.removeAll()
-        
+        let managedContext = ManageDataBase.sharedInstance.managedContext
         let entity =  NSEntityDescription.entity(forEntityName: "Settings",
-                                                 in:managedContext)
-        
-        let setting = NSManagedObject(entity: entity!,
-                                     insertInto: managedContext)
-        
+                                                 in:managedContext!)
+        var settings:Settings!
+        if let currentSettings = self.settings
+        {
+            settings = currentSettings
+        }
+        else
+        {
+            settings = Settings(entity: entity!,
+                                insertInto: managedContext)
+            
+        }
         //3
-        setting.setValue(self.passCodeLock, forKey: SettingTypes.passCodeLock.rawValue)
-        setting.setValue(self.removeAds, forKey: SettingTypes.removeAds.rawValue)
-        setting.setValue(self.retrievePurchases, forKey: SettingTypes.retrievePurchases.rawValue)
-        setting.setValue(self.rateApp, forKey: SettingTypes.rateApp.rawValue)
-        setting.setValue(false, forKey: SettingTypes.wifiTransfer.rawValue)
-        setting.setValue(self.backup, forKey: SettingTypes.backup.rawValue)
-        setting.setValue(self.browser, forKey: SettingTypes.browser.rawValue)
-        setting.setValue(self.privateBrowsing, forKey: SettingTypes.privateBrowsing.rawValue)
-        setting.setValue(self.clearBrowserHitory, forKey: SettingTypes.clearBrowserHitory.rawValue)
+        settings.passCodeLock = self.passCodeLock
+        settings.removeAds = self.removeAds
+        settings.retrievePurchases = self.retrievePurchases
+        settings.rateApp = self.rateApp
+        settings.wifiTransfer = self.wifiTransfer
+        settings.backup = self.backup
+        settings.browser = self.browser
+        settings.privateBrowsing = self.privateBrowsing
+        settings.clearBrowserHitory = self.clearBrowserHitory
+        
+        
+//        setting.setValue(self.passCodeLock, forKey: SettingTypes.passCodeLock.rawValue)
+//        setting.setValue(self.removeAds, forKey: SettingTypes.removeAds.rawValue)
+//        setting.setValue(self.retrievePurchases, forKey: SettingTypes.retrievePurchases.rawValue)
+//        setting.setValue(self.rateApp, forKey: SettingTypes.rateApp.rawValue)
+//        setting.setValue(self.wifiTransfer, forKey: SettingTypes.wifiTransfer.rawValue)
+//        setting.setValue(self.backup, forKey: SettingTypes.backup.rawValue)
+//        setting.setValue(self.browser, forKey: SettingTypes.browser.rawValue)
+//        setting.setValue(self.privateBrowsing, forKey: SettingTypes.privateBrowsing.rawValue)
+//        setting.setValue(self.clearBrowserHitory, forKey: SettingTypes.clearBrowserHitory.rawValue)
 
 
         //4
         do {
-            try managedContext.save()
+            try managedContext?.save()
             //5
-            settings.append(setting)
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }

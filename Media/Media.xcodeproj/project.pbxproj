@@ -50,6 +50,7 @@
 		CB8294731E5410860013A064 /* CustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8294711E5410860013A064 /* CustomCollectionCell.xib */; };
 		CB8294771E5414F10013A064 /* MediasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8294761E5414F10013A064 /* MediasViewModel.swift */; };
 		CB8294791E5416590013A064 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8294781E5416590013A064 /* Item.swift */; };
+		CB9E34491E63E1040004A13B /* BookMarkObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E34481E63E1040004A13B /* BookMarkObjects.swift */; };
 		CBD33B311E554B510004D374 /* TTOpenInAppActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD33B291E554B510004D374 /* TTOpenInAppActivity.m */; };
 		CBD33B321E554B510004D374 /* TTOpenInAppActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2A1E554B510004D374 /* TTOpenInAppActivity.png */; };
 		CBD33B331E554B510004D374 /* TTOpenInAppActivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2B1E554B510004D374 /* TTOpenInAppActivity@2x.png */; };
@@ -115,6 +116,7 @@
 		CB8294711E5410860013A064 /* CustomCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCollectionCell.xib; sourceTree = "<group>"; };
 		CB8294761E5414F10013A064 /* MediasViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediasViewModel.swift; sourceTree = "<group>"; };
 		CB8294781E5416590013A064 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		CB9E34481E63E1040004A13B /* BookMarkObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookMarkObjects.swift; sourceTree = "<group>"; };
 		CBD33B281E554B510004D374 /* TTOpenInAppActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTOpenInAppActivity.h; sourceTree = "<group>"; };
 		CBD33B291E554B510004D374 /* TTOpenInAppActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTOpenInAppActivity.m; sourceTree = "<group>"; };
 		CBD33B2A1E554B510004D374 /* TTOpenInAppActivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity.png; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			children = (
 				B1B2B30B1E53CDC20069E3C9 /* ManageDataBase.swift */,
 				CB36514F1E602EA5006EFAB6 /* SettingObjects.swift */,
+				CB9E34481E63E1040004A13B /* BookMarkObjects.swift */,
 			);
 			name = DataBase;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				B1B2B2DF1E53B0180069E3C9 /* HGPageScrollView.m in Sources */,
 				CB80C7F61E496AA600690D4D /* ViewController.swift in Sources */,
 				CB8294721E5410860013A064 /* CustomCollectionCell.swift in Sources */,
+				CB9E34491E63E1040004A13B /* BookMarkObjects.swift in Sources */,
 				CBD33B311E554B510004D374 /* TTOpenInAppActivity.m in Sources */,
 				B1B2B3061E53B5D80069E3C9 /* ItemCell.swift in Sources */,
 				B1B2B30C1E53CDC20069E3C9 /* ManageDataBase.swift in Sources */,

@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 class ManageDataBase {
     //MARK: Local Variable
-    var bookmarks = [NSManagedObject]()
     var managedContext: NSManagedObjectContext!
     //MARK: Shared Instance
     
@@ -21,49 +20,53 @@ class ManageDataBase {
     //MARK: Init
     
     init() {
-        
+        print(documentsPath)
         //1
         let appDelegate =
             UIApplication.shared.delegate as! AppDelegate
         
         managedContext = appDelegate.managedObjectContext
         
+    }
+    func fetchEntity(name: String) -> [NSManagedObject]
+    {
+        var objects = [NSManagedObject]()
         //2
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BookMark")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
         
         //3
         do {
             let results =
                 try managedContext.fetch(fetchRequest)
-            bookmarks = results as! [NSManagedObject]
+            objects = results as! [NSManagedObject]
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
+        return objects
     }
-    func removeObjectAt(index: Int)
+    func removeObject(object: NSManagedObject)
     {
-        if let bookmark =  bookmarks[index] as? NSManagedObject
-        {
-            managedContext.delete(bookmark)
-            bookmarks.remove(at: index)
+            managedContext.delete(object)
             try? managedContext.save()
-        }
     }
-    func saveName(title: String, url: String) {
-        let entity =  NSEntityDescription.entity(forEntityName: "BookMark",
+    func saveValue(values: [(value: Any, key: String)], entityName: String)
+    {
+        let entity =  NSEntityDescription.entity(forEntityName: entityName,
                                                  in:managedContext)
         
-        let person = NSManagedObject(entity: entity!,
+        let object = NSManagedObject(entity: entity!,
                                      insertInto: managedContext)
         
         //3
-        person.setValue(title, forKey: "title")
-        person.setValue(url, forKey: "url")
+        for value in values
+        {
+            object.setValue(value.value, forKey: value.key)
+        }
+        
+        
         //4
         do {
             try managedContext.save()
-            //5
-            bookmarks.append(person)
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }

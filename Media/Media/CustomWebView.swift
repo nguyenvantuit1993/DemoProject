@@ -94,7 +94,7 @@ class CustomWebView: HGPageView {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.delegate = self
         self.addSubview(searchBar)
-
+        
         // the constraints
         topConstraint = NSLayoutConstraint(item: searchBar, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 20)
         leftConstraint = NSLayoutConstraint(item: searchBar, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
@@ -110,7 +110,7 @@ class CustomWebView: HGPageView {
         buttonRefresh.contentMode = .scaleToFill
         buttonRefresh.addTarget(self, action: #selector(refreshButtonPressed), for: .touchUpInside)
         buttonRefresh.translatesAutoresizingMaskIntoConstraints = false
-
+        
         self.addSubview(buttonRefresh)
         
         // the constraints
@@ -166,15 +166,18 @@ class CustomWebView: HGPageView {
     {
         self.isPosibleLoad = isPosibleLoad
         let url = URL (string: url)
-        let requestObj = URLRequest(url: url!)
-        
-        self.webView.load(requestObj)
+        if(url != nil)
+        {
+            let requestObj = URLRequest(url: url!)
+            
+            self.webView.load(requestObj)
+        }
     }
     func runScriptString(script: String)
     {
         if(script != "")
         {
-           self.webView.evaluate(script: "window.location = '/';")
+            self.webView.evaluate(script: "window.location = '/';")
         }
         
     }
@@ -226,7 +229,7 @@ extension CustomWebView: WKNavigationDelegate
     //    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
     //    }
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-//        print(navigationAction)
+        //        print(navigationAction)
         if(isPosibleLoad == false)
         {
             decisionHandler(.cancel)
@@ -283,18 +286,18 @@ extension CustomWebView: UIGestureRecognizerDelegate
 }
 extension CustomWebView: UIScrollViewDelegate
 {
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        
-//        if (scrollView.contentOffset.y > 0)
-//        {
-////            self.searchBar?.isHidden = true
-//        }
-//        else
-//        {
-//            self.searchBar?.isHidden = false
-//        }
-//    
-//    }
+    //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    //
+    //        if (scrollView.contentOffset.y > 0)
+    //        {
+    ////            self.searchBar?.isHidden = true
+    //        }
+    //        else
+    //        {
+    //            self.searchBar?.isHidden = false
+    //        }
+    //
+    //    }
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if (self.lastContentOffset < scrollView.contentOffset.y)
         {

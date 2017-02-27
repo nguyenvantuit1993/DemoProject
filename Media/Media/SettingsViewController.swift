@@ -38,11 +38,11 @@ class SettingsViewController: UIViewController {
     }
     func getDataFromView() -> Dictionary<String, Any>
     {
-        return [SettingTypes.browser.rawValue: defaultBrowserLink.text!,
-                    SettingTypes.passCodeLock.rawValue: switch_SetPassCode.isOn,
-                    SettingTypes.wifiTransfer.rawValue: switch_WifiTransfer.isOn,
-                    SettingTypes.backup.rawValue: switch_Backup.isOn,
-                    SettingTypes.privateBrowsing.rawValue: switch_PrivateBrowsing.isOn] as [String : Any]
+        return [SettingTypes.browser.rawValue: self.defaultBrowserLink.text!,
+                    SettingTypes.passCodeLock.rawValue: self.switch_SetPassCode.isOn,
+                    SettingTypes.wifiTransfer.rawValue: self.switch_WifiTransfer.isOn,
+                    SettingTypes.backup.rawValue: self.switch_Backup.isOn,
+                    SettingTypes.privateBrowsing.rawValue: self.switch_PrivateBrowsing.isOn] as [String : Any]
     }
     @IBAction func userTappedSetPasscode(_ sender: UISwitch) {
         self.settingsViewModel.setPassCode()

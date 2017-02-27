@@ -25,7 +25,7 @@ class NVTWebViewModel: NSObject{
     }
     func getSubTitle(index: Int) -> String
     {
-        return (self.myPageDataArray[index].webView.url?.absoluteString)!
+        return (self.myPageDataArray[index].webView.url?.absoluteString) == nil ? "": (self.myPageDataArray[index].webView.url?.absoluteString)!
     }
     func setupDataToView(currentView: CustomWebView) -> CustomWebView
     {
@@ -107,7 +107,7 @@ class NVTWebViewModel: NSObject{
     func savePageToBookmark(indexPage: Int)
     {
         let webView = getPage(indexPage: indexPage)
-        self.manageDataBase.saveName(title:(webView?.webView.title)!, url: (webView?.webView.url?.absoluteString)!)
+        BookMarkObjects.sharedInstance.saveBookmark(title:(webView?.webView.title) == nil ? "nil" : (webView?.webView.title)!, url: (webView?.webView.url?.absoluteString) == nil ? "nil": (webView?.webView.url?.absoluteString)!)
     }
 }
 
