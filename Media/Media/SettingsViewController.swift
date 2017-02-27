@@ -25,7 +25,13 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dissmissKeyboard))
+        self.view.addGestureRecognizer(tap)
         settingsViewModel.delegate = self
+    }
+    func dissmissKeyboard()
+    {
+        self.view.endEditing(true)
     }
     func showDataFromSettings()
     {

@@ -220,8 +220,8 @@ class CustomWebView: HGPageView {
         
     }
     func tapRecognizerAction(sender: UITapGestureRecognizer) {
-        let tapPostion = sender.location(in: self.webView)
-        self.getLink(tapPostion: tapPostion)
+//        let tapPostion = sender.location(in: self.webView)
+//        self.getLink(tapPostion: tapPostion)
     }
 }
 extension CustomWebView: WKNavigationDelegate

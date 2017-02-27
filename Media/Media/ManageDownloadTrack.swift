@@ -7,8 +7,13 @@
 //
 
 import Foundation
-
+protocol DownloadFileDelegate {
+    func didWriteData(indexCell: Int, downloadInfo: Download, totalSize: String)
+    func didDownloaded(indexCell: IndexPath)
+}
 class ManageDownloadTrack: NSObject {
+    var delegate: DownloadFileDelegate!
+    var type = MimeTypes.Other
     var activeDownloads = [String: Download]()
     //MARK: Shared Instance
     lazy var downloadsSession: URLSession = {
@@ -52,6 +57,52 @@ class ManageDownloadTrack: NSObject {
             activeDownloads[download.url] = download
         }
     }
+    // Called when the Pause button for a track is tapped
+    func pauseDownload(_ track: Track) {
+        if let urlString = track.previewUrl, let download = activeDownloads[urlString] {
+            if download.isDownloading {
+                // you retrieve the resume data from the closure provided by cancel(byProducingResumeData:)
+                // and save it to the appropriate Download for future resumption
+                download.downloadTask?.cancel(byProducingResumeData: { data in
+                    if data != nil {
+                        download.resumeData = data
+                    }
+                })
+                // set isDownloading to false, to signify that the download is paused
+                download.isDownloading = false
+            }
+        }
+    }
+    
+    // Called when the Cancel button for a track is tapped
+    func cancelDownload(_ track: Track) {
+        if let urlString = track.previewUrl, let download = activeDownloads[urlString] {
+            // call cancel on the corresponding Download in the dictionary of active downloads
+            download.downloadTask?.cancel()
+            // you then remove it from the dictionary of active downloads
+            activeDownloads[urlString] = nil
+        }
+    }
+    
+    // Called when the Resume button for a track is tapped
+    func resumeDownload(_ track: Track) {
+        if let urlString = track.previewUrl, let download = activeDownloads[urlString] {
+            // is resume data present
+            if let resumeData = download.resumeData {
+                // if resumeData found, create a new downloadTask by invoking downloadTask(withResumeData:) with the resume data
+                // and start the task by calling resume()
+                download.downloadTask = downloadsSession.downloadTask(withResumeData: resumeData as Data)
+                download.downloadTask!.resume()
+                download.isDownloading = true
+            } else if let url = URL(string: download.url) {
+                // if resume data is absent for some reason, you create a new download task from scratch with the download URL and start it
+                download.downloadTask = downloadsSession.downloadTask(with: url)
+                download.downloadTask!.resume()
+                download.isDownloading = true
+            }
+        }
+    }
+    
     func createThumnails(name: String)
     {
         let folderVideoPath = documentsPath!.appending("/\(kVideoFolder)")
@@ -75,7 +126,7 @@ class ManageDownloadTrack: NSObject {
     {
         var extentionFile: String!
         var folderName: String!
-        var type = MimeTypes.Other
+        
         switch mime {
         case "video/x-flv": extentionFile = ".flv"; type = .Video
             break
@@ -105,7 +156,7 @@ class ManageDownloadTrack: NSObject {
             break
         case "image/webp" : extentionFile = ".webp"; type = .Image
             break
-        default: extentionFile = ""; type = .Other
+        default: extentionFile = (".\((mime as NSString).lastPathComponent)") ; type = .Other
             break
         }
         
@@ -171,7 +222,10 @@ extension ManageDownloadTrack: URLSessionDownloadDelegate {
             }
             do {
                 try fileManager.copyItem(at: location, to: destinationURLAndName.url!)
-                self.createThumnails(name: destinationURLAndName.lastComponent)
+                if(self.type == .Video)
+                {
+                    self.createThumnails(name: destinationURLAndName.lastComponent)
+                }
             } catch let error as NSError {
                 print("Could not copy file to disk: \(error.localizedDescription)")
             }
@@ -183,7 +237,7 @@ extension ManageDownloadTrack: URLSessionDownloadDelegate {
             // look up the Track in your table view and reload the corresponding cell
             if let trackIndex = trackIndexForDownloadTask(downloadTask: downloadTask) {
                 DispatchQueue.main.async {
-                    //                    self.tableView.reloadRows(at: [IndexPath(row: trackIndex, section: 0)], with: .none)
+                    self.delegate?.didDownloaded(indexCell: IndexPath(row: trackIndex, section: 0))
                 }
             }
         }
@@ -200,12 +254,10 @@ extension ManageDownloadTrack: URLSessionDownloadDelegate {
             // find the cell responsible for displaying the Track and update both its progress view and progress label with the values derived form the previous steps
             
             print(download.progress * 100)
-            //            if let trackIndex = trackIndexForDownloadTask(downloadTask: downloadTask), let trackCell = tableView.cellForRow(at: IndexPath(row: trackIndex, section: 0)) as? ItemCell {
-            //                DispatchQueue.main.async {
-            //                    trackCell.progressView.progress = download.progress
-            //                    trackCell.progressLabel.text = String(format: "%.1f%% of %@", download.progress * 100, totalSize)
-            //                }
-            //            }
+            
+            if let trackIndex = trackIndexForDownloadTask(downloadTask: downloadTask){
+                delegate?.didWriteData(indexCell: trackIndex, downloadInfo: download, totalSize: totalSize)
+            }
         }
     }
 }

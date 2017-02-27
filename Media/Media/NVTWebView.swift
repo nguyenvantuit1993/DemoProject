@@ -24,7 +24,7 @@ class NVTWebView: UIViewController{
     {
         addToolBar()
         hidenSearchBar(at: index, isHidden: !isSelected)
-
+        
     }
     func hidenSearchBar(at index: Int, isHidden: Bool)
     {
@@ -90,6 +90,13 @@ extension NVTWebView: CustomWebViewDelegate
 {
     func didShowAler(tags:String, href:String, src:String) {
         var title: String!
+        let currentWebView = self.webviewModel.getPage(indexPage: self.myPageScrollView.indexForSelectedPage())
+        currentWebView?.isPosibleLoad = true
+        if(!href.lowercased().hasPrefix(kHtmlPath) && !src.lowercased().hasPrefix(kHtmlPath))
+        {
+            currentWebView?.runScriptString(script: href == "" ? src:href )
+            return
+        }
         var buttons = [UIAlertAction]()
         if(tags.range(of: ",IMG,") != nil)
         {
@@ -102,20 +109,12 @@ extension NVTWebView: CustomWebViewDelegate
             dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
             buttons.append(dowloadFile)
         }
-
-            let currentWebView = self.webviewModel.getPage(indexPage: self.myPageScrollView.indexForSelectedPage())
-            title = href
-            if(!href.lowercased().hasPrefix(kHtmlPath) && !src.lowercased().hasPrefix(kHtmlPath))
-            {
-                currentWebView?.isPosibleLoad = true
-                currentWebView?.runScriptString(script: title)
-                return
-            }
-            
-            
+        if(title == nil && (href != "" || src != ""))
+        {
+            title = href == "" ? src:href
             let dowloadFile = UIAlertAction(title: "Download the File", style: .default) { action -> Void in
-                let titleAlert = href == "" ? src:href
-                let newTrack = Track(name: titleAlert, type: "", previewUrl: titleAlert)
+                title = href == "" ? src:href
+                let newTrack = Track(name: title, type: "", previewUrl: title)
                 ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
             }
             dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
@@ -129,12 +128,14 @@ extension NVTWebView: CustomWebViewDelegate
             
             buttons.append(dowloadFile)
             buttons.append(open)
+        }
+        
         
         if(buttons.count > 0)
         {
             let titleAlert = href == "" ? src:href
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-                //Just dismiss the action sheet
+                
             }
             buttons.insert(cancelAction, at: 0)
             self.showActionSheet(title: titleAlert, buttons: buttons)
@@ -144,20 +145,20 @@ extension NVTWebView: CustomWebViewDelegate
     func showActionSheet(title: String, buttons:[UIAlertAction])
     {
         let actionSheet = UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-//            //Just dismiss the action sheet
-//        }
-//        let dowloadFile: UIAlertAction = UIAlertAction(title: "Download the File", style: .default) { action -> Void in
-//            
-//        }
-//        dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
-//        
-//        let open: UIAlertAction = UIAlertAction(title: "Open", style: .default) { action -> Void in
-//
-//            self.webviewModel.getPage(indexPage: self.myPageScrollView.indexForSelectedPage())?.loadRequest(url: title, isPosibleLoad: true)
-//        }
-//        actionSheet.addAction(dowloadFile)
-//        actionSheet.addAction(open)
+        //        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+        //            //Just dismiss the action sheet
+        //        }
+        //        let dowloadFile: UIAlertAction = UIAlertAction(title: "Download the File", style: .default) { action -> Void in
+        //
+        //        }
+        //        dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
+        //
+        //        let open: UIAlertAction = UIAlertAction(title: "Open", style: .default) { action -> Void in
+        //
+        //            self.webviewModel.getPage(indexPage: self.myPageScrollView.indexForSelectedPage())?.loadRequest(url: title, isPosibleLoad: true)
+        //        }
+        //        actionSheet.addAction(dowloadFile)
+        //        actionSheet.addAction(open)
         for button in buttons
         {
             actionSheet.addAction(button)
@@ -173,12 +174,12 @@ extension NVTWebView: HGPageScrollViewDataSource
     func pageScrollView(_ scrollView: HGPageScrollView!, viewForPageAt index: Int) -> HGPageView! {
         //        var currentWebView = webviewModel.myPageDataArray[index] as! MyPageView
         var customWebView = self.webviewModel.getPage(indexPage: index)
-//        if (customWebView == nil)
-//        {
-            //           customWebView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?.first as? CustomWebView
-//            customWebView = self.webviewModel.myPageDataArray[index] as? CustomWebView
-            //            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
-//        }
+        //        if (customWebView == nil)
+        //        {
+        //           customWebView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?.first as? CustomWebView
+        //            customWebView = self.webviewModel.myPageDataArray[index] as? CustomWebView
+        //            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
+        //        }
         customWebView?.delegateCustomWeb = self
         customWebView?.loadRequest(url: SettingObjects.sharedInstance.browser, isPosibleLoad: true)
         //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
@@ -249,7 +250,7 @@ extension NVTWebView: ToolBarDelegate
         let gotoBookmark: UIAlertAction = UIAlertAction(title: "Go to Bookmark", style: .default) { action -> Void in
             let bookmarView = self.webviewModel.getBookMark()
             self.present(bookmarView, animated: true, completion: nil)
-//            self.tabBarController?.navigationController?.pushViewController(bookmarView, animated: true)
+            //            self.tabBarController?.navigationController?.pushViewController(bookmarView, animated: true)
             //Just dismiss the action sheet
         }
         let settings: UIAlertAction = UIAlertAction(title: "Settings", style: .default) { action -> Void in
@@ -267,7 +268,8 @@ extension NVTWebView: ToolBarDelegate
     }
     func showDownloadView()
     {
-        self.tabBarController?.navigationController?.pushViewController(self.webviewModel.getDownloadView(indexPage:self.myPageScrollView.indexForSelectedPage()), animated: true)
+        self.present(self.webviewModel.getDownloadView(indexPage:self.myPageScrollView.indexForSelectedPage()), animated: true, completion: nil)
+        //        self.tabBarController?.navigationController?.pushViewController(self.webviewModel.getDownloadView(indexPage:self.myPageScrollView.indexForSelectedPage()), animated: true)
     }
     func zoom()
     {

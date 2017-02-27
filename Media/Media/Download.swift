@@ -19,7 +19,7 @@ class Download: NSObject {
   /// the URLSessionDownloadTask that downloads the file
   var downloadTask: URLSessionDownloadTask?
   /// stores the NSDta produces when you pause a download task. If the host server supports it, you can use this to resume a paused download in the future
-  var resumeData: NSData?
+  var resumeData: Data?
   
   init(url: String) {
     self.url = url
