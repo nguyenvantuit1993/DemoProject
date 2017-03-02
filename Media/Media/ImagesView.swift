@@ -12,6 +12,7 @@ import UIKit
 class ImagesView: BaseClearBarItemsViewController{
     
     @IBOutlet weak var collectionView: UICollectionView!
+    var currentIndex: Int!
     var imageViewModel: ImagesViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,14 @@ class ImagesView: BaseClearBarItemsViewController{
 }
 extension ImagesView: UICollectionViewDelegate
 {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.currentIndex = indexPath.row
+        let viewScroll = self.storyboard?.instantiateViewController(withIdentifier: "ViewScroll") as! DetailImageView
+        viewScroll.items = imageViewModel.getItems()
+        viewScroll.index = indexPath.row
+        viewScroll.delegate = self
+        self.navigationController?.pushViewController(viewScroll, animated: true)
+    }
 }
 extension ImagesView: UICollectionViewDataSource
 {
@@ -37,4 +45,20 @@ extension ImagesView: UICollectionViewDataSource
         return cell
         
     }
+}
+extension ImagesView: DetailImageViewDelegate
+{
+    func getImageAt(index: Int) -> UIImage
+    {
+        return UIImage(data: imageViewModel.getMedia(withIndex: index))!
+    }
+    func numberOfRowInSection() -> Int
+    {
+        return self.imageViewModel.count()
+    }
+    func getCurrentIndex() -> Int
+    {
+        return self.currentIndex
+    }
+    
 }

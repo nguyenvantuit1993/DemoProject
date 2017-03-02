@@ -142,6 +142,10 @@ class FileManagerMedia
         
         return try! filePath == nil ? UIImagePNGRepresentation(UIImage(named: items[index].thumbName)!)! : Data(contentsOf:filePath)
     }
+    func getItems() -> [Item]
+    {
+        return self.items
+    }
     func count() -> Int
     {
         return self.items.count
