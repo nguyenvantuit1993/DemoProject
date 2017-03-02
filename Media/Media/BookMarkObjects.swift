@@ -27,17 +27,17 @@ class BookMarkObjects{
         let entity =  NSEntityDescription.entity(forEntityName: "BookMark",
                                                  in:managedContext!)
         
-        let person = NSManagedObject(entity: entity!,
-                                     insertInto: managedContext)
+        let bookmark = NSManagedObject(entity: entity!,
+                                     insertInto: managedContext) as! BookMark
         
         //3
-        person.setValue(title, forKey: "title")
-        person.setValue(url, forKey: "url")
+        bookmark.title = title
+        bookmark.url = url
         //4
         do {
             try managedContext?.save()
             //5
-            bookmarks.append(person)
+            bookmarks.append(bookmark)
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }

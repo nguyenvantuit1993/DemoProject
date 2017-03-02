@@ -9,27 +9,41 @@
 import Foundation
 import UIKit
 import CoreData
-class BookMarkView: UITableViewController{
+class BookMarkView: UIViewController{
+    var bookmarkViewModel = BookMarkViewModel()
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(UINib(nibName: "ItemCell", bundle: Bundle.main), forCellReuseIdentifier: "ItemCell")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
+    @IBAction func dismissView(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    
+}
+extension BookMarkView: UITableViewDataSource
+{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BookMarkObjects.sharedInstance.bookmarks.count
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
-        cell.textLabel?.text = BookMarkObjects.sharedInstance.bookmarks[indexPath.row].value(forKey: "title") as? String
-        cell.detailTextLabel?.text = BookMarkObjects.sharedInstance.bookmarks[indexPath.row].value(forKey: "url") as? String
+        self.bookmarkViewModel.settingsCell(cell: cell, indexPath: indexPath)
         return cell
     }
+}
+extension BookMarkView: UITableViewDelegate
+{
     
 }
