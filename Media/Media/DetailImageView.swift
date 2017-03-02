@@ -33,6 +33,12 @@ class DetailImageView: UIViewController {
         super.viewWillDisappear(animated)
         self.isFirstLoad = true
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.selectItem(at: IndexPath(row: delegate.getCurrentIndex(), section: 0), animated: true, scrollPosition: .top)
+        collectionView.scrollToItem(at: IndexPath(row: delegate.getCurrentIndex(), section: 0), at: .top, animated: true)
+        imageView.image = delegate.getImageAt(index: delegate.getCurrentIndex())
+    }
 }
 extension DetailImageView: UICollectionViewDataSource
 {
@@ -44,13 +50,6 @@ extension DetailImageView: UICollectionViewDataSource
         cell.addSubviews()
         cell.imageView.image = delegate.getImageAt(index: indexPath.row)
         return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        print(collectionView.indexPathsForVisibleItems)
-        if(indexPath.row == collectionView.indexPathsForVisibleItems.last?.row)
-        {
-            collectionView.selectItem(at: IndexPath(row: delegate.getCurrentIndex(), section: 0), animated: true, scrollPosition: .top)
-        }
     }
 }
 extension DetailImageView: UICollectionViewDelegate
