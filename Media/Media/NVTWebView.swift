@@ -109,7 +109,7 @@ extension NVTWebView: CustomWebViewDelegate
             dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
             buttons.append(dowloadFile)
         }
-        if(title == nil && (href != "" || src != ""))
+        if(title != src && (href != "" || src != ""))
         {
             title = href == "" ? src:href
             let dowloadFile = UIAlertAction(title: "Download the File", style: .default) { action -> Void in
@@ -133,12 +133,16 @@ extension NVTWebView: CustomWebViewDelegate
         
         if(buttons.count > 0)
         {
-            let titleAlert = href == "" ? src:href
+            var titleAlert = title
+            if titleAlert == nil
+            {
+                titleAlert = href == "" ? src:href
+            }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
                 
             }
             buttons.insert(cancelAction, at: 0)
-            self.showActionSheet(title: titleAlert, buttons: buttons)
+            self.showActionSheet(title: titleAlert!, buttons: buttons)
         }
     }
     
