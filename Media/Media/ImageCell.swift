@@ -31,7 +31,19 @@ class ImageCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            imageView.layer.borderWidth = isSelected ? 2 : 0
+            if(isSelected)
+            {
+                UIView.animate(withDuration: 0.5, animations: { 
+                    self.imageView.frame = CGRect(x: 0, y: -10, width: self.kCellWidth, height: self.kCellHeight + 10)
+                })
+            }
+            else
+            {
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.imageView.frame = CGRect(x: 0, y: 0, width: self.kCellWidth, height: self.kCellHeight)
+                })
+            }
+//            imageView.layer.borderWidth = isSelected ? 2 : 0
         }
     }
     

@@ -20,7 +20,7 @@ class DetailImageView: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     var index: Int!
     let cellId = "Cell"
-    var isFirstLoad = true
+    var isFirstLoad = false
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -31,13 +31,12 @@ class DetailImageView: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.isFirstLoad = true
+        self.isFirstLoad = false
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        collectionView.selectItem(at: IndexPath(row: delegate.getCurrentIndex(), section: 0), animated: true, scrollPosition: .top)
-        collectionView.scrollToItem(at: IndexPath(row: delegate.getCurrentIndex(), section: 0), at: .top, animated: true)
-        imageView.image = delegate.getImageAt(index: delegate.getCurrentIndex())
+        collectionView.selectItem(at: IndexPath(row: delegate.getCurrentIndex(), section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
 }
 extension DetailImageView: UICollectionViewDataSource
@@ -56,5 +55,14 @@ extension DetailImageView: UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         imageView.image = delegate.getImageAt(index: indexPath.row)
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if !isFirstLoad
+        {
+            let indexToScrollTo = IndexPath(row: delegate.getCurrentIndex(), section: 0)
+            self.collectionView.scrollToItem(at: indexToScrollTo, at: .centeredHorizontally, animated: false)
+            imageView.image = delegate.getImageAt(index: delegate.getCurrentIndex())
+            isFirstLoad = true
+        }
     }
 }
