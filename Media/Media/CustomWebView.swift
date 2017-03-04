@@ -168,8 +168,7 @@ class CustomWebView: HGPageView {
         let url = URL (string: url)
         if(url != nil)
         {
-            let requestObj = URLRequest(url: url!)
-            
+            let requestObj = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 1.0)
             self.webView.load(requestObj)
         }
     }

@@ -19,6 +19,13 @@ class SettingsViewController: UIViewController {
     var settingsViewModel = SettingsViewModel()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared.diskCapacity = 0
+        URLCache.shared.memoryCapacity = 0
+        for cookie in HTTPCookieStorage.shared.cookies!
+        {
+            print(cookie)
+        }
         showDataFromSettings()
         settingsViewModel.configTouchID()
     }
@@ -32,6 +39,8 @@ class SettingsViewController: UIViewController {
     func dissmissKeyboard()
     {
         self.view.endEditing(true)
+        
+        
     }
     func showDataFromSettings()
     {
