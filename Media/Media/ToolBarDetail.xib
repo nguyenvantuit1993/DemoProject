@@ -4,12 +4,11 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToolBarDetail" customModule="CustomWebView" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToolBarDetail" customModule="Media" customModuleProvider="target">
             <connections>
                 <outlet property="btn_Bookmark" destination="X43-iB-bjA" id="cyS-Ic-uRZ"/>
                 <outlet property="btn_Browser" destination="vCj-3m-6K4" id="gNw-WS-kK2"/>
@@ -25,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wMS-Yq-5iP">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
                     <items>
                         <barButtonItem title="&lt;" id="j4c-mp-Ekw">
                             <connections>
@@ -60,10 +59,10 @@
                     </items>
                 </toolbar>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="wMS-Yq-5iP" secondAttribute="trailing" id="2Bs-Ry-ecP"/>
-                <constraint firstAttribute="bottom" secondItem="wMS-Yq-5iP" secondAttribute="bottom" id="8fN-ub-zCV"/>
+                <constraint firstAttribute="bottom" secondItem="wMS-Yq-5iP" secondAttribute="bottom" constant="1" id="8fN-ub-zCV"/>
                 <constraint firstItem="wMS-Yq-5iP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ICb-z9-ebK"/>
                 <constraint firstItem="wMS-Yq-5iP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ukn-XR-thd"/>
             </constraints>

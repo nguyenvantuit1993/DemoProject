@@ -4,12 +4,11 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToolBarNewPage" customModule="CustomWebView" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToolBarNewPage" customModule="Media" customModuleProvider="target">
             <connections>
                 <outlet property="btn_Done" destination="fZL-4D-uA1" id="ibr-L2-RuT"/>
                 <outlet property="btn_NewPage" destination="89z-7W-ZlU" id="x2X-l0-Jtn"/>
@@ -21,7 +20,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQS-OB-ig2">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <items>
                         <barButtonItem title="New Page" id="89z-7W-ZlU">
                             <connections>
@@ -37,11 +37,11 @@
                     </items>
                 </toolbar>
             </subviews>
-            <color key="backgroundColor" red="0.97254901959999995" green="0.2156862745" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="rQS-OB-ig2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9Be-JO-WZC"/>
                 <constraint firstAttribute="trailing" secondItem="rQS-OB-ig2" secondAttribute="trailing" id="WIt-4H-okG"/>
-                <constraint firstAttribute="bottom" secondItem="rQS-OB-ig2" secondAttribute="bottom" id="u3r-3e-HS6"/>
+                <constraint firstAttribute="bottom" secondItem="rQS-OB-ig2" secondAttribute="bottom" constant="1" id="u3r-3e-HS6"/>
                 <constraint firstItem="rQS-OB-ig2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zeA-lK-Xwf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

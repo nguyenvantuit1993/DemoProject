@@ -23,6 +23,13 @@ class ImagesView: BaseClearBarItemsViewController{
         imageViewModel = ImagesViewModel(withFolderPath: URL(string:documentsPath! + "/\(kImageFolder)")!)
     }
 }
+extension ImagesView: UICollectionViewDelegateFlowLayout
+{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = CGSize(width: (self.view.frame.size.width/4) - 1, height: (self.view.frame.size.height/6) - 1)
+        return size
+    }
+}
 extension ImagesView: UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -45,6 +52,7 @@ extension ImagesView: UICollectionViewDataSource
         return cell
         
     }
+    
 }
 extension ImagesView: DetailImageViewDelegate
 {
