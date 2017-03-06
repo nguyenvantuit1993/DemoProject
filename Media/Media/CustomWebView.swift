@@ -24,6 +24,7 @@ class CustomWebView: HGPageView {
     private let margin:CGFloat = 10
     private let widthRightButton:CGFloat = 30
     var searchBar: UISearchBar!
+    var progBar: UIProgressView!
     var title: UILabel!
     var customWebViewModel = CustomWebViewModel()
     var txt_SearchText: UITextField!
@@ -50,12 +51,14 @@ class CustomWebView: HGPageView {
     func showSearchText()
     {
         if isShowSearchText == false {
+            self.searchBar.showsBookmarkButton = false
             self.searchBar.showsCancelButton = true
             self.isShowSearchText = true
             
         } else {
             self.searchBar.resignFirstResponder()
             self.searchBar.showsCancelButton = false
+            self.searchBar.showsBookmarkButton = true
             self.isShowSearchText = false
         }
     }
@@ -75,7 +78,7 @@ class CustomWebView: HGPageView {
     }
     func addHeaderToWebView(){
         title = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: self.heightSearchField))
-        title.backgroundColor = UIColor.lightGray
+        title.backgroundColor = UIColor.darkGray
         title.textColor = UIColor.white
         title.translatesAutoresizingMaskIntoConstraints = false
         title.textAlignment = .center
@@ -91,6 +94,9 @@ class CustomWebView: HGPageView {
         
         // We load the headerView from a Nib
         searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 0, height: self.heightSearchField))
+        searchBar.barTintColor = UIColor.darkGray
+        searchBar.setImage(UIImage(named: "RefreshButton"), for: .bookmark, state: .normal)
+        searchBar.showsBookmarkButton = true
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.delegate = self
         self.addSubview(searchBar)
@@ -98,33 +104,50 @@ class CustomWebView: HGPageView {
         // the constraints
         topConstraint = NSLayoutConstraint(item: searchBar, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 20)
         leftConstraint = NSLayoutConstraint(item: searchBar, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-        rightConstraint = NSLayoutConstraint(item: searchBar, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -(self.widthRightButton + self.margin))
+        rightConstraint = NSLayoutConstraint(item: searchBar, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
         heightConstraint = NSLayoutConstraint(item: self.searchBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.heightSearchField)
         // we add the constraints
         self.addConstraints([topConstraint, leftConstraint, rightConstraint, heightConstraint])
         
-        buttonRefresh = UIButton(type: .custom)
-        buttonRefresh.frame = CGRect(x: 0, y: 0, width: widthRightButton, height: widthRightButton)
-        buttonRefresh.backgroundColor = UIColor.clear
-        buttonRefresh.setImage(UIImage(named: "RefreshButton"), for: .normal)
-        buttonRefresh.contentMode = .scaleToFill
-        buttonRefresh.addTarget(self, action: #selector(refreshButtonPressed), for: .touchUpInside)
-        buttonRefresh.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.addSubview(buttonRefresh)
+        progBar = UIProgressView(frame: CGRect(x: 0, y: 0, width: 100, height: self.heightSearchField))
+        progBar.translatesAutoresizingMaskIntoConstraints = false
+        progBar.progress = 0
+        progBar.alpha = 0
+//        progBar.tintColor = UIColor.blue
+        self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        self.addSubview(progBar)
         
         // the constraints
-        topConstraint = NSLayoutConstraint(item: buttonRefresh, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 20)
-        let widthConstraint = NSLayoutConstraint(item: buttonRefresh, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: widthRightButton)
-        rightConstraint = NSLayoutConstraint(item: buttonRefresh, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -self.margin)
-        heightConstraint = NSLayoutConstraint(item: self.buttonRefresh, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: widthRightButton)
+        topConstraint = NSLayoutConstraint(item: progBar, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 0)
+        leftConstraint = NSLayoutConstraint(item: progBar, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+        rightConstraint = NSLayoutConstraint(item: progBar, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+        heightConstraint = NSLayoutConstraint(item: progBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1)
         // we add the constraints
-        self.addConstraints([topConstraint, widthConstraint, rightConstraint, heightConstraint])
+        self.addConstraints([topConstraint, leftConstraint, rightConstraint, heightConstraint])
         
+    }
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "estimatedProgress"
+        {
+            self.progBar.alpha = 1.0
+            self.progBar.setProgress(Float(self.webView.estimatedProgress), animated: true)
+            if(self.webView.estimatedProgress >= 1.0)
+            {
+                self.searchBar.setImage(UIImage(named: "RefreshButton"), for: .bookmark, state: .normal)
+                UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut, animations: { 
+                    self.progBar.alpha = 0
+                }, completion: { (finished) in
+                    self.progBar.progress = 0
+                })
+            }
+        }
     }
     func refreshButtonPressed()
     {
-        print("pressed")
+        if(!self.webView.isLoading)
+        {
+            self.webView.reload()
+        }
     }
     func updateWebViewScrollViewContentInset(isHidden: Bool){
         let valueToScroll = isHidden == true ? 0 : (self.heightSearchField + 20)
@@ -223,6 +246,7 @@ class CustomWebView: HGPageView {
 //        self.getLink(tapPostion: tapPostion)
     }
 }
+
 extension CustomWebView: WKNavigationDelegate
 {
     //    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
@@ -238,6 +262,9 @@ extension CustomWebView: WKNavigationDelegate
             decisionHandler(.allow)
         }
     }
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        self.searchBar?.setImage(UIImage(named: "CloseButton"), for: .bookmark, state: .normal)
+    }
     
 }
 extension CustomWebView: UISearchBarDelegate
@@ -251,6 +278,9 @@ extension CustomWebView: UISearchBarDelegate
             link = "\(kGoogleSearchLink)\(link)"
         }
         self.loadRequest(url: link, isPosibleLoad: true)
+    }
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        self.refreshButtonPressed()
     }
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         showSearchText()
@@ -300,16 +330,16 @@ extension CustomWebView: UIScrollViewDelegate
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if (self.lastContentOffset < scrollView.contentOffset.y)
         {
-            UIView.animate(withDuration: 2, animations: {
-                self.searchBar?.isHidden = true
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchBar?.alpha = 0
                 self.title.text = self.webView.title
             })
             
         }
         else
         {
-            UIView.animate(withDuration: 2, animations: {
-                self.searchBar?.isHidden = false
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchBar?.alpha = 1
             })
             
         }
