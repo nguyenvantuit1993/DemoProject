@@ -18,14 +18,14 @@
                         <viewControllerLayoutGuide type="bottom" id="OjR-Kh-ITX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l5V-m8-a5y">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="836"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEI-DM-F2B">
-                                <rect key="frame" x="0.0" y="64" width="375" height="787"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="787"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSl-D3-mm9">
-                                        <rect key="frame" x="0.0" y="-64" width="375" height="900"/>
+                                        <rect key="frame" x="0.0" y="-64" width="375" height="836"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQc-RG-4wQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -276,11 +276,11 @@
                         <viewControllerLayoutGuide type="bottom" id="17Y-v5-hbJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Hte-fa-AlQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="k1f-mm-4b5">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="y8o-ou-dRh">
                                     <size key="itemSize" width="50" height="50"/>
@@ -315,7 +315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvM-Qy-AGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1036" y="2129.6851574212897"/>
+            <point key="canvasLocation" x="-220" y="2147"/>
         </scene>
         <!--Download View-->
         <scene sceneID="fE8-Y6-W5Z">
@@ -562,7 +562,7 @@
             <objects>
                 <tableViewController id="jck-6U-Xpq" customClass="MediasView" customModule="Media" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bMs-pA-q5u">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -591,7 +591,7 @@
             <objects>
                 <tableViewController id="MQI-fm-in6" customClass="OtherFilesView" customModule="Media" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0sN-Cp-sPM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -621,7 +621,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rUl-bz-yzL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Media" id="UAR-LE-0Aw"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="QN9-7N-X6X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="QN9-7N-X6X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -641,7 +641,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nSR-mF-JOK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Other Files" id="ZDD-PM-vGe"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UqN-Ts-HvX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="UqN-Ts-HvX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -661,9 +661,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h2o-sm-KS3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" id="cIt-9I-gMo"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lP5-7y-RIc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="lP5-7y-RIc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -673,7 +674,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5g-U5-2Qr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-583.20000000000005" y="1326.3868065967017"/>
+            <point key="canvasLocation" x="-428" y="1307"/>
         </scene>
         <!--Images-->
         <scene sceneID="Qmp-Yz-33c">
@@ -681,7 +682,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vOB-Nu-A9O" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Images" id="sC7-nt-gaB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="j1q-XG-GdF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="j1q-XG-GdF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -693,7 +694,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqV-ar-Nou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="96.799999999999997" y="2129.6851574212897"/>
+            <point key="canvasLocation" x="-1206" y="2103"/>
         </scene>
     </scenes>
 </document>

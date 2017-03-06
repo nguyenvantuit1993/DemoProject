@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     func setStatusBarBackgroundColor(color: UIColor) {
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().barTintColor = UIColor.darkGray
         UIApplication.shared.statusBarStyle = .lightContent
         guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
         statusBar.backgroundColor = color
