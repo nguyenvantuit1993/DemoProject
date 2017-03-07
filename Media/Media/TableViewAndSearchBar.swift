@@ -14,8 +14,6 @@ class TableViewAndSearchBar: BaseClearBarItemsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setup the Search Controller
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
@@ -24,7 +22,12 @@ class TableViewAndSearchBar: BaseClearBarItemsTableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        reloadTableView()
         addBarButtons()
+    }
+    func reloadTableView()
+    {
+        self.tableView.reloadData()
     }
     func addBarButtons()
     {
@@ -34,19 +37,5 @@ class TableViewAndSearchBar: BaseClearBarItemsTableViewController {
     func edit()
     {
         print("edit")
-    }
-}
-extension TableViewAndSearchBar: UISearchBarDelegate {
-    // MARK: - UISearchBar Delegate
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        //        messageViewModel.filterContentForSearchText(searchText: searchBar.text!)
-    }
-}
-
-extension TableViewAndSearchBar: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController){
-        let searchBar = searchController.searchBar
-        //        messageViewModel.filterContentForSearchText(searchText: searchBar.text!)
     }
 }

@@ -150,6 +150,8 @@ class ManageDownloadTrack: NSObject {
             break
         case "image/jpeg" : extentionFile = ".jpg"; type = .Image
             break
+        case "image/png" : extentionFile = ".png"; type = .Image
+            break
         case "image/svg+xml" : extentionFile = ".svg"; type = .Image
             break
         case "image/tiff" : extentionFile = ".tif"; type = .Image
@@ -171,14 +173,14 @@ class ManageDownloadTrack: NSObject {
         
         return (folderName, extentionFile)
     }
-    func localFilePathForUrl(_ previewUrl: String, mime type:String) -> (url: URL?, lastComponent: String)? {
+    func localFilePathForUrl(_ previewUrl: String, mime type:String, name: String) -> (url: URL?, lastComponent: String)? {
         if let url = URL(string: previewUrl) {
             let infoLocalFile = self.localFolder(mime: type)
             let extentionFile = infoLocalFile.extentionFile
             var lastComponent = url.lastPathComponent as NSString
             if(extentionFile != "")
             {
-                lastComponent = lastComponent.deletingPathExtension.appending("\(extentionFile)") as NSString
+                lastComponent = name.appending("\(extentionFile)") as NSString
             }
             
             let fullPath = documentsPath?.appending("/\(infoLocalFile.folderName)").appending("/\(lastComponent)")
@@ -200,48 +202,50 @@ class ManageDownloadTrack: NSObject {
 
 extension ManageDownloadTrack: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        var extensionURL: String!
-        if let extensionURLCheck = downloadTask.response?.mimeType
-        {
-            extensionURL = extensionURLCheck
-        }
-        extensionURL = extensionURL == nil ? "":"\(extensionURL!)"
-        // extract the original request URL from the task and pass it to the provided localFilePathForUrl(_:) helper method.
-        // localFilePathForUrl(_:) then generates a permanent local file path to save to by appending the lastPastComponent of the URL
-        // (i.e. the file name and extension of the file) to the path of the app's Documents directory
-        if let originalURL = downloadTask.originalRequest?.url?.absoluteString, let destinationURLAndName = localFilePathForUrl(originalURL, mime: extensionURL) {
-            print(destinationURLAndName.url)
-            
-            // with FileManager you move the downloaded file from its temporary file location to the desired destination file path by
-            // clearing out any item at that location before you start the copy task
-            let fileManager = FileManager.default
-            do {
-                try fileManager.removeItem(at: destinationURLAndName.url!)
-            } catch {
-                // Non-fatal: file probably doesn't exist
-            }
-            do {
-                try fileManager.copyItem(at: location, to: destinationURLAndName.url!)
-                if(self.type == .Video)
-                {
-                    self.createThumnails(name: destinationURLAndName.lastComponent)
-                }
-            } catch let error as NSError {
-                print("Could not copy file to disk: \(error.localizedDescription)")
-            }
-        }
-        
         // look up the corresponding Download in your active downloads and remove it
         if let url = downloadTask.originalRequest?.url?.absoluteString {
             activeDownloads[url] = nil
             // look up the Track in your table view and reload the corresponding cell
             if let trackIndex = trackIndexForDownloadTask(downloadTask: downloadTask) {
+                var extensionURL: String!
+                if let extensionURLCheck = downloadTask.response?.mimeType
+                {
+                    extensionURL = extensionURLCheck
+                }
+                extensionURL = extensionURL == nil ? "":"\(extensionURL!)"
+                // extract the original request URL from the task and pass it to the provided localFilePathForUrl(_:) helper method.
+                // localFilePathForUrl(_:) then generates a permanent local file path to save to by appending the lastPastComponent of the URL
+                // (i.e. the file name and extension of the file) to the path of the app's Documents directory
+                if let originalURL = downloadTask.originalRequest?.url?.absoluteString, let destinationURLAndName = localFilePathForUrl(originalURL, mime: extensionURL, name: self.tracks[trackIndex].name!) {
+                    print(destinationURLAndName.url)
+                    
+                    // with FileManager you move the downloaded file from its temporary file location to the desired destination file path by
+                    // clearing out any item at that location before you start the copy task
+                    let fileManager = FileManager.default
+                    do {
+                        try fileManager.removeItem(at: destinationURLAndName.url!)
+                    } catch {
+                        // Non-fatal: file probably doesn't exist
+                    }
+                    do {
+                        try fileManager.copyItem(at: location, to: destinationURLAndName.url!)
+                        if(self.type == .Video)
+                        {
+                            self.createThumnails(name: destinationURLAndName.lastComponent)
+                        }
+                    } catch let error as NSError {
+                        print("Could not copy file to disk: \(error.localizedDescription)")
+                    }
+                }
                 DispatchQueue.main.async {
                     ManageDownloadTrack.sharedInstance.tracks.remove(at: IndexPath(row: trackIndex, section: 0).row)
                     self.delegate?.didDownloaded(indexCell: IndexPath(row: trackIndex, section: 0))
                 }
             }
         }
+        
+        
+        
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {

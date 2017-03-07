@@ -103,8 +103,7 @@ extension NVTWebView: CustomWebViewDelegate
             title = src
             
             let dowloadFile = UIAlertAction(title: "Download the Image", style: .default) { action -> Void in
-                let newTrack = Track(name: src, type: "", previewUrl: src)
-                ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
+                self.setFileToDownload(title: title)
             }
             dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
             buttons.append(dowloadFile)
@@ -113,12 +112,10 @@ extension NVTWebView: CustomWebViewDelegate
         {
             title = href == "" ? src:href
             let dowloadFile = UIAlertAction(title: "Download the File", style: .default) { action -> Void in
-                title = href == "" ? src:href
-                let newTrack = Track(name: title, type: "", previewUrl: title)
-                ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
+                self.setFileToDownload(title: title)
             }
             dowloadFile.setValue(UIColor.red, forKey: "titleTextColor")
-            let open: UIAlertAction = UIAlertAction(title: "Open", style: .default) { action -> Void in
+            let open = UIAlertAction(title: "Open", style: .default) { action -> Void in
                 if(title.hasPrefix(kHtmlPath))
                 {
                     currentWebView?.loadRequest(url: title, isPosibleLoad: true)
@@ -145,7 +142,38 @@ extension NVTWebView: CustomWebViewDelegate
             self.showActionSheet(title: titleAlert!, buttons: buttons)
         }
     }
-    
+    func setFileToDownload(title: String)
+    {
+        self.showActionInfoFile(title: title)
+    }
+    func showActionInfoFile(title: String)
+    {
+        let alertController = UIAlertController(title: "Save file as", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            
+            let firstTextField = alertController.textFields![0] as UITextField
+            let newTrack = Track(name: firstTextField.text!, type: "", previewUrl: title)
+            ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
+            
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter File Name"
+        }
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     func showActionSheet(title: String, buttons:[UIAlertAction])
     {
         let actionSheet = UIAlertController(title: title, message: "", preferredStyle: .actionSheet)

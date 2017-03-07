@@ -36,6 +36,7 @@ class ImagesViewModel: FileManagerMedia{
 class FileManagerMedia
 {
     private var items:[Item]!
+    private var filteredItems:[Item]!
     let videoExtentions = ["flv", "mp4", "m3u8", "ts", "3gp", "mov", "avi", "wmv"]
     let imageExtentions = ["gif", "ico", "jpg", "svg", "tif", "webp"]
     var isImageView = MimeTypes.Image
@@ -44,6 +45,12 @@ class FileManagerMedia
     }
     init(withFolderPath folderPath: URL) {
         self.folderPath = folderPath
+    }
+    func filterContentForSearchText(searchText: String, complete: ()->()) {
+        filteredItems = items.filter({( candy : Item) -> Bool in
+            return candy.name.lowercased().contains(searchText.lowercased())
+        })
+        complete()
     }
     func getListFiles()
     {
@@ -121,11 +128,16 @@ class FileManagerMedia
     {
         return self.items[index].filePath
     }
+    func getNameFilteredItem(atIndex index: Int) -> String
+    {
+        return self.filteredItems[index].name
+    }
+
     func getNameItem(atIndex index: Int) -> String
     {
         return self.items[index].name
     }
-    func getMedia(withIndex index: Int) -> Data
+    func getMedia(withIndex index: Int, isFilter: Bool) -> Data
     {
         var filePath: URL!
         switch isImageView {
@@ -133,14 +145,14 @@ class FileManagerMedia
             filePath = items[index].filePath
             break
         case .Video:
-            filePath = items[index].thumbPath
+            filePath = isFilter == true ? filteredItems[index].thumbPath:items[index].thumbPath
             break
         default :
             filePath = nil
             break
         }
         
-        return try! filePath == nil ? UIImagePNGRepresentation(UIImage(named: items[index].thumbName)!)! : Data(contentsOf:filePath)
+        return try! filePath == nil ? UIImagePNGRepresentation(UIImage(named: isFilter == true ? filteredItems[index].thumbName:items[index].thumbName)!)! : Data(contentsOf:filePath)
     }
     func getItems() -> [Item]
     {
@@ -149,6 +161,10 @@ class FileManagerMedia
     func count() -> Int
     {
         return self.items.count
+    }
+    func filteredCount() -> Int
+    {
+        return self.filteredItems.count
     }
     
 }

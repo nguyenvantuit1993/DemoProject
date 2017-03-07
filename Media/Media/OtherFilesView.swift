@@ -14,6 +14,7 @@ class OtherFilesView: TableViewAndSearchBar {
     var otherFilesViewModel: OtherFilesViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.searchResultsUpdater = self
         otherFilesViewModel = OtherFilesViewModel(withFolderPath: URL(string:documentsPath! + "/\(kOtherFolder)")!)
     }
     func showContentFile(url: URL?)
@@ -25,6 +26,7 @@ class OtherFilesView: TableViewAndSearchBar {
             self.present(detailView, animated: true, completion: nil)
         }
     }
+    
 }
 //MARK: Delegate
 extension OtherFilesView
@@ -40,11 +42,35 @@ extension OtherFilesView
         return otherFilesViewModel == nil ? 0 : 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return otherFilesViewModel.filteredCount()
+        }
         return otherFilesViewModel.count()
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.imageView?.image = UIImage(data: otherFilesViewModel.getMedia(withIndex: indexPath.row))
+        var imagage: UIImage!
+        var text: String!
+        if searchController.isActive && searchController.searchBar.text != "" {
+            imagage = UIImage(data: otherFilesViewModel.getMedia(withIndex: indexPath.row, isFilter: true))
+            text = otherFilesViewModel.getNameFilteredItem(atIndex: indexPath.row)
+        }
+        else
+        {
+            imagage = UIImage(data: otherFilesViewModel.getMedia(withIndex: indexPath.row, isFilter: false))
+            text = otherFilesViewModel.getNameItem(atIndex: indexPath.row)
+        }
+        cell.imageView?.image = imagage
+        cell.textLabel?.text = text
         return cell
+    }
+}
+extension OtherFilesView: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController){
+        let searchBar = searchController.searchBar
+        otherFilesViewModel.filterContentForSearchText(searchText: searchBar.text!) {
+            self.tableView.reloadData()
+        }
     }
 }

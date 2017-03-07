@@ -16,6 +16,7 @@ class MediasView: TableViewAndSearchBar {
     var mediasViewModel: MediasViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.searchResultsUpdater = self
         mediasViewModel = MediasViewModel(withFolderPath: URL(string:documentsPath! + "/\(kVideoFolder)")!)
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -102,11 +103,26 @@ extension MediasView{
         return mediasViewModel == nil ? 0 : 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return mediasViewModel.filteredCount()
+        }
         return mediasViewModel.count()
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.imageView?.image = UIImage(data: mediasViewModel.getMedia(withIndex: indexPath.row))
+        var imagage: UIImage!
+        var text: String!
+        if searchController.isActive && searchController.searchBar.text != "" {
+            imagage = UIImage(data: mediasViewModel.getMedia(withIndex: indexPath.row, isFilter: true))
+            text = mediasViewModel.getNameFilteredItem(atIndex: indexPath.row)
+        }
+        else
+        {
+            imagage = UIImage(data: mediasViewModel.getMedia(withIndex: indexPath.row, isFilter: false))
+            text = mediasViewModel.getNameItem(atIndex: indexPath.row)
+        }
+        cell.imageView?.image = imagage
+        cell.textLabel?.text = text
         return cell
     }
 }
@@ -114,5 +130,14 @@ extension MediasView: UIDocumentInteractionControllerDelegate
 {
     func documentInteractionControllerRectForPreview(_ controller: UIDocumentInteractionController) -> CGRect {
         return self.view.frame
+    }
+}
+extension MediasView: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController){
+        let searchBar = searchController.searchBar
+        mediasViewModel.filterContentForSearchText(searchText: searchBar.text!) {
+            self.tableView.reloadData()
+        }
     }
 }

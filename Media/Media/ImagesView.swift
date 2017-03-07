@@ -22,6 +22,10 @@ class ImagesView: BaseClearBarItemsViewController{
         self.view.backgroundColor = UIColor.black
         imageViewModel = ImagesViewModel(withFolderPath: URL(string:documentsPath! + "/\(kImageFolder)")!)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+    }
 }
 extension ImagesView: UICollectionViewDelegateFlowLayout
 {
@@ -48,7 +52,7 @@ extension ImagesView: UICollectionViewDataSource
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagesViewCell", for: indexPath) as! CustomCollectionCell
-        cell.imageView.image = UIImage(data: imageViewModel.getMedia(withIndex: indexPath.row))
+        cell.imageView.image = UIImage(data: imageViewModel.getMedia(withIndex: indexPath.row, isFilter: false))
         return cell
         
     }
@@ -58,7 +62,7 @@ extension ImagesView: DetailImageViewDelegate
 {
     func getImageAt(index: Int) -> UIImage
     {
-        return UIImage(data: imageViewModel.getMedia(withIndex: index))!
+        return UIImage(data: imageViewModel.getMedia(withIndex: index, isFilter: false))!
     }
     func numberOfRowInSection() -> Int
     {
