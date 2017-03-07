@@ -17,6 +17,7 @@ class NVTWebView: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         addPageScrollView()
         addToolBar()
     }

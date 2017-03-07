@@ -17,9 +17,9 @@ class MediasView: TableViewAndSearchBar {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchController.searchResultsUpdater = self
-        mediasViewModel = MediasViewModel(withFolderPath: URL(string:documentsPath! + "/\(kVideoFolder)")!)
     }
     override func viewWillAppear(_ animated: Bool) {
+        mediasViewModel = MediasViewModel(withFolderPath: URL(string:documentsPath! + "/\(kVideoFolder)")!)
         super.viewWillAppear(animated)
         addButtonList()
     }

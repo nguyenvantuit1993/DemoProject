@@ -59,7 +59,7 @@ class NVTWebViewModel: NSObject{
     }
     func getPage(indexPage: Int) -> CustomWebView?
     {
-        return self.myPageDataArray[indexPage] as? CustomWebView
+        return self.myPageDataArray[indexPage]
     }
     func browserWith(pageScrollView: HGPageScrollView)
     {

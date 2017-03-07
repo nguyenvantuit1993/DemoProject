@@ -15,7 +15,10 @@ class OtherFilesView: TableViewAndSearchBar {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchController.searchResultsUpdater = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
         otherFilesViewModel = OtherFilesViewModel(withFolderPath: URL(string:documentsPath! + "/\(kOtherFolder)")!)
+        super.viewWillAppear(animated)
     }
     func showContentFile(url: URL?)
     {

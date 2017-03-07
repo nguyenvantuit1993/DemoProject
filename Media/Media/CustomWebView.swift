@@ -20,7 +20,7 @@ class CustomWebView: HGPageView {
     internal var lastContentOffset: CGFloat = 0
     internal var buttonRefresh: UIButton!
     private let widthGoogleSearch:CGFloat = 100
-    private let heightSearchField:CGFloat = 35
+    private let heightSearchField:CGFloat = 40
     private let margin:CGFloat = 10
     private let widthRightButton:CGFloat = 30
     var searchBar: UISearchBar!
@@ -69,6 +69,7 @@ class CustomWebView: HGPageView {
         {
             self.searchBar.delegate = nil
             self.searchBar.removeFromSuperview()
+            self.title.removeFromSuperview()
         }
         else
         {
@@ -121,7 +122,7 @@ class CustomWebView: HGPageView {
         topConstraint = NSLayoutConstraint(item: progBar, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 0)
         leftConstraint = NSLayoutConstraint(item: progBar, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
         rightConstraint = NSLayoutConstraint(item: progBar, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-        heightConstraint = NSLayoutConstraint(item: progBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1)
+        heightConstraint = NSLayoutConstraint(item: progBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 3)
         // we add the constraints
         self.addConstraints([topConstraint, leftConstraint, rightConstraint, heightConstraint])
         
@@ -147,6 +148,10 @@ class CustomWebView: HGPageView {
         if(!self.webView.isLoading)
         {
             self.webView.reload()
+        }
+        else
+        {
+            self.webView.stopLoading()
         }
     }
     func updateWebViewScrollViewContentInset(isHidden: Bool){

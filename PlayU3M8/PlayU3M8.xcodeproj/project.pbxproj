@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CB92578E1E6EB48C00C17459 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB92578D1E6EB48C00C17459 /* AppDelegate.swift */; };
+		CB9257901E6EB48C00C17459 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB92578F1E6EB48C00C17459 /* ViewController.swift */; };
+		CB9257931E6EB48C00C17459 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB9257911E6EB48C00C17459 /* Main.storyboard */; };
+		CB9257951E6EB48C00C17459 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB9257941E6EB48C00C17459 /* Assets.xcassets */; };
+		CB9257981E6EB48C00C17459 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB9257961E6EB48C00C17459 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CB92578A1E6EB48C00C17459 /* PlayU3M8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayU3M8.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB92578D1E6EB48C00C17459 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CB92578F1E6EB48C00C17459 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CB9257921E6EB48C00C17459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CB9257941E6EB48C00C17459 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CB9257971E6EB48C00C17459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CB9257991E6EB48C00C17459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB9257871E6EB48C00C17459 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CB9257811E6EB48C00C17459 = {
+			isa = PBXGroup;
+			children = (
+				CB92578C1E6EB48C00C17459 /* PlayU3M8 */,
+				CB92578B1E6EB48C00C17459 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB92578B1E6EB48C00C17459 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB92578A1E6EB48C00C17459 /* PlayU3M8.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB92578C1E6EB48C00C17459 /* PlayU3M8 */ = {
+			isa = PBXGroup;
+			children = (
+				CB92578D1E6EB48C00C17459 /* AppDelegate.swift */,
+				CB92578F1E6EB48C00C17459 /* ViewController.swift */,
+				CB9257911E6EB48C00C17459 /* Main.storyboard */,
+				CB9257941E6EB48C00C17459 /* Assets.xcassets */,
+				CB9257961E6EB48C00C17459 /* LaunchScreen.storyboard */,
+				CB9257991E6EB48C00C17459 /* Info.plist */,
+			);
+			path = PlayU3M8;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CB9257891E6EB48C00C17459 /* PlayU3M8 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB92579C1E6EB48C00C17459 /* Build configuration list for PBXNativeTarget "PlayU3M8" */;
+			buildPhases = (
+				CB9257861E6EB48C00C17459 /* Sources */,
+				CB9257871E6EB48C00C17459 /* Frameworks */,
+				CB9257881E6EB48C00C17459 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlayU3M8;
+			productName = PlayU3M8;
+			productReference = CB92578A1E6EB48C00C17459 /* PlayU3M8.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB9257821E6EB48C00C17459 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Tuuu;
+				TargetAttributes = {
+					CB9257891E6EB48C00C17459 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = ECPG9HFQ6H;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CB9257851E6EB48C00C17459 /* Build configuration list for PBXProject "PlayU3M8" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CB9257811E6EB48C00C17459;
+			productRefGroup = CB92578B1E6EB48C00C17459 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB9257891E6EB48C00C17459 /* PlayU3M8 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CB9257881E6EB48C00C17459 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB9257981E6EB48C00C17459 /* LaunchScreen.storyboard in Resources */,
+				CB9257951E6EB48C00C17459 /* Assets.xcassets in Resources */,
+				CB9257931E6EB48C00C17459 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB9257861E6EB48C00C17459 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB9257901E6EB48C00C17459 /* ViewController.swift in Sources */,
+				CB92578E1E6EB48C00C17459 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CB9257911E6EB48C00C17459 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB9257921E6EB48C00C17459 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CB9257961E6EB48C00C17459 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB9257971E6EB48C00C17459 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CB92579A1E6EB48C00C17459 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB92579B1E6EB48C00C17459 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB92579D1E6EB48C00C17459 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ECPG9HFQ6H;
+				INFOPLIST_FILE = PlayU3M8/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nvt.PlayU3M8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		CB92579E1E6EB48C00C17459 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ECPG9HFQ6H;
+				INFOPLIST_FILE = PlayU3M8/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nvt.PlayU3M8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB9257851E6EB48C00C17459 /* Build configuration list for PBXProject "PlayU3M8" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB92579A1E6EB48C00C17459 /* Debug */,
+				CB92579B1E6EB48C00C17459 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB92579C1E6EB48C00C17459 /* Build configuration list for PBXNativeTarget "PlayU3M8" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB92579D1E6EB48C00C17459 /* Debug */,
+				CB92579E1E6EB48C00C17459 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CB9257821E6EB48C00C17459 /* Project object */;
+}

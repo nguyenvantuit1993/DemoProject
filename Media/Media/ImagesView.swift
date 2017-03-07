@@ -20,9 +20,10 @@ class ImagesView: BaseClearBarItemsViewController{
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "CustomCollectionCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ImagesViewCell")
         self.view.backgroundColor = UIColor.black
-        imageViewModel = ImagesViewModel(withFolderPath: URL(string:documentsPath! + "/\(kImageFolder)")!)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
+        imageViewModel = ImagesViewModel(withFolderPath: URL(string:documentsPath! + "/\(kImageFolder)")!)
         super.viewWillAppear(animated)
         self.collectionView.reloadData()
     }

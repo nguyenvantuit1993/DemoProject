@@ -127,12 +127,12 @@ class ManageDownloadTrack: NSObject {
         var extentionFile: String!
         var folderName: String!
         
-        switch mime {
+        switch mime.lowercased() {
         case "video/x-flv": extentionFile = ".flv"; type = .Video
             break
         case "video/mp4" : extentionFile = ".mp4"; type = .Video
             break
-        case "application/x-mpegURL" : extentionFile = ".m3u8"; type = .Video
+        case "application/x-mpegurl" : extentionFile = ".m3u8"; type = .Video
             break
         case "video/MP2T" : extentionFile = ".ts"; type = .Video
             break
