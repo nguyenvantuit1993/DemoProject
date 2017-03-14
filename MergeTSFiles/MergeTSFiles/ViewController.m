@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <FFmpegWrapper.h>
+#import "KMMedia.h"
 @interface ViewController ()
 
 @end
@@ -16,15 +17,54 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    NSString *resourceDirectoryPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0] path];
-//    NSArray *resourceDirectoryPathContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:resourceDirectoryPath error:&error];
-//    
-    FFmpegWrapper *wrapper = [[FFmpegWrapper alloc] init];
-    [wrapper convertInputPath:@"http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8" outputPath:@"/Users/nguyenvantu/Desktop/testOutput.mp4" options:nil progressBlock:^(NSUInteger bytesRead, uint64_t totalBytesRead, uint64_t totalBytesExpectedToRead) {
-    } completionBlock:^(BOOL success, NSError *error) {
-        success?NSLog(@"Success...."):NSLog(@"Error : %@",error.localizedDescription);
-    }];
-    // Do any additional setup after loading the view, typically from a nib.
+//    self.infoLabel.text = @"Exporting...";
+    __block NSDate *beginDate = [NSDate date];
+    NSError *error;
+    NSString *resourceDirectoryPath = @"/Users/nguyenvantu/Desktop/testOutput";
+    NSArray *resourceDirectoryPathContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:resourceDirectoryPath error:&error];
+    
+    if(!error)
+    {
+        NSArray *tsFileList = [resourceDirectoryPathContent filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF ENDSWITH '.ts'"]];
+        __block NSUInteger tsFileCount = [tsFileList count];
+        if (tsFileCount > 0)
+        {
+            NSMutableArray *tsAssetList = [NSMutableArray arrayWithCapacity:tsFileCount];
+            for(NSString *tsFileName in tsFileList)
+            {
+                NSURL *tsFileURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",resourceDirectoryPath, tsFileName]];
+                [tsAssetList addObject:[KMMediaAsset assetWithURL:tsFileURL withFormat:KMMediaFormatTS]];
+            }
+            
+            NSURL *mp4FileURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/Result.mp4",resourceDirectoryPath]];
+            KMMediaAsset *mp4Asset = [KMMediaAsset assetWithURL:mp4FileURL withFormat:KMMediaFormatMP4];
+            
+            KMMediaAssetExportSession *tsToMP4ExportSession = [[KMMediaAssetExportSession alloc] initWithInputAssets:tsAssetList];
+            tsToMP4ExportSession.outputAssets = @[mp4Asset];
+            
+            [tsToMP4ExportSession exportAsynchronouslyWithCompletionHandler:^{
+                if (tsToMP4ExportSession.status == KMMediaAssetExportSessionStatusCompleted)
+                {
+                    unsigned int timeUnits = NSMinuteCalendarUnit | NSSecondCalendarUnit;
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSDateComponents *dateComponents = [calendar components:timeUnits fromDate:beginDate toDate:[NSDate date] options:0];
+//                    self.infoLabel.text = [NSString stringWithFormat:@"Export %d chunks completed in %d:%d",tsFileCount, [dateComponents minute], [dateComponents second]];
+                }
+                else
+                {
+//                    self.infoLabel.text = [NSString stringWithFormat:@"Export %d chunks failed: %@",tsFileCount, tsToMP4ExportSession.error];
+                }
+            }];
+        }
+        else
+        {
+//            self.infoLabel.text = [NSString stringWithFormat:@"No TS file found in: %@",resourceDirectoryPath];
+        }
+    }
+    else
+    {
+//        self.infoLabel.text = [NSString stringWithFormat:@"Cannot retrieve TS files: %@",error];
+    }
 }
 
 

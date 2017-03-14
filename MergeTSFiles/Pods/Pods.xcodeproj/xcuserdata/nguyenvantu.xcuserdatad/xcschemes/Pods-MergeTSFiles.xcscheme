@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C1086F7F5F717768FFD34656610810D4'
+               BlueprintIdentifier = '315F3DE2C1389319D71ECBA32804F715'
                BlueprintName = 'Pods-MergeTSFiles'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-MergeTSFiles.a'>

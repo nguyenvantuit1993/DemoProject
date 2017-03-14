@@ -9,7 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>GPAC4iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MergeTSFiles.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TS2MP4.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,7 +27,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>C1086F7F5F717768FFD34656610810D4</key>
+		<key>315F3DE2C1389319D71ECBA32804F715</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3335D681FC4B52E0B430B95C6B4501EE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8331C2302346AE82051A2B4CC535BCDF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

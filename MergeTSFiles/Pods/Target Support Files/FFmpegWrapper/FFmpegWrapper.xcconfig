@@ -1,6 +1,6 @@
 CONFIGURATION_BUILD_DIR = $PODS_CONFIGURATION_BUILD_DIR/FFmpegWrapper
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/FFmpegWrapper" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FFmpeg" "${PODS_ROOT}/Headers/Public/FFmpegWrapper"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/FFmpegWrapper" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FFmpeg" "${PODS_ROOT}/Headers/Public/FFmpegWrapper" "${PODS_ROOT}/Headers/Public/GPAC4iOS" "${PODS_ROOT}/Headers/Public/TS2MP4"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}
