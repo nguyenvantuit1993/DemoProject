@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		406A61DD272DFD93E4117A3A /* libPods-M3U8KitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DACC89A42B44CC80352B26A /* libPods-M3U8KitDemo.a */; };
 		9D1BF81C1906009800E38ABD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1BF81B1906009800E38ABD /* Foundation.framework */; };
 		9D1BF81E1906009800E38ABD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1BF81D1906009800E38ABD /* CoreGraphics.framework */; };
 		9D1BF8201906009800E38ABD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1BF81F1906009800E38ABD /* UIKit.framework */; };
@@ -23,6 +24,7 @@
 		9D1BF8481906009800E38ABD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D1BF8461906009800E38ABD /* InfoPlist.strings */; };
 		9D1BF84A1906009800E38ABD /* M3U8KitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BF8491906009800E38ABD /* M3U8KitDemoTests.m */; };
 		9D1BF8541906010B00E38ABD /* 769.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = 9D1BF8531906010B00E38ABD /* 769.m3u8 */; };
+		BD185504D39C47F67BF0CABA /* libPods-M3U8KitDemo-M3U8KitDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6902FEE3FC808A59DC927130 /* libPods-M3U8KitDemo-M3U8KitDemoTests.a */; };
 		CB92575D1E6EA9E500C17459 /* hls.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = CB92575C1E6EA9E500C17459 /* hls.m3u8 */; };
 		CB9257631E6EABB100C17459 /* M3U8PlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9257611E6EABB100C17459 /* M3U8PlaylistModel.m */; };
 		CB92576F1E6EABC700C17459 /* M3U8ExtXMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9257661E6EABC700C17459 /* M3U8ExtXMedia.m */; };
@@ -48,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05FA63733C7143EDA8F2CE5C /* Pods-M3U8KitDemo-M3U8KitDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-M3U8KitDemo-M3U8KitDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-M3U8KitDemo-M3U8KitDemoTests/Pods-M3U8KitDemo-M3U8KitDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6902FEE3FC808A59DC927130 /* libPods-M3U8KitDemo-M3U8KitDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-M3U8KitDemo-M3U8KitDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DACC89A42B44CC80352B26A /* libPods-M3U8KitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-M3U8KitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A879DCC331BCD4F4E313F09 /* Pods-M3U8KitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-M3U8KitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-M3U8KitDemo/Pods-M3U8KitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		9D1BF8181906009800E38ABD /* M3U8KitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = M3U8KitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D1BF81B1906009800E38ABD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9D1BF81D1906009800E38ABD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,6 +76,8 @@
 		9D1BF8491906009800E38ABD /* M3U8KitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M3U8KitDemoTests.m; sourceTree = "<group>"; };
 		9D1BF8531906010B00E38ABD /* 769.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 769.m3u8; sourceTree = "<group>"; };
 		9D1BF86E1906037300E38ABD /* M3U8Kit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M3U8Kit.framework; path = ../../ILSLib/M3U8Kit.framework; sourceTree = "<group>"; };
+		AD4B014F3C70FC50C79D0524 /* Pods-M3U8KitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-M3U8KitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-M3U8KitDemo/Pods-M3U8KitDemo.release.xcconfig"; sourceTree = "<group>"; };
+		BBFDA87F905D51672BFF84EF /* Pods-M3U8KitDemo-M3U8KitDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-M3U8KitDemo-M3U8KitDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-M3U8KitDemo-M3U8KitDemoTests/Pods-M3U8KitDemo-M3U8KitDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		CB92575C1E6EA9E500C17459 /* hls.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hls.m3u8; sourceTree = "<group>"; };
 		CB92575F1E6EABB100C17459 /* M3U8Kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8Kit.h; sourceTree = "<group>"; };
 		CB9257601E6EABB100C17459 /* M3U8PlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8PlaylistModel.h; sourceTree = "<group>"; };
@@ -105,6 +113,7 @@
 				9D1BF81E1906009800E38ABD /* CoreGraphics.framework in Frameworks */,
 				9D1BF8201906009800E38ABD /* UIKit.framework in Frameworks */,
 				9D1BF81C1906009800E38ABD /* Foundation.framework in Frameworks */,
+				406A61DD272DFD93E4117A3A /* libPods-M3U8KitDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +124,7 @@
 				9D1BF83E1906009800E38ABD /* XCTest.framework in Frameworks */,
 				9D1BF8401906009800E38ABD /* UIKit.framework in Frameworks */,
 				9D1BF83F1906009800E38ABD /* Foundation.framework in Frameworks */,
+				BD185504D39C47F67BF0CABA /* libPods-M3U8KitDemo-M3U8KitDemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +138,7 @@
 				9D1BF8431906009800E38ABD /* M3U8KitDemoTests */,
 				9D1BF81A1906009800E38ABD /* Frameworks */,
 				9D1BF8191906009800E38ABD /* Products */,
+				E3EC6B63191CEA8316DE6CB1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +159,8 @@
 				9D1BF81D1906009800E38ABD /* CoreGraphics.framework */,
 				9D1BF81F1906009800E38ABD /* UIKit.framework */,
 				9D1BF83D1906009800E38ABD /* XCTest.framework */,
+				6DACC89A42B44CC80352B26A /* libPods-M3U8KitDemo.a */,
+				6902FEE3FC808A59DC927130 /* libPods-M3U8KitDemo-M3U8KitDemoTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +251,17 @@
 			name = Playlist;
 			sourceTree = "<group>";
 		};
+		E3EC6B63191CEA8316DE6CB1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A879DCC331BCD4F4E313F09 /* Pods-M3U8KitDemo.debug.xcconfig */,
+				AD4B014F3C70FC50C79D0524 /* Pods-M3U8KitDemo.release.xcconfig */,
+				05FA63733C7143EDA8F2CE5C /* Pods-M3U8KitDemo-M3U8KitDemoTests.debug.xcconfig */,
+				BBFDA87F905D51672BFF84EF /* Pods-M3U8KitDemo-M3U8KitDemoTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,9 +269,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D1BF84D1906009800E38ABD /* Build configuration list for PBXNativeTarget "M3U8KitDemo" */;
 			buildPhases = (
+				EF688D4DF60E7690CD235FD7 /* [CP] Check Pods Manifest.lock */,
 				9D1BF8141906009800E38ABD /* Sources */,
 				9D1BF8151906009800E38ABD /* Frameworks */,
 				9D1BF8161906009800E38ABD /* Resources */,
+				45A3A0DA0CC88C540601F1C9 /* [CP] Embed Pods Frameworks */,
+				2D47BA2D1B90B42A79E434E4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -262,9 +289,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D1BF8501906009800E38ABD /* Build configuration list for PBXNativeTarget "M3U8KitDemoTests" */;
 			buildPhases = (
+				5D55428A4294DA65BB6E6EF7 /* [CP] Check Pods Manifest.lock */,
 				9D1BF8381906009800E38ABD /* Sources */,
 				9D1BF8391906009800E38ABD /* Frameworks */,
 				9D1BF83A1906009800E38ABD /* Resources */,
+				B0FF456C44C2A653F9A06749 /* [CP] Embed Pods Frameworks */,
+				49691AA093E85847A0703CF9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -334,6 +364,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D47BA2D1B90B42A79E434E4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-M3U8KitDemo/Pods-M3U8KitDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45A3A0DA0CC88C540601F1C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-M3U8KitDemo/Pods-M3U8KitDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		49691AA093E85847A0703CF9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-M3U8KitDemo-M3U8KitDemoTests/Pods-M3U8KitDemo-M3U8KitDemoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D55428A4294DA65BB6E6EF7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B0FF456C44C2A653F9A06749 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-M3U8KitDemo-M3U8KitDemoTests/Pods-M3U8KitDemo-M3U8KitDemoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF688D4DF60E7690CD235FD7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9D1BF8141906009800E38ABD /* Sources */ = {
@@ -484,6 +607,7 @@
 		};
 		9D1BF84E1906009800E38ABD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A879DCC331BCD4F4E313F09 /* Pods-M3U8KitDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -502,6 +626,7 @@
 		};
 		9D1BF84F1906009800E38ABD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD4B014F3C70FC50C79D0524 /* Pods-M3U8KitDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -520,6 +645,7 @@
 		};
 		9D1BF8511906009800E38ABD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05FA63733C7143EDA8F2CE5C /* Pods-M3U8KitDemo-M3U8KitDemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/M3U8KitDemo.app/M3U8KitDemo";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -542,6 +668,7 @@
 		};
 		9D1BF8521906009800E38ABD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBFDA87F905D51672BFF84EF /* Pods-M3U8KitDemo-M3U8KitDemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/M3U8KitDemo.app/M3U8KitDemo";
 				FRAMEWORK_SEARCH_PATHS = (

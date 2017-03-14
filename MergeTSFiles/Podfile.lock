@@ -1,0 +1,17 @@
+PODS:
+  - FFmpeg (2.8.3):
+    - FFmpeg/precompiled (= 2.8.3)
+  - FFmpeg/precompiled (2.8.3)
+  - FFmpegWrapper (1.0):
+    - FFmpeg (~> 2.2)
+
+DEPENDENCIES:
+  - FFmpegWrapper
+
+SPEC CHECKSUMS:
+  FFmpeg: f1428c3b60b5f9e349fcd5d7878705cd7f9a26f6
+  FFmpegWrapper: 9a932581137d17203e842ce942e171158336ae16
+
+PODFILE CHECKSUM: 52cd54aa2b66a245ec04369c70c69d5efad81a39
+
+COCOAPODS: 1.0.1
