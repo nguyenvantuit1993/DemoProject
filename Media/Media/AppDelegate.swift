@@ -39,9 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             return
         }
+        let bunchFolderPath = documentsPath?.appending("/\(kBunchFolder)")
         let imageFolderPath = documentsPath?.appending("/\(kImageFolder)")
         let otherFolderPath = documentsPath?.appending("/\(kOtherFolder)")
         let thumbFolderPath = videoFolderPath?.appending("/\(kVideoThumbs)")
+        createFolderWithPath(path: bunchFolderPath!)
         createFolderWithPath(path: videoFolderPath!)
         createFolderWithPath(path: imageFolderPath!)
         createFolderWithPath(path: thumbFolderPath!)

@@ -15,6 +15,8 @@ class ManageDownloadTrack: NSObject {
     var delegate: DownloadFileDelegate!
     var type = MimeTypes.Other
     var activeDownloads = [String: Download]()
+    var currentFiles = 0
+    var mergeFile = MergeFiles()
     //MARK: Shared Instance
     lazy var downloadsSession: URLSession = {
         // instead of using the default session configuration, you use a special background session configuration
@@ -45,6 +47,16 @@ class ManageDownloadTrack: NSObject {
     }
     func startDownload(_ track: Track) {
         if let urlString = track.previewUrl, let url = URL(string: urlString) {
+            let extention = url.pathExtension
+            if(extention == "m3u8")
+            {
+                NVT_ParseM3U8.getFilesFromM3U8Path(path: urlString as NSString, complete: { (urls) in
+                    self.downloadBunchFiles(urls: urls, baseURL: url.deletingPathExtension().appendingPathExtension(".mp4").absoluteString, name: track.name!)
+                })
+                return
+                
+            }
+            
             // initialize a Download with the preview URL of the track
             let download = Download(url: urlString)
             // using your new session object, you create a URLSessionDownloadTask with the preview URL and set it to the downloadTask property of the Download
@@ -91,7 +103,7 @@ class ManageDownloadTrack: NSObject {
                 // if resumeData found, create a new downloadTask by invoking downloadTask(withResumeData:) with the resume data
                 // and start the task by calling resume()
                 download.downloadTask = downloadsSession.correctedDownloadTask(withResumeData: resumeData)
-//                download.downloadTask = downloadsSession.downloadTask(withResumeData: resumeData as Data)
+                //                download.downloadTask = downloadsSession.downloadTask(withResumeData: resumeData as Data)
                 download.downloadTask!.resume()
                 download.isDownloading = true
             } else if let url = URL(string: download.url) {
@@ -198,54 +210,121 @@ class ManageDownloadTrack: NSObject {
         }
         return nil
     }
+    func trackIndexForDownloadTask(downloadTask: String?) -> Int? {
+        if let url = downloadTask
+        {
+            for (index, track) in tracks.enumerated() {
+                if url == track.previewUrl! {
+                    return index
+                }
+            }
+        }
+        return nil
+    }
+    func downloadBunchFiles(urls: NSArray, baseURL: String, name: String)
+    {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 4
+        let completionQueration = BlockOperation { 
+            OperationQueue.main.addOperation({
+                if let download = self.activeDownloads[baseURL] {
+                    // method returns total bytes written and the total bytes expected to be written. You calculate the progress as the ratio of the two
+                    // values and save the result in the Download. You'll use this value to update the progress view.
+                    download.progress = Float(self.currentFiles)/Float(urls.count)
+                    
+                    print(download.progress * 100)
+                    
+                    if let trackIndex = self.trackIndexForDownloadTask(downloadTask: baseURL){
+                        self.delegate?.didWriteData(indexCell: trackIndex, downloadInfo: download, totalSize: "")
+                    }
+                }
+                self.mergeFilesAt(path: (documentsPath?.appending("/\(kBunchFolder)"))!, toPath: (documentsPath?.appending("/\(kVideoFolder)/\(name).mp4"))!)
+            })
+        }
+        
+        for url in urls
+        {
+            let operation = BlockOperation(block: {
+                let data = NSData(contentsOf: url as! URL)
+                self.currentFiles = self.currentFiles + 1
+                let filePath = documentsPath?.appending("/\(kBunchFolder)/").appending((url as! URL).lastPathComponent)
+                data?.write(toFile: filePath!, atomically: true)
+                
+            })
+            completionQueration.addDependency(operation)
+        }
+        queue.addOperations(completionQueration.dependencies, waitUntilFinished: false)
+        queue.addOperation(completionQueration)
+    }
+    
+    func mergeFilesAt(path: String, toPath: String)
+    {
+        self.mergeFile.delegate = self
+        self.mergeFile.mergeFile(path, andOutput: toPath)
+    }
+    func completedDownloadBunchFiles(atPath: String,
+                                     withMime mime: String?,
+                                     toLocation location: URL)
+    {
+        self.downloadCompletely(atPath: atPath, withMime: mime, toLocation: location)
+    }
+    func downloadCompletely(atPath: String,
+                            withMime mime: String?,
+                            toLocation location: URL)
+    {
+        activeDownloads[atPath] = nil
+        if let trackIndex = trackIndexForDownloadTask(downloadTask: atPath) {
+            var extensionURL: String!
+            let originalURL = atPath
+            if let extensionURLCheck = mime
+            {
+                extensionURL = extensionURLCheck
+            }
+            extensionURL = extensionURL == nil ? "":"\(extensionURL!)"
+            // extract the original request URL from the task and pass it to the provided localFilePathForUrl(_:) helper method.
+            // localFilePathForUrl(_:) then generates a permanent local file path to save to by appending the lastPastComponent of the URL
+            // (i.e. the file name and extension of the file) to the path of the app's Documents directory
+            if let destinationURLAndName = localFilePathForUrl(originalURL, mime: extensionURL, name: self.tracks[trackIndex].name!) {
+                
+                print(destinationURLAndName.url)
+                
+                // with FileManager you move the downloaded file from its temporary file location to the desired destination file path by
+                // clearing out any item at that location before you start the copy task
+                let fileManager = FileManager.default
+                do {
+                    try fileManager.removeItem(at: destinationURLAndName.url!)
+                } catch {
+                    // Non-fatal: file probably doesn't exist
+                }
+                do {
+                    try fileManager.copyItem(at: location, to: destinationURLAndName.url!)
+                    if(self.type == .Video)
+                    {
+                        self.createThumnails(name: destinationURLAndName.lastComponent)
+                    }
+                } catch let error as NSError {
+                    print("Could not copy file to disk: \(error.localizedDescription)")
+                }
+            }
+            DispatchQueue.main.async {
+                ManageDownloadTrack.sharedInstance.tracks.remove(at: IndexPath(row: trackIndex, section: 0).row)
+                self.delegate?.didDownloaded(indexCell: IndexPath(row: trackIndex, section: 0))
+            }
+        }
+    }
+    func downloadCompletely(downloadTask: URLSessionDownloadTask, location:URL)
+    {
+        // look up the Track in your table view and reload the corresponding cell
+        if let url = downloadTask.originalRequest?.url?.absoluteString {
+        self.downloadCompletely(atPath: url, withMime: downloadTask.response?.mimeType, toLocation: location)
+        }
+    }
 }
 
 extension ManageDownloadTrack: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         // look up the corresponding Download in your active downloads and remove it
-        if let url = downloadTask.originalRequest?.url?.absoluteString {
-            activeDownloads[url] = nil
-            // look up the Track in your table view and reload the corresponding cell
-            if let trackIndex = trackIndexForDownloadTask(downloadTask: downloadTask) {
-                var extensionURL: String!
-                if let extensionURLCheck = downloadTask.response?.mimeType
-                {
-                    extensionURL = extensionURLCheck
-                }
-                extensionURL = extensionURL == nil ? "":"\(extensionURL!)"
-                // extract the original request URL from the task and pass it to the provided localFilePathForUrl(_:) helper method.
-                // localFilePathForUrl(_:) then generates a permanent local file path to save to by appending the lastPastComponent of the URL
-                // (i.e. the file name and extension of the file) to the path of the app's Documents directory
-                if let originalURL = downloadTask.originalRequest?.url?.absoluteString, let destinationURLAndName = localFilePathForUrl(originalURL, mime: extensionURL, name: self.tracks[trackIndex].name!) {
-                    print(destinationURLAndName.url)
-                    
-                    // with FileManager you move the downloaded file from its temporary file location to the desired destination file path by
-                    // clearing out any item at that location before you start the copy task
-                    let fileManager = FileManager.default
-                    do {
-                        try fileManager.removeItem(at: destinationURLAndName.url!)
-                    } catch {
-                        // Non-fatal: file probably doesn't exist
-                    }
-                    do {
-                        try fileManager.copyItem(at: location, to: destinationURLAndName.url!)
-                        if(self.type == .Video)
-                        {
-                            self.createThumnails(name: destinationURLAndName.lastComponent)
-                        }
-                    } catch let error as NSError {
-                        print("Could not copy file to disk: \(error.localizedDescription)")
-                    }
-                }
-                DispatchQueue.main.async {
-                    ManageDownloadTrack.sharedInstance.tracks.remove(at: IndexPath(row: trackIndex, section: 0).row)
-                    self.delegate?.didDownloaded(indexCell: IndexPath(row: trackIndex, section: 0))
-                }
-            }
-        }
-        
-        
-        
+            self.downloadCompletely(downloadTask: downloadTask, location: location)
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
@@ -394,5 +473,23 @@ extension URLSession {
         }
         
         return task
+    }
+}
+extension ManageDownloadTrack: MergeFilesDelegate {
+    func didFinishMerge() {
+        self.removeAllFilesIn(path:(documentsPath?.appending("/\(kBunchFolder)"))!)
+//        self.completedDownloadBunchFiles(atPath: <#T##String#>, withMime: <#T##String?#>, toLocation: <#T##URL#>)
+    }
+    func removeAllFilesIn(path: String)
+    {
+        do {
+            let fileManager = FileManager.default
+            let filePaths = try fileManager.contentsOfDirectory(atPath: path)
+            for filePath in filePaths {
+                try fileManager.removeItem(atPath: path + "/\(filePath)")
+            }
+        } catch let error as NSError {
+            print("Could not clear temp folder: \(error.debugDescription)")
+        }
     }
 }

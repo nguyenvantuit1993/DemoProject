@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		7BA7CFCF013012E3C6E268E5 /* libPods-Media.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 309BEB45B5F3933BADACFC59 /* libPods-Media.a */; };
+		971ABB0D1E78E9EA00C91F66 /* NSString+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB081E78E9EA00C91F66 /* NSString+m3u8.m */; };
+		971ABB0E1E78E9EA00C91F66 /* M3U8PlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB0B1E78E9EA00C91F66 /* M3U8PlaylistModel.m */; };
+		971ABB201E78EA0400C91F66 /* M3U8ExtXMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB111E78EA0400C91F66 /* M3U8ExtXMedia.m */; };
+		971ABB211E78EA0400C91F66 /* M3U8ExtXMediaList.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB131E78EA0400C91F66 /* M3U8ExtXMediaList.m */; };
+		971ABB221E78EA0400C91F66 /* M3U8ExtXStreamInf.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB151E78EA0400C91F66 /* M3U8ExtXStreamInf.m */; };
+		971ABB231E78EA0400C91F66 /* M3U8ExtXStreamInfList.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB171E78EA0400C91F66 /* M3U8ExtXStreamInfList.m */; };
+		971ABB241E78EA0400C91F66 /* M3U8MasterPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB191E78EA0400C91F66 /* M3U8MasterPlaylist.m */; };
+		971ABB251E78EA0400C91F66 /* M3U8SegmentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB1B1E78EA0400C91F66 /* M3U8SegmentInfo.m */; };
+		971ABB261E78EA0400C91F66 /* M3U8SegmentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB1D1E78EA0400C91F66 /* M3U8SegmentInfoList.m */; };
+		971ABB271E78EA0400C91F66 /* M3U8MediaPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB1F1E78EA0400C91F66 /* M3U8MediaPlaylist.m */; };
+		971ABB2B1E78F92100C91F66 /* NVT_ParseM3U8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB2A1E78F92100C91F66 /* NVT_ParseM3U8.swift */; };
+		971ABB301E78FC4000C91F66 /* MergeFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 971ABB2F1E78FC4000C91F66 /* MergeFiles.m */; };
 		B1809FD21E67435D004FA67D /* DownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1809FD11E67435D004FA67D /* DownloadViewModel.swift */; };
 		B1809FD41E6747BD004FA67D /* BookMarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1809FD31E6747BD004FA67D /* BookMarkViewModel.swift */; };
 		B1B2B2D21E53AF960069E3C9 /* BookMarkData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B1B2B2D01E53AF960069E3C9 /* BookMarkData.xcdatamodeld */; };
@@ -71,6 +83,32 @@
 /* Begin PBXFileReference section */
 		309BEB45B5F3933BADACFC59 /* libPods-Media.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Media.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5143D60D9E350926874D3D4C /* Pods-Media.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Media.release.xcconfig"; path = "Pods/Target Support Files/Pods-Media/Pods-Media.release.xcconfig"; sourceTree = "<group>"; };
+		971ABB071E78E9EA00C91F66 /* NSString+m3u8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+m3u8.h"; sourceTree = "<group>"; };
+		971ABB081E78E9EA00C91F66 /* NSString+m3u8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+m3u8.m"; sourceTree = "<group>"; };
+		971ABB091E78E9EA00C91F66 /* M3U8Kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8Kit.h; sourceTree = "<group>"; };
+		971ABB0A1E78E9EA00C91F66 /* M3U8PlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8PlaylistModel.h; sourceTree = "<group>"; };
+		971ABB0B1E78E9EA00C91F66 /* M3U8PlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8PlaylistModel.m; sourceTree = "<group>"; };
+		971ABB0C1E78E9EA00C91F66 /* M3U8TagsAndAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8TagsAndAttributes.h; sourceTree = "<group>"; };
+		971ABB101E78EA0400C91F66 /* M3U8ExtXMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXMedia.h; sourceTree = "<group>"; };
+		971ABB111E78EA0400C91F66 /* M3U8ExtXMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXMedia.m; sourceTree = "<group>"; };
+		971ABB121E78EA0400C91F66 /* M3U8ExtXMediaList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXMediaList.h; sourceTree = "<group>"; };
+		971ABB131E78EA0400C91F66 /* M3U8ExtXMediaList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXMediaList.m; sourceTree = "<group>"; };
+		971ABB141E78EA0400C91F66 /* M3U8ExtXStreamInf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXStreamInf.h; sourceTree = "<group>"; };
+		971ABB151E78EA0400C91F66 /* M3U8ExtXStreamInf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXStreamInf.m; sourceTree = "<group>"; };
+		971ABB161E78EA0400C91F66 /* M3U8ExtXStreamInfList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXStreamInfList.h; sourceTree = "<group>"; };
+		971ABB171E78EA0400C91F66 /* M3U8ExtXStreamInfList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXStreamInfList.m; sourceTree = "<group>"; };
+		971ABB181E78EA0400C91F66 /* M3U8MasterPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8MasterPlaylist.h; sourceTree = "<group>"; };
+		971ABB191E78EA0400C91F66 /* M3U8MasterPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8MasterPlaylist.m; sourceTree = "<group>"; };
+		971ABB1A1E78EA0400C91F66 /* M3U8SegmentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8SegmentInfo.h; sourceTree = "<group>"; };
+		971ABB1B1E78EA0400C91F66 /* M3U8SegmentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8SegmentInfo.m; sourceTree = "<group>"; };
+		971ABB1C1E78EA0400C91F66 /* M3U8SegmentInfoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8SegmentInfoList.h; sourceTree = "<group>"; };
+		971ABB1D1E78EA0400C91F66 /* M3U8SegmentInfoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8SegmentInfoList.m; sourceTree = "<group>"; };
+		971ABB1E1E78EA0400C91F66 /* M3U8MediaPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8MediaPlaylist.h; sourceTree = "<group>"; };
+		971ABB1F1E78EA0400C91F66 /* M3U8MediaPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8MediaPlaylist.m; sourceTree = "<group>"; };
+		971ABB2A1E78F92100C91F66 /* NVT_ParseM3U8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NVT_ParseM3U8.swift; path = Media/NVT_ParseM3U8.swift; sourceTree = "<group>"; };
+		971ABB2E1E78FC2A00C91F66 /* MergeFiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MergeFiles.h; sourceTree = "<group>"; };
+		971ABB2F1E78FC4000C91F66 /* MergeFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeFiles.m; sourceTree = "<group>"; };
+		974C8A9F1E792AF6005A3EA4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		B1809FD11E67435D004FA67D /* DownloadViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadViewModel.swift; sourceTree = "<group>"; };
 		B1809FD31E6747BD004FA67D /* BookMarkViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookMarkViewModel.swift; sourceTree = "<group>"; };
 		B1B2B2CD1E53AF7E0069E3C9 /* Media-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Media-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -168,6 +206,54 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		971ABB061E78E9BB00C91F66 /* M3U8Paser */ = {
+			isa = PBXGroup;
+			children = (
+				971ABB2A1E78F92100C91F66 /* NVT_ParseM3U8.swift */,
+				971ABB0F1E78E9FB00C91F66 /* Playlist */,
+				971ABB071E78E9EA00C91F66 /* NSString+m3u8.h */,
+				971ABB081E78E9EA00C91F66 /* NSString+m3u8.m */,
+				971ABB091E78E9EA00C91F66 /* M3U8Kit.h */,
+				971ABB0A1E78E9EA00C91F66 /* M3U8PlaylistModel.h */,
+				971ABB0B1E78E9EA00C91F66 /* M3U8PlaylistModel.m */,
+				971ABB0C1E78E9EA00C91F66 /* M3U8TagsAndAttributes.h */,
+			);
+			name = M3U8Paser;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		971ABB0F1E78E9FB00C91F66 /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				971ABB101E78EA0400C91F66 /* M3U8ExtXMedia.h */,
+				971ABB111E78EA0400C91F66 /* M3U8ExtXMedia.m */,
+				971ABB121E78EA0400C91F66 /* M3U8ExtXMediaList.h */,
+				971ABB131E78EA0400C91F66 /* M3U8ExtXMediaList.m */,
+				971ABB141E78EA0400C91F66 /* M3U8ExtXStreamInf.h */,
+				971ABB151E78EA0400C91F66 /* M3U8ExtXStreamInf.m */,
+				971ABB161E78EA0400C91F66 /* M3U8ExtXStreamInfList.h */,
+				971ABB171E78EA0400C91F66 /* M3U8ExtXStreamInfList.m */,
+				971ABB181E78EA0400C91F66 /* M3U8MasterPlaylist.h */,
+				971ABB191E78EA0400C91F66 /* M3U8MasterPlaylist.m */,
+				971ABB1A1E78EA0400C91F66 /* M3U8SegmentInfo.h */,
+				971ABB1B1E78EA0400C91F66 /* M3U8SegmentInfo.m */,
+				971ABB1C1E78EA0400C91F66 /* M3U8SegmentInfoList.h */,
+				971ABB1D1E78EA0400C91F66 /* M3U8SegmentInfoList.m */,
+				971ABB1E1E78EA0400C91F66 /* M3U8MediaPlaylist.h */,
+				971ABB1F1E78EA0400C91F66 /* M3U8MediaPlaylist.m */,
+			);
+			name = Playlist;
+			sourceTree = "<group>";
+		};
+		971ABB281E78F8E300C91F66 /* MergeFiles */ = {
+			isa = PBXGroup;
+			children = (
+				971ABB2E1E78FC2A00C91F66 /* MergeFiles.h */,
+				971ABB2F1E78FC4000C91F66 /* MergeFiles.m */,
+			);
+			name = MergeFiles;
+			sourceTree = "<group>";
+		};
 		B1B2B2D31E53B0030069E3C9 /* PageScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +316,8 @@
 		CB364BFB1E49DD3F00C10D91 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				971ABB061E78E9BB00C91F66 /* M3U8Paser */,
+				971ABB281E78F8E300C91F66 /* MergeFiles */,
 				CB4DB66B1E58699400F6F640 /* Category */,
 				CB3225D21E57012B005A729B /* PassCode */,
 				B1B2B2E11E53B0200069E3C9 /* Extentions */,
@@ -359,6 +447,7 @@
 				CB80C7FA1E496AA600690D4D /* Assets.xcassets */,
 				CB80C7FC1E496AA600690D4D /* LaunchScreen.storyboard */,
 				CB80C7FF1E496AA600690D4D /* Info.plist */,
+				974C8A9F1E792AF6005A3EA4 /* PrefixHeader.pch */,
 				B1B2B2CD1E53AF7E0069E3C9 /* Media-Bridging-Header.h */,
 				B1B2B2D01E53AF960069E3C9 /* BookMarkData.xcdatamodeld */,
 			);
@@ -562,7 +651,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7D66EB5A77DE63AB7B680725 /* [CP] Embed Pods Frameworks */ = {
@@ -587,8 +676,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				971ABB261E78EA0400C91F66 /* M3U8SegmentInfoList.m in Sources */,
 				CB364BFA1E49DB4600C10D91 /* ImagesViewModel.swift in Sources */,
+				971ABB301E78FC4000C91F66 /* MergeFiles.m in Sources */,
 				B1B2B2F91E53B1910069E3C9 /* ToolBarDetail.swift in Sources */,
+				971ABB0E1E78E9EA00C91F66 /* M3U8PlaylistModel.m in Sources */,
 				CB4180541E5AFE3000283B28 /* DetailFile.swift in Sources */,
 				B1B2B2E51E53B0390069E3C9 /* NVTWebViewModel.swift in Sources */,
 				B1809FD41E6747BD004FA67D /* BookMarkViewModel.swift in Sources */,
@@ -598,6 +690,8 @@
 				B1B2B3021E53B5C50069E3C9 /* Track.swift in Sources */,
 				B1B2B2DF1E53B0180069E3C9 /* HGPageScrollView.m in Sources */,
 				CB80C7F61E496AA600690D4D /* ViewController.swift in Sources */,
+				971ABB271E78EA0400C91F66 /* M3U8MediaPlaylist.m in Sources */,
+				971ABB211E78EA0400C91F66 /* M3U8ExtXMediaList.m in Sources */,
 				CB8294721E5410860013A064 /* CustomCollectionCell.swift in Sources */,
 				CB9E34491E63E1040004A13B /* BookMarkObjects.swift in Sources */,
 				CBD33B311E554B510004D374 /* TTOpenInAppActivity.m in Sources */,
@@ -605,15 +699,22 @@
 				B1B2B30C1E53CDC20069E3C9 /* ManageDataBase.swift in Sources */,
 				B1809FD21E67435D004FA67D /* DownloadViewModel.swift in Sources */,
 				CB8294771E5414F10013A064 /* MediasViewModel.swift in Sources */,
+				971ABB221E78EA0400C91F66 /* M3U8ExtXStreamInf.m in Sources */,
 				CB80C80F1E49791600690D4D /* OtherFilesView.swift in Sources */,
 				CB4DB6661E58527500F6F640 /* ManageDownloadTrack.swift in Sources */,
+				971ABB201E78EA0400C91F66 /* M3U8ExtXMedia.m in Sources */,
+				971ABB251E78EA0400C91F66 /* M3U8SegmentInfo.m in Sources */,
 				B1B2B2DE1E53B0180069E3C9 /* HGPageView.m in Sources */,
 				CB3651501E602EA5006EFAB6 /* SettingObjects.swift in Sources */,
+				971ABB241E78EA0400C91F66 /* M3U8MasterPlaylist.m in Sources */,
 				CB5119941E56B8A2009D38E9 /* SettingsViewModel.swift in Sources */,
 				CBFB10001E497FF500992989 /* ImagesView.swift in Sources */,
 				B1E216F61E67B0AE0045A784 /* DetailImageView.swift in Sources */,
+				971ABB231E78EA0400C91F66 /* M3U8ExtXStreamInfList.m in Sources */,
 				CB80C80D1E49773600690D4D /* MediasView.swift in Sources */,
 				B1B2B2E31E53B02D0069E3C9 /* WKWebViewCallBack.swift in Sources */,
+				971ABB0D1E78E9EA00C91F66 /* NSString+m3u8.m in Sources */,
+				971ABB2B1E78F92100C91F66 /* NVT_ParseM3U8.swift in Sources */,
 				CBFB10021E49835200992989 /* BaseClearBarItemsViewController.swift in Sources */,
 				B1B2B3011E53B5C50069E3C9 /* Download.swift in Sources */,
 				CBFB10041E49845700992989 /* BaseClearBarItemsTableViewController.swift in Sources */,
@@ -754,6 +855,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = S49VK8B668;
+				GCC_PREFIX_HEADER = Media/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/SSKeychain\"",
+					"\"${PODS_ROOT}/Headers/Public/VENTouchLock\"",
+				);
 				INFOPLIST_FILE = Media/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -772,6 +880,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = S49VK8B668;
+				GCC_PREFIX_HEADER = Media/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/SSKeychain\"",
+					"\"${PODS_ROOT}/Headers/Public/VENTouchLock\"",
+				);
 				INFOPLIST_FILE = Media/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
