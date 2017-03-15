@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>FFmpegWrapper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>GPAC4iOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Pods-MergeTSFiles.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>TS2MP4.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>315F3DE2C1389319D71ECBA32804F715</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3335D681FC4B52E0B430B95C6B4501EE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8331C2302346AE82051A2B4CC535BCDF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D388FA55B545392260B7EF678CA13266</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
