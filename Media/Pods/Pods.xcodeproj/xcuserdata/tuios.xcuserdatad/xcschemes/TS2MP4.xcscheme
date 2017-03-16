@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '21C76C4907B0AF51C19F1EF0FC732647'
+               BlueprintIdentifier = 'B1604200CB3F5DE1DFDDB2041C503037'
                BlueprintName = 'TS2MP4'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libTS2MP4.a'>

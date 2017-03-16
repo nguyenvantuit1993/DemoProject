@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 
-class DetailFile: UIViewController {
+class DetailFile: BasicViewController {
     var urlFile: URL!
     var webView: WKWebView!
     override func viewDidLoad() {

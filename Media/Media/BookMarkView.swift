@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
-class BookMarkView: UIViewController{
+class BookMarkView: BasicViewController{
     var bookmarkViewModel = BookMarkViewModel()
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {

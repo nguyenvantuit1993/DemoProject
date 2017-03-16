@@ -12,6 +12,7 @@ import UIKit
 enum SettingTypes: String
 {
     case passCodeLock,
+    isFakeLogin,
     fakeCodeLock,
     fakeCodeString,
     removeAds,

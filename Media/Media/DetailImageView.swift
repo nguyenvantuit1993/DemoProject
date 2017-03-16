@@ -13,7 +13,7 @@ protocol DetailImageViewDelegate {
     func getCurrentIndex() -> Int
 //    func cellForItemAt(index: Int) -> Item
 }
-class DetailImageView: UIViewController {
+class DetailImageView: BasicViewController {
     var items: [Item]!
     var delegate: DetailImageViewDelegate!
     @IBOutlet weak var collectionView: UICollectionView!

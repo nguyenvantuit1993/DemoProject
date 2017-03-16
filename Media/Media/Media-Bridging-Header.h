@@ -8,3 +8,5 @@
 #import "CustomVENTouchLockEnterPasscodeViewController.h"
 #import "M3U8Kit.h"
 #import "MergeFiles.h"
+#import "FakeView.h"
+#define defaultPassword @"1234"

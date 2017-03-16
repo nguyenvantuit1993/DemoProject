@@ -14,6 +14,8 @@ class ImagesView: BaseClearBarItemsViewController{
     @IBOutlet weak var collectionView: UICollectionView!
     var currentIndex: Int!
     var imageViewModel: ImagesViewModel!
+    var isFakeLogin: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self

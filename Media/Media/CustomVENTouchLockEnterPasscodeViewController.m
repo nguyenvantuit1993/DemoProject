@@ -45,6 +45,8 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
 {
     
     [super enteredPasscode:passcode];
+    SettingObjects *settings = [SettingObjects sharedInstance];
+    [settings setIsFakeLoginWithIsFake:false];
     if ([self.touchLock isPasscodeValid:passcode]) {
         [[self class] resetPasscodeAttemptHistory];
         [self finishWithResult:YES animated:YES];
@@ -52,13 +54,24 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
         {
             [[VENTouchLock sharedInstance] deletePasscode];
         }
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"Login"
+         object:self];
     }
     else {
-        SettingObjects *settings = [SettingObjects sharedInstance];
-        if(settings.settings.fakeCodeLock == true && [self.touchLock isPasscodeValid:[settings.fakeCodeString  isEqual: @""] ? @"1234":settings.fakeCodeString])
+        if(settings.settings.fakeCodeLock == true && self.isSettingsView == false)
         {
-            [[self class] resetPasscodeAttemptHistory];
-            [self finishWithResult:YES animated:YES];
+            if([settings.settings.fakeCodeString isEqualToString:passcode] ||
+               ([settings.settings.fakeCodeString isEqualToString:@""] && [passcode isEqualToString:defaultPassword]))
+            {
+                [[self class] resetPasscodeAttemptHistory];
+                [self finishWithResult:YES animated:YES];
+                [settings setIsFakeLoginWithIsFake:true];
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"LoginFakeView"
+                 object:self];
+                return;
+            }
         }
         [self.passcodeView shakeAndVibrateCompletion:^{
             self.passcodeView.title = [self.touchLock appearance].enterPasscodeIncorrectLabelText;

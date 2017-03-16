@@ -24,30 +24,20 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>VENTouchLock.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>21C76C4907B0AF51C19F1EF0FC732647</key>
+		<key>A47D60EB166B8039EDA771E63D9013AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B5A3CA47472A64950BCC658121BD013F</key>
+		<key>B1604200CB3F5DE1DFDDB2041C503037</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BB1D0DD4BA62DE52EA44640CDCE799F1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ED4DFBF71BD79204812354FE7D6CF7DD</key>
+		<key>EC063C53E000C535C8E818C41386322A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -11,6 +11,7 @@ import CoreData
 
 class SettingObjects: NSObject{
     var passCodeLock: Bool!
+    var isFakeLogin: Bool!
     var fakeCodeLock: Bool!
     var fakeCodeString: String?
     var removeAds: Bool!
@@ -33,6 +34,10 @@ class SettingObjects: NSObject{
     override init() {
         super.init()
         getData()
+    }
+    func setIsFakeLogin(isFake: Bool)
+    {
+        self.isFakeLogin = isFake
     }
     func getData()
     {

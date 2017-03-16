@@ -12,7 +12,7 @@ import MediaPlayer
 protocol DownloadViewDelegate {
     func reloadCellAt(indexPath: IndexPath)
 }
-class DownloadView: UIViewController {
+class DownloadView: BasicViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var downloadViewModel = DownloadViewModel()

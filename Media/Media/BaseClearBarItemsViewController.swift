@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BaseClearBarItemsViewController: UIViewController {
+class BaseClearBarItemsViewController: BasicViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.rightBarButtonItems = nil

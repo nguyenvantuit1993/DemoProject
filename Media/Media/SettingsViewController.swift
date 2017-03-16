@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: BasicViewController {
     
     @IBOutlet weak var defaultBrowserLink: UITextField!
     @IBOutlet weak var switch_SetPassCode: UISwitch!
@@ -71,6 +71,7 @@ extension SettingsViewController: SettingsViewModelDelegate
         self.present(view.embeddedInNavigationController(), animated: true, completion: nil)
     }
     func userShowPassCode(view: CustomVENTouchLockEnterPasscodeViewController) {
+        view.isSettingsView = true
         self.present(view.embeddedInNavigationController(), animated: true, completion: nil)
     }
 }

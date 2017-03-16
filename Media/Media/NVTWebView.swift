@@ -9,17 +9,39 @@
 import UIKit
 import CoreData
 import AssetsLibrary
-class NVTWebView: UIViewController{
+class NVTWebView: BasicViewController{
     var myPageScrollView: HGPageScrollView!
     var webviewModel: NVTWebViewModel!
     var toolBar: BaseToolBar!
     let pageId = "pageId"
     var verticalConstraint: NSLayoutConstraint! = nil
+    var fakeView:FakeView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Define identifier
+        let notificationName = Notification.Name("LoginFakeView")
+        NotificationCenter.default.addObserver(self, selector: #selector(loginFakeView), name: notificationName, object: nil)
+        let notificationLoginName = Notification.Name("Login")
+        NotificationCenter.default.addObserver(self, selector: #selector(login), name: notificationLoginName, object: nil)
+        
         webviewModel = NVTWebViewModel(size: self.view.bounds.size)
         addPageScrollView()
         addToolBar()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    func login()
+    {
+        self.fakeView?.dismiss(animated: true, completion: nil)
+        self.tabBarController?.view.isHidden = false
+    }
+    func loginFakeView()
+    {
+        self.tabBarController?.view.isHidden = true
+        self.fakeView = FakeView(nibName: "FakeView", bundle: nil)
+        self.present(fakeView, animated: false, completion: nil)
     }
     func interactPage(index: Int, isSelected: Bool)
     {
