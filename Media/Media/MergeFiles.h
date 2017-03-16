@@ -7,10 +7,10 @@
 //
 @protocol MergeFilesDelegate <NSObject>
 @optional
-- (void)didFinishMerge;
+- (void)didFinishMerge:(NSString *)name fromPath:(NSString *)fromPath toLocation:(NSURL *)toLocation;
 @end
 #import <Foundation/Foundation.h>
 @interface MergeFiles: NSObject
 @property (nonatomic, weak) id <MergeFilesDelegate> delegate;
-- (void)mergeFile:(NSString *)atPath andOutput:(NSString *)output;
+- (void)mergeFile:(NSString *)atPath andOutput:(NSString *)output withBaseURL:(NSString *)baseURL;
 @end

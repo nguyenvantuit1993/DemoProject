@@ -43,7 +43,9 @@ class CustomWebView: HGPageView {
     }
     func setup() {
         addWebView()
+        self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
     }
+    
     func loadViewFromNib() -> UIView {
         let subView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?[0]
         return subView as! UIView
@@ -115,7 +117,7 @@ class CustomWebView: HGPageView {
         progBar.progress = 0
         progBar.alpha = 0
 //        progBar.tintColor = UIColor.blue
-        self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        
         self.addSubview(progBar)
         
         // the constraints
@@ -128,8 +130,9 @@ class CustomWebView: HGPageView {
         
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "estimatedProgress"
+        if keyPath == "estimatedProgress" && self.progBar != nil
         {
+            
             self.progBar.alpha = 1.0
             self.progBar.setProgress(Float(self.webView.estimatedProgress), animated: true)
             if(self.webView.estimatedProgress >= 1.0)

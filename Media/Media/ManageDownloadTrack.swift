@@ -47,26 +47,25 @@ class ManageDownloadTrack: NSObject {
     }
     func startDownload(_ track: Track) {
         if let urlString = track.previewUrl, let url = URL(string: urlString) {
-            let extention = url.pathExtension
-            if(extention == "m3u8")
-            {
-                NVT_ParseM3U8.getFilesFromM3U8Path(path: urlString as NSString, complete: { (urls) in
-                    self.downloadBunchFiles(urls: urls, baseURL: url.deletingPathExtension().appendingPathExtension(".mp4").absoluteString, name: track.name!)
-                })
-                return
-                
-            }
-            
             // initialize a Download with the preview URL of the track
             let download = Download(url: urlString)
             // using your new session object, you create a URLSessionDownloadTask with the preview URL and set it to the downloadTask property of the Download
             download.downloadTask = downloadsSession.downloadTask(with: url)
-            // start the download task by calling resume() on it
-            download.downloadTask!.resume()
             // indicate that the download is in progress
             download.isDownloading = true
             // finally map the download URL to its Download in the activeDownloads dictionary
             activeDownloads[download.url] = download
+            let extention = url.pathExtension
+            if(extention == "m3u8")
+            {
+                NVT_ParseM3U8.getFilesFromM3U8Path(path: urlString as NSString, complete: { (urls) in
+                    self.downloadBunchFiles(urls: urls, baseURL: url.absoluteString, name: track.name!)
+                })
+                return
+                
+            }
+            // start the download task by calling resume() on it
+            download.downloadTask!.resume()
         }
     }
     // Called when the Pause button for a track is tapped
@@ -140,35 +139,35 @@ class ManageDownloadTrack: NSObject {
         var folderName: String!
         
         switch mime.lowercased() {
-        case "video/x-flv": extentionFile = ".flv"; type = .Video
+        case "video/x-flv", "flv": extentionFile = ".flv"; type = .Video
             break
-        case "video/mp4" : extentionFile = ".mp4"; type = .Video
+        case "video/mp4", "mp4" : extentionFile = ".mp4"; type = .Video
             break
-        case "application/x-mpegurl" : extentionFile = ".m3u8"; type = .Video
+        case "application/x-mpegurl", ".m3u8" : extentionFile = ".m3u8"; type = .Video
             break
-        case "video/MP2T" : extentionFile = ".ts"; type = .Video
+        case "video/MP2T", "ts" : extentionFile = ".ts"; type = .Video
             break
-        case "video/3gpp" : extentionFile = ".3gp"; type = .Video
+        case "video/3gpp", "3gp" : extentionFile = ".3gp"; type = .Video
             break
-        case "video/quicktime" : extentionFile = ".mov"; type = .Video
+        case "video/quicktime", "mov" : extentionFile = ".mov"; type = .Video
             break
-        case "video/x-msvideo" : extentionFile = ".avi"; type = .Video
+        case "video/x-msvideo", "avi" : extentionFile = ".avi"; type = .Video
             break
-        case "video/x-ms-wmv" : extentionFile = ".wmv"; type = .Video
+        case "video/x-ms-wmv", "wmv" : extentionFile = ".wmv"; type = .Video
             break
-        case "image/gif" : extentionFile = ".gif"; type = .Image
+        case "image/gif", "gif" : extentionFile = ".gif"; type = .Image
             break
-        case "image/x-icon" : extentionFile = ".ico"; type = .Image
+        case "image/x-icon", "ico" : extentionFile = ".ico"; type = .Image
             break
-        case "image/jpeg" : extentionFile = ".jpg"; type = .Image
+        case "image/jpeg", "jpg" : extentionFile = ".jpg"; type = .Image
             break
-        case "image/png" : extentionFile = ".png"; type = .Image
+        case "image/png", "png" : extentionFile = ".png"; type = .Image
             break
-        case "image/svg+xml" : extentionFile = ".svg"; type = .Image
+        case "image/svg+xml", "svg" : extentionFile = ".svg"; type = .Image
             break
-        case "image/tiff" : extentionFile = ".tif"; type = .Image
+        case "image/tiff", "tif" : extentionFile = ".tif"; type = .Image
             break
-        case "image/webp" : extentionFile = ".webp"; type = .Image
+        case "image/webp", "webp" : extentionFile = ".webp"; type = .Image
             break
         default: extentionFile = (".\((mime as NSString).lastPathComponent)") ; type = .Other
             break
@@ -221,12 +220,50 @@ class ManageDownloadTrack: NSObject {
         }
         return nil
     }
+    
+    func randomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
+    func createFolderWithPath(path: String)
+    {
+        do {
+            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
+        } catch let error as NSError {
+            print(error.localizedDescription);
+        }
+    }
     func downloadBunchFiles(urls: NSArray, baseURL: String, name: String)
     {
+        let atPath = (documentsPath?.appending("/\(kBunchFolder)/sub\(self.randomString(length: 10))/"))!
+        self.createFolderWithPath(path: atPath)
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 4
-        let completionQueration = BlockOperation { 
+        let completionQueration = BlockOperation {
             OperationQueue.main.addOperation({
+                self.mergeFilesAt(path: atPath, toPath: (documentsPath?.appending("/\(kVideoFolder)/\(name).mp4"))!, baseURL: baseURL)
+                
+            })
+        }
+        
+        for url in urls
+        {
+            let operation = BlockOperation(block: {
+                let data = NSData(contentsOf: url as! URL)
+                self.currentFiles = self.currentFiles + 1
+                let filePath = atPath.appending((url as! URL).lastPathComponent)
+                data?.write(toFile: filePath, atomically: true)
                 if let download = self.activeDownloads[baseURL] {
                     // method returns total bytes written and the total bytes expected to be written. You calculate the progress as the ratio of the two
                     // values and save the result in the Download. You'll use this value to update the progress view.
@@ -238,18 +275,7 @@ class ManageDownloadTrack: NSObject {
                         self.delegate?.didWriteData(indexCell: trackIndex, downloadInfo: download, totalSize: "")
                     }
                 }
-                self.mergeFilesAt(path: (documentsPath?.appending("/\(kBunchFolder)"))!, toPath: (documentsPath?.appending("/\(kVideoFolder)/\(name).mp4"))!)
-            })
-        }
-        
-        for url in urls
-        {
-            let operation = BlockOperation(block: {
-                let data = NSData(contentsOf: url as! URL)
-                self.currentFiles = self.currentFiles + 1
-                let filePath = documentsPath?.appending("/\(kBunchFolder)/").appending((url as! URL).lastPathComponent)
-                data?.write(toFile: filePath!, atomically: true)
-                
+
             })
             completionQueration.addDependency(operation)
         }
@@ -257,16 +283,20 @@ class ManageDownloadTrack: NSObject {
         queue.addOperation(completionQueration)
     }
     
-    func mergeFilesAt(path: String, toPath: String)
+    func mergeFilesAt(path: String, toPath: String, baseURL: String)
     {
         self.mergeFile.delegate = self
-        self.mergeFile.mergeFile(path, andOutput: toPath)
+        self.mergeFile.mergeFile(path, andOutput: toPath, withBaseURL: baseURL)
     }
     func completedDownloadBunchFiles(atPath: String,
                                      withMime mime: String?,
                                      toLocation location: URL)
     {
-        self.downloadCompletely(atPath: atPath, withMime: mime, toLocation: location)
+        if let trackIndex = trackIndexForDownloadTask(downloadTask: atPath)
+        {
+            self.createThumnails(name: location.lastPathComponent)
+            self.reloadCellAt(trackIndex: trackIndex)
+        }
     }
     func downloadCompletely(atPath: String,
                             withMime mime: String?,
@@ -305,18 +335,23 @@ class ManageDownloadTrack: NSObject {
                 } catch let error as NSError {
                     print("Could not copy file to disk: \(error.localizedDescription)")
                 }
+                self.reloadCellAt(trackIndex: trackIndex)
             }
-            DispatchQueue.main.async {
-                ManageDownloadTrack.sharedInstance.tracks.remove(at: IndexPath(row: trackIndex, section: 0).row)
-                self.delegate?.didDownloaded(indexCell: IndexPath(row: trackIndex, section: 0))
-            }
+            
         }
     }
     func downloadCompletely(downloadTask: URLSessionDownloadTask, location:URL)
     {
         // look up the Track in your table view and reload the corresponding cell
         if let url = downloadTask.originalRequest?.url?.absoluteString {
-        self.downloadCompletely(atPath: url, withMime: downloadTask.response?.mimeType, toLocation: location)
+            self.downloadCompletely(atPath: url, withMime: downloadTask.response?.mimeType, toLocation: location)
+        }
+    }
+    func reloadCellAt(trackIndex: Int)
+    {
+        DispatchQueue.main.async {
+            ManageDownloadTrack.sharedInstance.tracks.remove(at: IndexPath(row: trackIndex, section: 0).row)
+            self.delegate?.didDownloaded(indexCell: IndexPath(row: trackIndex, section: 0))
         }
     }
 }
@@ -324,7 +359,7 @@ class ManageDownloadTrack: NSObject {
 extension ManageDownloadTrack: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         // look up the corresponding Download in your active downloads and remove it
-            self.downloadCompletely(downloadTask: downloadTask, location: location)
+        self.downloadCompletely(downloadTask: downloadTask, location: location)
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
@@ -476,9 +511,9 @@ extension URLSession {
     }
 }
 extension ManageDownloadTrack: MergeFilesDelegate {
-    func didFinishMerge() {
+    func didFinishMerge(_ name: String!, fromPath: String!, toLocation: URL!) {
         self.removeAllFilesIn(path:(documentsPath?.appending("/\(kBunchFolder)"))!)
-//        self.completedDownloadBunchFiles(atPath: <#T##String#>, withMime: <#T##String?#>, toLocation: <#T##URL#>)
+        self.completedDownloadBunchFiles(atPath: fromPath, withMime: toLocation.pathExtension, toLocation: toLocation as URL)
     }
     func removeAllFilesIn(path: String)
     {

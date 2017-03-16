@@ -156,7 +156,7 @@ extension NVTWebView: CustomWebViewDelegate
             alert -> Void in
             
             let firstTextField = alertController.textFields![0] as UITextField
-            let newTrack = Track(name: firstTextField.text!, type: "", previewUrl: title)
+            let newTrack = Track(name: firstTextField.text!, type: "", previewUrl: "https://xvideos-im-2a704900-26705979-hls.s.loris.llnwd.net/1489612782/111/395b3636e3b409d5db4c4a7c8a729774/videos/hls/9a/40/a9/9a40a98803302568b54cf0da9f295b2c/hls.m3u8")
             ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
             
             

@@ -90,6 +90,8 @@ class NVTWebViewModel: NSObject{
     }
     func removePageFrom(pageScrollView: HGPageScrollView, atIndex index: Int)
     {
+        let customWebView = self.getPage(indexPage: index)
+        customWebView?.removeObserver(customWebView!, forKeyPath: "estimatedProgress")
         self.myPageDataArray.remove(at: index)
         pageScrollView.deletePages(at: IndexSet(integer: index), animated: true)
         

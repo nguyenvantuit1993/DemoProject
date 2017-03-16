@@ -14,7 +14,7 @@
 
 @implementation MergeFiles
 
-- (void)mergeFile:(NSString *)atPath andOutput:(NSString *)output  {
+- (void)mergeFile:(NSString *)atPath andOutput:(NSString *)output withBaseURL:(NSString *)baseURL {
     //    self.infoLabel.text = @"Exporting...";
     __block NSDate *beginDate = [NSDate date];
     NSError *error;
@@ -42,7 +42,8 @@
             [tsToMP4ExportSession exportAsynchronouslyWithCompletionHandler:^{
                 if (tsToMP4ExportSession.status == KMMediaAssetExportSessionStatusCompleted)
                 {
-                    [self.delegate didFinishMerge];
+
+                    [self.delegate didFinishMerge:output.lastPathComponent fromPath:baseURL toLocation:mp4FileURL];
                     
                     //                    self.infoLabel.text = [NSString stringWithFormat:@"Export %d chunks completed in %d:%d",tsFileCount, [dateComponents minute], [dateComponents second]];
                 }
