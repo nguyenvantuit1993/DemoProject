@@ -79,6 +79,7 @@ static NSString *const VENTouchLockUserDefaultsKeyTouchIDActivated = @"VENTouchL
 
 - (BOOL)isPasscodeValid:(NSString *)passcode
 {
+    
     return [passcode isEqualToString:[self currentPasscode]];
 }
 

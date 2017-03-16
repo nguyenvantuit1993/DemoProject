@@ -10,7 +10,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[VENTouchLock sharedInstance] setKeychainService:@"testService"
+    [[VENTouchLock sharedInstance] setKeychainService:@"media"
                                       keychainAccount:@"testAccount"
                                         touchIDReason:@"Scan your fingerprint to use the app."
                                  passcodeAttemptLimit:5

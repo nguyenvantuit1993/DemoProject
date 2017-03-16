@@ -1,7 +1,7 @@
 #import "CustomVENTouchLockEnterPasscodeViewController.h"
 #import "VENTouchLockPasscodeView.h"
 #import "VENTouchLock.h"
-
+#import "Media-Swift.h"
 NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttemptsCustom = @"VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttempts";
 @interface CustomVENTouchLockEnterPasscodeViewController()
 @property (nonatomic, assign) Boolean isDelete;
@@ -43,6 +43,7 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
 
 - (void)enteredPasscode:(NSString *)passcode
 {
+    
     [super enteredPasscode:passcode];
     if ([self.touchLock isPasscodeValid:passcode]) {
         [[self class] resetPasscodeAttemptHistory];
@@ -53,6 +54,12 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
         }
     }
     else {
+        SettingObjects *settings = [SettingObjects sharedInstance];
+        if(settings.settings.fakeCodeLock == true && [self.touchLock isPasscodeValid:[settings.fakeCodeString  isEqual: @""] ? @"1234":settings.fakeCodeString])
+        {
+            [[self class] resetPasscodeAttemptHistory];
+            [self finishWithResult:YES animated:YES];
+        }
         [self.passcodeView shakeAndVibrateCompletion:^{
             self.passcodeView.title = [self.touchLock appearance].enterPasscodeIncorrectLabelText;
             [self clearPasscode];

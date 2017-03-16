@@ -13,9 +13,11 @@ class NVTWebViewModel: NSObject{
     var myPageDataArray = [CustomWebView]()
     var indexesToDelete, indexesToInsert, indexesToReload: NSMutableIndexSet!
     var manageDataBase: ManageDataBase!
-    override init() {
+    var size: CGSize!
+    init(size: CGSize) {
+        self.size = CGSize(width: size.width * 0.7, height: size.height*0.6)
         self.manageDataBase = ManageDataBase.sharedInstance
-        let webview = CustomWebView(frame: CGRect(x: 0, y: 0, width: 300, height: 400))
+        let webview = CustomWebView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: self.size))
         self.myPageDataArray.append(webview)
     }
     
@@ -85,13 +87,13 @@ class NVTWebViewModel: NSObject{
     }
     func addNewElemnet(index: NSIndexSet)
     {
-        let webview = CustomWebView(frame: CGRect(x: 0, y: 0, width: 300, height: 400))
+        let webview = CustomWebView(frame: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
         self.myPageDataArray.insert(webview, at: myPageDataArray.count)
     }
     func removePageFrom(pageScrollView: HGPageScrollView, atIndex index: Int)
     {
         let customWebView = self.getPage(indexPage: index)
-        customWebView?.removeObserver(customWebView!, forKeyPath: "estimatedProgress")
+        customWebView?.webView.removeObserver(customWebView!, forKeyPath: "estimatedProgress")
         self.myPageDataArray.remove(at: index)
         pageScrollView.deletePages(at: IndexSet(integer: index), animated: true)
         

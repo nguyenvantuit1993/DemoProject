@@ -11,13 +11,13 @@ import CoreData
 import AssetsLibrary
 class NVTWebView: UIViewController{
     var myPageScrollView: HGPageScrollView!
-    var webviewModel = NVTWebViewModel()
+    var webviewModel: NVTWebViewModel!
     var toolBar: BaseToolBar!
     let pageId = "pageId"
-    
+    var verticalConstraint: NSLayoutConstraint! = nil
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        webviewModel = NVTWebViewModel(size: self.view.bounds.size)
         addPageScrollView()
         addToolBar()
     }
@@ -63,7 +63,7 @@ class NVTWebView: UIViewController{
         
         let heightConstraint = NSLayoutConstraint(item: toolBar, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 40)
         
-        let verticalConstraint = NSLayoutConstraint(item: toolBar, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -49)
+        verticalConstraint = NSLayoutConstraint(item: toolBar, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -49)
         
         view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
         toolBar.layoutIfNeeded()
@@ -156,7 +156,7 @@ extension NVTWebView: CustomWebViewDelegate
             alert -> Void in
             
             let firstTextField = alertController.textFields![0] as UITextField
-            let newTrack = Track(name: firstTextField.text!, type: "", previewUrl: "https://xvideos-im-2a704900-26705979-hls.s.loris.llnwd.net/1489612782/111/395b3636e3b409d5db4c4a7c8a729774/videos/hls/9a/40/a9/9a40a98803302568b54cf0da9f295b2c/hls.m3u8")
+            let newTrack = Track(name: firstTextField.text!, type: "", previewUrl: title)
             ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
             
             
@@ -198,6 +198,16 @@ extension NVTWebView: CustomWebViewDelegate
             actionSheet.addAction(button)
         }
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    func activeTabBar()
+    {
+        self.tabBarController?.tabBar.alpha = 1
+        verticalConstraint.constant = -49
+    }
+    func hiddenTabBar()
+    {
+        self.tabBarController?.tabBar.alpha = 0
+        verticalConstraint.constant = 0
     }
 }
 extension NVTWebView: HGPageScrollViewDataSource
@@ -298,6 +308,7 @@ extension NVTWebView: ToolBarDelegate
     }
     func showBrowser()
     {
+        self.activeTabBar()
         self.actionBrowser()
     }
     func showDownloadView()
@@ -307,7 +318,14 @@ extension NVTWebView: ToolBarDelegate
     }
     func zoom()
     {
-        
+        if(self.verticalConstraint.constant == -49)
+        {
+            self.hiddenTabBar()
+        }
+        else
+        {
+            self.activeTabBar()
+        }
     }
     func switchToolBar()
     {

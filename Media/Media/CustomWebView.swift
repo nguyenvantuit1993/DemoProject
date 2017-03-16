@@ -302,6 +302,7 @@ extension CustomWebView: UISearchBarDelegate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         showSearchText()
         loadRequestFromString(string: searchBar.text!)
+        searchBar.text = ""
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         showSearchText()

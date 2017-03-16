@@ -12,20 +12,13 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var defaultBrowserLink: UITextField!
     @IBOutlet weak var switch_SetPassCode: UISwitch!
-    @IBOutlet weak var switch_WifiTransfer: UISwitch!
-    @IBOutlet weak var switch_Backup: UISwitch!
     @IBOutlet weak var switch_PrivateBrowsing: UISwitch!
+    @IBOutlet weak var switch_FakePassCode: UISwitch!
+    @IBOutlet weak var txt_FakeCode: UITextField!
     
     var settingsViewModel = SettingsViewModel()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        URLCache.shared.removeAllCachedResponses()
-        URLCache.shared.diskCapacity = 0
-        URLCache.shared.memoryCapacity = 0
-        for cookie in HTTPCookieStorage.shared.cookies!
-        {
-            print(cookie)
-        }
         showDataFromSettings()
         settingsViewModel.configTouchID()
     }
@@ -46,6 +39,8 @@ class SettingsViewController: UIViewController {
     {
         let dic = settingsViewModel.getData()
         defaultBrowserLink.text = dic[SettingTypes.browser.rawValue] as! String?
+        txt_FakeCode.text = dic[SettingTypes.fakeCodeString.rawValue] as! String?
+        switch_FakePassCode.isOn = (dic[SettingTypes.fakeCodeLock.rawValue] as! Bool?)!
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -53,20 +48,22 @@ class SettingsViewController: UIViewController {
     }
     func getDataFromView() -> Dictionary<String, Any>
     {
+        let fakeCodeString = txt_FakeCode.text!
         return [SettingTypes.browser.rawValue: self.defaultBrowserLink.text!,
                     SettingTypes.passCodeLock.rawValue: self.switch_SetPassCode.isOn,
-                    SettingTypes.wifiTransfer.rawValue: self.switch_WifiTransfer.isOn,
-                    SettingTypes.backup.rawValue: self.switch_Backup.isOn,
+                    SettingTypes.fakeCodeLock.rawValue: self.switch_FakePassCode.isOn,
+                    SettingTypes.fakeCodeString.rawValue: fakeCodeString,
                     SettingTypes.privateBrowsing.rawValue: self.switch_PrivateBrowsing.isOn] as [String : Any]
     }
     @IBAction func userTappedSetPasscode(_ sender: UISwitch) {
         self.settingsViewModel.setPassCode()
     }
+    @IBAction func userTappedSetFakePass(_ sender: AnyObject) {
+    }
 
 }
 extension SettingsViewController: SettingsViewModelDelegate
 {
-
     func configureTouchIDToogle(enable: Bool) {
         switch_SetPassCode.isOn = enable
     }

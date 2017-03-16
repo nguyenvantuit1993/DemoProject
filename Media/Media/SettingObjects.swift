@@ -9,8 +9,10 @@
 import Foundation
 import CoreData
 
-class SettingObjects{
+class SettingObjects: NSObject{
     var passCodeLock: Bool!
+    var fakeCodeLock: Bool!
+    var fakeCodeString: String?
     var removeAds: Bool!
     var retrievePurchases: Bool!
     var rateApp: Bool!
@@ -28,7 +30,8 @@ class SettingObjects{
     }()
     //MARK: Init
     
-    init() {
+    override init() {
+        super.init()
         getData()
     }
     func getData()
@@ -37,8 +40,6 @@ class SettingObjects{
         {
             settings = currentSettings
         }
-        
-        
         getDataToProperties()
     }
     func getDataToProperties()
@@ -46,6 +47,8 @@ class SettingObjects{
 
         let settings = self.settings
         passCodeLock = settings?.passCodeLock ?? false
+        fakeCodeLock = settings?.fakeCodeLock ?? false
+        fakeCodeString = settings?.fakeCodeString ?? ""
         removeAds = settings?.removeAds ?? false
         retrievePurchases = settings?.retrievePurchases ?? false
         rateApp = settings?.rateApp ?? false
@@ -73,6 +76,8 @@ class SettingObjects{
         }
         //3
         settings.passCodeLock = self.passCodeLock
+        settings.fakeCodeLock = self.fakeCodeLock
+        settings.fakeCodeString = self.fakeCodeString
         settings.removeAds = self.removeAds
         settings.retrievePurchases = self.retrievePurchases
         settings.rateApp = self.rateApp

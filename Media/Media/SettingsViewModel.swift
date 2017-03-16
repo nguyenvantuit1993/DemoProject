@@ -12,6 +12,8 @@ import UIKit
 enum SettingTypes: String
 {
     case passCodeLock,
+    fakeCodeLock,
+    fakeCodeString,
     removeAds,
     retrievePurchases,
     rateApp,
@@ -34,6 +36,8 @@ class SettingsViewModel{
     {
         let settings = SettingObjects.sharedInstance
         let dic = [SettingTypes.passCodeLock.rawValue :settings.passCodeLock,
+                   SettingTypes.fakeCodeLock.rawValue :settings.fakeCodeLock,
+                   SettingTypes.fakeCodeString.rawValue :settings.fakeCodeString,
                    SettingTypes.removeAds.rawValue:settings.removeAds,
                    SettingTypes.retrievePurchases.rawValue:settings.retrievePurchases,
                    SettingTypes.rateApp.rawValue:settings.rateApp,
@@ -53,6 +57,12 @@ class SettingsViewModel{
             switch key {
             case SettingTypes.passCodeLock.rawValue:
                 settings.passCodeLock = (value as? Bool)!     
+                break
+            case SettingTypes.fakeCodeLock.rawValue:
+                settings.fakeCodeLock = (value as? Bool)!
+                break
+            case SettingTypes.fakeCodeString.rawValue:
+                settings.fakeCodeString = (value as? String)!
                 break
             case SettingTypes.removeAds.rawValue:
                 settings.removeAds = (value as? Bool)!
