@@ -19,9 +19,9 @@ class MediasView: TableViewAndSearchBar {
         searchController.searchResultsUpdater = self
     }
     override func viewWillAppear(_ animated: Bool) {
-        mediasViewModel = MediasViewModel(withFolderPath: URL(string:documentsPath! + "/\(kVideoFolder)")!)
+//        mediasViewModel = MediasViewModel(withFolderPath: URL(string:documentsPath! + "/\(kVideoFolder)")!)
         super.viewWillAppear(animated)
-        addButtonList()
+//        addButtonList()
     }
     func playVideo(atIndex: Int)
     {
@@ -35,11 +35,11 @@ class MediasView: TableViewAndSearchBar {
     func addButtonList()
     {
         let listButton : UIBarButtonItem = UIBarButtonItem(title: "List", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediasView.showPlayList))
-        var buttons = self.tabBarController?.navigationItem.rightBarButtonItems
+        var buttons = self.navigationController?.navigationItem.rightBarButtonItems
         if((buttons?.count)! > 0)
         {
             buttons?.append(listButton)
-            self.tabBarController?.navigationItem.rightBarButtonItems = buttons
+            self.navigationController?.navigationItem.rightBarButtonItems = buttons
         }
     }
     func showPlayList()
@@ -108,23 +108,23 @@ extension MediasView{
         }
         return mediasViewModel.count()
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        var imagage: UIImage!
-        var text: String!
-        if searchController.isActive && searchController.searchBar.text != "" {
-            imagage = UIImage(data: mediasViewModel.getMedia(withIndex: indexPath.row, isFilter: true))
-            text = mediasViewModel.getNameFilteredItem(atIndex: indexPath.row)
-        }
-        else
-        {
-            imagage = UIImage(data: mediasViewModel.getMedia(withIndex: indexPath.row, isFilter: false))
-            text = mediasViewModel.getNameItem(atIndex: indexPath.row)
-        }
-        cell.imageView?.image = imagage
-        cell.textLabel?.text = text
-        return cell
-    }
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+//        var imagage: UIImage!
+//        var text: String!
+//        if searchController.isActive && searchController.searchBar.text != "" {
+//            imagage = UIImage(data: mediasViewModel.getMedia(withIndex: indexPath.row, isFilter: true))
+//            text = mediasViewModel.getNameFilteredItem(atIndex: indexPath.row)
+//        }
+//        else
+//        {
+//            imagage = UIImage(data: mediasViewModel.getMedia(withIndex: indexPath.row, isFilter: false))
+//            text = mediasViewModel.getNameItem(atIndex: indexPath.row)
+//        }
+//        cell.imageView?.image = imagage
+//        cell.textLabel?.text = text
+//        return cell
+//    }
 }
 extension MediasView: UIDocumentInteractionControllerDelegate
 {

@@ -17,7 +17,7 @@ class OtherFilesView: TableViewAndSearchBar {
         searchController.searchResultsUpdater = self
     }
     override func viewWillAppear(_ animated: Bool) {
-        otherFilesViewModel = OtherFilesViewModel(withFolderPath: URL(string:documentsPath! + "/\(kOtherFolder)")!)
+//        otherFilesViewModel = OtherFilesViewModel(withFolderPath: URL(string:documentsPath! + "/\(kOtherFolder)")!)
         super.viewWillAppear(animated)
     }
     func showContentFile(url: URL?)
@@ -50,23 +50,23 @@ extension OtherFilesView
         }
         return otherFilesViewModel.count()
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        var imagage: UIImage!
-        var text: String!
-        if searchController.isActive && searchController.searchBar.text != "" {
-            imagage = UIImage(data: otherFilesViewModel.getMedia(withIndex: indexPath.row, isFilter: true))
-            text = otherFilesViewModel.getNameFilteredItem(atIndex: indexPath.row)
-        }
-        else
-        {
-            imagage = UIImage(data: otherFilesViewModel.getMedia(withIndex: indexPath.row, isFilter: false))
-            text = otherFilesViewModel.getNameItem(atIndex: indexPath.row)
-        }
-        cell.imageView?.image = imagage
-        cell.textLabel?.text = text
-        return cell
-    }
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+//        var imagage: UIImage!
+//        var text: String!
+//        if searchController.isActive && searchController.searchBar.text != "" {
+//            imagage = UIImage(data: otherFilesViewModel.getMedia(withIndex: indexPath.row, isFilter: true))
+//            text = otherFilesViewModel.getNameFilteredItem(atIndex: indexPath.row)
+//        }
+//        else
+//        {
+//            imagage = UIImage(data: otherFilesViewModel.getMedia(withIndex: indexPath.row, isFilter: false))
+//            text = otherFilesViewModel.getNameItem(atIndex: indexPath.row)
+//        }
+//        cell.imageView?.image = imagage
+//        cell.textLabel?.text = text
+//        return cell
+//    }
 }
 extension OtherFilesView: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate

@@ -14,13 +14,9 @@ class MediasViewModel: FileManagerMedia {
     override init()
     {
         super.init()
-        isImageView = .Video
+        type = .Video
     }
-    override init(withFolderPath folderPath: URL) {
-        super.init(withFolderPath: folderPath)
-        isImageView = .Video
-        getListFiles()
-    }
+
     override func saveMediaToCameraRoll(atIndex: Int) {
         PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.getSourcePath(atIndex: atIndex))

@@ -23,7 +23,7 @@ class TableViewAndSearchBar: BaseClearBarItemsTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadTableView()
-        addBarButtons()
+//        addBarButtons()
     }
     func reloadTableView()
     {
@@ -32,7 +32,7 @@ class TableViewAndSearchBar: BaseClearBarItemsTableViewController {
     func addBarButtons()
     {
         let edit : UIBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TableViewAndSearchBar.edit))
-        self.tabBarController?.navigationItem.rightBarButtonItems = [edit]
+        self.navigationController!.navigationItem.rightBarButtonItems = [edit]
     }
     func edit()
     {

@@ -12,6 +12,6 @@ import UIKit
 class BaseClearBarItemsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.navigationItem.rightBarButtonItems = nil
+//        self.tabBarController?.navigationItem.rightBarButtonItems = nil
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class CustomCollectionCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var fileName: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

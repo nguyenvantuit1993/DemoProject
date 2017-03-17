@@ -10,16 +10,10 @@ import Foundation
 import UIKit
 import Photos
 
-class ImagesViewModel: FileManagerMedia{
+class MediaViewModel: FileManagerMedia{
     override init()
     {
         super.init()
-        isImageView = .Image
-    }
-    override init(withFolderPath folderPath: URL) {
-        super.init(withFolderPath: folderPath)
-        isImageView = .Image
-        getListFiles()
     }
     override func saveMediaToCameraRoll(atIndex: Int) {
         PHPhotoLibrary.shared().performChanges({
@@ -35,25 +29,30 @@ class ImagesViewModel: FileManagerMedia{
 
 class FileManagerMedia
 {
-    private var items:[Item]!
+    private var items = [Item]()
     private var filteredItems:[Item]!
     let videoExtentions = ["flv", "mp4", "m3u8", "ts", "3gp", "mov", "avi", "wmv"]
     let imageExtentions = ["gif", "ico", "jpg", "svg", "tif", "webp"]
-    var isImageView = MimeTypes.Image
+    var type = MimeTypes.Image
     var folderPath: URL!
     init() {
     }
-    init(withFolderPath folderPath: URL) {
+    init(withFolderPath folderPath: URL, type: MimeTypes) {
         self.folderPath = folderPath
+        self.type = type
+        
     }
     func filterContentForSearchText(searchText: String, complete: ()->()) {
-        filteredItems = items.filter({( candy : Item) -> Bool in
-            return candy.name.lowercased().contains(searchText.lowercased())
+        filteredItems = items.filter({( item : Item) -> Bool in
+            return item.getNameToShow().lowercased().contains(searchText.lowercased())
         })
         complete()
     }
-    func getListFiles()
+    func getListFiles(folderPath: URL, type: MimeTypes)
     {
+        self.folderPath = folderPath
+        self.type = type
+        
         var directoryContents = [URL]()
         do {
             // Get the directory contents urls (including subfolders urls)
@@ -61,8 +60,7 @@ class FileManagerMedia
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        
-        items = addItemToShow(urls:removeNamesInCorrectFormat(withURLs: directoryContents))
+        items.append(contentsOf: addItemToShow(urls:removeNamesInCorrectFormat(withURLs: directoryContents)))
     }
     
     private func removeNamesInCorrectFormat(withURLs URLs:[URL]) -> [URL]
@@ -87,17 +85,17 @@ class FileManagerMedia
             let name = (url.lastPathComponent as NSString).deletingPathExtension
             var item = Item()
             
-            switch isImageView {
+            switch type {
             case .Image:
-                item = Item(name: name, filePath: url)
+                item = Item(name: name, filePath: url, type: type)
                 break
             case .Video:
                 let thumbPath = ("\(self.folderPath.absoluteString)/\(kVideoThumbs)/\(name).png")
                 print(thumbPath)
-                item = Item(name: name, filePath: url, thumbPath: URL(fileURLWithPath: thumbPath))
+                item = Item(name: name, filePath: url, thumbPath: URL(fileURLWithPath: thumbPath), type: type)
                 break
             default:
-                item = Item(name: name, filePath: url, thumbName: nameUnKnown(extention: url.pathExtension))
+                item = Item(name: name, filePath: url, thumbName: nameUnKnown(extention: url.pathExtension), type: type)
                 break
             }
             items.append(item)
@@ -126,37 +124,37 @@ class FileManagerMedia
     }
     func getSourcePath(atIndex index: Int) -> URL
     {
-        return self.items[index].filePath
+        return self.items[index].getFilePath()
     }
     func getNameFilteredItem(atIndex index: Int) -> String
     {
-        return self.filteredItems[index].name
+        return self.filteredItems[index].getNameToShow()
     }
 
     func getNameItem(atIndex index: Int) -> String
     {
-        return self.items[index].name
+        return self.items[index].getNameToShow()
     }
     func getMedia(withIndex index: Int, isFilter: Bool) -> Data
     {
-        var filePath: URL!
-        switch isImageView {
-        case .Image:
-            filePath = items[index].filePath
-            break
-        case .Video:
-            filePath = isFilter == true ? filteredItems[index].thumbPath:items[index].thumbPath
-            break
-        default :
-            filePath = nil
-            break
+        var item: Item!
+        if isFilter == true
+        {
+            item = self.filteredItems[index]
         }
-        
-        return try! filePath == nil ? UIImagePNGRepresentation(UIImage(named: isFilter == true ? filteredItems[index].thumbName:items[index].thumbName)!)! : Data(contentsOf:filePath)
+        else
+        {
+            item = self.items[index]
+        }
+        return item.getImageToView()
     }
     func getItems() -> [Item]
     {
         return self.items
+    }
+    func getTypeAt(index: Int) -> MimeTypes
+    {
+        return self.items[index].getType()
     }
     func count() -> Int
     {

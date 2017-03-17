@@ -13,13 +13,9 @@ class OtherFilesViewModel:FileManagerMedia{
     override init()
     {
         super.init()
-        isImageView = .Other
+        type = .Other
     }
-    override init(withFolderPath folderPath: URL) {
-        super.init(withFolderPath: folderPath)
-        isImageView = .Other
-        getListFiles()
-    }
+
     func getSourcePathValid(atIndex index: Int) -> URL? {
         let url = super.getSourcePath(atIndex: index)
         return validMimeFile(url: url)

@@ -90,7 +90,7 @@
 		CBD33B361E554B510004D374 /* TTOpenInAppActivity8.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2E1E554B510004D374 /* TTOpenInAppActivity8.png */; };
 		CBD33B371E554B510004D374 /* TTOpenInAppActivity8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2F1E554B510004D374 /* TTOpenInAppActivity8@2x.png */; };
 		CBD33B381E554B510004D374 /* TTOpenInAppActivity8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B301E554B510004D374 /* TTOpenInAppActivity8@3x.png */; };
-		CBFB10001E497FF500992989 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB0FFF1E497FF500992989 /* ImagesView.swift */; };
+		CBFB10001E497FF500992989 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB0FFF1E497FF500992989 /* MediaView.swift */; };
 		CBFB10021E49835200992989 /* BaseClearBarItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB10011E49835200992989 /* BaseClearBarItemsViewController.swift */; };
 		CBFB10041E49845700992989 /* BaseClearBarItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB10031E49845700992989 /* BaseClearBarItemsTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -212,7 +212,7 @@
 		CBD33B2E1E554B510004D374 /* TTOpenInAppActivity8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity8.png; sourceTree = "<group>"; };
 		CBD33B2F1E554B510004D374 /* TTOpenInAppActivity8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity8@2x.png"; sourceTree = "<group>"; };
 		CBD33B301E554B510004D374 /* TTOpenInAppActivity8@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity8@3x.png"; sourceTree = "<group>"; };
-		CBFB0FFF1E497FF500992989 /* ImagesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
+		CBFB0FFF1E497FF500992989 /* MediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		CBFB10011E49835200992989 /* BaseClearBarItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClearBarItemsViewController.swift; sourceTree = "<group>"; };
 		CBFB10031E49845700992989 /* BaseClearBarItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClearBarItemsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -493,7 +493,7 @@
 			children = (
 				CB3781391E68332600486943 /* ImageCell.swift */,
 				B1E216F11E67B0AE0045A784 /* DetailImageView.swift */,
-				CBFB0FFF1E497FF500992989 /* ImagesView.swift */,
+				CBFB0FFF1E497FF500992989 /* MediaView.swift */,
 			);
 			name = ImagesView;
 			sourceTree = "<group>";
@@ -832,7 +832,7 @@
 				CB3651501E602EA5006EFAB6 /* SettingObjects.swift in Sources */,
 				971ABB241E78EA0400C91F66 /* M3U8MasterPlaylist.m in Sources */,
 				CB5119941E56B8A2009D38E9 /* SettingsViewModel.swift in Sources */,
-				CBFB10001E497FF500992989 /* ImagesView.swift in Sources */,
+				CBFB10001E497FF500992989 /* MediaView.swift in Sources */,
 				976CFB891E7A7EE60072B820 /* VENTouchLockPasscodeViewController.m in Sources */,
 				B1E216F61E67B0AE0045A784 /* DetailImageView.swift in Sources */,
 				971ABB231E78EA0400C91F66 /* M3U8ExtXStreamInfList.m in Sources */,
