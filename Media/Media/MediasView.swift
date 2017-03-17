@@ -55,7 +55,7 @@ extension MediasView
     }
     func showActionSheet(index: Int)
     {
-        let actionSheet = UIAlertController(title: mediasViewModel.getNameItem(atIndex: index), message: "", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: mediasViewModel.getNameItem(atIndex: index, isFilter: searchController.isActive ), message: "", preferredStyle: .actionSheet)
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
             //Just dismiss the action sheet
         }

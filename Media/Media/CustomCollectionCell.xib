@@ -14,11 +14,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="70" height="91"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u9m-zx-9fM">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oos-4U-OoU">
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u9m-zx-9fM"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlayBtn" translatesAutoresizingMaskIntoConstraints="NO" id="OXg-eT-WTr">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="hjg-9w-d6a"/>
+                                    <constraint firstAttribute="width" constant="30" id="yzk-Y9-vuj"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="70" id="KIZ-1d-ttY"/>
+                            <constraint firstItem="u9m-zx-9fM" firstAttribute="leading" secondItem="oos-4U-OoU" secondAttribute="leading" id="4hV-NY-4i7"/>
+                            <constraint firstAttribute="trailing" secondItem="u9m-zx-9fM" secondAttribute="trailing" id="7Op-yk-Dw7"/>
+                            <constraint firstAttribute="bottom" secondItem="u9m-zx-9fM" secondAttribute="bottom" id="7jG-x8-sLK"/>
+                            <constraint firstItem="u9m-zx-9fM" firstAttribute="top" secondItem="oos-4U-OoU" secondAttribute="top" id="Cg4-kb-WvZ"/>
+                            <constraint firstItem="OXg-eT-WTr" firstAttribute="centerY" secondItem="oos-4U-OoU" secondAttribute="centerY" id="hgs-Qn-Ym7"/>
+                            <constraint firstAttribute="height" constant="70" id="koE-zJ-5m4"/>
+                            <constraint firstItem="OXg-eT-WTr" firstAttribute="centerX" secondItem="oos-4U-OoU" secondAttribute="centerX" id="wjS-J4-qnb"/>
                         </constraints>
-                    </imageView>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtZ-4D-Puq">
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -27,20 +43,24 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="gtZ-4D-Puq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Nm7-ws-T8m"/>
-                <constraint firstItem="u9m-zx-9fM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Rz8-63-Ou0"/>
-                <constraint firstItem="gtZ-4D-Puq" firstAttribute="top" secondItem="u9m-zx-9fM" secondAttribute="bottom" id="VOW-zY-owf"/>
-                <constraint firstItem="u9m-zx-9fM" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ahN-MT-YYO"/>
-                <constraint firstAttribute="trailing" secondItem="gtZ-4D-Puq" secondAttribute="trailing" id="eTf-Va-6be"/>
-                <constraint firstAttribute="bottom" secondItem="gtZ-4D-Puq" secondAttribute="bottom" id="hMu-Wy-tQC"/>
-                <constraint firstAttribute="trailing" secondItem="u9m-zx-9fM" secondAttribute="trailing" id="rTl-Ht-V6M"/>
+                <constraint firstItem="oos-4U-OoU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="3oB-I8-KO1"/>
+                <constraint firstAttribute="trailing" secondItem="oos-4U-OoU" secondAttribute="trailing" id="9M0-rc-eZu"/>
+                <constraint firstAttribute="bottom" secondItem="gtZ-4D-Puq" secondAttribute="bottom" id="9an-wR-iGf"/>
+                <constraint firstItem="gtZ-4D-Puq" firstAttribute="top" secondItem="oos-4U-OoU" secondAttribute="bottom" id="Gq2-K9-6pc"/>
+                <constraint firstItem="gtZ-4D-Puq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Mfs-nv-Rm7"/>
+                <constraint firstItem="oos-4U-OoU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bmb-3e-wtb"/>
+                <constraint firstAttribute="trailing" secondItem="gtZ-4D-Puq" secondAttribute="trailing" id="pGU-7A-mN2"/>
             </constraints>
             <size key="customSize" width="141" height="116"/>
             <connections>
                 <outlet property="fileName" destination="gtZ-4D-Puq" id="R0e-Sm-1kX"/>
                 <outlet property="imageView" destination="u9m-zx-9fM" id="4jB-WS-woC"/>
+                <outlet property="playView" destination="OXg-eT-WTr" id="f4I-W4-wwN"/>
             </connections>
             <point key="canvasLocation" x="70" y="39.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="PlayBtn" width="30" height="30"/>
+    </resources>
 </document>

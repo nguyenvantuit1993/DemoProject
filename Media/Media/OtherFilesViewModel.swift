@@ -16,16 +16,16 @@ class OtherFilesViewModel:FileManagerMedia{
         type = .Other
     }
 
-    func getSourcePathValid(atIndex index: Int) -> URL? {
-        let url = super.getSourcePath(atIndex: index)
-        return validMimeFile(url: url)
-    }
-    func validMimeFile(url: URL) -> URL?
-    {
-        if(extentionSupported.contains(url.pathExtension))
-        {
-            return url
-        }
-        return nil
-    }
+//    func getSourcePathValid(atIndex index: Int) -> URL? {
+//        let url = super.getSourcePath(atIndex: index)
+//        return validMimeFile(url: url)
+//    }
+//    func validMimeFile(url: URL) -> URL?
+//    {
+//        if(extentionSupported.contains(url.pathExtension))
+//        {
+//            return url
+//        }
+//        return nil
+//    }
 }

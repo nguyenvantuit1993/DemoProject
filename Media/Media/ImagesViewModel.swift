@@ -31,22 +31,40 @@ class FileManagerMedia
 {
     private var items = [Item]()
     private var filteredItems:[Item]!
+    let otherExtentions = ["doc", "docs", "txt", "pdf", "rtf", "ppt", "html", "htm", "xls", "xlsx", "xlc"]
     let videoExtentions = ["flv", "mp4", "m3u8", "ts", "3gp", "mov", "avi", "wmv"]
     let imageExtentions = ["gif", "ico", "jpg", "svg", "tif", "webp"]
     var type = MimeTypes.Image
     var folderPath: URL!
     init() {
     }
+    
     init(withFolderPath folderPath: URL, type: MimeTypes) {
         self.folderPath = folderPath
         self.type = type
         
+    }
+    func getSourcePathValid(atIndex index: Int) -> URL? {
+        let url = getSourcePath(atIndex: index)
+        return validMimeFile(url: url)
+    }
+    func validMimeFile(url: URL) -> URL?
+    {
+        if(otherExtentions.contains(url.pathExtension))
+        {
+            return url
+        }
+        return nil
     }
     func filterContentForSearchText(searchText: String, complete: ()->()) {
         filteredItems = items.filter({( item : Item) -> Bool in
             return item.getNameToShow().lowercased().contains(searchText.lowercased())
         })
         complete()
+    }
+    func resetData()
+    {
+        self.items.removeAll()
     }
     func getListFiles(folderPath: URL, type: MimeTypes)
     {
@@ -119,7 +137,13 @@ class FileManagerMedia
     }
     func saveMediaToCameraRoll(atIndex: Int)
     {
-        
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.getSourcePath(atIndex: atIndex))
+        }) { completed, error in
+            if completed {
+                print("Video is saved!")
+            }
+        }
         
     }
     func getSourcePath(atIndex index: Int) -> URL
@@ -131,9 +155,9 @@ class FileManagerMedia
         return self.filteredItems[index].getNameToShow()
     }
 
-    func getNameItem(atIndex index: Int) -> String
+    func getNameItem(atIndex index: Int, isFilter: Bool) -> String
     {
-        return self.items[index].getNameToShow()
+        return isFilter == true ? self.filteredItems[index].getNameToShow() : self.items[index].getNameToShow()
     }
     func getMedia(withIndex index: Int, isFilter: Bool) -> Data
     {
@@ -148,9 +172,9 @@ class FileManagerMedia
         }
         return item.getImageToView()
     }
-    func getItems() -> [Item]
+    func getItems(isFilter: Bool) -> [Item]
     {
-        return self.items
+        return isFilter == true ? self.filteredItems : self.items
     }
     func getTypeAt(index: Int) -> MimeTypes
     {

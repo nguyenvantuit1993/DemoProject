@@ -488,14 +488,14 @@
 			name = OtherFilesView;
 			sourceTree = "<group>";
 		};
-		CB51198D1E56B7AF009D38E9 /* ImagesView */ = {
+		CB51198D1E56B7AF009D38E9 /* MediaView */ = {
 			isa = PBXGroup;
 			children = (
 				CB3781391E68332600486943 /* ImageCell.swift */,
 				B1E216F11E67B0AE0045A784 /* DetailImageView.swift */,
 				CBFB0FFF1E497FF500992989 /* MediaView.swift */,
 			);
-			name = ImagesView;
+			name = MediaView;
 			sourceTree = "<group>";
 		};
 		CB51198E1E56B7BB009D38E9 /* WebView */ = {
@@ -577,7 +577,7 @@
 				CB5119901E56B7D1009D38E9 /* SettingsView */,
 				CB51198F1E56B7C2009D38E9 /* BaseViews */,
 				CB51198E1E56B7BB009D38E9 /* WebView */,
-				CB51198D1E56B7AF009D38E9 /* ImagesView */,
+				CB51198D1E56B7AF009D38E9 /* MediaView */,
 				CB51198C1E56B7A6009D38E9 /* OtherFilesView */,
 				CB51198B1E56B798009D38E9 /* MediasView */,
 				CBD33B271E554B3F0004D374 /* TTOpenInAppActivity */,
