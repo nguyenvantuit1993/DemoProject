@@ -83,11 +83,11 @@ class FileManagerMedia
     
     private func removeNamesInCorrectFormat(withURLs URLs:[URL]) -> [URL]
     {
-        let extentions = [".DS_Store", ""]
+        let HiddenFiles = [kVideoThumbs, ".DS_Store"]
         var currentURLs = URLs
         for url in URLs
         {
-            if (extentions.contains(url.pathExtension))
+            if (HiddenFiles.contains(url.lastPathComponent))
             {
                 currentURLs.remove(at: currentURLs.index(of: url)!)
             }
@@ -112,8 +112,11 @@ class FileManagerMedia
                 print(thumbPath)
                 item = Item(name: name, filePath: url, thumbPath: URL(fileURLWithPath: thumbPath), type: type)
                 break
-            default:
+            case .Other:
                 item = Item(name: name, filePath: url, thumbName: nameUnKnown(extention: url.pathExtension), type: type)
+                break
+            default:
+                item = Item(name: name, filePath: url, thumbName: kFolderIcon, type: type)
                 break
             }
             items.append(item)
@@ -154,12 +157,12 @@ class FileManagerMedia
     {
         return self.filteredItems[index].getNameToShow()
     }
-
+    
     func getNameItem(atIndex index: Int, isFilter: Bool) -> String
     {
         return isFilter == true ? self.filteredItems[index].getNameToShow() : self.items[index].getNameToShow()
     }
-    func getMedia(withIndex index: Int, isFilter: Bool) -> Data
+    func getMedia(withIndex index: Int, isFilter: Bool) -> Data?
     {
         var item: Item!
         if isFilter == true

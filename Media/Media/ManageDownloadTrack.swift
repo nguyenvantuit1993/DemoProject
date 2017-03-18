@@ -125,9 +125,7 @@ class ManageDownloadTrack: NSObject {
             imgGenerator.appliesPreferredTrackTransform = true
             let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
             let thumbnail = UIImage(cgImage: cgImage)
-            try? UIImagePNGRepresentation(thumbnail)!.write(to: URL(fileURLWithPath: thumnailPath))
-            // thumbnail here
-            
+            try? UIImagePNGRepresentation(thumbnail)!.write(to: URL(fileURLWithPath: thumnailPath))  
         } catch let error {
             print("*** Error generating thumbnail: \(error.localizedDescription)")
         }
@@ -180,6 +178,8 @@ class ManageDownloadTrack: NSObject {
             break
         case .Other: folderName = kOtherFolder
             break
+        default:
+            break
         }
         
         return (folderName, extentionFile)
@@ -221,21 +221,7 @@ class ManageDownloadTrack: NSObject {
         return nil
     }
     
-    func randomString(length: Int) -> String {
-        
-        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let len = UInt32(letters.length)
-        
-        var randomString = ""
-        
-        for _ in 0 ..< length {
-            let rand = arc4random_uniform(len)
-            var nextChar = letters.character(at: Int(rand))
-            randomString += NSString(characters: &nextChar, length: 1) as String
-        }
-        
-        return randomString
-    }
+    
     func createFolderWithPath(path: String)
     {
         do {
@@ -246,7 +232,7 @@ class ManageDownloadTrack: NSObject {
     }
     func downloadBunchFiles(urls: NSArray, baseURL: String, name: String)
     {
-        let atPath = (documentsPath?.appending("/\(kBunchFolder)/sub\(self.randomString(length: 10))/"))!
+        let atPath = (documentsPath?.appending("/\(kBunchFolder)/sub\(String().randomString(length: 10))/"))!
         self.createFolderWithPath(path: atPath)
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 4
@@ -526,5 +512,23 @@ extension ManageDownloadTrack: MergeFilesDelegate {
         } catch let error as NSError {
             print("Could not clear temp folder: \(error.debugDescription)")
         }
+    }
+}
+extension String
+{
+    func randomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
     }
 }

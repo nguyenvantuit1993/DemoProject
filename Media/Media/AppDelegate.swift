@@ -39,15 +39,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             return
         }
+        let userFolderPath = documentsPath?.appending("/\(kUserFolders)")
         let bunchFolderPath = documentsPath?.appending("/\(kBunchFolder)")
         let imageFolderPath = documentsPath?.appending("/\(kImageFolder)")
         let otherFolderPath = documentsPath?.appending("/\(kOtherFolder)")
         let thumbFolderPath = videoFolderPath?.appending("/\(kVideoThumbs)")
-        createFolderWithPath(path: bunchFolderPath!)
-        createFolderWithPath(path: videoFolderPath!)
-        createFolderWithPath(path: imageFolderPath!)
-        createFolderWithPath(path: thumbFolderPath!)
-        createFolderWithPath(path: otherFolderPath!)
+        NVT_FileManager.createFolderWithPath(path: userFolderPath!)
+        NVT_FileManager.createFolderWithPath(path: bunchFolderPath!)
+        NVT_FileManager.createFolderWithPath(path: videoFolderPath!)
+        NVT_FileManager.createFolderWithPath(path: imageFolderPath!)
+        NVT_FileManager.createFolderWithPath(path: thumbFolderPath!)
+        NVT_FileManager.createFolderWithPath(path: otherFolderPath!)
     }
     func createFolderWithPath(path: String)
     {

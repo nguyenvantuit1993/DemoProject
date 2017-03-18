@@ -12,12 +12,15 @@ let kVideoFolder = "Videos"
 let kVideoThumbs = "VideoThumbs"
 let kImageFolder = "Images"
 let kOtherFolder = "Others"
+let kUserFolders = "UserFolders"
 let kHtmlPath = "http"
 let kBunchFolder = "BunchFiles"
+let kFolderIcon = "Folder"
 let kGoogleSearchLink = "http://www.google.com/search?q="
 enum MimeTypes: Int {
     case Image = 1
     case Video
+    case Folder
     case Other
 }
 enum CompassPoint: Int {

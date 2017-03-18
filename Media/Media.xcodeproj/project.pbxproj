@@ -64,6 +64,8 @@
 		CB3EEE481E7D1EBE00A1D576 /* VENTouchLockPasscodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3EEE3E1E7D1EBE00A1D576 /* VENTouchLockPasscodeView.xib */; };
 		CB3EEE501E7D1F1300A1D576 /* FakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3EEE4E1E7D1F1200A1D576 /* FakeView.m */; };
 		CB3EEE511E7D1F1300A1D576 /* FakeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3EEE4F1E7D1F1200A1D576 /* FakeView.xib */; };
+		CB3EEE5E1E7D39B000A1D576 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EEE5D1E7D39B000A1D576 /* FileManager.swift */; };
+		CB3EEE611E7D3C1500A1D576 /* DetailFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EEE601E7D3C1500A1D576 /* DetailFolder.swift */; };
 		CB4180511E5ADF0F00283B28 /* OtherFilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4180501E5ADF0F00283B28 /* OtherFilesViewModel.swift */; };
 		CB4180541E5AFE3000283B28 /* DetailFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4180531E5AFE3000283B28 /* DetailFile.swift */; };
 		CB4DB6661E58527500F6F640 /* ManageDownloadTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4DB6651E58527500F6F640 /* ManageDownloadTrack.swift */; };
@@ -183,6 +185,8 @@
 		CB3EEE4D1E7D1F1200A1D576 /* FakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeView.h; sourceTree = "<group>"; };
 		CB3EEE4E1E7D1F1200A1D576 /* FakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeView.m; sourceTree = "<group>"; };
 		CB3EEE4F1E7D1F1200A1D576 /* FakeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FakeView.xib; sourceTree = "<group>"; };
+		CB3EEE5D1E7D39B000A1D576 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		CB3EEE601E7D3C1500A1D576 /* DetailFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFolder.swift; sourceTree = "<group>"; };
 		CB4180501E5ADF0F00283B28 /* OtherFilesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherFilesViewModel.swift; sourceTree = "<group>"; };
 		CB4180531E5AFE3000283B28 /* DetailFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFile.swift; sourceTree = "<group>"; };
 		CB4DB6651E58527500F6F640 /* ManageDownloadTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageDownloadTrack.swift; sourceTree = "<group>"; };
@@ -366,6 +370,7 @@
 		CB364BFB1E49DD3F00C10D91 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CB3EEE5C1E7D399D00A1D576 /* FileManager */,
 				CB3EEE271E7D1EBE00A1D576 /* VENTouchLock */,
 				971ABB061E78E9BB00C91F66 /* M3U8Paser */,
 				971ABB281E78F8E300C91F66 /* MergeFiles */,
@@ -437,6 +442,22 @@
 				CB3EEE3E1E7D1EBE00A1D576 /* VENTouchLockPasscodeView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CB3EEE5C1E7D399D00A1D576 /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				CB3EEE5D1E7D39B000A1D576 /* FileManager.swift */,
+			);
+			name = FileManager;
+			sourceTree = "<group>";
+		};
+		CB3EEE5F1E7D3BEA00A1D576 /* DetailFolder */ = {
+			isa = PBXGroup;
+			children = (
+				CB3EEE601E7D3C1500A1D576 /* DetailFolder.swift */,
+			);
+			name = DetailFolder;
 			sourceTree = "<group>";
 		};
 		CB4180521E5AFE1000283B28 /* DetailFile */ = {
@@ -569,6 +590,7 @@
 		CB80C8051E49735C00690D4D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CB3EEE5F1E7D3BEA00A1D576 /* DetailFolder */,
 				976CFB9B1E7A95100072B820 /* BasicViewController.swift */,
 				CB4180521E5AFE1000283B28 /* DetailFile */,
 				CB4DB6691E5859A300F6F640 /* BookMark */,
@@ -812,6 +834,7 @@
 				971ABB271E78EA0400C91F66 /* M3U8MediaPlaylist.m in Sources */,
 				CB3EEE3F1E7D1EBE00A1D576 /* UIViewController+VENTouchLock.m in Sources */,
 				971ABB211E78EA0400C91F66 /* M3U8ExtXMediaList.m in Sources */,
+				CB3EEE611E7D3C1500A1D576 /* DetailFolder.swift in Sources */,
 				CB8294721E5410860013A064 /* CustomCollectionCell.swift in Sources */,
 				CB9E34491E63E1040004A13B /* BookMarkObjects.swift in Sources */,
 				CBD33B311E554B510004D374 /* TTOpenInAppActivity.m in Sources */,
@@ -844,6 +867,7 @@
 				B1B2B3011E53B5C50069E3C9 /* Download.swift in Sources */,
 				CBFB10041E49845700992989 /* BaseClearBarItemsTableViewController.swift in Sources */,
 				CB5119921E56B80B009D38E9 /* SettingsViewController.swift in Sources */,
+				CB3EEE5E1E7D39B000A1D576 /* FileManager.swift in Sources */,
 				CB3225D71E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m in Sources */,
 				CB3EEE401E7D1EBE00A1D576 /* VENTouchLockCreatePasscodeViewController.m in Sources */,
 				CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */,

@@ -45,7 +45,7 @@ struct Item {
     {
         return self.name
     }
-    func getImageToView() -> Data
+    func getImageToView() -> Data?
     {
         var filePath: URL!
         switch type {
@@ -59,7 +59,22 @@ struct Item {
             filePath = nil
             break
         }
-        
-        return try! filePath == nil ? UIImagePNGRepresentation(UIImage(named: self.thumbName)!)! : Data(contentsOf:filePath)
+        var data: Data!
+        if(filePath == nil)
+        {
+            data = UIImagePNGRepresentation(UIImage(named: self.thumbName)!)!
+        }
+        else
+        {
+            do
+            {
+                data = try Data(contentsOf:filePath)
+            }
+            catch
+            {
+                return nil
+            }
+        }
+        return data
     }
 }

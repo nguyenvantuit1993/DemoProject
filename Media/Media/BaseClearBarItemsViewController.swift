@@ -11,6 +11,7 @@ import UIKit
 
 class BaseClearBarItemsViewController: BasicViewController {
     var imagePicker: UIImagePickerController!
+    var currentPath: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker = UIImagePickerController()
@@ -35,7 +36,7 @@ class BaseClearBarItemsViewController: BasicViewController {
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
-
+        
         self.navigationController?.navigationBar.items = [navigationItem]
     }
     func addEditButton()
@@ -54,7 +55,7 @@ class BaseClearBarItemsViewController: BasicViewController {
     }
     
     func edit(){
-        print("Edit")
+        addEditButton()
     }
     func importMedia()
     {
@@ -72,14 +73,14 @@ class BaseClearBarItemsViewController: BasicViewController {
                 self.imagePicker.cameraCaptureMode = .photo
                 self.present(self.imagePicker, animated: true, completion: nil)
             } else {
-//                self.noCamera()
+                //                self.noCamera()
             }
         }
         
         let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (UIAlertAction) -> Void in
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
             self.imagePicker.mediaTypes = ["public.image", "public.movie"]
-            self.imagePicker.videoQuality = .typeHigh
+            //            self.imagePicker.videoQuality = .typeHigh
             self.present(self.imagePicker, animated: true, completion: nil)
         }
         
@@ -95,16 +96,92 @@ class BaseClearBarItemsViewController: BasicViewController {
     }
     func done()
     {
-        print("Done")
+        addBaseButton()
+    }
+    func showActionCreateFile()
+    {
+        
+        let alertController = UIAlertController(title: "Create New Folder", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            let firstTextField = alertController.textFields![0] as UITextField
+            self.currentPath = "\(self.currentPath)/\(firstTextField.text)"
+            NVT_FileManager.createFolderWithPath(path: self.currentPath)
+            NotificationCenter.default.post(name: Notification.Name("ReloadMediaView"), object: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter File Name"
+        }
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func showActionInfoFile(data: NSData, toPath: String, isImage: Bool)
+    {
+        
+        let alertController = UIAlertController(title: "Save file as", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            let extention = isImage == true ? ".png" : ".mp4"
+            let firstTextField = alertController.textFields![0] as UITextField
+            data.write(toFile: toPath.appending("/\(firstTextField.text!)\(extention)"), atomically: true)
+            if(isImage == false)
+            {
+                ManageDownloadTrack.sharedInstance.createThumnails(name: "\(firstTextField.text!)\(extention)")
+            }
+            NotificationCenter.default.post(name: Notification.Name("ReloadMediaView"), object: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter File Name"
+        }
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 extension BaseClearBarItemsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let videoURL = info[UIImagePickerControllerOriginalImage]
-        let data = try! Data(contentsOf: videoURL as! URL)
-//        print(videoURL?.relativePath)
-//        imagePickerController.dismissViewControllerAnimated(true, completion: nil)
+        if let videoURL = info[UIImagePickerControllerMediaURL]
+        {
+            if let data = NSData(contentsOf: videoURL as! URL)
+            {
+                self.dismiss(animated: true, completion: { 
+                    self.showActionInfoFile(data: data, toPath: (documentsPath?.appending("/\(kVideoFolder)"))!, isImage:false)
+                })
+            }
+        }
+        else
+        {
+            if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            {
+                if let data = UIImagePNGRepresentation(image) as? NSData
+                {
+                    self.dismiss(animated: true, completion: {
+                        self.showActionInfoFile(data: data, toPath: (documentsPath?.appending("/\(kImageFolder)"))!, isImage:true)
+                    })
+                    
+                }
+            }
+        }
     }
-
 }

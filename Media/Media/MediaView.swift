@@ -20,6 +20,7 @@ class MediaView: BaseClearBarItemsViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name("ReloadMediaView"), object: nil)
         // Setup the Search Controller
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
@@ -34,11 +35,16 @@ class MediaView: BaseClearBarItemsViewController{
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        self.reloadData()
+        super.viewWillAppear(animated)
+    }
+    func reloadData()
+    {
         mediaViewModel.resetData()
         mediaViewModel.getListFiles(folderPath: URL(string:documentsPath! + "/\(kImageFolder)")!, type: .Image)
         mediaViewModel.getListFiles(folderPath: URL(string:documentsPath! + "/\(kVideoFolder)")!, type: .Video)
         mediaViewModel.getListFiles(folderPath: URL(string:documentsPath! + "/\(kOtherFolder)")!, type: .Other)
-        super.viewWillAppear(animated)
+        mediaViewModel.getListFiles(folderPath: URL(string:documentsPath! + "/\(kUserFolders)")!, type: .Folder)
         self.collectionView.reloadData()
     }
     func playVideo(atIndex: Int)
@@ -59,11 +65,15 @@ class MediaView: BaseClearBarItemsViewController{
             self.present(detailView, animated: true, completion: nil)
         }
     }
+    func showContentOfFolder(url: URL?)
+    {
+        
+    }
 }
 extension MediaView: UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: (self.view.frame.size.width/4) - 1, height: (self.view.frame.size.height/6) - 1)
+        let size = CGSize(width: (self.view.frame.size.width/4) - 1, height: 95)
         return size
     }
 }
@@ -78,8 +88,12 @@ extension MediaView: UICollectionViewDelegate
         case .Video:
             self.showActionSheet(index: indexPath.row)
             break
-        default:
+        case .Other:
             self.showContentFile(url: self.mediaViewModel.getSourcePathValid(atIndex: indexPath.row))
+            break
+        default:
+            ///
+            self.showContentOfFolder(url: self.mediaViewModel.getSourcePathValid(atIndex: indexPath.row))
             break
         }
     }
@@ -151,12 +165,19 @@ extension MediaView: UICollectionViewDataSource
         
         if searchController.isActive && searchController.searchBar.text != ""
         {
-            cell.imageView.image = UIImage(data: self.mediaViewModel.getMedia(withIndex: indexPath.row, isFilter: true))
+            
+            if let imageData = self.mediaViewModel.getMedia(withIndex: indexPath.row, isFilter: true)
+            {
+                cell.imageView.image = UIImage(data: imageData)
+            }
             cell.fileName.text = self.mediaViewModel.getNameItem(atIndex: indexPath.row, isFilter: true)
         }
         else
         {
-            cell.imageView.image = UIImage(data: self.mediaViewModel.getMedia(withIndex: indexPath.row, isFilter: false))
+            if let imageData = self.mediaViewModel.getMedia(withIndex: indexPath.row, isFilter: false)
+            {
+                cell.imageView.image = UIImage(data: imageData)
+            }
             cell.fileName.text = self.mediaViewModel.getNameItem(atIndex: indexPath.row, isFilter: false)
         }
         if(self.mediaViewModel.getTypeAt(index: indexPath.row) == .Video)
@@ -174,9 +195,13 @@ extension MediaView: UICollectionViewDataSource
 }
 extension MediaView: DetailImageViewDelegate
 {
-    func getImageAt(index: Int) -> UIImage
+    func getImageAt(index: Int) -> UIImage?
     {
-        return UIImage(data: mediaViewModel.getMedia(withIndex: index, isFilter: false))!
+        if let imageData = self.mediaViewModel.getMedia(withIndex: index, isFilter: false)
+        {
+            return UIImage(data: imageData)
+        }
+        return nil
     }
     func numberOfRowInSection() -> Int
     {

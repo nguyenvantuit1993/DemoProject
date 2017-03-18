@@ -9,7 +9,7 @@
 import UIKit
 protocol DetailImageViewDelegate {
     func numberOfRowInSection() -> Int
-    func getImageAt(index: Int) -> UIImage
+    func getImageAt(index: Int) -> UIImage?
     func getCurrentIndex() -> Int
 //    func cellForItemAt(index: Int) -> Item
 }
