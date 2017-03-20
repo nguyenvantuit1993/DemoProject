@@ -36,18 +36,18 @@ class DetailImageView: BasicViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        collectionView.selectItem(at: IndexPath(row: delegate.getCurrentIndex(), section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        collectionView.selectItem(at: IndexPath(row: self.index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
 }
 extension DetailImageView: UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return delegate.numberOfRowInSection()
+        return items.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ImageCell
         cell.addSubviews()
-        cell.imageView.image = delegate.getImageAt(index: indexPath.row)
+        cell.imageView.image = UIImage(data:self.items[indexPath.row].getImageToView()!)
         return cell
     }
 }
@@ -59,9 +59,9 @@ extension DetailImageView: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if !isFirstLoad
         {
-            let indexToScrollTo = IndexPath(row: delegate.getCurrentIndex(), section: 0)
+            let indexToScrollTo = IndexPath(row: self.index, section: 0)
             self.collectionView.scrollToItem(at: indexToScrollTo, at: .centeredHorizontally, animated: false)
-            imageView.image = delegate.getImageAt(index: delegate.getCurrentIndex())
+            imageView.image = delegate.getImageAt(index: self.index)
             isFirstLoad = true
         }
     }

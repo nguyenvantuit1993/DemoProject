@@ -76,44 +76,14 @@ class MediaView: BaseClearBarItemsViewController{
         subMediaView.currentPath = url
         self.navigationController?.pushViewController(subMediaView, animated: true)
     }
-}
-extension MediaView: UICollectionViewDelegateFlowLayout
-{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: (self.view.frame.size.width/4) - 1, height: 95)
-        return size
-    }
-}
-extension MediaView: UICollectionViewDelegate
-{
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var isFilter = false
-        if checkIsFilter()
-        {
-            isFilter = true
-        }
-        switch self.mediaViewModel.getItems(isFilter: isFilter)[indexPath.row].getType() {
-        case .Image:
-            self.showImageAt(index: indexPath.row, isFilter: isFilter)
-            break
-        case .Video:
-            self.showActionSheet(index: indexPath.row, isFilter: isFilter)
-            break
-        case .Other:
-            self.showContentFile(url: self.mediaViewModel.getSourcePathValid(atIndex: indexPath.row, isFilter: isFilter))
-            break
-        default:
-            self.showContentOfFolder(url: "\(self.currentPath!)/\(kUserFolders)/\(self.mediaViewModel.getNameItem(atIndex: indexPath.row, isFilter: isFilter))")
-            break
-        }
-    }
-    
     func showImageAt(index: Int, isFilter: Bool)
     {
         self.currentIndex = index
+        let image = mediaViewModel.getNameItem(atIndex: index, isFilter: isFilter)
         let viewScroll = self.storyboard?.instantiateViewController(withIdentifier: "ViewScroll") as! DetailImageView
-        viewScroll.items = mediaViewModel.getItems(isFilter: isFilter)
-        viewScroll.index = index
+        mediaViewModel.type = .Image
+        viewScroll.items = mediaViewModel.getListItemsAt(path: URL(string:"\(self.currentPath!)/\(kImageFolder)")!)
+        viewScroll.index = mediaViewModel.getIndexWithName(name: image, items: viewScroll.items)
         viewScroll.delegate = self
         self.navigationController?.pushViewController(viewScroll, animated: true)
     }
@@ -168,6 +138,39 @@ extension MediaView: UICollectionViewDelegate
         }
         return false
     }
+}
+extension MediaView: UICollectionViewDelegateFlowLayout
+{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = CGSize(width: (self.view.frame.size.width/4) - 1, height: 95)
+        return size
+    }
+}
+extension MediaView: UICollectionViewDelegate
+{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var isFilter = false
+        if checkIsFilter()
+        {
+            isFilter = true
+        }
+        switch self.mediaViewModel.getItems(isFilter: isFilter)[indexPath.row].getType() {
+        case .Image:
+            self.showImageAt(index: indexPath.row, isFilter: isFilter)
+            break
+        case .Video:
+            self.showActionSheet(index: indexPath.row, isFilter: isFilter)
+            break
+        case .Other:
+            self.showContentFile(url: self.mediaViewModel.getSourcePathValid(atIndex: indexPath.row, isFilter: isFilter))
+            break
+        default:
+            self.showContentOfFolder(url: "\(self.currentPath!)/\(kUserFolders)/\(self.mediaViewModel.getNameItem(atIndex: indexPath.row, isFilter: isFilter))")
+            break
+        }
+    }
+    
+    
 }
 extension MediaView: UICollectionViewDataSource
 {

@@ -47,8 +47,6 @@ class BaseClearBarItemsViewController: BasicViewController {
         // Create two buttons for the navigation item
         navigationItem.setLeftBarButtonItems([backButton, leftButton], animated: true)
         navigationItem.setRightBarButtonItems([rightButton], animated: true)
-        
-        self.navigationController?.navigationBar.items = [navigationItem]
     }
     func addEditButton()
     {
@@ -59,10 +57,8 @@ class BaseClearBarItemsViewController: BasicViewController {
         let rightButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done))
         
         // Create two buttons for the navigation item
-        navigationItem.leftBarButtonItem = leftButton
-        navigationItem.rightBarButtonItem = rightButton
-        
-        self.navigationController?.navigationBar.items = [navigationItem]
+        navigationItem.setLeftBarButtonItems([leftButton], animated: true)
+        navigationItem.setRightBarButtonItems([rightButton], animated: true)
     }
     
     func edit(){

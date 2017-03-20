@@ -57,11 +57,8 @@ class FileManagerMedia
     {
         self.items.removeAll()
     }
-    func getListFiles(folderPath: URL, type: MimeTypes)
+    func getListFiles(folderPath: URL) -> [URL]
     {
-        self.folderPath = folderPath
-        self.type = type
-        
         var directoryContents = [URL]()
         do {
             // Get the directory contents urls (including subfolders urls)
@@ -69,7 +66,13 @@ class FileManagerMedia
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        items.append(contentsOf: addItemToShow(urls:removeNamesInCorrectFormat(withURLs: directoryContents)))
+        return directoryContents
+    }
+    func getListFiles(folderPath: URL, type: MimeTypes)
+    {
+        self.folderPath = folderPath
+        self.type = type
+        items.append(contentsOf: addItemToShow(urls:removeNamesInCorrectFormat(withURLs: self.getListFiles(folderPath: folderPath))))
     }
     
     private func removeNamesInCorrectFormat(withURLs URLs:[URL]) -> [URL]
@@ -140,6 +143,17 @@ class FileManagerMedia
         }
         
     }
+    func getIndexWithName(name: String, items: [Item]) -> Int
+    {
+        for (index, item) in items.enumerated()
+        {
+            if(item.getNameToShow() == name)
+            {
+                return index
+            }
+        }
+        return 0
+    }
     func getSourcePath(atIndex index: Int, isFilter: Bool) -> URL
     {
         return isFilter == true ? self.filteredItems[index].getFilePath() : self.items[index].getFilePath()
@@ -169,6 +183,10 @@ class FileManagerMedia
     func getTypeAt(index: Int) -> MimeTypes
     {
         return self.items[index].getType()
+    }
+    func getListItemsAt(path: URL) -> [Item]
+    {
+        return self.addItemToShow(urls: self.getListFiles(folderPath: path))
     }
     func count() -> Int
     {
