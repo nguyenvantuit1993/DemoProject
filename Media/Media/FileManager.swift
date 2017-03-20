@@ -17,6 +17,41 @@ class NVT_FileManager{
             print(error.localizedDescription);
         }
     }
+    
+    class func copyFolderAt(path: String, toPath: String)
+    {
+        do {
+            try FileManager.default.copyItem(atPath: path, toPath: toPath)
+        } catch let error as NSError {
+            print(error.localizedDescription);
+        }
+    }
+    
+    class func removeFolderAt(path: String)
+    {
+        do {
+            try FileManager.default.removeItem(atPath: path)
+        } catch let error as NSError {
+            print(error.localizedDescription);
+        }
+    }
+    class func moveFolderAt(path: String, toPath: String)
+    {
+        do {
+            try FileManager.default.moveItem(atPath: path, toPath: toPath)
+        } catch let error as NSError {
+            print(error.localizedDescription);
+        }
+    }
+    class func renameFolderAt(path: NSString, withName name: String)
+    {
+        let baseURL = path.deletingLastPathComponent.appending("/\(name)")
+        do {
+            try FileManager.default.moveItem(atPath: path as String, toPath: baseURL)
+        } catch let error as NSError {
+            print(error.localizedDescription);
+        }
+    }
     class func createDefaultFolders(baseURL: String)
     {
         let videoFolderPath = baseURL.appending("/\(kVideoFolder)")

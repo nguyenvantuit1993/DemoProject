@@ -17,7 +17,6 @@ class MediaView: BaseClearBarItemsViewController{
     var mediaViewModel: MediaViewModel!
     var isFakeLogin: Bool!
     let searchController = UISearchController(searchResultsController: nil)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if(self.currentPath == nil)
@@ -43,6 +42,7 @@ class MediaView: BaseClearBarItemsViewController{
         self.reloadData()
         super.viewWillAppear(animated)
     }
+
     func reloadData()
     {
         mediaViewModel.resetData()
