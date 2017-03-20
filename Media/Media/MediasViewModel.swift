@@ -17,14 +17,5 @@ class MediasViewModel: FileManagerMedia {
         type = .Video
     }
 
-    override func saveMediaToCameraRoll(atIndex: Int) {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.getSourcePath(atIndex: atIndex))
-        }) { completed, error in
-            if completed {
-                print("Video is saved!")
-            }
-        }
-    }
     
 }

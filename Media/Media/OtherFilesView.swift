@@ -35,7 +35,7 @@ class OtherFilesView: TableViewAndSearchBar {
 extension OtherFilesView
 {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.showContentFile(url: self.otherFilesViewModel.getSourcePathValid(atIndex: indexPath.row))
+//        self.showContentFile(url: self.otherFilesViewModel.getSourcePathValid(atIndex: indexPath.row))
     }
 }
 //MARK: DataSource

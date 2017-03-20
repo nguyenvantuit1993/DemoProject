@@ -8,13 +8,13 @@
 
 import Foundation
 let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first 
-let kVideoFolder = "Videos"
-let kVideoThumbs = "VideoThumbs"
-let kImageFolder = "Images"
-let kOtherFolder = "Others"
-let kUserFolders = "UserFolders"
+let kVideoFolder = "NVT_Videos"
+let kVideoThumbs = "NVT_VideoThumbs"
+let kImageFolder = "NVT_Images"
+let kOtherFolder = "NVT_Others"
+let kUserFolders = "NVT_UserFolders"
+let kBunchFolder = "NVT_BunchFiles"
 let kHtmlPath = "http"
-let kBunchFolder = "BunchFiles"
 let kFolderIcon = "Folder"
 let kGoogleSearchLink = "http://www.google.com/search?q="
 enum MimeTypes: Int {

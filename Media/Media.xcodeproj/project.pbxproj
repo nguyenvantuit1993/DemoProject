@@ -48,7 +48,7 @@
 		B1B2B30C1E53CDC20069E3C9 /* ManageDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B2B30B1E53CDC20069E3C9 /* ManageDataBase.swift */; };
 		B1E216F61E67B0AE0045A784 /* DetailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E216F11E67B0AE0045A784 /* DetailImageView.swift */; };
 		CB3225D71E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3225D61E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m */; };
-		CB364BFA1E49DB4600C10D91 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */; };
+		CB364BFA1E49DB4600C10D91 /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BF91E49DB4600C10D91 /* MediaViewModel.swift */; };
 		CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BFC1E49DD4B00C10D91 /* Constant.swift */; };
 		CB3651501E602EA5006EFAB6 /* SettingObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB36514F1E602EA5006EFAB6 /* SettingObjects.swift */; };
 		CB37813A1E68332600486943 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3781391E68332600486943 /* ImageCell.swift */; };
@@ -159,7 +159,7 @@
 		B6EB16488B717E2081CD1BFD /* Pods-Media.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Media.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Media/Pods-Media.debug.xcconfig"; sourceTree = "<group>"; };
 		CB3225D51E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVENTouchLockEnterPasscodeViewController.h; sourceTree = "<group>"; };
 		CB3225D61E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVENTouchLockEnterPasscodeViewController.m; sourceTree = "<group>"; };
-		CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
+		CB364BF91E49DB4600C10D91 /* MediaViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; };
 		CB364BFC1E49DD4B00C10D91 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CB36514F1E602EA5006EFAB6 /* SettingObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingObjects.swift; sourceTree = "<group>"; };
 		CB3781391E68332600486943 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
@@ -616,7 +616,7 @@
 				B1B2B2FD1E53B58B0069E3C9 /* CustomWebViewModel.swift */,
 				CB8294761E5414F10013A064 /* MediasViewModel.swift */,
 				CB4180501E5ADF0F00283B28 /* OtherFilesViewModel.swift */,
-				CB364BF91E49DB4600C10D91 /* ImagesViewModel.swift */,
+				CB364BF91E49DB4600C10D91 /* MediaViewModel.swift */,
 				B1809FD11E67435D004FA67D /* DownloadViewModel.swift */,
 				B1809FD31E6747BD004FA67D /* BookMarkViewModel.swift */,
 			);
@@ -816,7 +816,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				971ABB261E78EA0400C91F66 /* M3U8SegmentInfoList.m in Sources */,
-				CB364BFA1E49DB4600C10D91 /* ImagesViewModel.swift in Sources */,
+				CB364BFA1E49DB4600C10D91 /* MediaViewModel.swift in Sources */,
 				CB3EEE451E7D1EBE00A1D576 /* VENTouchLock.m in Sources */,
 				971ABB301E78FC4000C91F66 /* MergeFiles.m in Sources */,
 				B1B2B2F91E53B1910069E3C9 /* ToolBarDetail.swift in Sources */,

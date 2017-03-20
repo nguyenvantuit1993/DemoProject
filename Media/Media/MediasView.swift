@@ -25,12 +25,12 @@ class MediasView: TableViewAndSearchBar {
     }
     func playVideo(atIndex: Int)
     {
-        let player = AVPlayer(url: mediasViewModel.getSourcePath(atIndex: atIndex))
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        self.present(playerViewController, animated: true) {
-            playerViewController.player!.play()
-        }
+//        let player = AVPlayer(url: mediasViewModel.getSourcePath(atIndex: atIndex))
+//        let playerViewController = AVPlayerViewController()
+//        playerViewController.player = player
+//        self.present(playerViewController, animated: true) {
+//            playerViewController.player!.play()
+//        }
     }
     func addButtonList()
     {
@@ -79,7 +79,7 @@ extension MediasView
             
         }
         let saveToCameraRoll: UIAlertAction = UIAlertAction(title: "Save to Camera Roll", style: .default) { action -> Void in
-            self.mediasViewModel.saveMediaToCameraRoll(atIndex: index)
+//            self.mediasViewModel.saveMediaToCameraRoll(atIndex: index)
             
         }
         let exportFile: UIAlertAction = UIAlertAction(title: "Export File", style: .default) { action -> Void in

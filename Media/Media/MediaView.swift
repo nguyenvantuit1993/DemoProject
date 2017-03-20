@@ -20,6 +20,11 @@ class MediaView: BaseClearBarItemsViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(self.currentPath == nil)
+        {
+            self.currentPath = documentsPath
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name("ReloadMediaView"), object: nil)
         // Setup the Search Controller
         definesPresentationContext = true
@@ -41,15 +46,15 @@ class MediaView: BaseClearBarItemsViewController{
     func reloadData()
     {
         mediaViewModel.resetData()
-        mediaViewModel.getListFiles(folderPath: URL(string:documentsPath! + "/\(kImageFolder)")!, type: .Image)
-        mediaViewModel.getListFiles(folderPath: URL(string:documentsPath! + "/\(kVideoFolder)")!, type: .Video)
-        mediaViewModel.getListFiles(folderPath: URL(string:documentsPath! + "/\(kOtherFolder)")!, type: .Other)
-        mediaViewModel.getListFiles(folderPath: URL(string:documentsPath! + "/\(kUserFolders)")!, type: .Folder)
+        mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kImageFolder)")!, type: .Image)
+        mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kVideoFolder)")!, type: .Video)
+        mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kOtherFolder)")!, type: .Other)
+        mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kUserFolders)")!, type: .Folder)
         self.collectionView.reloadData()
     }
     func playVideo(atIndex: Int)
     {
-        let player = AVPlayer(url: mediaViewModel.getSourcePath(atIndex: atIndex))
+        let player = AVPlayer(url: mediaViewModel.getSourcePath(atIndex: atIndex, isFilter: self.checkIsFilter()))
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         self.present(playerViewController, animated: true) {
@@ -65,9 +70,11 @@ class MediaView: BaseClearBarItemsViewController{
             self.present(detailView, animated: true, completion: nil)
         }
     }
-    func showContentOfFolder(url: URL?)
+    func showContentOfFolder(url: String)
     {
-        
+        let subMediaView = self.storyboard?.instantiateViewController(withIdentifier: "MediaView") as! MediaView
+        subMediaView.currentPath = url
+        self.navigationController?.pushViewController(subMediaView, animated: true)
     }
 }
 extension MediaView: UICollectionViewDelegateFlowLayout
@@ -80,36 +87,40 @@ extension MediaView: UICollectionViewDelegateFlowLayout
 extension MediaView: UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        switch self.mediaViewModel.getItems(isFilter: searchController.isActive)[indexPath.row].getType() {
+        var isFilter = false
+        if checkIsFilter()
+        {
+            isFilter = true
+        }
+        switch self.mediaViewModel.getItems(isFilter: isFilter)[indexPath.row].getType() {
         case .Image:
-            self.showImageAt(index: indexPath.row)
+            self.showImageAt(index: indexPath.row, isFilter: isFilter)
             break
         case .Video:
-            self.showActionSheet(index: indexPath.row)
+            self.showActionSheet(index: indexPath.row, isFilter: isFilter)
             break
         case .Other:
-            self.showContentFile(url: self.mediaViewModel.getSourcePathValid(atIndex: indexPath.row))
+            self.showContentFile(url: self.mediaViewModel.getSourcePathValid(atIndex: indexPath.row, isFilter: isFilter))
             break
         default:
-            ///
-            self.showContentOfFolder(url: self.mediaViewModel.getSourcePathValid(atIndex: indexPath.row))
+            self.currentPath = "\(self.currentPath!)/\(kUserFolders)"
+            self.showContentOfFolder(url: "\(self.currentPath!)/\(self.mediaViewModel.getNameItem(atIndex: indexPath.row, isFilter: isFilter))")
             break
         }
     }
     
-    func showImageAt(index: Int)
+    func showImageAt(index: Int, isFilter: Bool)
     {
         self.currentIndex = index
         let viewScroll = self.storyboard?.instantiateViewController(withIdentifier: "ViewScroll") as! DetailImageView
-        viewScroll.items = mediaViewModel.getItems(isFilter: self.searchController.isActive)
+        viewScroll.items = mediaViewModel.getItems(isFilter: isFilter)
         viewScroll.index = index
         viewScroll.delegate = self
         self.navigationController?.pushViewController(viewScroll, animated: true)
     }
-    func showActionSheet(index: Int)
+    func showActionSheet(index: Int, isFilter: Bool)
     {
-        let actionSheet = UIAlertController(title: self.mediaViewModel.getNameItem(atIndex: index, isFilter: searchController.isActive ), message: "", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: self.mediaViewModel.getNameItem(atIndex: index, isFilter: isFilter), message: "", preferredStyle: .actionSheet)
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
             //Just dismiss the action sheet
         }
@@ -133,7 +144,7 @@ extension MediaView: UICollectionViewDelegate
             
         }
         let saveToCameraRoll: UIAlertAction = UIAlertAction(title: "Save to Camera Roll", style: .default) { action -> Void in
-            self.mediaViewModel.saveMediaToCameraRoll(atIndex: index)
+            self.mediaViewModel.saveMediaToCameraRoll(atIndex: index, isFilter: self.checkIsFilter())
             
         }
         let exportFile: UIAlertAction = UIAlertAction(title: "Export File", style: .default) { action -> Void in
@@ -150,12 +161,19 @@ extension MediaView: UICollectionViewDelegate
         actionSheet.addAction(exportFile)
         self.present(actionSheet, animated: true, completion: nil)
     }
-    //
+    func checkIsFilter() -> Bool
+    {
+        if searchController.isActive && searchController.searchBar.text != ""
+        {
+            return true
+        }
+        return false
+    }
 }
 extension MediaView: UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if searchController.isActive && searchController.searchBar.text != "" {
+        if checkIsFilter() {
             return mediaViewModel.filteredCount()
         }
         return mediaViewModel.count()
@@ -163,7 +181,7 @@ extension MediaView: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagesViewCell", for: indexPath) as! CustomCollectionCell
         
-        if searchController.isActive && searchController.searchBar.text != ""
+        if checkIsFilter()
         {
             
             if let imageData = self.mediaViewModel.getMedia(withIndex: indexPath.row, isFilter: true)

@@ -92,7 +92,7 @@ class BaseClearBarItemsViewController: BasicViewController {
     }
     func createNewFolder()
     {
-        print("create a newfolder")
+        showActionCreateFile()
     }
     func done()
     {
@@ -106,8 +106,12 @@ class BaseClearBarItemsViewController: BasicViewController {
         let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
             alert -> Void in
             let firstTextField = alertController.textFields![0] as UITextField
-            self.currentPath = "\(self.currentPath)/\(firstTextField.text)"
-            NVT_FileManager.createFolderWithPath(path: self.currentPath)
+            if(firstTextField.text == "")
+            {
+                return
+            }
+            NVT_FileManager.createFolderWithPath(path: "\(self.currentPath!)/\(kUserFolders)/\(firstTextField.text!)")
+            NVT_FileManager.createDefaultFolders(baseURL: "\(self.currentPath!)/\(kUserFolders)/\(firstTextField.text!)")
             NotificationCenter.default.post(name: Notification.Name("ReloadMediaView"), object: nil)
         })
         

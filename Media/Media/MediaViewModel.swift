@@ -15,15 +15,6 @@ class MediaViewModel: FileManagerMedia{
     {
         super.init()
     }
-    override func saveMediaToCameraRoll(atIndex: Int) {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: self.getSourcePath(atIndex: atIndex))
-        }) { completed, error in
-            if completed {
-                print("Video is saved!")
-            }
-        }
-    }
     
 }
 
@@ -44,8 +35,8 @@ class FileManagerMedia
         self.type = type
         
     }
-    func getSourcePathValid(atIndex index: Int) -> URL? {
-        let url = getSourcePath(atIndex: index)
+    func getSourcePathValid(atIndex index: Int, isFilter: Bool) -> URL? {
+        let url = getSourcePath(atIndex: index, isFilter: isFilter)
         return validMimeFile(url: url)
     }
     func validMimeFile(url: URL) -> URL?
@@ -83,11 +74,11 @@ class FileManagerMedia
     
     private func removeNamesInCorrectFormat(withURLs URLs:[URL]) -> [URL]
     {
-        let HiddenFiles = [kVideoThumbs, ".DS_Store"]
+        let hiddenFiles = [kVideoFolder, kImageFolder, kOtherFolder, kUserFolders, kVideoThumbs, kBunchFolder, ".DS_Store"]
         var currentURLs = URLs
         for url in URLs
         {
-            if (HiddenFiles.contains(url.lastPathComponent))
+            if (hiddenFiles.contains(url.lastPathComponent))
             {
                 currentURLs.remove(at: currentURLs.index(of: url)!)
             }
@@ -138,10 +129,10 @@ class FileManagerMedia
         }
         return nameImage
     }
-    func saveMediaToCameraRoll(atIndex: Int)
+    func saveMediaToCameraRoll(atIndex: Int, isFilter: Bool)
     {
         PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.getSourcePath(atIndex: atIndex))
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.getSourcePath(atIndex: atIndex, isFilter: isFilter))
         }) { completed, error in
             if completed {
                 print("Video is saved!")
@@ -149,13 +140,9 @@ class FileManagerMedia
         }
         
     }
-    func getSourcePath(atIndex index: Int) -> URL
+    func getSourcePath(atIndex index: Int, isFilter: Bool) -> URL
     {
-        return self.items[index].getFilePath()
-    }
-    func getNameFilteredItem(atIndex index: Int) -> String
-    {
-        return self.filteredItems[index].getNameToShow()
+        return isFilter == true ? self.filteredItems[index].getFilePath() : self.items[index].getFilePath()
     }
     
     func getNameItem(atIndex index: Int, isFilter: Bool) -> String
@@ -191,5 +178,4 @@ class FileManagerMedia
     {
         return self.filteredItems.count
     }
-    
 }
