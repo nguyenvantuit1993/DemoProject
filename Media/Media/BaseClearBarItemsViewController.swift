@@ -12,30 +12,41 @@ import UIKit
 class BaseClearBarItemsViewController: BasicViewController {
     var imagePicker: UIImagePickerController!
     var currentPath: String!
+    var isSubView: Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker = UIImagePickerController()
         self.imagePicker.delegate = self
-        addBaseButton()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        addBaseButton()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeAllBarButtons()
     }
     func removeAllBarButtons()
     {
-        self.navigationController?.navigationBar.items?.removeAll()
+        self.navigationItem.leftBarButtonItems = []
+        self.navigationItem.rightBarButtonItems = []
     }
     func addBaseButton()
     {
         removeAllBarButtons()
         // Create left and right button for navigation item
+        var backButton = UIBarButtonItem()
+        if(self.currentPath != documentsPath)
+        {
+            backButton = UIBarButtonItem(title: "<", style:   .plain, target: self, action: #selector(popBack))
+        }
         let leftButton =  UIBarButtonItem(title: "+", style:   .plain, target: self, action: #selector(importMedia))
         
         let rightButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(edit))
         
         // Create two buttons for the navigation item
-        navigationItem.leftBarButtonItem = leftButton
-        navigationItem.rightBarButtonItem = rightButton
+        navigationItem.setLeftBarButtonItems([backButton, leftButton], animated: true)
+        navigationItem.setRightBarButtonItems([rightButton], animated: true)
         
         self.navigationController?.navigationBar.items = [navigationItem]
     }
@@ -89,6 +100,10 @@ class BaseClearBarItemsViewController: BasicViewController {
         actionSheet.addAction(cancelAction)
         
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    func popBack()
+    {
+        self.navigationController?.popViewController(animated: true)
     }
     func createNewFolder()
     {

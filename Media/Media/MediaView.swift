@@ -103,8 +103,7 @@ extension MediaView: UICollectionViewDelegate
             self.showContentFile(url: self.mediaViewModel.getSourcePathValid(atIndex: indexPath.row, isFilter: isFilter))
             break
         default:
-            self.currentPath = "\(self.currentPath!)/\(kUserFolders)"
-            self.showContentOfFolder(url: "\(self.currentPath!)/\(self.mediaViewModel.getNameItem(atIndex: indexPath.row, isFilter: isFilter))")
+            self.showContentOfFolder(url: "\(self.currentPath!)/\(kUserFolders)/\(self.mediaViewModel.getNameItem(atIndex: indexPath.row, isFilter: isFilter))")
             break
         }
     }
