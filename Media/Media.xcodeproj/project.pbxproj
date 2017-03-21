@@ -66,7 +66,7 @@
 		CB3EEE481E7D1EBE00A1D576 /* VENTouchLockPasscodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3EEE3E1E7D1EBE00A1D576 /* VENTouchLockPasscodeView.xib */; };
 		CB3EEE501E7D1F1300A1D576 /* FakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3EEE4E1E7D1F1200A1D576 /* FakeView.m */; };
 		CB3EEE511E7D1F1300A1D576 /* FakeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB3EEE4F1E7D1F1200A1D576 /* FakeView.xib */; };
-		CB3EEE5E1E7D39B000A1D576 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EEE5D1E7D39B000A1D576 /* FileManager.swift */; };
+		CB3EEE5E1E7D39B000A1D576 /* NVT_FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EEE5D1E7D39B000A1D576 /* NVT_FileManager.swift */; };
 		CB3EEE611E7D3C1500A1D576 /* DetailFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EEE601E7D3C1500A1D576 /* DetailFolder.swift */; };
 		CB4180511E5ADF0F00283B28 /* OtherFilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4180501E5ADF0F00283B28 /* OtherFilesViewModel.swift */; };
 		CB4180541E5AFE3000283B28 /* DetailFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4180531E5AFE3000283B28 /* DetailFile.swift */; };
@@ -79,8 +79,6 @@
 		CB80C7FB1E496AA600690D4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB80C7FA1E496AA600690D4D /* Assets.xcassets */; };
 		CB80C7FE1E496AA600690D4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB80C7FC1E496AA600690D4D /* LaunchScreen.storyboard */; };
 		CB80C80B1E4975F000690D4D /* TableViewAndSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80C80A1E4975F000690D4D /* TableViewAndSearchBar.swift */; };
-		CB80C80D1E49773600690D4D /* MediasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80C80C1E49773600690D4D /* MediasView.swift */; };
-		CB80C80F1E49791600690D4D /* OtherFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB80C80E1E49791600690D4D /* OtherFilesView.swift */; };
 		CB8294721E5410860013A064 /* CustomCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8294701E5410860013A064 /* CustomCollectionCell.swift */; };
 		CB8294731E5410860013A064 /* CustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8294711E5410860013A064 /* CustomCollectionCell.xib */; };
 		CB8294771E5414F10013A064 /* MediasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8294761E5414F10013A064 /* MediasViewModel.swift */; };
@@ -189,7 +187,7 @@
 		CB3EEE4D1E7D1F1200A1D576 /* FakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeView.h; sourceTree = "<group>"; };
 		CB3EEE4E1E7D1F1200A1D576 /* FakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeView.m; sourceTree = "<group>"; };
 		CB3EEE4F1E7D1F1200A1D576 /* FakeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FakeView.xib; sourceTree = "<group>"; };
-		CB3EEE5D1E7D39B000A1D576 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		CB3EEE5D1E7D39B000A1D576 /* NVT_FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVT_FileManager.swift; sourceTree = "<group>"; };
 		CB3EEE601E7D3C1500A1D576 /* DetailFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFolder.swift; sourceTree = "<group>"; };
 		CB4180501E5ADF0F00283B28 /* OtherFilesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherFilesViewModel.swift; sourceTree = "<group>"; };
 		CB4180531E5AFE3000283B28 /* DetailFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFile.swift; sourceTree = "<group>"; };
@@ -204,8 +202,6 @@
 		CB80C7FD1E496AA600690D4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB80C7FF1E496AA600690D4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB80C80A1E4975F000690D4D /* TableViewAndSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewAndSearchBar.swift; sourceTree = "<group>"; };
-		CB80C80C1E49773600690D4D /* MediasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediasView.swift; sourceTree = "<group>"; };
-		CB80C80E1E49791600690D4D /* OtherFilesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherFilesView.swift; sourceTree = "<group>"; };
 		CB8294701E5410860013A064 /* CustomCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionCell.swift; sourceTree = "<group>"; };
 		CB8294711E5410860013A064 /* CustomCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCollectionCell.xib; sourceTree = "<group>"; };
 		CB8294761E5414F10013A064 /* MediasViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediasViewModel.swift; sourceTree = "<group>"; };
@@ -312,6 +308,13 @@
 			name = Resource;
 			sourceTree = "<group>";
 		};
+		B1082E191E80BD870045CC21 /* TreeFolder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TreeFolder;
+			sourceTree = "<group>";
+		};
 		B17CA71D1E803FAC00E3DB92 /* EditOptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +386,7 @@
 		CB364BFB1E49DD3F00C10D91 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				B1082E191E80BD870045CC21 /* TreeFolder */,
 				CB3EEE5C1E7D399D00A1D576 /* FileManager */,
 				CB3EEE271E7D1EBE00A1D576 /* VENTouchLock */,
 				971ABB061E78E9BB00C91F66 /* M3U8Paser */,
@@ -460,7 +464,7 @@
 		CB3EEE5C1E7D399D00A1D576 /* FileManager */ = {
 			isa = PBXGroup;
 			children = (
-				CB3EEE5D1E7D39B000A1D576 /* FileManager.swift */,
+				CB3EEE5D1E7D39B000A1D576 /* NVT_FileManager.swift */,
 			);
 			name = FileManager;
 			sourceTree = "<group>";
@@ -503,22 +507,6 @@
 			children = (
 			);
 			name = Category;
-			sourceTree = "<group>";
-		};
-		CB51198B1E56B798009D38E9 /* MediasView */ = {
-			isa = PBXGroup;
-			children = (
-				CB80C80C1E49773600690D4D /* MediasView.swift */,
-			);
-			name = MediasView;
-			sourceTree = "<group>";
-		};
-		CB51198C1E56B7A6009D38E9 /* OtherFilesView */ = {
-			isa = PBXGroup;
-			children = (
-				CB80C80E1E49791600690D4D /* OtherFilesView.swift */,
-			);
-			name = OtherFilesView;
 			sourceTree = "<group>";
 		};
 		CB51198D1E56B7AF009D38E9 /* MediaView */ = {
@@ -613,8 +601,6 @@
 				CB51198F1E56B7C2009D38E9 /* BaseViews */,
 				CB51198E1E56B7BB009D38E9 /* WebView */,
 				CB51198D1E56B7AF009D38E9 /* MediaView */,
-				CB51198C1E56B7A6009D38E9 /* OtherFilesView */,
-				CB51198B1E56B798009D38E9 /* MediasView */,
 				CBD33B271E554B3F0004D374 /* TTOpenInAppActivity */,
 				CB82946F1E5410640013A064 /* CollectionCell */,
 				B1B2B2E61E53B03F0069E3C9 /* ToolBars */,
@@ -859,7 +845,6 @@
 				B1809FD21E67435D004FA67D /* DownloadViewModel.swift in Sources */,
 				CB8294771E5414F10013A064 /* MediasViewModel.swift in Sources */,
 				971ABB221E78EA0400C91F66 /* M3U8ExtXStreamInf.m in Sources */,
-				CB80C80F1E49791600690D4D /* OtherFilesView.swift in Sources */,
 				CB4DB6661E58527500F6F640 /* ManageDownloadTrack.swift in Sources */,
 				CB3EEE441E7D1EBE00A1D576 /* VENTouchLockAppearance.m in Sources */,
 				971ABB201E78EA0400C91F66 /* M3U8ExtXMedia.m in Sources */,
@@ -874,7 +859,6 @@
 				CB3EEE431E7D1EBE00A1D576 /* VENTouchLockSplashViewController.m in Sources */,
 				CB3EEE421E7D1EBE00A1D576 /* VENTouchLockPasscodeViewController.m in Sources */,
 				971ABB231E78EA0400C91F66 /* M3U8ExtXStreamInfList.m in Sources */,
-				CB80C80D1E49773600690D4D /* MediasView.swift in Sources */,
 				B1B2B2E31E53B02D0069E3C9 /* WKWebViewCallBack.swift in Sources */,
 				971ABB0D1E78E9EA00C91F66 /* NSString+m3u8.m in Sources */,
 				971ABB2B1E78F92100C91F66 /* NVT_ParseM3U8.swift in Sources */,
@@ -882,7 +866,7 @@
 				B1B2B3011E53B5C50069E3C9 /* Download.swift in Sources */,
 				CBFB10041E49845700992989 /* BaseClearBarItemsTableViewController.swift in Sources */,
 				CB5119921E56B80B009D38E9 /* SettingsViewController.swift in Sources */,
-				CB3EEE5E1E7D39B000A1D576 /* FileManager.swift in Sources */,
+				CB3EEE5E1E7D39B000A1D576 /* NVT_FileManager.swift in Sources */,
 				CB3225D71E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m in Sources */,
 				B17CA7201E803FC700E3DB92 /* EditOptions.swift in Sources */,
 				CB3EEE401E7D1EBE00A1D576 /* VENTouchLockCreatePasscodeViewController.m in Sources */,

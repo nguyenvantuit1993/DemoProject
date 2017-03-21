@@ -23,10 +23,11 @@ enum MimeTypes: Int {
     case Folder
     case Other
 }
-enum CompassPoint: Int {
-    case north = 1
-    case south
-    case east
-    case west
-}
 
+enum EditOptionsEnum
+{
+    case Move
+    case Delete
+    case Copy
+    case Rename
+}

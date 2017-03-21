@@ -13,12 +13,14 @@ class MediaView: BaseClearBarItemsViewController{
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    var selectedFiles = [String]()
     var currentIndex: Int!
     var mediaViewModel: MediaViewModel!
     var isFakeLogin: Bool!
     let searchController = UISearchController(searchResultsController: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.editOptions.delegate = self
         if(self.currentPath == nil)
         {
             self.currentPath = documentsPath
@@ -42,7 +44,7 @@ class MediaView: BaseClearBarItemsViewController{
         self.reloadData()
         super.viewWillAppear(animated)
     }
-
+    
     func reloadData()
     {
         mediaViewModel.resetData()
@@ -154,11 +156,24 @@ extension MediaView: UICollectionViewDelegate
         {
             isFilter = true
         }
+        selectedFiles.append(self.mediaViewModel.getSourcePath(atIndex: indexPath.row, isFilter: isFilter).absoluteString)
+        if(selectedFiles.count > 1)
+        {
+            self.editOptions.btn_Rename.isEnabled = false
+        }
+        else
+        {
+            if(self.editOptions.btn_Rename.isEnabled == false)
+            {
+                self.editOptions.btn_Rename.isEnabled = true
+            }
+        }
         switch self.mediaViewModel.getItems(isFilter: isFilter)[indexPath.row].getType() {
         case .Image:
             self.showImageAt(index: indexPath.row, isFilter: isFilter)
             break
         case .Video:
+            //khi edit can chu y
             self.showActionSheet(index: indexPath.row, isFilter: isFilter)
             break
         case .Other:
@@ -169,7 +184,14 @@ extension MediaView: UICollectionViewDelegate
             break
         }
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        var isFilter = false
+        if checkIsFilter()
+        {
+            isFilter = true
+        }
+        self.selectedFiles = self.selectedFiles.filter{$0 != self.mediaViewModel.getSourcePath(atIndex: indexPath.row, isFilter: isFilter).absoluteString}
+    }
     
 }
 extension MediaView: UICollectionViewDataSource
@@ -240,5 +262,81 @@ extension MediaView: UISearchResultsUpdating {
         mediaViewModel.filterContentForSearchText(searchText: searchBar.text!) {
             self.collectionView.reloadData()
         }
+    }
+}
+extension MediaView: EditOptionsDelegate
+{
+    func copyFile()
+    {
+        if(self.selectedFiles.count > 0)
+        {
+            self.mediaViewModel.deleteFile(paths: self.selectedFiles)
+        }
+    }
+    func moveFile()
+    {
+        if(self.selectedFiles.count > 0)
+        {
+            self.mediaViewModel.deleteFile(paths: self.selectedFiles)
+        }
+    }
+    func renameFile()
+    {
+        if(self.selectedFiles.count > 0)
+        {
+            self.showAlert(title: "Rename Media As", titleSaveButton: "Save", type: .Rename)
+        }
+    }
+    func deleteFile()
+    {
+        if(self.selectedFiles.count > 0)
+        {
+            self.showAlert(title: "Do you want to delete the media?", titleSaveButton: "Delete", type: .Delete)
+        }
+    }
+    
+    func showAlert(title: String, titleSaveButton: String, type: EditOptionsEnum)
+    {
+        
+        let alertController = UIAlertController(title: title, message: "", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let saveAction = UIAlertAction(title: titleSaveButton, style: UIAlertActionStyle.default, handler: {
+            alert -> Void in
+            switch(type)
+            {
+            case .Delete:
+                self.mediaViewModel.deleteFile(paths: self.selectedFiles)
+                break
+            case .Rename:
+                let firstTextField = alertController.textFields![0] as UITextField
+                if let string = firstTextField.text
+                {
+                    self.mediaViewModel.renameFile(path: self.selectedFiles.first!, newName: string)
+                }
+                break
+            default:
+                break
+            }
+            
+            
+            
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        if type == .Rename {
+            alertController.addTextField { (textField : UITextField!) -> Void in
+                textField.placeholder = "Enter Media Name"
+            }
+        }
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }

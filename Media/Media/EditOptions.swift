@@ -5,22 +5,30 @@
 //  Created by Nguyen Van Tu on 3/20/17.
 //  Copyright © 2017 Tuuu. All rights reserved.
 //
-
+protocol EditOptionsDelegate
+{
+    func copyFile()
+    func moveFile()
+    func renameFile()
+    func deleteFile()
+}
 import UIKit
 
 class EditOptions: UIView {
+    var delegate: EditOptionsDelegate!
+    @IBOutlet var btn_Rename: UIButton!
     @IBOutlet var view: UIView!
     @IBAction func copyFile(_ sender: Any) {
-        NVT_FileManager.copyFolderAt(path: "/Users/nguyenvantu/Desktop/test11/test2", toPath: "/Users/nguyenvantu/Desktop/test11/moveFolder/test2")
+        delegate.copyFile()
     }
     @IBAction func moveFile(_ sender: Any) {
-        NVT_FileManager.moveFolderAt(path: "/Users/nguyenvantu/Desktop/test11/test2", toPath: "/Users/nguyenvantu/Desktop/test11/moveFolder/test2")
+        delegate.moveFile()
     }
     @IBAction func renameFile(_ sender: Any) {
-        NVT_FileManager.renameFolderAt(path: "/Users/nguyenvantu/Desktop/test11/test1", withName: "test2")
+        delegate.renameFile()
     }
     @IBAction func deleteFile(_ sender: Any) {
-         NVT_FileManager.removeFolderAt(path: "/Users/nguyenvantu/Desktop/test11/delete")
+        delegate.deleteFile()
     }
     override func awakeFromNib() {
         super.awakeFromNib()
