@@ -14,10 +14,12 @@ protocol DownloadViewDelegate {
 }
 class DownloadView: BasicViewController {
     
+    @IBOutlet weak var txt_Link: UITextField!
     @IBOutlet weak var tableView: UITableView!
     var downloadViewModel = DownloadViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: Notification.Name("ReloadDownloadView"), object: nil)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ItemCell", bundle: Bundle.main), forCellReuseIdentifier: "ItemCell")
@@ -27,10 +29,20 @@ class DownloadView: BasicViewController {
         ManageDownloadTrack.sharedInstance.delegate = self
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func reloadTableView()
+    {
+        self.tableView.reloadData()
     }
    
+    @IBAction func download(_ sender: Any) {
+        if(self.txt_Link.text == "")
+        {
+            return
+        }
+        self.present(Alert.showActionInfoFile(title: self.txt_Link.text!, isDownloadView: true), animated: true) {
+            self.tableView.reloadData()
+        }
+    }
     @IBAction func dismissView(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -116,6 +128,13 @@ extension DownloadView: DownloadFileDelegate
     func didDownloaded(indexCell: IndexPath)
     {
         self.tableView.reloadData()
+    }
+    func showError(description: String)
+    {
+        DispatchQueue.main.async {
+            self.present(Alert.showError(description: description, downloadViewURL: self.txt_Link.text), animated: true, completion: nil)
+        }
+        
     }
 
 }

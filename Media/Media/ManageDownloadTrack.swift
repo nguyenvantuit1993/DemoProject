@@ -10,6 +10,7 @@ import Foundation
 protocol DownloadFileDelegate {
     func didWriteData(indexCell: Int, downloadInfo: Download, totalSize: String)
     func didDownloaded(indexCell: IndexPath)
+    func showError(description: String)
 }
 class ManageDownloadTrack: NSObject {
     var delegate: DownloadFileDelegate!
@@ -378,6 +379,10 @@ extension ManageDownloadTrack: URLSessionDelegate {
                 }
             }
         }
+    }
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)
+    {
+        self.delegate.showError(description: (error?.localizedDescription)!)
     }
 }
 extension URLSession {

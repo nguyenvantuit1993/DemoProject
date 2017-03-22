@@ -11,20 +11,29 @@ import UIKit
 import AVKit
 class MediaView: BaseClearBarItemsViewController{
     
+    @IBOutlet weak var btn_Filter: UIButton!
     @IBOutlet weak var headerView: UIView!
-    
-    var selectedFiles = [URL]()
     var currentIndex: Int!
-    var mediaViewModel: MediaViewModel!
     var isFakeLogin: Bool!
+    var mediaViewModel: MediaViewModel!
+    var dropDown = DropDown(frame: CGRect(x: 0, y: 0, width: 100, height: 100), style: .plain)
     let searchController = UISearchController(searchResultsController: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.editOptions.delegate = self
         if(self.currentPath == nil)
         {
             self.currentPath = documentsPath
         }
+        let dismissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(setStateForDropDown))
+        self.collectionView.addGestureRecognizer(dismissKeyboardTap)
+        dismissKeyboardTap.cancelsTouchesInView = false
+        
+        self.addDropDown()
+        self.addBaseButton()
+        
+        self.fileManager.delegate = self
+        self.editOptions.delegate = self
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name("ReloadMediaView"), object: nil)
         // Setup the Search Controller
@@ -34,18 +43,59 @@ class MediaView: BaseClearBarItemsViewController{
         self.headerView.addSubview(searchController.searchBar)
         
         mediaViewModel = MediaViewModel()
-        mediaViewModel.mediaViewModelDelegate = self
+        mediaViewModel.setMediaViewModelDelegate(delegate: self)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "CustomCollectionCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ImagesViewCell")
         self.view.backgroundColor = UIColor.black
         
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.dropDown.isHidden = true
+    }
     override func viewWillAppear(_ animated: Bool) {
         self.reloadData()
         super.viewWillAppear(animated)
     }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("123")
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touch")
+    }
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        setStateForDropDown()
+//    }
+    func addDropDown()
+    {
+        dropDown.dropDownDelegate = self
+        self.view.addSubview(dropDown)
+        
+        dropDown.translatesAutoresizingMaskIntoConstraints = false
+        let horizontalConstraint = NSLayoutConstraint(item: dropDown, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.btn_Filter, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: dropDown, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 150)
+        
+        let heightConstraint = NSLayoutConstraint(item: dropDown, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: CGFloat(dropDown.items.count * 50))
+        
+        let verticalConstraint = NSLayoutConstraint(item: dropDown, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        
+        view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+        editOptions.layoutIfNeeded()
+        setStateForDropDown()
+    }
+    @IBAction func filter(_ sender: Any) {
+        setStateForDropDown()
+    }
+    func setTitleForFilterButton(title: String)
+    {
+        self.btn_Filter.setTitle(title, for: .normal)
+    }
+    func setStateForDropDown()
+    {
+        dropDown.isHidden = !dropDown.isHidden
+    }
     func reloadData()
     {
         mediaViewModel.resetData()
@@ -53,6 +103,12 @@ class MediaView: BaseClearBarItemsViewController{
         mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kVideoFolder)")!, type: .Video)
         mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kOtherFolder)")!, type: .Other)
         mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kUserFolders)")!, type: .Folder)
+        self.collectionView.reloadData()
+    }
+    func reloadDataWith(path: URL, type: MimeTypes)
+    {
+        mediaViewModel.resetData()
+        mediaViewModel.getListFiles(folderPath: path, type: type)
         self.collectionView.reloadData()
     }
     func playVideo(atIndex: Int)
@@ -159,11 +215,11 @@ extension MediaView: UICollectionViewDelegate
         }
         if(isEdit == true)
         {
-            selectedFiles.append(self.mediaViewModel.getSourcePath(atIndex: indexPath.row, isFilter: isFilter))
+            self.mediaViewModel.addSelectedItem(at: indexPath.row, isFilter: isFilter)
             self.checkRenameButton()
             return
         }
-        if(selectedFiles.count > 1)
+        if(self.mediaViewModel.getSelectedItemCount() > 1)
         {
             self.editOptions.btn_Rename.isEnabled = false
         }
@@ -198,13 +254,13 @@ extension MediaView: UICollectionViewDelegate
         }
         if (isEdit == true)
         {
-            self.selectedFiles = self.selectedFiles.filter{$0 != self.mediaViewModel.getSourcePath(atIndex: indexPath.row, isFilter: isFilter)}
+            self.mediaViewModel.removeSelectedItem(item: self.mediaViewModel.getItem(at: indexPath.row, isFilter: isFilter))
             self.checkRenameButton()
         }
     }
     func checkRenameButton()
     {
-        if(selectedFiles.count > 1)
+        if(self.mediaViewModel.getSelectedItemCount() > 1)
         {
             self.editOptions.btn_Rename.isEnabled = false
         }
@@ -291,18 +347,18 @@ extension MediaView: UISearchResultsUpdating {
 extension MediaView: TreeFolderDelegate
 {
     internal func didSelectCopy(path: String) {
-        self.mediaViewModel.copyFile(paths: self.selectedFiles, toPath: URL(fileURLWithPath: path.appending("/\(kUserFolders)")))
+        self.mediaViewModel.copyFile(items: self.mediaViewModel.getSelectedItems(), to: URL(fileURLWithPath: path))
     }
 
     func didSelectMove(path: String) {
-        self.mediaViewModel.moveFile(paths: self.selectedFiles, toPath: URL(fileURLWithPath: path.appending("/\(kUserFolders)")))
+        self.mediaViewModel.moveFile(items: self.mediaViewModel.getSelectedItems(), to: URL(fileURLWithPath: path))
     }
 }
 extension MediaView: EditOptionsDelegate
 {
     func copyFile()
     {
-        if(self.selectedFiles.count > 0)
+        if(self.mediaViewModel.getSelectedItemCount() > 0)
         {
             let treeFolder = CopyView(nibName: "TreeFolder", bundle: nil)
             treeFolder.currentPath = documentsPath
@@ -312,7 +368,7 @@ extension MediaView: EditOptionsDelegate
     }
     func moveFile()
     {
-        if(self.selectedFiles.count > 0)
+        if(self.mediaViewModel.getSelectedItemCount() > 0)
         {
             let treeFolder = MoveView(nibName: "TreeFolder", bundle: nil)
             treeFolder.currentPath = documentsPath
@@ -322,14 +378,14 @@ extension MediaView: EditOptionsDelegate
     }
     func renameFile()
     {
-        if(self.selectedFiles.count == 1)
+        if(self.mediaViewModel.getSelectedItemCount() == 1)
         {
             self.showAlert(title: "Rename Media As", titleSaveButton: "Save", type: .Rename)
         }
     }
     func deleteFile()
     {
-        if(self.selectedFiles.count > 0)
+        if(self.mediaViewModel.getSelectedItemCount() > 0)
         {
             self.showAlert(title: "Do you want to delete the media?", titleSaveButton: "Delete", type: .Delete)
         }
@@ -345,13 +401,13 @@ extension MediaView: EditOptionsDelegate
             switch(type)
             {
             case .Delete:
-                self.mediaViewModel.deleteFile(paths: self.selectedFiles)
+                self.mediaViewModel.deleteFile(items: self.mediaViewModel.getSelectedItems())
                 break
             case .Rename:
                 let firstTextField = alertController.textFields![0] as UITextField
                 if let string = firstTextField.text
                 {
-                    self.mediaViewModel.renameFile(path: self.selectedFiles.first!, newName: string)
+                    self.mediaViewModel.renameFile(item: self.mediaViewModel.getSelectedItems().first!, newName: string)
                 }
                 break
             default:
@@ -375,5 +431,40 @@ extension MediaView: EditOptionsDelegate
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
+    }
+}
+extension MediaView: NVT_FileManagerDelegate
+{
+    func showError(description: String)
+    {
+        self.present(Alert.showError(description: description, downloadViewURL: nil), animated: true, completion: nil)
+    }
+    func didFinishAction()
+    {
+        self.mediaViewModel.removeAllSetectedItems()
+    }
+}
+extension MediaView: DropDownDelegate
+{
+    func didSelectItem(type: MimeTypes)
+    {
+        switch type {
+        case .Image:
+            self.reloadDataWith(path: URL(string:currentPath! + "/\(kImageFolder)")!, type: type)
+            break
+        case .Video:
+            self.reloadDataWith(path: URL(string:currentPath! + "/\(kVideoFolder)")!, type: type)
+            break
+        case .Other:
+            self.reloadDataWith(path: URL(string:currentPath! + "/\(kOtherFolder)")!, type: type)
+            break
+        case .Folder:
+            self.reloadDataWith(path: URL(string:currentPath! + "/\(kUserFolders)")!, type: type)
+            break
+        default:
+            self.reloadData()
+            break
+        }
+        self.setTitleForFilterButton(title: type.rawValue)
     }
 }

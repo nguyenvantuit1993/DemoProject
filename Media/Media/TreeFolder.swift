@@ -30,7 +30,7 @@ class TreeFolder: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.removeAllBarButtons()
+//        self.removeAllBarButtons()
     }
     func removeAllBarButtons()
     {
@@ -48,9 +48,6 @@ class TreeFolder: UIViewController {
     func reloadData()
     {
         mediaViewModel.resetData()
-        mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kImageFolder)")!, type: .Image)
-        mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kVideoFolder)")!, type: .Video)
-        mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kOtherFolder)")!, type: .Other)
         mediaViewModel.getListFiles(folderPath: URL(string:currentPath! + "/\(kUserFolders)")!, type: .Folder)
         self.tableFolers.reloadData()
     }

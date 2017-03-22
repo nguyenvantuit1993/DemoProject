@@ -11,50 +11,95 @@ import UIKit
 import Photos
 
 class MediaViewModel: FileManagerMedia{
-    var mediaViewModelDelegate:NVT_FileManagerDelegate!
+    internal var mediaViewModelDelegate:NVT_FileManagerDelegate!
     let fileManager = NVT_FileManager()
     override init()
     {
         super.init()
-        fileManager.delegate = mediaViewModelDelegate
+        
     }
-    func copyFile(paths: [URL], toPath: URL)
+    func setMediaViewModelDelegate(delegate: NVT_FileManagerDelegate)
     {
-        for path in paths
-        {
-            fileManager.copyFolderAt(path: path, toPath: toPath.appendingPathComponent(path.lastPathComponent))
+        self.mediaViewModelDelegate = delegate
+        fileManager.delegate = self.mediaViewModelDelegate
+    }
+    func getFolderToContaintMedia(type: MimeTypes) -> String
+    {
+        switch type {
+        case .Folder:
+            return kUserFolders
+        case .Image:
+            return kImageFolder
+        case .Video:
+            
+            return kVideoFolder
+        default:
+            return kOtherFolder
         }
     }
-    func moveFile(paths: [URL], toPath: URL)
+    func copyFile(items: [Item], to: URL)
     {
-        for path in paths
+        //copy video chu y
+        for item in items
         {
-            fileManager.moveFolderAt(atPath: path, toPath: toPath.appendingPathComponent(path.lastPathComponent))
+            fileManager.copyFolderAt(at: item.getFilePath(), toPath: to.appendingPathComponent(self.getFolderToContaintMedia(type: item.getType())).appendingPathComponent(item.getFilePath().lastPathComponent))
+            if item.getType() == .Video
+            {
+                fileManager.copyFolderAt(at: item.getThumbPath(), toPath: to.appendingPathComponent(self.getFolderToContaintMedia(type: item.getType())).appendingPathComponent(kVideoThumbs).appendingPathComponent(item.getFilePath().lastPathComponent).deletingPathExtension().appendingPathExtension("png"))
+            }
         }
     }
-    func renameFile(path: URL, newName: String)
+    func moveFile(items: [Item], to: URL)
     {
-        fileManager.renameFolderAt(path: path, withName: newName)
-    }
-    func deleteFile(paths: [URL])
-    {
-        for path in paths
+        //chuyen video chu y
+        for item in items
         {
-            fileManager.removeFolderAt(path: path)
+            fileManager.moveFolderAt(at: item.getFilePath(), toPath: to.appendingPathComponent(self.getFolderToContaintMedia(type: item.getType())).appendingPathComponent(item.getFilePath().lastPathComponent))
+            if item.getType() == .Video
+            {
+                fileManager.moveFolderAt(at: item.getThumbPath(), toPath: to.appendingPathComponent(self.getFolderToContaintMedia(type: item.getType())).appendingPathComponent(kVideoThumbs).appendingPathComponent(item.getFilePath().lastPathComponent).deletingPathExtension().appendingPathExtension("png"))
+            }
+        }
+    }
+    func renameFile(item: Item, newName: String)
+    {
+        var extention = item.getFilePath().pathExtension
+        extention = extention == "" ? extention : ".\(extention)"
+        //chu y doi ten video
+        fileManager.renameFolderAt(at: item.getFilePath(), withName: newName.appending(extention))
+        if(item.getType() == .Video)
+        {
+            fileManager.renameFolderAt(at: item.getThumbPath(), withName:newName.appending(".png"))
+        }
+    }
+    func deleteFile(items: [Item])
+    {
+        for item in items
+        {
+            fileManager.removeFolderAt(at: item.getFilePath())
+            if(item.getType() == .Video)
+            {
+               fileManager.removeFolderAt(at: item.getThumbPath())
+            }
         }
     }
 }
-extension MediaViewModel: NVT_FileManagerDelegate
-{
-    func showError(description: String) {
-        self.mediaViewModelDelegate.showError(description: description)
-    }
-}
+//extension MediaViewModel: NVT_FileManagerDelegate
+//{
+//    func showError(description: String) {
+//        self.mediaViewModelDelegate.showError(description: description)
+//    }
+//    func didFinishAction()
+//    {
+//        self.removeAllSetectedItems()
+//    }
+//}
 
 class FileManagerMedia
 {
+    private var selectedFiles = [Item]()
     private var items = [Item]()
-    private var filteredItems:[Item]!
+    private var filteredItems = [Item]()
     let otherExtentions = ["doc", "docs", "txt", "pdf", "rtf", "ppt", "html", "htm", "xls", "xlsx", "xlc"]
     let videoExtentions = ["flv", "mp4", "m3u8", "ts", "3gp", "mov", "avi", "wmv"]
     let imageExtentions = ["gif", "ico", "jpg", "svg", "tif", "webp"]
@@ -89,6 +134,48 @@ class FileManagerMedia
     func resetData()
     {
         self.items.removeAll()
+    }
+    func addSelectedItem(at index: Int, isFilter: Bool)
+    {
+        if isFilter == true
+        {
+            self.selectedFiles.append(self.filteredItems[index])
+        }
+        else
+        {
+            self.selectedFiles.append(self.items[index])
+        }
+    }
+    func getSelectedItem(at index: Int) -> Item
+    {
+        return self.selectedFiles[index]
+    }
+    func getSelectedItemCount() -> Int
+    {
+        return self.selectedFiles.count
+    }
+    func getSelectedItems() -> [Item]
+    {
+        return self.selectedFiles
+    }
+    func getItemWith(url: URL) -> Item
+    {
+        for item in self.items
+        {
+            if(item.getFilePath() == url)
+            {
+                return item
+            }
+        }
+        return Item()
+    }
+    func removeSelectedItem(item: Item)
+    {
+        self.selectedFiles = self.selectedFiles.filter{$0.getFilePath() != item.getFilePath()}
+    }
+    func removeAllSetectedItems()
+    {
+        self.selectedFiles.removeAll()
     }
     func getListFiles(folderPath: URL) -> [URL]
     {
@@ -212,6 +299,10 @@ class FileManagerMedia
     func getItems(isFilter: Bool) -> [Item]
     {
         return isFilter == true ? self.filteredItems : self.items
+    }
+    func getItem(at index: Int, isFilter: Bool) -> Item
+    {
+        return isFilter == true ? self.filteredItems[index] : self.items[index]
     }
     func getTypeAt(index: Int) -> MimeTypes
     {

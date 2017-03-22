@@ -45,6 +45,10 @@ struct Item {
     {
         return self.name
     }
+    func getThumbPath() -> URL
+    {
+        return self.thumbPath
+    }
     func getImageToView() -> Data?
     {
         var filePath: URL!

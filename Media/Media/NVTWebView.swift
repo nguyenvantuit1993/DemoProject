@@ -171,32 +171,7 @@ extension NVTWebView: CustomWebViewDelegate
     }
     func showActionInfoFile(title: String)
     {
-        
-        let alertController = UIAlertController(title: "Save file as", message: "", preferredStyle: UIAlertControllerStyle.alert)
-        
-        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: {
-            alert -> Void in
-            
-            let firstTextField = alertController.textFields![0] as UITextField
-            let newTrack = Track(name: firstTextField.text!, type: "", previewUrl: title)
-            ManageDownloadTrack.sharedInstance.addNewTrack(newTrack)
-            
-            
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
-            (action : UIAlertAction!) -> Void in
-            
-        })
-        
-        alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Enter File Name"
-        }
-        
-        alertController.addAction(saveAction)
-        alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true, completion: nil)
+        self.present(Alert.showActionInfoFile(title: title, isDownloadView: false), animated: true, completion: nil)
     }
     func showActionSheet(title: String, buttons:[UIAlertAction])
     {

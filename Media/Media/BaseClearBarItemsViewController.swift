@@ -19,20 +19,14 @@ class BaseClearBarItemsViewController: BasicViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.fileManager.delegate = self
         self.collectionView.allowsMultipleSelection = true
         UIView.setAnimationsEnabled(true)
         self.imagePicker = UIImagePickerController()
         self.imagePicker.delegate = self
         self.addEditOptions()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        addBaseButton()
-    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        removeAllBarButtons()
     }
     func removeAllBarButtons()
     {
@@ -234,18 +228,4 @@ extension BaseClearBarItemsViewController: UIImagePickerControllerDelegate, UINa
         }
     }
 }
-extension BaseClearBarItemsViewController: NVT_FileManagerDelegate
-{
-    func showError(description: String)
-    {
-        let alertController = UIAlertController(title: "Error", message: description, preferredStyle: UIAlertControllerStyle.alert)
-        
-        let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {
-            (action : UIAlertAction!) -> Void in
-            
-        })
-        alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
-}
+

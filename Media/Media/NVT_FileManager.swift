@@ -10,10 +10,11 @@ import Foundation
 let kFileEsxit = 516
 protocol NVT_FileManagerDelegate {
     func showError(description: String)
+    func didFinishAction()
 }
 class NVT_FileManager{
     var delegate: NVT_FileManagerDelegate!
-    func copyFolderAt(path: URL, toPath: URL)
+    func copyFolderAt(at path: URL, toPath: URL)
     {
         do {
             try FileManager.default.copyItem(at: path, to: toPath)
@@ -21,40 +22,43 @@ class NVT_FileManager{
             if(error.code == kFileEsxit)
             {
                 let lastComponent = toPath.lastPathComponent.appending("_copy")
-                self.copyFolderAt(path: path, toPath: toPath.deletingLastPathComponent().appendingPathComponent(lastComponent))
+                self.copyFolderAt(at: path, toPath: toPath.deletingLastPathComponent().appendingPathComponent(lastComponent))
             }
             else
             {
                 self.delegate.showError(description: error.localizedDescription)
             }
+            self.delegate.didFinishAction()
         }
     }
     
-    func removeFolderAt(path: URL)
+    func removeFolderAt(at path: URL)
     {
         do {
             try FileManager.default.removeItem(at: path)
         } catch let error as NSError {
             self.delegate.showError(description: error.localizedDescription)
         }
+        self.delegate.didFinishAction()
     }
-    func moveFolderAt(atPath: URL, toPath: URL)
+    func moveFolderAt(at path: URL, toPath: URL)
     {
         do {
-            try FileManager.default.moveItem(at: atPath, to: toPath)
+            try FileManager.default.moveItem(at: path, to: toPath)
         } catch let error as NSError {
             if(error.code == kFileEsxit)
             {
                 let lastComponent = toPath.lastPathComponent.appending("_copy")
-                self.moveFolderAt(atPath: atPath, toPath: toPath.deletingLastPathComponent().appendingPathComponent(lastComponent))
+                self.moveFolderAt(at: path, toPath: toPath.deletingLastPathComponent().appendingPathComponent(lastComponent))
             }
             else
             {
                 self.delegate.showError(description: error.localizedDescription)
             }
         }
+        self.delegate.didFinishAction()
     }
-    func renameFolderAt(path: URL, withName name: String)
+    func renameFolderAt(at path: URL, withName name: String)
     {
         
         var baseURL = path.deletingLastPathComponent()
@@ -64,6 +68,7 @@ class NVT_FileManager{
         } catch let error as NSError {
             self.delegate.showError(description: error.localizedDescription)
         }
+        self.delegate.didFinishAction()
     }
     func createFolderWithPath(path: String)
     {

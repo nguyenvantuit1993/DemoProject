@@ -58,6 +58,8 @@
 		CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BFC1E49DD4B00C10D91 /* Constant.swift */; };
 		CB3651501E602EA5006EFAB6 /* SettingObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB36514F1E602EA5006EFAB6 /* SettingObjects.swift */; };
 		CB37813A1E68332600486943 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3781391E68332600486943 /* ImageCell.swift */; };
+		CB3D6B4B1E8278C2005D2CD6 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3D6B4A1E8278C2005D2CD6 /* Alert.swift */; };
+		CB3D6B4E1E829563005D2CD6 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3D6B4D1E829563005D2CD6 /* DropDown.swift */; };
 		CB3EEE3F1E7D1EBE00A1D576 /* UIViewController+VENTouchLock.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3EEE2A1E7D1EBE00A1D576 /* UIViewController+VENTouchLock.m */; };
 		CB3EEE401E7D1EBE00A1D576 /* VENTouchLockCreatePasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3EEE2D1E7D1EBE00A1D576 /* VENTouchLockCreatePasscodeViewController.m */; };
 		CB3EEE411E7D1EBE00A1D576 /* VENTouchLockEnterPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3EEE2F1E7D1EBE00A1D576 /* VENTouchLockEnterPasscodeViewController.m */; };
@@ -175,6 +177,8 @@
 		CB364BFC1E49DD4B00C10D91 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CB36514F1E602EA5006EFAB6 /* SettingObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingObjects.swift; sourceTree = "<group>"; };
 		CB3781391E68332600486943 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		CB3D6B4A1E8278C2005D2CD6 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		CB3D6B4D1E829563005D2CD6 /* DropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
 		CB3EEE291E7D1EBE00A1D576 /* UIViewController+VENTouchLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+VENTouchLock.h"; sourceTree = "<group>"; };
 		CB3EEE2A1E7D1EBE00A1D576 /* UIViewController+VENTouchLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+VENTouchLock.m"; sourceTree = "<group>"; };
 		CB3EEE2C1E7D1EBE00A1D576 /* VENTouchLockCreatePasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENTouchLockCreatePasscodeViewController.h; sourceTree = "<group>"; };
@@ -404,6 +408,8 @@
 		CB364BFB1E49DD3F00C10D91 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CB3D6B4C1E8294A7005D2CD6 /* FilterOptions */,
+				CB3D6B491E827891005D2CD6 /* Alert */,
 				B1082E191E80BD870045CC21 /* TreeFolder */,
 				CB3EEE5C1E7D399D00A1D576 /* FileManager */,
 				CB3EEE271E7D1EBE00A1D576 /* VENTouchLock */,
@@ -416,6 +422,22 @@
 				CB364BFC1E49DD4B00C10D91 /* Constant.swift */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		CB3D6B491E827891005D2CD6 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				CB3D6B4A1E8278C2005D2CD6 /* Alert.swift */,
+			);
+			name = Alert;
+			sourceTree = "<group>";
+		};
+		CB3D6B4C1E8294A7005D2CD6 /* FilterOptions */ = {
+			isa = PBXGroup;
+			children = (
+				CB3D6B4D1E829563005D2CD6 /* DropDown.swift */,
+			);
+			name = FilterOptions;
 			sourceTree = "<group>";
 		};
 		CB3EEE271E7D1EBE00A1D576 /* VENTouchLock */ = {
@@ -898,11 +920,13 @@
 				CB80C7F41E496AA600690D4D /* AppDelegate.swift in Sources */,
 				B1B2B2E81E53B0470069E3C9 /* NVTWebView.swift in Sources */,
 				CB3EEE471E7D1EBE00A1D576 /* VENTouchLockPasscodeView.m in Sources */,
+				CB3D6B4E1E829563005D2CD6 /* DropDown.swift in Sources */,
 				CB80C80B1E4975F000690D4D /* TableViewAndSearchBar.swift in Sources */,
 				B1B2B2FE1E53B58B0069E3C9 /* CustomWebViewModel.swift in Sources */,
 				B1B2B2EA1E53B0990069E3C9 /* CustomWebView.swift in Sources */,
 				B1B2B3091E53C1A70069E3C9 /* BookMarkView.swift in Sources */,
 				976CFB9C1E7A95100072B820 /* BasicViewController.swift in Sources */,
+				CB3D6B4B1E8278C2005D2CD6 /* Alert.swift in Sources */,
 				B1B2B2F71E53B1910069E3C9 /* ToolBarNewPage.swift in Sources */,
 				CB4180511E5ADF0F00283B28 /* OtherFilesViewModel.swift in Sources */,
 				CB8294791E5416590013A064 /* Item.swift in Sources */,
