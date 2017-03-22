@@ -7,14 +7,18 @@
 //
 
 import UIKit
+protocol TreeFolderDelegate{
+    func didSelectMove(path: String)
+    func didSelectCopy(path: String)
+}
 
 class TreeFolder: UIViewController {
     @IBOutlet var tableFolers: UITableView!
     var mediaViewModel: MediaViewModel!
     var currentPath: String!
+    var treeFolderDelegate: TreeFolderDelegate!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableFolers.delegate = self
         self.tableFolers.dataSource = self
         self.tableFolers.register(UINib(nibName: "TreeFolderCell", bundle: Bundle.main), forCellReuseIdentifier: "TreeCell")
     }
@@ -24,8 +28,21 @@ class TreeFolder: UIViewController {
         mediaViewModel = MediaViewModel()
         self.reloadData()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeAllBarButtons()
+    }
+    func removeAllBarButtons()
+    {
+        self.navigationItem.leftBarButtonItems = []
+        self.navigationItem.rightBarButtonItems = []
+    }
     
     @IBAction func cancel(_ sender: Any) {
+        popToRoot()
+    }
+    func popToRoot()
+    {
         self.navigationController?.popToRootViewController(animated: true)
     }
     func reloadData()
@@ -38,17 +55,7 @@ class TreeFolder: UIViewController {
         self.tableFolers.reloadData()
     }
 }
-extension TreeFolder: UITableViewDelegate
-{
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let treeFolder = TreeFolder(nibName: "TreeFolder", bundle: nil)
-        treeFolder.currentPath = "\(self.currentPath!)/\(kUserFolders)/\(self.mediaViewModel.getNameItem(atIndex: indexPath.row, isFilter: false))"
-        self.navigationController?.pushViewController(treeFolder, animated: true)
-    }
-}
+
 extension TreeFolder: UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

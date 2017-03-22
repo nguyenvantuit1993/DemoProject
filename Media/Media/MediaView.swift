@@ -34,6 +34,7 @@ class MediaView: BaseClearBarItemsViewController{
         self.headerView.addSubview(searchController.searchBar)
         
         mediaViewModel = MediaViewModel()
+        mediaViewModel.mediaViewModelDelegate = self
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "CustomCollectionCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ImagesViewCell")
@@ -144,7 +145,7 @@ class MediaView: BaseClearBarItemsViewController{
 extension MediaView: UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: (self.view.frame.size.width/4) - 1, height: 95)
+        let size = CGSize(width: (self.view.frame.size.width/4) - 20, height: 110)
         return size
     }
 }
@@ -287,23 +288,36 @@ extension MediaView: UISearchResultsUpdating {
         }
     }
 }
+extension MediaView: TreeFolderDelegate
+{
+    internal func didSelectCopy(path: String) {
+        self.mediaViewModel.copyFile(paths: self.selectedFiles, toPath: URL(fileURLWithPath: path.appending("/\(kUserFolders)")))
+    }
+
+    func didSelectMove(path: String) {
+        self.mediaViewModel.moveFile(paths: self.selectedFiles, toPath: URL(fileURLWithPath: path.appending("/\(kUserFolders)")))
+    }
+}
 extension MediaView: EditOptionsDelegate
 {
     func copyFile()
     {
         if(self.selectedFiles.count > 0)
         {
-            self.mediaViewModel.deleteFile(paths: self.selectedFiles)
+            let treeFolder = CopyView(nibName: "TreeFolder", bundle: nil)
+            treeFolder.currentPath = documentsPath
+            treeFolder.treeFolderDelegate = self
+            self.navigationController?.pushViewController(treeFolder, animated: true)
         }
     }
     func moveFile()
     {
         if(self.selectedFiles.count > 0)
         {
-            let treeFolder = TreeFolder(nibName: "TreeFolder", bundle: nil)
+            let treeFolder = MoveView(nibName: "TreeFolder", bundle: nil)
             treeFolder.currentPath = documentsPath
+            treeFolder.treeFolderDelegate = self
             self.navigationController?.pushViewController(treeFolder, animated: true)
-//            self.mediaViewModel.deleteFile(paths: self.selectedFiles)
         }
     }
     func renameFile()

@@ -11,34 +11,43 @@ import UIKit
 import Photos
 
 class MediaViewModel: FileManagerMedia{
+    var mediaViewModelDelegate:NVT_FileManagerDelegate!
+    let fileManager = NVT_FileManager()
     override init()
     {
         super.init()
+        fileManager.delegate = mediaViewModelDelegate
     }
     func copyFile(paths: [URL], toPath: URL)
     {
         for path in paths
         {
-            NVT_FileManager.copyFolderAt(path: path, toPath: toPath)
+            fileManager.copyFolderAt(path: path, toPath: toPath.appendingPathComponent(path.lastPathComponent))
         }
     }
     func moveFile(paths: [URL], toPath: URL)
     {
         for path in paths
         {
-            NVT_FileManager.moveFolderAt(atPath: path, toPath: toPath)
+            fileManager.moveFolderAt(atPath: path, toPath: toPath.appendingPathComponent(path.lastPathComponent))
         }
     }
     func renameFile(path: URL, newName: String)
     {
-        NVT_FileManager.renameFolderAt(path: path, withName: newName)
+        fileManager.renameFolderAt(path: path, withName: newName)
     }
     func deleteFile(paths: [URL])
     {
         for path in paths
         {
-            NVT_FileManager.removeFolderAt(path: path)
+            fileManager.removeFolderAt(path: path)
         }
+    }
+}
+extension MediaViewModel: NVT_FileManagerDelegate
+{
+    func showError(description: String) {
+        self.mediaViewModelDelegate.showError(description: description)
     }
 }
 

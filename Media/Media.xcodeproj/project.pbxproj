@@ -96,6 +96,8 @@
 		CBD33B361E554B510004D374 /* TTOpenInAppActivity8.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2E1E554B510004D374 /* TTOpenInAppActivity8.png */; };
 		CBD33B371E554B510004D374 /* TTOpenInAppActivity8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2F1E554B510004D374 /* TTOpenInAppActivity8@2x.png */; };
 		CBD33B381E554B510004D374 /* TTOpenInAppActivity8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B301E554B510004D374 /* TTOpenInAppActivity8@3x.png */; };
+		CBE315581E822A5800790D8F /* MoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE315571E822A5800790D8F /* MoveView.swift */; };
+		CBE3155A1E82311800790D8F /* CopyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE315591E82311800790D8F /* CopyView.swift */; };
 		CBFB10001E497FF500992989 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB0FFF1E497FF500992989 /* MediaView.swift */; };
 		CBFB10021E49835200992989 /* BaseClearBarItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB10011E49835200992989 /* BaseClearBarItemsViewController.swift */; };
 		CBFB10041E49845700992989 /* BaseClearBarItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB10031E49845700992989 /* BaseClearBarItemsTableViewController.swift */; };
@@ -224,6 +226,8 @@
 		CBD33B2E1E554B510004D374 /* TTOpenInAppActivity8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity8.png; sourceTree = "<group>"; };
 		CBD33B2F1E554B510004D374 /* TTOpenInAppActivity8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity8@2x.png"; sourceTree = "<group>"; };
 		CBD33B301E554B510004D374 /* TTOpenInAppActivity8@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity8@3x.png"; sourceTree = "<group>"; };
+		CBE315571E822A5800790D8F /* MoveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveView.swift; sourceTree = "<group>"; };
+		CBE315591E82311800790D8F /* CopyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyView.swift; sourceTree = "<group>"; };
 		CBFB0FFF1E497FF500992989 /* MediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		CBFB10011E49835200992989 /* BaseClearBarItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClearBarItemsViewController.swift; sourceTree = "<group>"; };
 		CBFB10031E49845700992989 /* BaseClearBarItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClearBarItemsTableViewController.swift; sourceTree = "<group>"; };
@@ -323,6 +327,8 @@
 				B131EF1F1E81A6B800352C57 /* TreeFolder.xib */,
 				B131EF221E81A86E00352C57 /* TreeFolderCell.swift */,
 				B131EF231E81A86E00352C57 /* TreeFolderCell.xib */,
+				CBE315571E822A5800790D8F /* MoveView.swift */,
+				CBE315591E82311800790D8F /* CopyView.swift */,
 			);
 			name = TreeFolder;
 			sourceTree = "<group>";
@@ -838,6 +844,7 @@
 				971ABB0E1E78E9EA00C91F66 /* M3U8PlaylistModel.m in Sources */,
 				CB4180541E5AFE3000283B28 /* DetailFile.swift in Sources */,
 				B1B2B2E51E53B0390069E3C9 /* NVTWebViewModel.swift in Sources */,
+				CBE315581E822A5800790D8F /* MoveView.swift in Sources */,
 				B1809FD41E6747BD004FA67D /* BookMarkViewModel.swift in Sources */,
 				CB37813A1E68332600486943 /* ImageCell.swift in Sources */,
 				B1B2B2D21E53AF960069E3C9 /* BookMarkData.xcdatamodeld in Sources */,
@@ -858,6 +865,7 @@
 				B1B2B30C1E53CDC20069E3C9 /* ManageDataBase.swift in Sources */,
 				CB3EEE461E7D1EBE00A1D576 /* VENTouchLockPasscodeCharacterView.m in Sources */,
 				B1809FD21E67435D004FA67D /* DownloadViewModel.swift in Sources */,
+				CBE3155A1E82311800790D8F /* CopyView.swift in Sources */,
 				CB8294771E5414F10013A064 /* MediasViewModel.swift in Sources */,
 				971ABB221E78EA0400C91F66 /* M3U8ExtXStreamInf.m in Sources */,
 				CB4DB6661E58527500F6F640 /* ManageDownloadTrack.swift in Sources */,

@@ -11,7 +11,7 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+    let fileManager = NVT_FileManager()
     var window: UIWindow?
     var backgroundSessionCompletionHandler: (() -> Void)?
     
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             return
         }
-        NVT_FileManager.createDefaultFolders(baseURL: documentsPath!)
+        fileManager.createDefaultFolders(baseURL: documentsPath!)
     }
     func createFolderWithPath(path: String)
     {

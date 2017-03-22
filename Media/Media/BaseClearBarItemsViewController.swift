@@ -15,9 +15,11 @@ class BaseClearBarItemsViewController: BasicViewController {
     var verticalConstraint: NSLayoutConstraint! = nil
     var editOptions: EditOptions!
     var isEdit = false
+    let fileManager = NVT_FileManager()
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fileManager.delegate = self
         self.collectionView.allowsMultipleSelection = true
         UIView.setAnimationsEnabled(true)
         self.imagePicker = UIImagePickerController()
@@ -153,8 +155,8 @@ class BaseClearBarItemsViewController: BasicViewController {
             {
                 return
             }
-            NVT_FileManager.createFolderWithPath(path: "\(self.currentPath!)/\(kUserFolders)/\(firstTextField.text!)")
-            NVT_FileManager.createDefaultFolders(baseURL: "\(self.currentPath!)/\(kUserFolders)/\(firstTextField.text!)")
+            self.fileManager.createFolderWithPath(path: "\(self.currentPath!)/\(kUserFolders)/\(firstTextField.text!)")
+            self.fileManager.createDefaultFolders(baseURL: "\(self.currentPath!)/\(kUserFolders)/\(firstTextField.text!)")
             NotificationCenter.default.post(name: Notification.Name("ReloadMediaView"), object: nil)
         })
         
@@ -230,5 +232,20 @@ extension BaseClearBarItemsViewController: UIImagePickerControllerDelegate, UINa
                 }
             }
         }
+    }
+}
+extension BaseClearBarItemsViewController: NVT_FileManagerDelegate
+{
+    func showError(description: String)
+    {
+        let alertController = UIAlertController(title: "Error", message: description, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }

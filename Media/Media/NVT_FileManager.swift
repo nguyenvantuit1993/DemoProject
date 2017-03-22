@@ -7,43 +7,54 @@
 //
 
 import Foundation
-
+let kFileEsxit = 516
+protocol NVT_FileManagerDelegate {
+    func showError(description: String)
+}
 class NVT_FileManager{
-    class func createFolderWithPath(path: String)
-    {
-        do {
-            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
-        } catch let error as NSError {
-            print(error.localizedDescription);
-        }
-    }
-    
-    class func copyFolderAt(path: URL, toPath: URL)
+    var delegate: NVT_FileManagerDelegate!
+    func copyFolderAt(path: URL, toPath: URL)
     {
         do {
             try FileManager.default.copyItem(at: path, to: toPath)
         } catch let error as NSError {
-            print(error.localizedDescription);
+            if(error.code == kFileEsxit)
+            {
+                let lastComponent = toPath.lastPathComponent.appending("_copy")
+                self.copyFolderAt(path: path, toPath: toPath.deletingLastPathComponent().appendingPathComponent(lastComponent))
+            }
+            else
+            {
+                self.delegate.showError(description: error.localizedDescription)
+            }
         }
     }
     
-    class func removeFolderAt(path: URL)
+    func removeFolderAt(path: URL)
     {
         do {
             try FileManager.default.removeItem(at: path)
         } catch let error as NSError {
-            print(error.localizedDescription);
+            self.delegate.showError(description: error.localizedDescription)
         }
     }
-    class func moveFolderAt(atPath: URL, toPath: URL)
+    func moveFolderAt(atPath: URL, toPath: URL)
     {
         do {
             try FileManager.default.moveItem(at: atPath, to: toPath)
         } catch let error as NSError {
-            print(error.localizedDescription);
+            if(error.code == kFileEsxit)
+            {
+                let lastComponent = toPath.lastPathComponent.appending("_copy")
+                self.moveFolderAt(atPath: atPath, toPath: toPath.deletingLastPathComponent().appendingPathComponent(lastComponent))
+            }
+            else
+            {
+                self.delegate.showError(description: error.localizedDescription)
+            }
         }
     }
-    class func renameFolderAt(path: URL, withName name: String)
+    func renameFolderAt(path: URL, withName name: String)
     {
         
         var baseURL = path.deletingLastPathComponent()
@@ -51,10 +62,18 @@ class NVT_FileManager{
         do {
             try FileManager.default.moveItem(at: path, to: baseURL)
         } catch let error as NSError {
-            print(error.localizedDescription);
+            self.delegate.showError(description: error.localizedDescription)
         }
     }
-    class func createDefaultFolders(baseURL: String)
+    func createFolderWithPath(path: String)
+    {
+        do {
+            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
+        } catch let error as NSError {
+            self.delegate.showError(description: error.localizedDescription)
+        }
+    }
+    func createDefaultFolders(baseURL: String)
     {
         let videoFolderPath = baseURL.appending("/\(kVideoFolder)")
         let userFolderPath = baseURL.appending("/\(kUserFolders)")
@@ -62,11 +81,11 @@ class NVT_FileManager{
         let imageFolderPath = baseURL.appending("/\(kImageFolder)")
         let otherFolderPath = baseURL.appending("/\(kOtherFolder)")
         let thumbFolderPath = videoFolderPath.appending("/\(kVideoThumbs)")
-        NVT_FileManager.createFolderWithPath(path: userFolderPath)
-        NVT_FileManager.createFolderWithPath(path: bunchFolderPath)
-        NVT_FileManager.createFolderWithPath(path: videoFolderPath)
-        NVT_FileManager.createFolderWithPath(path: imageFolderPath)
-        NVT_FileManager.createFolderWithPath(path: thumbFolderPath)
-        NVT_FileManager.createFolderWithPath(path: otherFolderPath)
+        self.createFolderWithPath(path: userFolderPath)
+        self.createFolderWithPath(path: bunchFolderPath)
+        self.createFolderWithPath(path: videoFolderPath)
+        self.createFolderWithPath(path: imageFolderPath)
+        self.createFolderWithPath(path: thumbFolderPath)
+        self.createFolderWithPath(path: otherFolderPath)
     }
 }
