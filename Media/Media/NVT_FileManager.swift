@@ -18,36 +18,38 @@ class NVT_FileManager{
         }
     }
     
-    class func copyFolderAt(path: String, toPath: String)
+    class func copyFolderAt(path: URL, toPath: URL)
     {
         do {
-            try FileManager.default.copyItem(atPath: path, toPath: toPath)
+            try FileManager.default.copyItem(at: path, to: toPath)
         } catch let error as NSError {
             print(error.localizedDescription);
         }
     }
     
-    class func removeFolderAt(path: String)
+    class func removeFolderAt(path: URL)
     {
         do {
-            try FileManager.default.removeItem(atPath: path)
+            try FileManager.default.removeItem(at: path)
         } catch let error as NSError {
             print(error.localizedDescription);
         }
     }
-    class func moveFolderAt(path: String, toPath: String)
+    class func moveFolderAt(atPath: URL, toPath: URL)
     {
         do {
-            try FileManager.default.moveItem(atPath: path, toPath: toPath)
+            try FileManager.default.moveItem(at: atPath, to: toPath)
         } catch let error as NSError {
             print(error.localizedDescription);
         }
     }
-    class func renameFolderAt(path: NSString, withName name: String)
+    class func renameFolderAt(path: URL, withName name: String)
     {
-        let baseURL = path.deletingLastPathComponent.appending("/\(name)")
+        
+        var baseURL = path.deletingLastPathComponent()
+        baseURL.appendPathComponent(name)
         do {
-            try FileManager.default.moveItem(atPath: path as String, toPath: baseURL)
+            try FileManager.default.moveItem(at: path, to: baseURL)
         } catch let error as NSError {
             print(error.localizedDescription);
         }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -30,13 +30,23 @@
                                     <constraint firstAttribute="width" constant="30" id="yzk-Y9-vuj"/>
                                 </constraints>
                             </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJF-fj-ZfC">
+                                <rect key="frame" x="50" y="50" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="PZr-9U-PBe"/>
+                                    <constraint firstAttribute="width" constant="20" id="tTd-Fb-jKo"/>
+                                </constraints>
+                                <state key="normal" image="UnSelect"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="u9m-zx-9fM" firstAttribute="leading" secondItem="oos-4U-OoU" secondAttribute="leading" id="4hV-NY-4i7"/>
                             <constraint firstAttribute="trailing" secondItem="u9m-zx-9fM" secondAttribute="trailing" id="7Op-yk-Dw7"/>
                             <constraint firstAttribute="bottom" secondItem="u9m-zx-9fM" secondAttribute="bottom" id="7jG-x8-sLK"/>
+                            <constraint firstAttribute="bottom" secondItem="iJF-fj-ZfC" secondAttribute="bottom" id="7vC-Th-lQI"/>
                             <constraint firstItem="u9m-zx-9fM" firstAttribute="top" secondItem="oos-4U-OoU" secondAttribute="top" id="Cg4-kb-WvZ"/>
+                            <constraint firstAttribute="trailing" secondItem="iJF-fj-ZfC" secondAttribute="trailing" id="Tsm-8g-bbd"/>
                             <constraint firstItem="OXg-eT-WTr" firstAttribute="centerY" secondItem="oos-4U-OoU" secondAttribute="centerY" id="hgs-Qn-Ym7"/>
                             <constraint firstAttribute="height" constant="70" id="koE-zJ-5m4"/>
                             <constraint firstItem="OXg-eT-WTr" firstAttribute="centerX" secondItem="oos-4U-OoU" secondAttribute="centerX" id="wjS-J4-qnb"/>
@@ -61,6 +71,7 @@
             </constraints>
             <size key="customSize" width="141" height="122"/>
             <connections>
+                <outlet property="btn_Select" destination="iJF-fj-ZfC" id="Q5O-Fy-1xT"/>
                 <outlet property="fileName" destination="gtZ-4D-Puq" id="R0e-Sm-1kX"/>
                 <outlet property="imageView" destination="u9m-zx-9fM" id="4jB-WS-woC"/>
                 <outlet property="playView" destination="OXg-eT-WTr" id="f4I-W4-wwN"/>
@@ -70,5 +81,6 @@
     </objects>
     <resources>
         <image name="PlayBtn" width="30" height="30"/>
+        <image name="UnSelect" width="30" height="30"/>
     </resources>
 </document>

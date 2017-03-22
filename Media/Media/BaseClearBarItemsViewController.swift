@@ -14,8 +14,11 @@ class BaseClearBarItemsViewController: BasicViewController {
     var currentPath: String!
     var verticalConstraint: NSLayoutConstraint! = nil
     var editOptions: EditOptions!
+    var isEdit = false
+    @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.allowsMultipleSelection = true
         UIView.setAnimationsEnabled(true)
         self.imagePicker = UIImagePickerController()
         self.imagePicker.delegate = self
@@ -87,6 +90,8 @@ class BaseClearBarItemsViewController: BasicViewController {
     }
     
     func edit(){
+        self.isEdit = true
+        self.collectionView.reloadData()
         addEditButton()
     }
     func importMedia()
@@ -132,6 +137,8 @@ class BaseClearBarItemsViewController: BasicViewController {
     }
     func done()
     {
+        self.isEdit = false
+        self.collectionView.reloadData()
         addBaseButton()
     }
     func showActionCreateFile()

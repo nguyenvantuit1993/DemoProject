@@ -15,25 +15,25 @@ class MediaViewModel: FileManagerMedia{
     {
         super.init()
     }
-    func copyFile(paths: [String], toPath: String)
+    func copyFile(paths: [URL], toPath: URL)
     {
         for path in paths
         {
             NVT_FileManager.copyFolderAt(path: path, toPath: toPath)
         }
     }
-    func moveFile(paths: [String], toPath: String)
+    func moveFile(paths: [URL], toPath: URL)
     {
         for path in paths
         {
-            NVT_FileManager.moveFolderAt(path: path, toPath: toPath)
+            NVT_FileManager.moveFolderAt(atPath: path, toPath: toPath)
         }
     }
-    func renameFile(path: String, newName: String)
+    func renameFile(path: URL, newName: String)
     {
-        NVT_FileManager.renameFolderAt(path: path as NSString, withName: newName)
+        NVT_FileManager.renameFolderAt(path: path, withName: newName)
     }
-    func deleteFile(paths: [String])
+    func deleteFile(paths: [URL])
     {
         for path in paths
         {

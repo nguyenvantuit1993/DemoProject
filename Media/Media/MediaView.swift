@@ -12,8 +12,8 @@ import AVKit
 class MediaView: BaseClearBarItemsViewController{
     
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    var selectedFiles = [String]()
+    
+    var selectedFiles = [URL]()
     var currentIndex: Int!
     var mediaViewModel: MediaViewModel!
     var isFakeLogin: Bool!
@@ -156,7 +156,12 @@ extension MediaView: UICollectionViewDelegate
         {
             isFilter = true
         }
-        selectedFiles.append(self.mediaViewModel.getSourcePath(atIndex: indexPath.row, isFilter: isFilter).absoluteString)
+        if(isEdit == true)
+        {
+            selectedFiles.append(self.mediaViewModel.getSourcePath(atIndex: indexPath.row, isFilter: isFilter))
+            self.checkRenameButton()
+            return
+        }
         if(selectedFiles.count > 1)
         {
             self.editOptions.btn_Rename.isEnabled = false
@@ -190,7 +195,22 @@ extension MediaView: UICollectionViewDelegate
         {
             isFilter = true
         }
-        self.selectedFiles = self.selectedFiles.filter{$0 != self.mediaViewModel.getSourcePath(atIndex: indexPath.row, isFilter: isFilter).absoluteString}
+        if (isEdit == true)
+        {
+            self.selectedFiles = self.selectedFiles.filter{$0 != self.mediaViewModel.getSourcePath(atIndex: indexPath.row, isFilter: isFilter)}
+            self.checkRenameButton()
+        }
+    }
+    func checkRenameButton()
+    {
+        if(selectedFiles.count > 1)
+        {
+            self.editOptions.btn_Rename.isEnabled = false
+        }
+        else
+        {
+            self.editOptions.btn_Rename.isEnabled = true
+        }
     }
     
 }
@@ -222,6 +242,7 @@ extension MediaView: UICollectionViewDataSource
             }
             cell.fileName.text = self.mediaViewModel.getNameItem(atIndex: indexPath.row, isFilter: false)
         }
+        
         if(self.mediaViewModel.getTypeAt(index: indexPath.row) == .Video)
         {
             cell.playView.isHidden = false
@@ -230,6 +251,8 @@ extension MediaView: UICollectionViewDataSource
         {
             cell.playView.isHidden = true
         }
+        
+        cell.btn_Select.isHidden = !isEdit
         return cell
         
     }
@@ -277,12 +300,15 @@ extension MediaView: EditOptionsDelegate
     {
         if(self.selectedFiles.count > 0)
         {
-            self.mediaViewModel.deleteFile(paths: self.selectedFiles)
+            let treeFolder = TreeFolder(nibName: "TreeFolder", bundle: nil)
+            treeFolder.currentPath = documentsPath
+            self.navigationController?.pushViewController(treeFolder, animated: true)
+//            self.mediaViewModel.deleteFile(paths: self.selectedFiles)
         }
     }
     func renameFile()
     {
-        if(self.selectedFiles.count > 0)
+        if(self.selectedFiles.count == 1)
         {
             self.showAlert(title: "Rename Media As", titleSaveButton: "Save", type: .Rename)
         }
@@ -317,10 +343,7 @@ extension MediaView: EditOptionsDelegate
             default:
                 break
             }
-            
-            
-            
-            
+            self.reloadData()
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {

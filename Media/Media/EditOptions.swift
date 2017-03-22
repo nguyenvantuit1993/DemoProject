@@ -16,6 +16,7 @@ import UIKit
 
 class EditOptions: UIView {
     var delegate: EditOptionsDelegate!
+    
     @IBOutlet var btn_Rename: UIButton!
     @IBOutlet var view: UIView!
     @IBAction func copyFile(_ sender: Any) {

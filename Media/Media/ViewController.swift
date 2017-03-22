@@ -11,13 +11,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let a = CompassPoint(rawValue: 1)
-        switch a! {
-        case .north: break
-            
-        default: break
-            
-        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
