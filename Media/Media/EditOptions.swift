@@ -11,13 +11,17 @@ protocol EditOptionsDelegate
     func moveFile()
     func renameFile()
     func deleteFile()
+    func moreOptions()
 }
 import UIKit
 
 class EditOptions: UIView {
     var delegate: EditOptionsDelegate!
-    
+    @IBOutlet var btn_Remove: UIButton!
+    @IBOutlet var btn_Copy: UIButton!
+    @IBOutlet var btn_Move: UIButton!
     @IBOutlet var btn_Rename: UIButton!
+    @IBOutlet var btn_More: UIButton!
     @IBOutlet var view: UIView!
     @IBAction func copyFile(_ sender: Any) {
         delegate.copyFile()
@@ -31,6 +35,10 @@ class EditOptions: UIView {
     @IBAction func deleteFile(_ sender: Any) {
         delegate.deleteFile()
     }
+    @IBAction func moreOptions(_ sender: Any) {
+         delegate.moreOptions()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

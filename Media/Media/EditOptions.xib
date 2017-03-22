@@ -11,6 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditOptions" customModule="Media" customModuleProvider="target">
             <connections>
+                <outlet property="btn_Copy" destination="eMS-uN-Sz1" id="Jf9-iZ-my3"/>
+                <outlet property="btn_More" destination="w4g-j5-B46" id="Psq-yu-DDx"/>
+                <outlet property="btn_Move" destination="qSg-WP-Pw4" id="Oo0-qI-b79"/>
+                <outlet property="btn_Remove" destination="GoV-da-dVJ" id="tpx-vi-0aW"/>
                 <outlet property="btn_Rename" destination="7FQ-UV-gLz" id="4r6-nY-2OF"/>
             </connections>
         </placeholder>
@@ -19,41 +23,51 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMS-uN-Sz1">
-                    <rect key="frame" x="0.0" y="0.0" width="94" height="49"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMS-uN-Sz1">
+                    <rect key="frame" x="0.0" y="0.0" width="75" height="49"/>
                     <state key="normal" title="Copy"/>
                     <connections>
                         <action selector="copyFile:" destination="-1" eventType="touchUpInside" id="wIv-j8-PsH"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoV-da-dVJ">
-                    <rect key="frame" x="282" y="0.0" width="93" height="49"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoV-da-dVJ">
+                    <rect key="frame" x="225" y="0.0" width="75" height="49"/>
                     <state key="normal" title="Delete"/>
                     <connections>
                         <action selector="deleteFile:" destination="-1" eventType="touchUpInside" id="nru-um-v5W"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FQ-UV-gLz">
-                    <rect key="frame" x="188" y="0.0" width="94" height="49"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FQ-UV-gLz">
+                    <rect key="frame" x="150" y="0.0" width="75" height="49"/>
                     <state key="normal" title="Rename"/>
                     <connections>
                         <action selector="renameFile:" destination="-1" eventType="touchUpInside" id="nzb-sW-hzK"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSg-WP-Pw4">
-                    <rect key="frame" x="94" y="0.0" width="94" height="49"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSg-WP-Pw4">
+                    <rect key="frame" x="75" y="0.0" width="75" height="49"/>
                     <state key="normal" title="Move"/>
                     <connections>
                         <action selector="moveFile:" destination="-1" eventType="touchUpInside" id="hZH-Z4-nuc"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-j5-B46">
+                    <rect key="frame" x="300" y="0.0" width="75" height="49"/>
+                    <state key="normal" title="More"/>
+                    <connections>
+                        <action selector="moreOptions:" destination="-1" eventType="touchUpInside" id="BL7-XQ-cOV"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="eMS-uN-Sz1" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.25" id="1Uc-WJ-euP"/>
+                <constraint firstItem="w4g-j5-B46" firstAttribute="width" secondItem="GoV-da-dVJ" secondAttribute="width" id="01W-Qf-8do"/>
+                <constraint firstItem="eMS-uN-Sz1" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.2" id="1Uc-WJ-euP"/>
                 <constraint firstItem="eMS-uN-Sz1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2PF-4K-enH"/>
                 <constraint firstItem="qSg-WP-Pw4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4IL-U8-7kx"/>
                 <constraint firstItem="qSg-WP-Pw4" firstAttribute="leading" secondItem="eMS-uN-Sz1" secondAttribute="trailing" id="4kj-qp-0jG"/>
+                <constraint firstItem="GoV-da-dVJ" firstAttribute="width" secondItem="7FQ-UV-gLz" secondAttribute="width" id="6rR-69-iqn"/>
+                <constraint firstItem="w4g-j5-B46" firstAttribute="leading" secondItem="GoV-da-dVJ" secondAttribute="trailing" id="AaP-PJ-qjv"/>
                 <constraint firstItem="qSg-WP-Pw4" firstAttribute="width" secondItem="eMS-uN-Sz1" secondAttribute="width" id="Acy-Oe-b7N"/>
                 <constraint firstItem="GoV-da-dVJ" firstAttribute="leading" secondItem="7FQ-UV-gLz" secondAttribute="trailing" id="GBt-dP-bb7"/>
                 <constraint firstAttribute="bottom" secondItem="qSg-WP-Pw4" secondAttribute="bottom" id="IFN-fY-sa6"/>
@@ -61,11 +75,12 @@
                 <constraint firstItem="7FQ-UV-gLz" firstAttribute="leading" secondItem="qSg-WP-Pw4" secondAttribute="trailing" id="Vq7-VR-Pqk"/>
                 <constraint firstAttribute="bottom" secondItem="eMS-uN-Sz1" secondAttribute="bottom" id="Wb6-Ai-SJe"/>
                 <constraint firstItem="GoV-da-dVJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WcI-lQ-fKy"/>
-                <constraint firstAttribute="trailing" secondItem="GoV-da-dVJ" secondAttribute="trailing" id="dhb-Xx-f8Y"/>
                 <constraint firstItem="eMS-uN-Sz1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lnY-6B-H8J"/>
                 <constraint firstItem="7FQ-UV-gLz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mEZ-vW-5v9"/>
                 <constraint firstAttribute="bottom" secondItem="GoV-da-dVJ" secondAttribute="bottom" id="oYM-ZM-egp"/>
                 <constraint firstAttribute="bottom" secondItem="7FQ-UV-gLz" secondAttribute="bottom" id="sdL-XH-fke"/>
+                <constraint firstAttribute="bottom" secondItem="w4g-j5-B46" secondAttribute="bottom" id="vSa-FT-a6v"/>
+                <constraint firstItem="w4g-j5-B46" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vwh-ib-3Ba"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

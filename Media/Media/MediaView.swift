@@ -18,15 +18,16 @@ class MediaView: BaseClearBarItemsViewController{
     var mediaViewModel: MediaViewModel!
     var dropDown = DropDown(frame: CGRect(x: 0, y: 0, width: 100, height: 100), style: .plain)
     let searchController = UISearchController(searchResultsController: nil)
+    var docController: UIDocumentInteractionController!
     override func viewDidLoad() {
         super.viewDidLoad()
         if(self.currentPath == nil)
         {
             self.currentPath = documentsPath
         }
-        let dismissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(setStateForDropDown))
-        self.collectionView.addGestureRecognizer(dismissKeyboardTap)
-        dismissKeyboardTap.cancelsTouchesInView = false
+        let hiddenDropDownGesture = UITapGestureRecognizer(target: self, action: #selector(hiddenDropDown))
+        self.collectionView.addGestureRecognizer(hiddenDropDownGesture)
+        hiddenDropDownGesture.cancelsTouchesInView = false
         
         self.addDropDown()
         self.addBaseButton()
@@ -47,6 +48,8 @@ class MediaView: BaseClearBarItemsViewController{
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "CustomCollectionCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ImagesViewCell")
+        
+        self.reloadData()
         self.view.backgroundColor = UIColor.black
         
     }
@@ -55,19 +58,8 @@ class MediaView: BaseClearBarItemsViewController{
         self.dropDown.isHidden = true
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.reloadData()
         super.viewWillAppear(animated)
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("123")
-    }
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touch")
-    }
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        setStateForDropDown()
-//    }
     func addDropDown()
     {
         dropDown.dropDownDelegate = self
@@ -95,6 +87,10 @@ class MediaView: BaseClearBarItemsViewController{
     func setStateForDropDown()
     {
         dropDown.isHidden = !dropDown.isHidden
+    }
+    func hiddenDropDown()
+    {
+        self.dropDown.isHidden = true
     }
     func reloadData()
     {
@@ -146,47 +142,51 @@ class MediaView: BaseClearBarItemsViewController{
         viewScroll.delegate = self
         self.navigationController?.pushViewController(viewScroll, animated: true)
     }
-    func showActionSheet(index: Int, isFilter: Bool)
+    func showActionSheet()
     {
-        let actionSheet = UIAlertController(title: self.mediaViewModel.getNameItem(atIndex: index, isFilter: isFilter), message: "", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: self.mediaViewModel.getSelectedItem(at: 0).getNameToShow(), message: "", preferredStyle: .actionSheet)
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-            //Just dismiss the action sheet
+            self.didFinishAction()
         }
-        let play: UIAlertAction = UIAlertAction(title: "Play", style: .default) { action -> Void in
-            self.playVideo(atIndex: index)
-            
+        //        let play: UIAlertAction = UIAlertAction(title: "Play", style: .default) { action -> Void in
+        //            self.playVideo(atIndex: index)
+        //
+        //        }
+        //        play.setValue(UIColor.red, forKey: "titleTextColor")
+        let openInOthers = UIAlertAction(title: "Open in Other Apps", style: .default) { action -> Void in
+            self.docController = UIDocumentInteractionController(url: self.mediaViewModel.getSelectedFileSourcePath().first!)
+            self.docController.presentOptionsMenu(from: CGRect(x: 50, y: 50, width: 100, height: 100), in:self.view, animated:true)
+            self.docController.delegate = self
         }
-        play.setValue(UIColor.red, forKey: "titleTextColor")
         
-        let playOnExternal: UIAlertAction = UIAlertAction(title: "Play on External Display", style: .default) { action -> Void in
-            
-            
-        }
         
-        let openInOthers: UIAlertAction = UIAlertAction(title: "Open in Other Apps", style: .default) { action -> Void in
-            
-            
-            
-            let docController = UIDocumentInteractionController(url: Bundle.main.url(forResource: "test", withExtension: "mp4")!)
-            docController.presentOptionsMenu(from: CGRect(x: 50, y: 50, width: 100, height: 100), in:self.view, animated:true)
-            
-        }
         let saveToCameraRoll: UIAlertAction = UIAlertAction(title: "Save to Camera Roll", style: .default) { action -> Void in
-            self.mediaViewModel.saveMediaToCameraRoll(atIndex: index, isFilter: self.checkIsFilter())
-            
+            self.mediaViewModel.saveSelectedMediaToCameraRoll()
+            self.didFinishAction()
         }
+        saveToCameraRoll.setValue(UIColor.red, forKey: "titleTextColor")
+        
+        let urlsToExport = self.mediaViewModel.getSelectedFileSourcePath()
         let exportFile: UIAlertAction = UIAlertAction(title: "Export File", style: .default) { action -> Void in
             let openInApp = TTOpenInAppActivity(view: self.view, andRect: CGRect(x: 0, y: 0, width: 0, height: 0))
-            let activityView = UIActivityViewController(activityItems: [Bundle.main.url(forResource: "test", withExtension: "mp4")!], applicationActivities: [openInApp!])
+            
+            let activityView = UIActivityViewController(activityItems: urlsToExport, applicationActivities: [openInApp!])
+            activityView.completionWithItemsHandler = { (activityType, completed:Bool, returnedItems:[Any]?, error: Error?) in
+                self.didFinishAction()
+            }
             self.present(activityView, animated: true, completion: nil)
+            
             
         }
         actionSheet.addAction(cancelAction)
-        actionSheet.addAction(play)
-        actionSheet.addAction(playOnExternal)
-        actionSheet.addAction(openInOthers)
         actionSheet.addAction(saveToCameraRoll)
+        actionSheet.addAction(openInOthers)
         actionSheet.addAction(exportFile)
+        
+        
+        //        actionSheet.addAction(play)
+        
+        
         self.present(actionSheet, animated: true, completion: nil)
     }
     func checkIsFilter() -> Bool
@@ -216,7 +216,7 @@ extension MediaView: UICollectionViewDelegate
         if(isEdit == true)
         {
             self.mediaViewModel.addSelectedItem(at: indexPath.row, isFilter: isFilter)
-            self.checkRenameButton()
+            self.checkButtons()
             return
         }
         if(self.mediaViewModel.getSelectedItemCount() > 1)
@@ -235,8 +235,8 @@ extension MediaView: UICollectionViewDelegate
             self.showImageAt(index: indexPath.row, isFilter: isFilter)
             break
         case .Video:
-            //khi edit can chu y
-            self.showActionSheet(index: indexPath.row, isFilter: isFilter)
+            
+            self.playVideo(atIndex: indexPath.row)
             break
         case .Other:
             self.showContentFile(url: self.mediaViewModel.getSourcePathValid(atIndex: indexPath.row, isFilter: isFilter))
@@ -255,19 +255,32 @@ extension MediaView: UICollectionViewDelegate
         if (isEdit == true)
         {
             self.mediaViewModel.removeSelectedItem(item: self.mediaViewModel.getItem(at: indexPath.row, isFilter: isFilter))
-            self.checkRenameButton()
+            self.checkButtons()
         }
     }
-    func checkRenameButton()
+    func checkButtons()
     {
-        if(self.mediaViewModel.getSelectedItemCount() > 1)
+        if(self.mediaViewModel.getSelectedItemCount() == 0)
         {
             self.editOptions.btn_Rename.isEnabled = false
+            self.editOptions.btn_Remove.isEnabled = false
+            self.editOptions.btn_Copy.isEnabled = false
+            self.editOptions.btn_Move.isEnabled = false
+            self.editOptions.btn_More.isEnabled = false
         }
         else
         {
-            self.editOptions.btn_Rename.isEnabled = true
+            if(self.mediaViewModel.getSelectedItemCount() == 1)
+            {
+                self.editOptions.btn_Rename.isEnabled = true
+            }
+            self.editOptions.btn_Remove.isEnabled = true
+            self.editOptions.btn_Copy.isEnabled = true
+            self.editOptions.btn_Move.isEnabled = true
+            self.editOptions.btn_More.isEnabled = true
         }
+        
+        
     }
     
 }
@@ -349,13 +362,17 @@ extension MediaView: TreeFolderDelegate
     internal func didSelectCopy(path: String) {
         self.mediaViewModel.copyFile(items: self.mediaViewModel.getSelectedItems(), to: URL(fileURLWithPath: path))
     }
-
+    
     func didSelectMove(path: String) {
         self.mediaViewModel.moveFile(items: self.mediaViewModel.getSelectedItems(), to: URL(fileURLWithPath: path))
     }
 }
 extension MediaView: EditOptionsDelegate
 {
+    func moreOptions()
+    {
+        self.showActionSheet()
+    }
     func copyFile()
     {
         if(self.mediaViewModel.getSelectedItemCount() > 0)
@@ -442,6 +459,8 @@ extension MediaView: NVT_FileManagerDelegate
     func didFinishAction()
     {
         self.mediaViewModel.removeAllSetectedItems()
+        self.reloadData()
+        self.checkButtons()
     }
 }
 extension MediaView: DropDownDelegate
@@ -466,5 +485,15 @@ extension MediaView: DropDownDelegate
             break
         }
         self.setTitleForFilterButton(title: type.rawValue)
+    }
+}
+extension MediaView: UIDocumentInteractionControllerDelegate
+{
+    func documentInteractionControllerDidDismissOptionsMenu(_ controller: UIDocumentInteractionController) {
+        self.didFinishAction()
+    }
+    
+    func documentInteractionController(_ controller: UIDocumentInteractionController, willBeginSendingToApplication application: String?) {
+        self.didFinishAction()
     }
 }

@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                          touchIDReason: "Scan your fingerprint to use the app.", passcodeAttemptLimit: 5,
                                                          splashViewControllerClass: VENTouchLockSplashViewController.self)
         createBasicFolders()
+        self.setStatusBarBackgroundColor(color: UIColor.darkGray)
         return true
     }
     func setStatusBarBackgroundColor(color: UIColor) {

@@ -79,7 +79,7 @@ class MediaViewModel: FileManagerMedia{
             fileManager.removeFolderAt(at: item.getFilePath())
             if(item.getType() == .Video)
             {
-               fileManager.removeFolderAt(at: item.getThumbPath())
+                fileManager.removeFolderAt(at: item.getThumbPath())
             }
         }
     }
@@ -112,6 +112,14 @@ class FileManagerMedia
         self.folderPath = folderPath
         self.type = type
         
+    }
+    func getSourcePathValid(atIndex index: [Int], isFilter: Bool) -> [URL]? {
+        var urls = [URL]()
+        for index in index
+        {
+            urls.append(self.getSourcePath(atIndex: index, isFilter: isFilter))
+        }
+        return urls
     }
     func getSourcePathValid(atIndex index: Int, isFilter: Bool) -> URL? {
         let url = getSourcePath(atIndex: index, isFilter: isFilter)
@@ -252,10 +260,30 @@ class FileManagerMedia
         }
         return nameImage
     }
+    func saveSelectedMediaToCameraRoll()
+    {
+        for item in self.selectedFiles
+        {
+            self.saveMediaToCameraRoll(url: item.getFilePath())
+        }
+    }
+    func saveMediaToCameraRoll(atIndex: [Int], isFilter: Bool)
+    {
+        for index in atIndex
+        {
+            self.saveMediaToCameraRoll(atIndex: index, isFilter: isFilter)
+        }
+        
+    }
     func saveMediaToCameraRoll(atIndex: Int, isFilter: Bool)
     {
+        self.saveMediaToCameraRoll(url: self.getSourcePath(atIndex: atIndex, isFilter: isFilter))
+        
+    }
+    func saveMediaToCameraRoll(url: URL)
+    {
         PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.getSourcePath(atIndex: atIndex, isFilter: isFilter))
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
         }) { completed, error in
             if completed {
                 print("Video is saved!")
@@ -278,7 +306,15 @@ class FileManagerMedia
     {
         return isFilter == true ? self.filteredItems[index].getFilePath() : self.items[index].getFilePath()
     }
-    
+    func getSelectedFileSourcePath() -> [URL]
+    {
+        var urls = [URL]()
+        for item in self.selectedFiles
+        {
+            urls.append(item.getFilePath())
+        }
+        return urls
+    }
     func getNameItem(atIndex index: Int, isFilter: Bool) -> String
     {
         return isFilter == true ? self.filteredItems[index].getNameToShow() : self.items[index].getNameToShow()
