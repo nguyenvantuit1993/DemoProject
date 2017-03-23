@@ -107,6 +107,7 @@ class NVTWebView: BasicViewController{
         
         view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
         myPageScrollView.loadSubViews()
+        myPageScrollView.layoutIfNeeded()
     }
 }
 extension NVTWebView: CustomWebViewDelegate
@@ -290,6 +291,7 @@ extension NVTWebView: ToolBarDelegate
         addbookmark.setValue(UIColor.red, forKey: "titleTextColor")
         let gotoBookmark: UIAlertAction = UIAlertAction(title: "Go to Bookmark", style: .default) { action -> Void in
             let bookmarView = self.webviewModel.getBookMark()
+            bookmarView.delegate = self
             self.present(bookmarView, animated: true, completion: nil)
             //            self.tabBarController?.navigationController?.pushViewController(bookmarView, animated: true)
             //Just dismiss the action sheet
@@ -324,6 +326,23 @@ extension NVTWebView: ToolBarDelegate
     func switchToolBar()
     {
         
+    }
+}
+extension NVTWebView: BookMarkDelegate
+{
+    func didSelectBookMarkAt(index: Int)
+    {
+        self.webviewModel.browserWith(pageScrollView: self.myPageScrollView)
+        if(self.webviewModel.checkFirstView())
+        {
+            self.webviewModel.getPage(indexPage: 0)?.loadRequest(url: (BookMarkObjects.sharedInstance.bookmarks[index].value(forKey: "url") as? String)!, isPosibleLoad: true)
+        }
+        else
+        {
+            self.webviewModel.addNewLastPageTo(pageScrollView: self.myPageScrollView)
+            self.webviewModel.getLastPage()?.loadRequest(url: (BookMarkObjects.sharedInstance.bookmarks[index].value(forKey: "url") as? String)!, isPosibleLoad: true)
+        }
+//        self.webviewModel.browserWith(pageScrollView: self.myPageScrollView)
     }
 }
 

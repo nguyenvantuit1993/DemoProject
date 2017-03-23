@@ -22,6 +22,11 @@ class BookMarkObjects{
     {
         bookmarks = ManageDataBase.sharedInstance.fetchEntity(name: "BookMark")
     }
+    func removeObject(index: Int)
+    {
+        ManageDataBase.sharedInstance.removeObject(object: bookmarks[index])
+        BookMarkObjects.sharedInstance.bookmarks.remove(at: index)
+    }
     func saveBookmark(title: String, url: String) {
         let managedContext = ManageDataBase.sharedInstance.managedContext
         let entity =  NSEntityDescription.entity(forEntityName: "BookMark",

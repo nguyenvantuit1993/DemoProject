@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class NVTWebViewModel: NSObject{
-    var myPageDataArray = [CustomWebView]()
+    internal var myPageDataArray = [CustomWebView]()
     var indexesToDelete, indexesToInsert, indexesToReload: NSMutableIndexSet!
     var manageDataBase: ManageDataBase!
     var size: CGSize!
@@ -62,6 +62,18 @@ class NVTWebViewModel: NSObject{
     func getPage(indexPage: Int) -> CustomWebView?
     {
         return self.myPageDataArray[indexPage]
+    }
+    func getLastPage() -> CustomWebView?
+    {
+        return self.myPageDataArray.last
+    }
+    func checkFirstView() -> Bool
+    {
+        if self.myPageDataArray.count == 1 && self.myPageDataArray.first?.webView.url == nil
+        {
+            return true
+        }
+        return false
     }
     func browserWith(pageScrollView: HGPageScrollView)
     {

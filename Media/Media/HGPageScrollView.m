@@ -427,8 +427,8 @@ typedef enum{
         //remove unnecessary views
         _scrollViewTouch.hidden = true;
         _pageSelectorTouch.hidden = true;
-        //		[_scrollViewTouch removeFromSuperview];
-        //		[_pageSelectorTouch removeFromSuperview];
+//        		[_scrollViewTouch removeFromSuperview];
+//        		[_pageSelectorTouch removeFromSuperview];
     } : ^{
         
         [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -436,7 +436,10 @@ typedef enum{
         UIView *headerView = _userHeaderView?_userHeaderView:_pageHeaderView;
         
         // move to HGPageScrollViewModeDeck
-        _pageSelector.hidden = NO;
+        if(_pageSelector.numberOfPages > 1)
+        {
+            _pageSelector.hidden = NO;
+        }
         _pageDeckTitleLabel.hidden = NO;
         _pageDeckSubtitleLabel.hidden = NO;
         [self initDeckTitlesForPageAtIndex:selectedIndex];

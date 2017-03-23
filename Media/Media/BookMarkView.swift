@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 import CoreData
+protocol BookMarkDelegate {
+    func didSelectBookMarkAt(index: Int)
+}
 class BookMarkView: BasicViewController{
+    var delegate: BookMarkDelegate!
     var bookmarkViewModel = BookMarkViewModel()
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -30,10 +34,6 @@ class BookMarkView: BasicViewController{
 }
 extension BookMarkView: UITableViewDataSource
 {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BookMarkObjects.sharedInstance.bookmarks.count
     }
@@ -50,7 +50,17 @@ extension BookMarkView: UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.dismiss(animated: true) {
-            
+            self.delegate.didSelectBookMarkAt(index: indexPath.row)
+        }
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            BookMarkObjects.sharedInstance.removeObject(index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
