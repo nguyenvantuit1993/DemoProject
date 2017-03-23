@@ -16,7 +16,7 @@ class BookMarkView: BasicViewController{
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "ItemCell", bundle: Bundle.main), forCellReuseIdentifier: "ItemCell")
+        tableView.register(UINib(nibName: "BookMarkCell", bundle: Bundle.main), forCellReuseIdentifier: "BookMarkCell")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,12 +38,19 @@ extension BookMarkView: UITableViewDataSource
         return BookMarkObjects.sharedInstance.bookmarks.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BookMarkCell", for: indexPath) as! BookMarkCell
         self.bookmarkViewModel.settingsCell(cell: cell, indexPath: indexPath)
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 67
     }
 }
 extension BookMarkView: UITableViewDelegate
 {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.dismiss(animated: true) {
+            
+        }
+    }
 }

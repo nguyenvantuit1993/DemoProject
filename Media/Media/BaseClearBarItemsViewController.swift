@@ -99,17 +99,6 @@ class BaseClearBarItemsViewController: BasicViewController {
             self.dismiss(animated: true, completion: nil)
         }
         
-        let cameraAction = UIAlertAction(title: "Take Photo", style: .default) { (UIAlertAction) -> Void in
-            if UIImagePickerController.availableCaptureModes(for: .rear) != nil {
-                self.imagePicker.allowsEditing = false
-                self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
-                self.imagePicker.cameraCaptureMode = .photo
-                self.present(self.imagePicker, animated: true, completion: nil)
-            } else {
-                //                self.noCamera()
-            }
-        }
-        
         let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (UIAlertAction) -> Void in
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
             self.imagePicker.mediaTypes = ["public.image", "public.movie"]
@@ -118,7 +107,6 @@ class BaseClearBarItemsViewController: BasicViewController {
         }
         
         actionSheet.addAction(photoLibraryAction)
-        actionSheet.addAction(cameraAction)
         actionSheet.addAction(cancelAction)
         
         self.present(actionSheet, animated: true, completion: nil)

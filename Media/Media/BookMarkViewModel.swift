@@ -8,9 +8,9 @@
 
 import Foundation
 class BookMarkViewModel {
-    func settingsCell(cell: UITableViewCell, indexPath: IndexPath)
+    func settingsCell(cell: BookMarkCell, indexPath: IndexPath)
     {
-        cell.textLabel?.text = BookMarkObjects.sharedInstance.bookmarks[indexPath.row].value(forKey: "title") as? String
-        cell.detailTextLabel?.text = BookMarkObjects.sharedInstance.bookmarks[indexPath.row].value(forKey: "url") as? String
+        cell.lbl_Title.text = BookMarkObjects.sharedInstance.bookmarks[indexPath.row].value(forKey: "title") as? String
+        cell.lbl_URL.text = BookMarkObjects.sharedInstance.bookmarks[indexPath.row].value(forKey: "url") as? String
     }
 }

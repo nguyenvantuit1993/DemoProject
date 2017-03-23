@@ -294,13 +294,10 @@ extension NVTWebView: ToolBarDelegate
             //            self.tabBarController?.navigationController?.pushViewController(bookmarView, animated: true)
             //Just dismiss the action sheet
         }
-        let settings: UIAlertAction = UIAlertAction(title: "Settings", style: .default) { action -> Void in
-            //Just dismiss the action sheet
-        }
+
         actionSheet.addAction(cancelAction)
         actionSheet.addAction(addbookmark)
         actionSheet.addAction(gotoBookmark)
-        actionSheet.addAction(settings)
         self.present(actionSheet, animated: true, completion: nil)
     }
     func showBrowser()

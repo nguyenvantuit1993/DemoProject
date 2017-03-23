@@ -24,6 +24,8 @@
 		976CFB991E7A8C510072B820 /* funny2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 976CFB961E7A8C510072B820 /* funny2.jpg */; };
 		976CFB9A1E7A8C510072B820 /* funny1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 976CFB971E7A8C510072B820 /* funny1.jpg */; };
 		976CFB9C1E7A95100072B820 /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976CFB9B1E7A95100072B820 /* BasicViewController.swift */; };
+		B10B59971E835CC800154EE8 /* BookMarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10B59951E835CC800154EE8 /* BookMarkCell.swift */; };
+		B10B59981E835CC800154EE8 /* BookMarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B10B59961E835CC800154EE8 /* BookMarkCell.xib */; };
 		B131EF201E81A6B800352C57 /* TreeFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131EF1E1E81A6B800352C57 /* TreeFolder.swift */; };
 		B131EF211E81A6B800352C57 /* TreeFolder.xib in Resources */ = {isa = PBXBuildFile; fileRef = B131EF1F1E81A6B800352C57 /* TreeFolder.xib */; };
 		B131EF241E81A86E00352C57 /* TreeFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131EF221E81A86E00352C57 /* TreeFolderCell.swift */; };
@@ -138,6 +140,8 @@
 		976CFB961E7A8C510072B820 /* funny2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = funny2.jpg; sourceTree = "<group>"; };
 		976CFB971E7A8C510072B820 /* funny1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = funny1.jpg; sourceTree = "<group>"; };
 		976CFB9B1E7A95100072B820 /* BasicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicViewController.swift; sourceTree = "<group>"; };
+		B10B59951E835CC800154EE8 /* BookMarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookMarkCell.swift; sourceTree = "<group>"; };
+		B10B59961E835CC800154EE8 /* BookMarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookMarkCell.xib; sourceTree = "<group>"; };
 		B131EF1E1E81A6B800352C57 /* TreeFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeFolder.swift; sourceTree = "<group>"; };
 		B131EF1F1E81A6B800352C57 /* TreeFolder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TreeFolder.xib; sourceTree = "<group>"; };
 		B131EF221E81A86E00352C57 /* TreeFolderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeFolderCell.swift; sourceTree = "<group>"; };
@@ -538,6 +542,8 @@
 			isa = PBXGroup;
 			children = (
 				B1B2B3081E53C1A70069E3C9 /* BookMarkView.swift */,
+				B10B59951E835CC800154EE8 /* BookMarkCell.swift */,
+				B10B59961E835CC800154EE8 /* BookMarkCell.xib */,
 			);
 			name = BookMark;
 			sourceTree = "<group>";
@@ -784,6 +790,7 @@
 				CB3EEE511E7D1F1300A1D576 /* FakeView.xib in Resources */,
 				B1B2B2F81E53B1910069E3C9 /* ToolBarNewPage.xib in Resources */,
 				CB80C7FE1E496AA600690D4D /* LaunchScreen.storyboard in Resources */,
+				B10B59981E835CC800154EE8 /* BookMarkCell.xib in Resources */,
 				CBD33B321E554B510004D374 /* TTOpenInAppActivity.png in Resources */,
 				B1B2B2E01E53B0180069E3C9 /* HGPageScrollView.xib in Resources */,
 				CBD33B341E554B510004D374 /* TTOpenInAppActivity7.png in Resources */,
@@ -911,6 +918,7 @@
 				CBFB10021E49835200992989 /* BaseClearBarItemsViewController.swift in Sources */,
 				B1B2B3011E53B5C50069E3C9 /* Download.swift in Sources */,
 				CBFB10041E49845700992989 /* BaseClearBarItemsTableViewController.swift in Sources */,
+				B10B59971E835CC800154EE8 /* BookMarkCell.swift in Sources */,
 				CB5119921E56B80B009D38E9 /* SettingsViewController.swift in Sources */,
 				CB3EEE5E1E7D39B000A1D576 /* NVT_FileManager.swift in Sources */,
 				CB3225D71E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m in Sources */,
