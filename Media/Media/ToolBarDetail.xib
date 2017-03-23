@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToolBarDetail" customModule="Media" customModuleProvider="target">
             <connections>
-                <outlet property="btn_Bookmark" destination="X43-iB-bjA" id="cyS-Ic-uRZ"/>
-                <outlet property="btn_Browser" destination="vCj-3m-6K4" id="gNw-WS-kK2"/>
-                <outlet property="btn_Download" destination="udb-Np-DEq" id="8wf-cY-YGt"/>
-                <outlet property="btn_Forward" destination="9BL-h3-wuK" id="KL9-Hr-JDK"/>
-                <outlet property="btn_Previous" destination="j4c-mp-Ekw" id="a12-Kt-CKQ"/>
-                <outlet property="btn_Zoom" destination="MHT-yY-wok" id="rCp-XM-lXS"/>
+                <outlet property="btn_Bookmark" destination="BU2-2E-73Q" id="10N-gG-Z22"/>
+                <outlet property="btn_Browser" destination="vxw-IB-sFU" id="KiB-PV-Ggu"/>
+                <outlet property="btn_Download" destination="RFy-ZG-I92" id="kq6-dt-nsz"/>
+                <outlet property="btn_Forward" destination="jD2-cC-TtY" id="AQn-kY-qAb"/>
+                <outlet property="btn_Previous" destination="5Vl-rh-XCZ" id="SNV-hO-06M"/>
+                <outlet property="btn_Zoom" destination="N87-oF-W8X" id="Ug1-OR-h8q"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -23,49 +23,56 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wMS-Yq-5iP">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
-                    <items>
-                        <barButtonItem title="&lt;" id="j4c-mp-Ekw">
-                            <connections>
-                                <action selector="actionPrevious:" destination="-1" id="R2O-69-Apd"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem title="&gt;" id="9BL-h3-wuK">
-                            <connections>
-                                <action selector="actionForward:" destination="-1" id="Rvz-Oi-wje"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem title="Book" id="X43-iB-bjA">
-                            <connections>
-                                <action selector="actionBookmark:" destination="-1" id="ecg-Xa-nLW"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem title="Browser" id="vCj-3m-6K4">
-                            <connections>
-                                <action selector="actionBrowser:" destination="-1" id="Per-9H-jdC"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem title="Download" id="udb-Np-DEq">
-                            <connections>
-                                <action selector="actionDownload:" destination="-1" id="CpD-bp-rQj"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem title="Zoom" id="MHT-yY-wok">
-                            <connections>
-                                <action selector="actionZoom:" destination="-1" id="g0F-Mq-lTw"/>
-                            </connections>
-                        </barButtonItem>
-                    </items>
-                </toolbar>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Vl-rh-XCZ">
+                    <rect key="frame" x="16" y="5" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="actionPrevious:" destination="-1" eventType="touchUpInside" id="tY4-Om-PHb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jD2-cC-TtY">
+                    <rect key="frame" x="70" y="5" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="actionForward:" destination="-1" eventType="touchUpInside" id="Gmp-Iq-CUB"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BU2-2E-73Q">
+                    <rect key="frame" x="124" y="0.0" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="actionBookmark:" destination="-1" eventType="touchUpInside" id="AqG-v6-8CG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxw-IB-sFU">
+                    <rect key="frame" x="178" y="0.0" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="actionBrowser:" destination="-1" eventType="touchUpInside" id="d2m-6R-NhO"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFy-ZG-I92">
+                    <rect key="frame" x="259" y="5" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="actionDownload:" destination="-1" eventType="touchUpInside" id="9dX-u0-xJW"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N87-oF-W8X">
+                    <rect key="frame" x="313" y="5" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="actionZoom:" destination="-1" eventType="touchUpInside" id="i8k-ya-FT6"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="wMS-Yq-5iP" secondAttribute="trailing" id="2Bs-Ry-ecP"/>
-                <constraint firstAttribute="bottom" secondItem="wMS-Yq-5iP" secondAttribute="bottom" constant="1" id="8fN-ub-zCV"/>
-                <constraint firstItem="wMS-Yq-5iP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ICb-z9-ebK"/>
-                <constraint firstItem="wMS-Yq-5iP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ukn-XR-thd"/>
-            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="41" y="64"/>

@@ -28,9 +28,9 @@ class ToolBarNewPage: BaseToolBar  {
     
     @IBOutlet weak var view: UIView!
     
-    @IBOutlet weak var btn_NewPage: UIBarButtonItem!
+    @IBOutlet weak var btn_NewPage: UIButton!
     
-    @IBOutlet weak var btn_Done: UIBarButtonItem!
+    @IBOutlet weak var btn_Done: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,6 +55,7 @@ class ToolBarNewPage: BaseToolBar  {
     @IBAction func actionAddNewPage(_ sender: Any) {
         self.delegate?.addNewPage()
     }
+    
     @IBAction func actionDone(_ sender: Any) {
         self.delegate?.showCurrentPage()
     }

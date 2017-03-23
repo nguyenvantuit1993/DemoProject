@@ -78,13 +78,13 @@
                         <constraint firstAttribute="height" constant="36" id="t88-5f-uk0"/>
                     </constraints>
                 </pageControl>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZI-yF-j4v">
-                    <rect key="frame" x="35" y="69" width="30" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZI-yF-j4v">
+                    <rect key="frame" x="35" y="69" width="25" height="25"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="iOq-Yr-w1B"/>
-                        <constraint firstAttribute="width" constant="30" id="spO-AK-Tsd"/>
+                        <constraint firstAttribute="height" constant="25" id="iOq-Yr-w1B"/>
+                        <constraint firstAttribute="width" constant="25" id="spO-AK-Tsd"/>
                     </constraints>
-                    <state key="normal" title="X"/>
+                    <state key="normal" image="CloseButton"/>
                     <connections>
                         <action selector="closeButton:" destination="98" eventType="touchUpInside" id="Zta-js-GT3"/>
                     </connections>
@@ -132,6 +132,9 @@
             </connections>
         </view>
     </objects>
+    <resources>
+        <image name="CloseButton" width="20" height="20"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

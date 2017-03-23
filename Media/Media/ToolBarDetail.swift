@@ -10,15 +10,15 @@ import UIKit
 
 class ToolBarDetail: BaseToolBar {
     @IBOutlet weak var view: UIView!
-    @IBOutlet weak var btn_Previous: UIBarButtonItem!
+    @IBOutlet weak var btn_Previous: UIButton!
     
-    @IBOutlet weak var btn_Forward: UIBarButtonItem!
+    @IBOutlet weak var btn_Forward: UIButton!
     
-    @IBOutlet weak var btn_Bookmark: UIBarButtonItem!
+    @IBOutlet weak var btn_Bookmark: UIButton!
     
-    @IBOutlet weak var btn_Browser: UIBarButtonItem!
-    @IBOutlet weak var btn_Download: UIBarButtonItem!
-    @IBOutlet weak var btn_Zoom: UIBarButtonItem!
+    @IBOutlet weak var btn_Browser: UIButton!
+    @IBOutlet weak var btn_Download: UIButton!
+    @IBOutlet weak var btn_Zoom: UIButton!
     
     
     override init(frame: CGRect) {
@@ -56,10 +56,9 @@ class ToolBarDetail: BaseToolBar {
     @IBAction func actionDownload(_ sender: Any) {
         self.delegate?.showDownloadView()
     }
+    
     @IBAction func actionZoom(_ sender: Any) {
         self.delegate?.zoom()
     }
-
-    
-    
+   
 }
