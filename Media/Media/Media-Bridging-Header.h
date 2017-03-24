@@ -5,7 +5,6 @@
 #import "HGPageScrollView.h"
 #import "TTopenInAppActivity.h"
 #import "VENTouchLock.h"
-#import "CustomVENTouchLockEnterPasscodeViewController.h"
 #import "M3U8Kit.h"
 #import "MergeFiles.h"
 #import "FakeView.h"

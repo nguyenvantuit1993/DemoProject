@@ -133,7 +133,7 @@
         </view>
     </objects>
     <resources>
-        <image name="CloseButton" width="20" height="20"/>
+        <image name="CloseButton" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

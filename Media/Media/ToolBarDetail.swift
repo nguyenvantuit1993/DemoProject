@@ -31,6 +31,17 @@ class ToolBarDetail: BaseToolBar {
         setup()
         
     }
+    override func zoomAction(isZoomIn: Bool)
+    {
+        if(isZoomIn == true)
+        {
+            self.btn_Zoom.setImage(UIImage(named:"ZoonInIcon"), for: .normal)
+        }
+        else
+        {
+            self.btn_Zoom.setImage(UIImage(named:"ZoomOutIcon"), for: .normal)
+        }
+    }
     func setup() {
         isToolBarNewPage = false
         view = loadViewFromNib()

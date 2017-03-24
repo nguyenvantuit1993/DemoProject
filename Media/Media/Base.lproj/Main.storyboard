@@ -254,7 +254,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.89244791666666656" green="0.89244791666666656" blue="0.89244791666666656" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.88263980709759871" green="0.85454373265227035" blue="0.89715544871794872" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="HSl-D3-mm9" secondAttribute="bottom" id="20Z-tg-Vn6"/>
                                     <constraint firstItem="HSl-D3-mm9" firstAttribute="leading" secondItem="rEI-DM-F2B" secondAttribute="leading" id="H5n-HB-QZV"/>
@@ -322,10 +322,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kR-wK-MRF">
                                 <rect key="frame" x="0.0" y="40" width="375" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="FKY-bN-nAK"/>
                                     <constraint firstAttribute="height" constant="35" id="WPq-Ek-kbg"/>
                                 </constraints>
-                                <state key="normal" title="All"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="All">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="filter:" destination="hHY-JZ-usz" eventType="touchUpInside" id="UAS-Pp-4JY"/>
                                 </connections>
@@ -393,28 +395,36 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8am-Gw-aBY">
                                 <rect key="frame" x="294" y="28" width="65" height="35"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="92b-Dv-WoC"/>
                                     <constraint firstAttribute="width" constant="65" id="LpH-rh-69d"/>
                                 </constraints>
-                                <state key="normal" title="Cancel"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="dismissView:" destination="Ph7-Hm-KCu" eventType="touchUpInside" id="pJm-fH-mSH"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paste your link here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FkB-mI-kQ2">
-                                <rect key="frame" x="16" y="28" width="203" height="35"/>
+                                <rect key="frame" x="16" y="28" width="197" height="35"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h25-JO-ow7">
-                                <rect key="frame" x="223" y="28" width="69" height="35"/>
+                                <rect key="frame" x="217" y="28" width="75" height="35"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="YBp-OF-xIh"/>
-                                    <constraint firstAttribute="width" constant="69" id="xBA-sS-wTB"/>
+                                    <constraint firstAttribute="width" constant="75" id="xBA-sS-wTB"/>
                                 </constraints>
-                                <state key="normal" title="Download"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Download">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="download:" destination="Ph7-Hm-KCu" eventType="touchUpInside" id="Iyv-0P-syv"/>
                                 </connections>
@@ -459,11 +469,15 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Kg-13-QHi">
                                 <rect key="frame" x="297" y="28" width="62" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="4Xe-OL-gPY"/>
                                     <constraint firstAttribute="width" constant="62" id="9F9-AU-HE4"/>
                                 </constraints>
-                                <state key="normal" title="Cancel"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="dismissView:" destination="D6k-IN-YEf" eventType="touchUpInside" id="qw5-z1-2C6"/>
                                 </connections>
@@ -504,12 +518,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kp8-eE-tk1">
-                                <rect key="frame" x="294" y="28" width="65" height="27"/>
+                                <rect key="frame" x="294" y="28" width="65" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="UMh-dH-94i"/>
-                                    <constraint firstAttribute="height" constant="27" id="rzY-bV-p9y"/>
+                                    <constraint firstAttribute="height" constant="30" id="rzY-bV-p9y"/>
                                 </constraints>
-                                <state key="normal" title="Cancel"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="dismissView:" destination="JFV-p4-KFS" eventType="touchUpInside" id="jhW-wl-eFV"/>
                                 </connections>
@@ -610,7 +628,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Browser" id="r12-a6-1JC"/>
+                    <tabBarItem key="tabBarItem" title="Browser" image="BrowserIcon" id="r12-a6-1JC"/>
                     <navigationItem key="navigationItem" id="Zsy-af-ex2"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="200" height="200"/>
@@ -661,7 +679,7 @@
         <scene sceneID="zTk-zu-hS4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h2o-sm-KS3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="cIt-9I-gMo"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="SettingsIcon" id="cIt-9I-gMo"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="lP5-7y-RIc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -682,7 +700,7 @@
         <scene sceneID="Qmp-Yz-33c">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vOB-Nu-A9O" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Media" id="sC7-nt-gaB"/>
+                    <tabBarItem key="tabBarItem" title="Media" image="MediaIcon" id="sC7-nt-gaB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="j1q-XG-GdF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -699,4 +717,9 @@
             <point key="canvasLocation" x="-1206" y="2103"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BrowserIcon" width="30" height="30"/>
+        <image name="MediaIcon" width="21" height="30"/>
+        <image name="SettingsIcon" width="30" height="30"/>
+    </resources>
 </document>

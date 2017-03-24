@@ -20,62 +20,114 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Vl-rh-XCZ">
-                    <rect key="frame" x="16" y="5" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="actionPrevious:" destination="-1" eventType="touchUpInside" id="tY4-Om-PHb"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jD2-cC-TtY">
-                    <rect key="frame" x="70" y="5" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="actionForward:" destination="-1" eventType="touchUpInside" id="Gmp-Iq-CUB"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BU2-2E-73Q">
-                    <rect key="frame" x="124" y="0.0" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="actionBookmark:" destination="-1" eventType="touchUpInside" id="AqG-v6-8CG"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxw-IB-sFU">
-                    <rect key="frame" x="178" y="0.0" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="actionBrowser:" destination="-1" eventType="touchUpInside" id="d2m-6R-NhO"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFy-ZG-I92">
-                    <rect key="frame" x="259" y="5" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="actionDownload:" destination="-1" eventType="touchUpInside" id="9dX-u0-xJW"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N87-oF-W8X">
-                    <rect key="frame" x="313" y="5" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="actionZoom:" destination="-1" eventType="touchUpInside" id="i8k-ya-FT6"/>
-                    </connections>
-                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Yn-Oz-PaV">
+                    <rect key="frame" x="8" y="0.0" width="359" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Vl-rh-XCZ">
+                            <rect key="frame" x="0.0" y="2" width="30" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="0eq-3V-GQ3"/>
+                            </constraints>
+                            <state key="normal" image="BackPage"/>
+                            <connections>
+                                <action selector="actionPrevious:" destination="-1" eventType="touchUpInside" id="tY4-Om-PHb"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jD2-cC-TtY">
+                            <rect key="frame" x="38" y="2" width="30" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="Kqt-yU-Heh"/>
+                            </constraints>
+                            <state key="normal" image="ForwardPage"/>
+                            <connections>
+                                <action selector="actionForward:" destination="-1" eventType="touchUpInside" id="Gmp-Iq-CUB"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BU2-2E-73Q">
+                            <rect key="frame" x="88" y="2" width="30" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="ZoN-zH-yhM"/>
+                            </constraints>
+                            <state key="normal" image="BookMark"/>
+                            <connections>
+                                <action selector="actionBookmark:" destination="-1" eventType="touchUpInside" id="AqG-v6-8CG"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFy-ZG-I92">
+                            <rect key="frame" x="279" y="2" width="30" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="9IF-hX-i5C"/>
+                            </constraints>
+                            <state key="normal" image="DownloadIcon"/>
+                            <connections>
+                                <action selector="actionDownload:" destination="-1" eventType="touchUpInside" id="9dX-u0-xJW"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N87-oF-W8X">
+                            <rect key="frame" x="329" y="2" width="30" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="iAH-yW-SEl"/>
+                            </constraints>
+                            <state key="normal" image="ZoomOutIcon"/>
+                            <connections>
+                                <action selector="actionZoom:" destination="-1" eventType="touchUpInside" id="i8k-ya-FT6"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxw-IB-sFU">
+                            <rect key="frame" x="229" y="2" width="30" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="vgN-o7-swW"/>
+                            </constraints>
+                            <state key="normal" image="BrowserMode"/>
+                            <connections>
+                                <action selector="actionBrowser:" destination="-1" eventType="touchUpInside" id="d2m-6R-NhO"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="jD2-cC-TtY" firstAttribute="leading" secondItem="5Vl-rh-XCZ" secondAttribute="trailing" constant="8" id="5Zf-Wl-npC"/>
+                        <constraint firstAttribute="bottom" secondItem="N87-oF-W8X" secondAttribute="bottom" constant="2" id="Art-ti-2vj"/>
+                        <constraint firstAttribute="bottom" secondItem="RFy-ZG-I92" secondAttribute="bottom" constant="2" id="DcV-cP-i00"/>
+                        <constraint firstItem="5Vl-rh-XCZ" firstAttribute="top" secondItem="9Yn-Oz-PaV" secondAttribute="top" constant="2" id="KE6-56-oBP"/>
+                        <constraint firstItem="RFy-ZG-I92" firstAttribute="top" secondItem="9Yn-Oz-PaV" secondAttribute="top" constant="2" id="MdW-D3-x8W"/>
+                        <constraint firstItem="BU2-2E-73Q" firstAttribute="top" secondItem="9Yn-Oz-PaV" secondAttribute="top" constant="2" id="NY2-w1-HW3"/>
+                        <constraint firstItem="vxw-IB-sFU" firstAttribute="top" secondItem="9Yn-Oz-PaV" secondAttribute="top" constant="2" id="PQx-3d-VGg"/>
+                        <constraint firstItem="5Vl-rh-XCZ" firstAttribute="leading" secondItem="9Yn-Oz-PaV" secondAttribute="leading" id="ZML-Bi-YLg"/>
+                        <constraint firstAttribute="bottom" secondItem="BU2-2E-73Q" secondAttribute="bottom" constant="2" id="e1u-9i-qv2"/>
+                        <constraint firstAttribute="bottom" secondItem="vxw-IB-sFU" secondAttribute="bottom" constant="2" id="hH8-Ph-zIe"/>
+                        <constraint firstItem="N87-oF-W8X" firstAttribute="top" secondItem="9Yn-Oz-PaV" secondAttribute="top" constant="2" id="kBX-L7-dUl"/>
+                        <constraint firstItem="N87-oF-W8X" firstAttribute="leading" secondItem="RFy-ZG-I92" secondAttribute="trailing" constant="20" id="lia-Js-Txz"/>
+                        <constraint firstAttribute="bottom" secondItem="5Vl-rh-XCZ" secondAttribute="bottom" constant="2" id="oPw-ky-fEp"/>
+                        <constraint firstAttribute="bottom" secondItem="jD2-cC-TtY" secondAttribute="bottom" constant="2" id="ohi-Bv-bUD"/>
+                        <constraint firstAttribute="trailing" secondItem="N87-oF-W8X" secondAttribute="trailing" id="qzV-4s-KYk"/>
+                        <constraint firstItem="RFy-ZG-I92" firstAttribute="leading" secondItem="vxw-IB-sFU" secondAttribute="trailing" constant="20" id="wAS-yc-XKG"/>
+                        <constraint firstItem="BU2-2E-73Q" firstAttribute="leading" secondItem="jD2-cC-TtY" secondAttribute="trailing" constant="20" id="ydj-FX-ddN"/>
+                        <constraint firstItem="jD2-cC-TtY" firstAttribute="top" secondItem="9Yn-Oz-PaV" secondAttribute="top" constant="2" id="yex-a0-sNj"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9Yn-Oz-PaV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="1vV-Mi-GUf"/>
+                <constraint firstAttribute="trailing" secondItem="9Yn-Oz-PaV" secondAttribute="trailing" constant="8" id="Inn-0h-QJu"/>
+                <constraint firstAttribute="bottom" secondItem="9Yn-Oz-PaV" secondAttribute="bottom" id="rRg-hy-Xvv"/>
+                <constraint firstItem="9Yn-Oz-PaV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tc8-92-Cgu"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="41" y="64"/>
+            <point key="canvasLocation" x="40.5" y="64"/>
         </view>
     </objects>
+    <resources>
+        <image name="BackPage" width="16" height="30"/>
+        <image name="BookMark" width="30" height="30"/>
+        <image name="BrowserMode" width="30" height="30"/>
+        <image name="DownloadIcon" width="30" height="30"/>
+        <image name="ForwardPage" width="16" height="30"/>
+        <image name="ZoomOutIcon" width="30" height="30"/>
+    </resources>
 </document>

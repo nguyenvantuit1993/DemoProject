@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import AVFoundation
+
 protocol DownloadFileDelegate {
     func didWriteData(indexCell: Int, downloadInfo: Download, totalSize: String)
     func didDownloaded(indexCell: IndexPath)

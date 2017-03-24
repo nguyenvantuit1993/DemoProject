@@ -1,10 +1,9 @@
-#import "VENTouchLockEnterPasscodeViewController.h"
 #import "VENTouchLockPasscodeView.h"
 #import "VENTouchLock.h"
-
-NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttempts = @"VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttempts";
+#import "Media-Swift.h"
+NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttemptsCustom = @"VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttempts";
 @interface VENTouchLockEnterPasscodeViewController()
-@property (assign) Boolean isDelete;
+@property (nonatomic, assign) Boolean isDelete;
 @end
 @implementation VENTouchLockEnterPasscodeViewController
 
@@ -13,7 +12,7 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
 + (void)resetPasscodeAttemptHistory
 {
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    [standardDefaults removeObjectForKey:VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttempts];
+    [standardDefaults removeObjectForKey:VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttemptsCustom];
     [standardDefaults synchronize];
 }
 
@@ -38,12 +37,16 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.isSettingsView = false;
     self.passcodeView.title = [self.touchLock appearance].enterPasscodeInitialLabelText;
 }
 
 - (void)enteredPasscode:(NSString *)passcode
 {
+    
     [super enteredPasscode:passcode];
+    SettingObjects *settings = [SettingObjects sharedInstance];
+    [settings setIsFakeLoginWithIsFake:false];
     if ([self.touchLock isPasscodeValid:passcode]) {
         [[self class] resetPasscodeAttemptHistory];
         [self finishWithResult:YES animated:YES];
@@ -51,8 +54,25 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
         {
             [[VENTouchLock sharedInstance] deletePasscode];
         }
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"Login"
+         object:self];
     }
     else {
+        if(settings.settings.fakeCodeLock == true && self.isSettingsView == false)
+        {
+            if([settings.settings.fakeCodeString isEqualToString:passcode] ||
+               ([settings.settings.fakeCodeString isEqualToString:@""] && [passcode isEqualToString:defaultPassword]))
+            {
+                [[self class] resetPasscodeAttemptHistory];
+                [self finishWithResult:YES animated:YES];
+                [settings setIsFakeLoginWithIsFake:true];
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"LoginFakeView"
+                 object:self];
+                return;
+            }
+        }
         [self.passcodeView shakeAndVibrateCompletion:^{
             self.passcodeView.title = [self.touchLock appearance].enterPasscodeIncorrectLabelText;
             [self clearPasscode];
@@ -60,16 +80,16 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
                 [self recordIncorrectPasscodeAttempt];
             }
         }];
-
+        
     }
 }
 
 - (void)recordIncorrectPasscodeAttempt
 {
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    NSUInteger numberOfAttemptsSoFar = [standardDefaults integerForKey:VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttempts];
+    NSUInteger numberOfAttemptsSoFar = [standardDefaults integerForKey:VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttemptsCustom];
     numberOfAttemptsSoFar ++;
-    [standardDefaults setInteger:numberOfAttemptsSoFar forKey:VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttempts];
+    [standardDefaults setInteger:numberOfAttemptsSoFar forKey:VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePasscodeAttemptsCustom];
     [standardDefaults synchronize];
     if (numberOfAttemptsSoFar >= [self.touchLock passcodeAttemptLimit]) {
         [self callExceededLimitActionBlock];

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface FakeView : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *fakeTableView;
 
 @end

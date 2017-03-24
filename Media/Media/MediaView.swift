@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import AVKit
+import AVFoundation
+
 class MediaView: BaseClearBarItemsViewController{
     
     @IBOutlet weak var btn_Filter: UIButton!
@@ -62,6 +64,7 @@ class MediaView: BaseClearBarItemsViewController{
     }
     func addDropDown()
     {
+        self.btn_Filter.backgroundColor = UIColor.darkGray
         dropDown.dropDownDelegate = self
         self.view.addSubview(dropDown)
         

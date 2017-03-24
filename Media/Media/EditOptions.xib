@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,43 +23,76 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMS-uN-Sz1">
-                    <rect key="frame" x="0.0" y="0.0" width="75" height="49"/>
-                    <state key="normal" title="Copy"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMS-uN-Sz1">
+                    <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="yE3-CM-CWb"/>
+                    </constraints>
+                    <state key="normal" image="CopyMedia"/>
                     <connections>
                         <action selector="copyFile:" destination="-1" eventType="touchUpInside" id="wIv-j8-PsH"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoV-da-dVJ">
-                    <rect key="frame" x="225" y="0.0" width="75" height="49"/>
-                    <state key="normal" title="Delete"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoV-da-dVJ">
+                    <rect key="frame" x="225" y="0.0" width="75" height="30"/>
+                    <state key="normal" image="DeleteMedia"/>
                     <connections>
                         <action selector="deleteFile:" destination="-1" eventType="touchUpInside" id="nru-um-v5W"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FQ-UV-gLz">
-                    <rect key="frame" x="150" y="0.0" width="75" height="49"/>
-                    <state key="normal" title="Rename"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FQ-UV-gLz">
+                    <rect key="frame" x="150" y="0.0" width="75" height="30"/>
+                    <state key="normal" image="RenameIcon"/>
                     <connections>
                         <action selector="renameFile:" destination="-1" eventType="touchUpInside" id="nzb-sW-hzK"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSg-WP-Pw4">
-                    <rect key="frame" x="75" y="0.0" width="75" height="49"/>
-                    <state key="normal" title="Move"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSg-WP-Pw4">
+                    <rect key="frame" x="75" y="0.0" width="75" height="30"/>
+                    <state key="normal" image="MoveMedia"/>
                     <connections>
                         <action selector="moveFile:" destination="-1" eventType="touchUpInside" id="hZH-Z4-nuc"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-j5-B46">
-                    <rect key="frame" x="300" y="0.0" width="75" height="49"/>
-                    <state key="normal" title="More"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-j5-B46">
+                    <rect key="frame" x="300" y="0.0" width="75" height="30"/>
+                    <state key="normal" image="MoreIcon"/>
                     <connections>
                         <action selector="moreOptions:" destination="-1" eventType="touchUpInside" id="BL7-XQ-cOV"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUg-ok-IyS">
+                    <rect key="frame" x="0.0" y="32" width="75" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1V-OI-sL9">
+                    <rect key="frame" x="75" y="32" width="75" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rename" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pxh-W6-X1H">
+                    <rect key="frame" x="150" y="32" width="75" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofx-iv-5gW">
+                    <rect key="frame" x="225" y="32" width="75" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuh-xb-sOV">
+                    <rect key="frame" x="300" y="32" width="75" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="w4g-j5-B46" firstAttribute="width" secondItem="GoV-da-dVJ" secondAttribute="width" id="01W-Qf-8do"/>
                 <constraint firstItem="eMS-uN-Sz1" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.2" id="1Uc-WJ-euP"/>
@@ -67,24 +100,45 @@
                 <constraint firstItem="qSg-WP-Pw4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4IL-U8-7kx"/>
                 <constraint firstItem="qSg-WP-Pw4" firstAttribute="leading" secondItem="eMS-uN-Sz1" secondAttribute="trailing" id="4kj-qp-0jG"/>
                 <constraint firstItem="GoV-da-dVJ" firstAttribute="width" secondItem="7FQ-UV-gLz" secondAttribute="width" id="6rR-69-iqn"/>
+                <constraint firstItem="qSg-WP-Pw4" firstAttribute="height" secondItem="eMS-uN-Sz1" secondAttribute="height" id="8wv-M7-wwH"/>
+                <constraint firstItem="iuh-xb-sOV" firstAttribute="width" secondItem="eUg-ok-IyS" secondAttribute="width" id="9sW-MS-WVD"/>
                 <constraint firstItem="w4g-j5-B46" firstAttribute="leading" secondItem="GoV-da-dVJ" secondAttribute="trailing" id="AaP-PJ-qjv"/>
                 <constraint firstItem="qSg-WP-Pw4" firstAttribute="width" secondItem="eMS-uN-Sz1" secondAttribute="width" id="Acy-Oe-b7N"/>
+                <constraint firstItem="7FQ-UV-gLz" firstAttribute="height" secondItem="eMS-uN-Sz1" secondAttribute="height" id="BkE-Rd-0C1"/>
+                <constraint firstItem="eUg-ok-IyS" firstAttribute="width" secondItem="eMS-uN-Sz1" secondAttribute="width" id="DTr-Kh-s7a"/>
+                <constraint firstItem="ofx-iv-5gW" firstAttribute="leading" secondItem="Pxh-W6-X1H" secondAttribute="trailing" id="FPJ-na-pRu"/>
                 <constraint firstItem="GoV-da-dVJ" firstAttribute="leading" secondItem="7FQ-UV-gLz" secondAttribute="trailing" id="GBt-dP-bb7"/>
-                <constraint firstAttribute="bottom" secondItem="qSg-WP-Pw4" secondAttribute="bottom" id="IFN-fY-sa6"/>
+                <constraint firstAttribute="bottom" secondItem="A1V-OI-sL9" secondAttribute="bottom" id="HOF-FU-qSf"/>
+                <constraint firstItem="A1V-OI-sL9" firstAttribute="width" secondItem="qSg-WP-Pw4" secondAttribute="width" id="JR2-9J-bza"/>
                 <constraint firstItem="7FQ-UV-gLz" firstAttribute="width" secondItem="eMS-uN-Sz1" secondAttribute="width" id="Rsj-v4-N4h"/>
+                <constraint firstItem="Pxh-W6-X1H" firstAttribute="leading" secondItem="A1V-OI-sL9" secondAttribute="trailing" id="Tu2-SI-pOh"/>
                 <constraint firstItem="7FQ-UV-gLz" firstAttribute="leading" secondItem="qSg-WP-Pw4" secondAttribute="trailing" id="Vq7-VR-Pqk"/>
-                <constraint firstAttribute="bottom" secondItem="eMS-uN-Sz1" secondAttribute="bottom" id="Wb6-Ai-SJe"/>
                 <constraint firstItem="GoV-da-dVJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WcI-lQ-fKy"/>
+                <constraint firstAttribute="bottom" secondItem="eUg-ok-IyS" secondAttribute="bottom" id="bUv-yo-qVe"/>
+                <constraint firstItem="A1V-OI-sL9" firstAttribute="leading" secondItem="eUg-ok-IyS" secondAttribute="trailing" id="gws-tC-oQH"/>
                 <constraint firstItem="eMS-uN-Sz1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lnY-6B-H8J"/>
                 <constraint firstItem="7FQ-UV-gLz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mEZ-vW-5v9"/>
-                <constraint firstAttribute="bottom" secondItem="GoV-da-dVJ" secondAttribute="bottom" id="oYM-ZM-egp"/>
-                <constraint firstAttribute="bottom" secondItem="7FQ-UV-gLz" secondAttribute="bottom" id="sdL-XH-fke"/>
-                <constraint firstAttribute="bottom" secondItem="w4g-j5-B46" secondAttribute="bottom" id="vSa-FT-a6v"/>
+                <constraint firstAttribute="bottom" secondItem="Pxh-W6-X1H" secondAttribute="bottom" id="qLc-rL-NTy"/>
+                <constraint firstAttribute="bottom" secondItem="ofx-iv-5gW" secondAttribute="bottom" id="rZx-lb-lWn"/>
+                <constraint firstAttribute="bottom" secondItem="iuh-xb-sOV" secondAttribute="bottom" id="sHJ-xU-pey"/>
+                <constraint firstItem="ofx-iv-5gW" firstAttribute="width" secondItem="eUg-ok-IyS" secondAttribute="width" id="sdW-mL-Ald"/>
+                <constraint firstItem="w4g-j5-B46" firstAttribute="height" secondItem="eMS-uN-Sz1" secondAttribute="height" id="toB-gx-eEH"/>
+                <constraint firstItem="Pxh-W6-X1H" firstAttribute="width" secondItem="eUg-ok-IyS" secondAttribute="width" id="toX-F7-mxD"/>
+                <constraint firstItem="iuh-xb-sOV" firstAttribute="leading" secondItem="ofx-iv-5gW" secondAttribute="trailing" id="vCs-vq-DeE"/>
                 <constraint firstItem="w4g-j5-B46" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vwh-ib-3Ba"/>
+                <constraint firstItem="GoV-da-dVJ" firstAttribute="height" secondItem="eMS-uN-Sz1" secondAttribute="height" id="w0a-rK-OIQ"/>
+                <constraint firstItem="eUg-ok-IyS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zfh-11-BLf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="25.5" y="-255.5"/>
+            <point key="canvasLocation" x="36.5" y="-265.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="CopyMedia" width="22" height="30"/>
+        <image name="DeleteMedia" width="25" height="30"/>
+        <image name="MoreIcon" width="30" height="30"/>
+        <image name="MoveMedia" width="30" height="30"/>
+        <image name="RenameIcon" width="30" height="30"/>
+    </resources>
 </document>

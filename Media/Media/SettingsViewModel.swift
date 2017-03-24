@@ -27,7 +27,7 @@ enum SettingTypes: String
 protocol SettingsViewModelDelegate {
     func configureTouchIDToogle(enable: Bool)
     func userTappedSetPassCode(view: VENTouchLockCreatePasscodeViewController)
-    func userShowPassCode(view: CustomVENTouchLockEnterPasscodeViewController)
+    func userShowPassCode(view: VENTouchLockEnterPasscodeViewController)
 }
 class SettingsViewModel{
     var delegate: SettingsViewModelDelegate!
@@ -107,7 +107,7 @@ class SettingsViewModel{
     {
         if(VENTouchLock.sharedInstance().isPasscodeSet())
         {
-            self.delegate.userShowPassCode(view: CustomVENTouchLockEnterPasscodeViewController(true))
+            self.delegate.userShowPassCode(view: VENTouchLockEnterPasscodeViewController(true))
         }
         else
         {

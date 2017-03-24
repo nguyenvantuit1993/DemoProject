@@ -55,7 +55,6 @@
 		B1B2B3091E53C1A70069E3C9 /* BookMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B2B3081E53C1A70069E3C9 /* BookMarkView.swift */; };
 		B1B2B30C1E53CDC20069E3C9 /* ManageDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B2B30B1E53CDC20069E3C9 /* ManageDataBase.swift */; };
 		B1E216F61E67B0AE0045A784 /* DetailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E216F11E67B0AE0045A784 /* DetailImageView.swift */; };
-		CB3225D71E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3225D61E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m */; };
 		CB364BFA1E49DB4600C10D91 /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BF91E49DB4600C10D91 /* MediaViewModel.swift */; };
 		CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB364BFC1E49DD4B00C10D91 /* Constant.swift */; };
 		CB3651501E602EA5006EFAB6 /* SettingObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB36514F1E602EA5006EFAB6 /* SettingObjects.swift */; };
@@ -92,6 +91,8 @@
 		CB8294771E5414F10013A064 /* MediasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8294761E5414F10013A064 /* MediasViewModel.swift */; };
 		CB8294791E5416590013A064 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8294781E5416590013A064 /* Item.swift */; };
 		CB9E34491E63E1040004A13B /* BookMarkObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9E34481E63E1040004A13B /* BookMarkObjects.swift */; };
+		CBADD61E1E84C56200E05828 /* FakeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBADD61C1E84C56200E05828 /* FakeCell.m */; };
+		CBADD61F1E84C56200E05828 /* FakeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBADD61D1E84C56200E05828 /* FakeCell.xib */; };
 		CBD33B311E554B510004D374 /* TTOpenInAppActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD33B291E554B510004D374 /* TTOpenInAppActivity.m */; };
 		CBD33B321E554B510004D374 /* TTOpenInAppActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2A1E554B510004D374 /* TTOpenInAppActivity.png */; };
 		CBD33B331E554B510004D374 /* TTOpenInAppActivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD33B2B1E554B510004D374 /* TTOpenInAppActivity@2x.png */; };
@@ -175,8 +176,6 @@
 		B1B2B30B1E53CDC20069E3C9 /* ManageDataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageDataBase.swift; sourceTree = "<group>"; };
 		B1E216F11E67B0AE0045A784 /* DetailImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailImageView.swift; sourceTree = "<group>"; };
 		B6EB16488B717E2081CD1BFD /* Pods-Media.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Media.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Media/Pods-Media.debug.xcconfig"; sourceTree = "<group>"; };
-		CB3225D51E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVENTouchLockEnterPasscodeViewController.h; sourceTree = "<group>"; };
-		CB3225D61E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVENTouchLockEnterPasscodeViewController.m; sourceTree = "<group>"; };
 		CB364BF91E49DB4600C10D91 /* MediaViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; };
 		CB364BFC1E49DD4B00C10D91 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CB36514F1E602EA5006EFAB6 /* SettingObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingObjects.swift; sourceTree = "<group>"; };
@@ -225,6 +224,9 @@
 		CB8294761E5414F10013A064 /* MediasViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediasViewModel.swift; sourceTree = "<group>"; };
 		CB8294781E5416590013A064 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		CB9E34481E63E1040004A13B /* BookMarkObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookMarkObjects.swift; sourceTree = "<group>"; };
+		CBADD61B1E84C56200E05828 /* FakeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeCell.h; sourceTree = "<group>"; };
+		CBADD61C1E84C56200E05828 /* FakeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeCell.m; sourceTree = "<group>"; };
+		CBADD61D1E84C56200E05828 /* FakeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FakeCell.xib; sourceTree = "<group>"; };
 		CBD33B281E554B510004D374 /* TTOpenInAppActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTOpenInAppActivity.h; sourceTree = "<group>"; };
 		CBD33B291E554B510004D374 /* TTOpenInAppActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTOpenInAppActivity.m; sourceTree = "<group>"; };
 		CBD33B2A1E554B510004D374 /* TTOpenInAppActivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity.png; sourceTree = "<group>"; };
@@ -400,15 +402,6 @@
 			name = DataBase;
 			sourceTree = "<group>";
 		};
-		CB3225D21E57012B005A729B /* PassCode */ = {
-			isa = PBXGroup;
-			children = (
-				CB3225D51E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.h */,
-				CB3225D61E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m */,
-			);
-			name = PassCode;
-			sourceTree = "<group>";
-		};
 		CB364BFB1E49DD3F00C10D91 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,7 +413,6 @@
 				971ABB061E78E9BB00C91F66 /* M3U8Paser */,
 				971ABB281E78F8E300C91F66 /* MergeFiles */,
 				CB4DB66B1E58699400F6F640 /* Category */,
-				CB3225D21E57012B005A729B /* PassCode */,
 				B1B2B2E11E53B0200069E3C9 /* Extentions */,
 				B1B2B2D31E53B0030069E3C9 /* PageScrollView */,
 				CB364BFC1E49DD4B00C10D91 /* Constant.swift */,
@@ -447,15 +439,13 @@
 		CB3EEE271E7D1EBE00A1D576 /* VENTouchLock */ = {
 			isa = PBXGroup;
 			children = (
+				CBADD61A1E84C54100E05828 /* FakeView */,
 				CB3EEE281E7D1EBE00A1D576 /* Categories */,
 				CB3EEE2B1E7D1EBE00A1D576 /* Controllers */,
 				CB3EEE341E7D1EBE00A1D576 /* Models */,
 				CB3EEE371E7D1EBE00A1D576 /* VENTouchLock.h */,
 				CB3EEE381E7D1EBE00A1D576 /* VENTouchLock.m */,
 				CB3EEE391E7D1EBE00A1D576 /* Views */,
-				CB3EEE4D1E7D1F1200A1D576 /* FakeView.h */,
-				CB3EEE4E1E7D1F1200A1D576 /* FakeView.m */,
-				CB3EEE4F1E7D1F1200A1D576 /* FakeView.xib */,
 			);
 			path = VENTouchLock;
 			sourceTree = "<group>";
@@ -703,6 +693,19 @@
 			name = CollectionCell;
 			sourceTree = "<group>";
 		};
+		CBADD61A1E84C54100E05828 /* FakeView */ = {
+			isa = PBXGroup;
+			children = (
+				CB3EEE4D1E7D1F1200A1D576 /* FakeView.h */,
+				CB3EEE4E1E7D1F1200A1D576 /* FakeView.m */,
+				CB3EEE4F1E7D1F1200A1D576 /* FakeView.xib */,
+				CBADD61B1E84C56200E05828 /* FakeCell.h */,
+				CBADD61C1E84C56200E05828 /* FakeCell.m */,
+				CBADD61D1E84C56200E05828 /* FakeCell.xib */,
+			);
+			name = FakeView;
+			sourceTree = "<group>";
+		};
 		CBD33B271E554B3F0004D374 /* TTOpenInAppActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -795,6 +798,7 @@
 				B1B2B2E01E53B0180069E3C9 /* HGPageScrollView.xib in Resources */,
 				CBD33B341E554B510004D374 /* TTOpenInAppActivity7.png in Resources */,
 				CB80C7FB1E496AA600690D4D /* Assets.xcassets in Resources */,
+				CBADD61F1E84C56200E05828 /* FakeCell.xib in Resources */,
 				B17CA7211E803FC700E3DB92 /* EditOptions.xib in Resources */,
 				976CFB9A1E7A8C510072B820 /* funny1.jpg in Resources */,
 				CB3EEE481E7D1EBE00A1D576 /* VENTouchLockPasscodeView.xib in Resources */,
@@ -870,6 +874,7 @@
 				CB3EEE451E7D1EBE00A1D576 /* VENTouchLock.m in Sources */,
 				971ABB301E78FC4000C91F66 /* MergeFiles.m in Sources */,
 				B1B2B2F91E53B1910069E3C9 /* ToolBarDetail.swift in Sources */,
+				CBADD61E1E84C56200E05828 /* FakeCell.m in Sources */,
 				971ABB0E1E78E9EA00C91F66 /* M3U8PlaylistModel.m in Sources */,
 				CB4180541E5AFE3000283B28 /* DetailFile.swift in Sources */,
 				B1B2B2E51E53B0390069E3C9 /* NVTWebViewModel.swift in Sources */,
@@ -921,7 +926,6 @@
 				B10B59971E835CC800154EE8 /* BookMarkCell.swift in Sources */,
 				CB5119921E56B80B009D38E9 /* SettingsViewController.swift in Sources */,
 				CB3EEE5E1E7D39B000A1D576 /* NVT_FileManager.swift in Sources */,
-				CB3225D71E570800005A729B /* CustomVENTouchLockEnterPasscodeViewController.m in Sources */,
 				B17CA7201E803FC700E3DB92 /* EditOptions.swift in Sources */,
 				CB3EEE401E7D1EBE00A1D576 /* VENTouchLockCreatePasscodeViewController.m in Sources */,
 				CB364BFD1E49DD4B00C10D91 /* Constant.swift in Sources */,

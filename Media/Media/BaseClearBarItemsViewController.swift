@@ -54,18 +54,23 @@ class BaseClearBarItemsViewController: BasicViewController {
     {
         removeAllBarButtons()
         self.verticalConstraint.constant = 49
-        
+        self.tabBarController?.tabBar.isHidden = false
         
         // Create left and right button for navigation item
         var backButton = UIBarButtonItem()
         if(self.currentPath != documentsPath)
         {
-            backButton = UIBarButtonItem(title: "<", style:   .plain, target: self, action: #selector(popBack))
+            backButton = UIBarButtonItem(image: UIImage(named: "backButton")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(popBack))
         }
-        let leftButton =  UIBarButtonItem(title: "+", style:   .plain, target: self, action: #selector(importMedia))
+        let leftButton =  UIBarButtonItem(image: UIImage(named: "ImportMediaNavi")?.withRenderingMode(.alwaysOriginal), style:   .plain, target: self, action: #selector(importMedia))
         
+        
+        let fontSize:CGFloat = 15
+        let font:UIFont = UIFont.boldSystemFont(ofSize: fontSize)
+        let attributes:[String : Any] = [NSFontAttributeName: font]
+
         let rightButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(edit))
-        
+        rightButton.setTitleTextAttributes(attributes, for: .normal)
         // Create two buttons for the navigation item
         navigationItem.setLeftBarButtonItems([backButton, leftButton], animated: true)
         navigationItem.setRightBarButtonItems([rightButton], animated: true)
@@ -73,12 +78,17 @@ class BaseClearBarItemsViewController: BasicViewController {
     func addEditButton()
     {
         removeAllBarButtons()
-        self.verticalConstraint.constant = -49
-        
+        self.verticalConstraint.constant = 0
+        self.tabBarController?.tabBar.isHidden = true
         // Create left and right button for navigation item
-        let leftButton =  UIBarButtonItem(title: "Create Folder", style:   .plain, target: self, action: #selector(createNewFolder))
+        let leftButton =  UIBarButtonItem(image: UIImage(named: "CreateFolderNavi")?.withRenderingMode(.alwaysOriginal), style:   .plain, target: self, action: #selector(createNewFolder))
+        
+        let fontSize:CGFloat = 15
+        let font:UIFont = UIFont.boldSystemFont(ofSize: fontSize)
+        let attributes:[String : Any] = [NSFontAttributeName: font]
         
         let rightButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done))
+        rightButton.setTitleTextAttributes(attributes, for: .normal)
         
         // Create two buttons for the navigation item
         navigationItem.setLeftBarButtonItems([leftButton], animated: true)

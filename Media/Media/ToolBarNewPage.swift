@@ -64,6 +64,8 @@ class ToolBarNewPage: BaseToolBar  {
 
 class BaseToolBar:UIView, CustomToolBar
 {
+    func zoomAction(isZoomIn: Bool)
+    {}
     var isToolBarNewPage: Bool?
     var delegate: ToolBarDelegate?
 }

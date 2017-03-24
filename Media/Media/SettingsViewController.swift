@@ -70,7 +70,7 @@ extension SettingsViewController: SettingsViewModelDelegate
     func userTappedSetPassCode(view: VENTouchLockCreatePasscodeViewController) {
         self.present(view.embeddedInNavigationController(), animated: true, completion: nil)
     }
-    func userShowPassCode(view: CustomVENTouchLockEnterPasscodeViewController) {
+    func userShowPassCode(view: VENTouchLockEnterPasscodeViewController) {
         view.isSettingsView = true
         self.present(view.embeddedInNavigationController(), animated: true, completion: nil)
     }
