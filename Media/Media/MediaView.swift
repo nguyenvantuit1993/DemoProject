@@ -55,6 +55,10 @@ class MediaView: BaseClearBarItemsViewController{
         self.view.backgroundColor = UIColor.black
         
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.editOptions.resizeButtons()
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.dropDown.isHidden = true

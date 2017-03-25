@@ -42,6 +42,16 @@ class ToolBarDetail: BaseToolBar {
             self.btn_Zoom.setImage(UIImage(named:"ZoomOutIcon"), for: .normal)
         }
     }
+    override func resizeButtons()
+    {
+        btn_Previous.alignContentVerticallyByCenter(offset: 5)
+        btn_Forward.alignContentVerticallyByCenter(offset: 5)
+        btn_Bookmark.alignContentVerticallyByCenter(offset: 5)
+        btn_Browser.alignContentVerticallyByCenter(offset: 5)
+        btn_Download.alignContentVerticallyByCenter(offset: 5)
+        btn_Zoom.alignContentVerticallyByCenter(offset: 5)
+
+    }
     func setup() {
         isToolBarNewPage = false
         view = loadViewFromNib()

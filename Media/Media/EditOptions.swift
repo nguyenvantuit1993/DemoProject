@@ -42,6 +42,10 @@ class EditOptions: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -50,8 +54,14 @@ class EditOptions: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
-    
-        
+    }
+    func resizeButtons()
+    {
+        btn_Remove.alignContentVerticallyByCenter(offset: 5)
+        btn_Copy.alignContentVerticallyByCenter(offset: 5)
+        btn_Move.alignContentVerticallyByCenter(offset: 5)
+        btn_Rename.alignContentVerticallyByCenter(offset: 5)
+        btn_More.alignContentVerticallyByCenter(offset: 5)
     }
     func setup() {
         view = loadViewFromNib()
@@ -65,4 +75,38 @@ class EditOptions: UIView {
     
     
 
+}
+
+extension UIButton {
+    // MARK: - UIButton+Aligment
+    
+    func alignContentVerticallyByCenter(offset:CGFloat = 10) {
+        let buttonSize = frame.size
+        
+        if let titleLabel = titleLabel,
+            let imageView = imageView {
+            
+            if let buttonTitle = titleLabel.text,
+                let image = imageView.image {
+                let titleString:NSString = NSString(string: buttonTitle)
+                let titleSize = titleString.size(attributes: [
+                    NSFontAttributeName : titleLabel.font
+                    ])
+                let buttonImageSize = image.size
+                
+                let topImageOffset = (buttonSize.height - (titleSize.height + buttonImageSize.height + offset)) / 2
+                let leftImageOffset = (buttonSize.width - buttonImageSize.width) / 2
+                imageEdgeInsets = UIEdgeInsetsMake(topImageOffset + offset,
+                                                   leftImageOffset,
+                                                   topImageOffset + 3*offset,0)
+
+                let titleTopOffset = buttonSize.height - titleSize.height
+                let leftTitleOffset = (buttonSize.width - titleSize.width) / 2 - image.size.width
+                
+                titleEdgeInsets = UIEdgeInsetsMake(titleTopOffset,
+                                                   leftTitleOffset,
+                                                   0,0)
+            }
+        }
+    }
 }

@@ -42,6 +42,11 @@ class ToolBarNewPage: BaseToolBar  {
         setup()
         
     }
+    override func resizeButtons()
+    {
+        btn_NewPage.alignContentVerticallyByCenter(offset: 10)
+        btn_Done.alignContentVerticallyByCenter(offset: 10)
+    }
     func setup() {
         isToolBarNewPage = true
         view = loadViewFromNib()
@@ -65,6 +70,8 @@ class ToolBarNewPage: BaseToolBar  {
 class BaseToolBar:UIView, CustomToolBar
 {
     func zoomAction(isZoomIn: Bool)
+    {}
+    func resizeButtons()
     {}
     var isToolBarNewPage: Bool?
     var delegate: ToolBarDelegate?

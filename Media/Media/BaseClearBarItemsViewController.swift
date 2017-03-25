@@ -57,7 +57,7 @@ class BaseClearBarItemsViewController: BasicViewController {
         self.tabBarController?.tabBar.isHidden = false
         
         // Create left and right button for navigation item
-        var backButton = UIBarButtonItem()
+        var backButton: UIBarButtonItem!
         if(self.currentPath != documentsPath)
         {
             backButton = UIBarButtonItem(image: UIImage(named: "backButton")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(popBack))
@@ -71,8 +71,10 @@ class BaseClearBarItemsViewController: BasicViewController {
 
         let rightButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(edit))
         rightButton.setTitleTextAttributes(attributes, for: .normal)
+        
+        let leftButtons: [UIBarButtonItem]! = backButton != nil ? [backButton, leftButton] : [leftButton]
         // Create two buttons for the navigation item
-        navigationItem.setLeftBarButtonItems([backButton, leftButton], animated: true)
+        navigationItem.setLeftBarButtonItems(leftButtons, animated: true)
         navigationItem.setRightBarButtonItems([rightButton], animated: true)
     }
     func addEditButton()
