@@ -87,10 +87,20 @@ class BaseClearBarItemsViewController: BasicViewController {
         
         let fontSize:CGFloat = 15
         let font:UIFont = UIFont.boldSystemFont(ofSize: fontSize)
-        let attributes:[String : Any] = [NSFontAttributeName: font]
-        
-        let rightButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done))
-        rightButton.setTitleTextAttributes(attributes, for: .normal)
+//        let attributes:[String : Any] = [NSFontAttributeName: font]
+        let button = UIButton(type: .custom)
+        //set image for button
+        button.backgroundColor = UIColor(netHex: 0x2692EE)
+        //add function for button
+        button.addTarget(self, action: #selector(done), for: .touchUpInside)
+        //set frame
+        button.frame = CGRect(x:0, y: 0, width: 53, height: 31)
+        button.setTitle("Done", for: .normal)
+        button.titleLabel?.font = font
+        button.layer.cornerRadius = 4
+        let rightButton = UIBarButtonItem(customView: button)
+//        rightButton.setBackgroundImage(UIImage.from(color: UIColor(netHex: 0x2692EE)), for: .normal, barMetrics: .default)
+//        rightButton.setTitleTextAttributes(attributes, for: .normal)
         
         // Create two buttons for the navigation item
         navigationItem.setLeftBarButtonItems([leftButton], animated: true)
@@ -228,4 +238,15 @@ extension BaseClearBarItemsViewController: UIImagePickerControllerDelegate, UINa
         }
     }
 }
-
+extension UIImage {
+    static func from(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
+}

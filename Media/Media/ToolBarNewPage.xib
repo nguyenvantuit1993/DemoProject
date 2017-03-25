@@ -30,11 +30,12 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0q-oM-Zj4">
-                    <rect key="frame" x="290" y="0.0" width="70" height="45"/>
+                    <rect key="frame" x="290" y="4" width="70" height="37"/>
+                    <color key="backgroundColor" red="0.14901960784313725" green="0.5725490196078431" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="8pc-7R-lNs"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                     <state key="normal" title="Done">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -48,9 +49,9 @@
                 <constraint firstAttribute="trailing" secondItem="w0q-oM-Zj4" secondAttribute="trailing" constant="15" id="9xC-4w-ZxG"/>
                 <constraint firstItem="1L1-op-w3k" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JyB-F7-Euz"/>
                 <constraint firstAttribute="bottom" secondItem="1L1-op-w3k" secondAttribute="bottom" id="QuL-dH-zfv"/>
-                <constraint firstItem="w0q-oM-Zj4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aGg-Tn-EBY"/>
+                <constraint firstItem="w0q-oM-Zj4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="aGg-Tn-EBY"/>
                 <constraint firstItem="1L1-op-w3k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="fQu-9p-LJX"/>
-                <constraint firstAttribute="bottom" secondItem="w0q-oM-Zj4" secondAttribute="bottom" id="kLW-pt-CoN"/>
+                <constraint firstAttribute="bottom" secondItem="w0q-oM-Zj4" secondAttribute="bottom" constant="4" id="kLW-pt-CoN"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -58,6 +59,6 @@
         </view>
     </objects>
     <resources>
-        <image name="NewPage" width="21" height="30"/>
+        <image name="NewPage" width="14" height="20"/>
     </resources>
 </document>

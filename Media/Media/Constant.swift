@@ -17,6 +17,7 @@ let kBunchFolder = "NVT_BunchFiles"
 let kHtmlPath = "http"
 let kFolderIcon = "Folder"
 let kGoogleSearchLink = "http://www.google.com/search?q="
+let baseColor = UIColor(netHex: 0x42474f)
 enum MimeTypes: String {
     case Image
     case Video

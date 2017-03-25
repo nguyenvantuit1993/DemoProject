@@ -65,6 +65,7 @@ class EditOptions: UIView {
     }
     func setup() {
         view = loadViewFromNib()
+        self.view.backgroundColor = baseColor
         self.view.frame = self.frame
         self.addSubview(view)
     }

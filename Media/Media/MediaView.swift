@@ -68,7 +68,7 @@ class MediaView: BaseClearBarItemsViewController{
     }
     func addDropDown()
     {
-        self.btn_Filter.backgroundColor = UIColor.darkGray
+        self.btn_Filter.backgroundColor = baseColor
         dropDown.dropDownDelegate = self
         self.view.addSubview(dropDown)
         

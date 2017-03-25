@@ -26,7 +26,7 @@ import UIKit
 class ToolBarNewPage: BaseToolBar  {
 
     
-    @IBOutlet weak var view: UIView!
+    
     
     @IBOutlet weak var btn_NewPage: UIButton!
     
@@ -45,11 +45,14 @@ class ToolBarNewPage: BaseToolBar  {
     override func resizeButtons()
     {
         btn_NewPage.alignContentVerticallyByCenter(offset: 10)
+        btn_Done.layer.cornerRadius = 4
         btn_Done.alignContentVerticallyByCenter(offset: 10)
     }
-    func setup() {
+    override func setup() {
+        super.setup()
         isToolBarNewPage = true
         view = loadViewFromNib()
+        self.view.backgroundColor = baseColor
         self.view.frame = self.frame
         self.addSubview(view)
     }
@@ -69,10 +72,15 @@ class ToolBarNewPage: BaseToolBar  {
 
 class BaseToolBar:UIView, CustomToolBar
 {
+    @IBOutlet weak var view: UIView!
     func zoomAction(isZoomIn: Bool)
     {}
     func resizeButtons()
     {}
+    func setup()
+    {
+       
+    }
     var isToolBarNewPage: Bool?
     var delegate: ToolBarDelegate?
 }

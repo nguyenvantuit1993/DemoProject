@@ -23,15 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                          touchIDReason: "Scan your fingerprint to use the app.", passcodeAttemptLimit: 5,
                                                          splashViewControllerClass: VENTouchLockSplashViewController.self)
         createBasicFolders()
-        self.setStatusBarBackgroundColor(color: UIColor.darkGray)
+        self.setStatusBarBackgroundColor(color: baseColor)
         return true
     }
     func setStatusBarBackgroundColor(color: UIColor) {
-//        UITabBar.appearance().tintColor = UIColor.white
-        UITabBar.appearance().barTintColor = UIColor(netHex: 0xebebeb)
+        UITabBar.appearance().tintColor = UIColor.white
+        UITabBar.appearance().barTintColor = color
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().barTintColor = UIColor.darkGray
+        UINavigationBar.appearance().barTintColor = color
         UIApplication.shared.statusBarStyle = .lightContent
         guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
         statusBar.backgroundColor = color

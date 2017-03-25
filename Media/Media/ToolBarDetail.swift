@@ -9,7 +9,6 @@
 import UIKit
 
 class ToolBarDetail: BaseToolBar {
-    @IBOutlet weak var view: UIView!
     @IBOutlet weak var btn_Previous: UIButton!
     
     @IBOutlet weak var btn_Forward: UIButton!
@@ -49,12 +48,15 @@ class ToolBarDetail: BaseToolBar {
         btn_Bookmark.alignContentVerticallyByCenter(offset: 5)
         btn_Browser.alignContentVerticallyByCenter(offset: 5)
         btn_Download.alignContentVerticallyByCenter(offset: 5)
-        btn_Zoom.alignContentVerticallyByCenter(offset: 5)
+        btn_Zoom.alignContentVerticallyByCenter(offset: 5
+        )
 
     }
-    func setup() {
+    override func setup() {
+        super.setup()
         isToolBarNewPage = false
         view = loadViewFromNib()
+        self.view.backgroundColor = baseColor
         self.view.frame = self.frame
         self.addSubview(view)
     }
