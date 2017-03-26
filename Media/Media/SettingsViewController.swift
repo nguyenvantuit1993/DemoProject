@@ -72,7 +72,7 @@ class SettingsViewController: BasicViewController {
         }
     }
     func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
-        guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
+        guard let url = URL(string : "itms-apps://itunes.apple.com/app/id" + appId) else {
             completion(false)
             return
         }

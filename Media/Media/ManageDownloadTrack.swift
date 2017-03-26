@@ -304,9 +304,6 @@ class ManageDownloadTrack: NSObject {
             // localFilePathForUrl(_:) then generates a permanent local file path to save to by appending the lastPastComponent of the URL
             // (i.e. the file name and extension of the file) to the path of the app's Documents directory
             if let destinationURLAndName = localFilePathForUrl(originalURL, mime: extensionURL, name: self.tracks[trackIndex].name!) {
-                
-                print(destinationURLAndName.url)
-                
                 // with FileManager you move the downloaded file from its temporary file location to the desired destination file path by
                 // clearing out any item at that location before you start the copy task
                 let fileManager = FileManager.default
