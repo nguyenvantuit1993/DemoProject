@@ -100,7 +100,7 @@ class FileManagerMedia
     private var selectedFiles = [Item]()
     private var items = [Item]()
     private var filteredItems = [Item]()
-    let otherExtentions = ["doc", "docs", "txt", "pdf", "rtf", "ppt", "html", "htm", "xls", "xlsx", "xlc"]
+    let otherExtentions = ["doc", "docs", "txt", "pdf", "rtf", "ppt", "html", "htm", "xls", "xlsx", "xlc", "mp3"]
     let videoExtentions = ["flv", "mp4", "m3u8", "ts", "3gp", "mov", "avi", "wmv"]
     let imageExtentions = ["gif", "ico", "jpg", "svg", "tif", "webp"]
     var type = MimeTypes.Image
@@ -255,6 +255,8 @@ class FileManagerMedia
             nameImage = "PDF"
         case "docs", "txt":
             nameImage = "TXT"
+        case "mp3":
+            nameImage = "MP3"
         default:
             nameImage = "UNKNOWN"
         }

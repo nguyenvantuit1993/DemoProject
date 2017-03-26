@@ -116,7 +116,12 @@ class MediaView: BaseClearBarItemsViewController{
     }
     func playVideo(atIndex: Int)
     {
-        let player = AVPlayer(url: mediaViewModel.getSourcePath(atIndex: atIndex, isFilter: self.checkIsFilter()))
+        self.playVideo(url: mediaViewModel.getSourcePath(atIndex: atIndex, isFilter: self.checkIsFilter()))
+        
+    }
+    func playVideo(url: URL)
+    {
+        let player = AVPlayer(url: url)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         self.present(playerViewController, animated: true) {
@@ -127,9 +132,16 @@ class MediaView: BaseClearBarItemsViewController{
     {
         if(url != nil)
         {
-            let detailView = self.storyboard?.instantiateViewController(withIdentifier: "DetailFile") as! DetailFile
-            detailView.urlFile = url
-            self.present(detailView, animated: true, completion: nil)
+            if(url?.pathExtension == "mp3")
+            {
+                self.playVideo(url: url!)
+            }
+            else
+            {
+                let detailView = self.storyboard?.instantiateViewController(withIdentifier: "DetailFile") as! DetailFile
+                detailView.urlFile = url
+                self.present(detailView, animated: true, completion: nil)
+            }
         }
     }
     func showContentOfFolder(url: String)

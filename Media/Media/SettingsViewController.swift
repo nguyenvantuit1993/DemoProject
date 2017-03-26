@@ -12,7 +12,6 @@ class SettingsViewController: BasicViewController {
     
     @IBOutlet weak var defaultBrowserLink: UITextField!
     @IBOutlet weak var switch_SetPassCode: UISwitch!
-    @IBOutlet weak var switch_PrivateBrowsing: UISwitch!
     @IBOutlet weak var switch_FakePassCode: UISwitch!
     @IBOutlet weak var txt_FakeCode: UITextField!
     
@@ -53,12 +52,35 @@ class SettingsViewController: BasicViewController {
                     SettingTypes.passCodeLock.rawValue: self.switch_SetPassCode.isOn,
                     SettingTypes.fakeCodeLock.rawValue: self.switch_FakePassCode.isOn,
                     SettingTypes.fakeCodeString.rawValue: fakeCodeString,
-                    SettingTypes.privateBrowsing.rawValue: self.switch_PrivateBrowsing.isOn] as [String : Any]
+                    SettingTypes.privateBrowsing.rawValue: false] as [String : Any]
     }
     @IBAction func userTappedSetPasscode(_ sender: UISwitch) {
         self.settingsViewModel.setPassCode()
     }
     @IBAction func userTappedSetFakePass(_ sender: AnyObject) {
+    }
+    @IBAction func rateApp(_ sender: Any) {
+        self.rateApp(appId: "1209839038") { (finished) in
+            if(finished == true)
+            {
+                print("ok")
+            }
+            else
+            {
+                print("cancel")
+            }
+        }
+    }
+    func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
+        guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
+            completion(false)
+            return
+        }
+        guard #available(iOS 10, *) else {
+            completion(UIApplication.shared.openURL(url))
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: completion)
     }
 
 }

@@ -30,6 +30,7 @@
 		B131EF211E81A6B800352C57 /* TreeFolder.xib in Resources */ = {isa = PBXBuildFile; fileRef = B131EF1F1E81A6B800352C57 /* TreeFolder.xib */; };
 		B131EF241E81A86E00352C57 /* TreeFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B131EF221E81A86E00352C57 /* TreeFolderCell.swift */; };
 		B131EF251E81A86E00352C57 /* TreeFolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B131EF231E81A86E00352C57 /* TreeFolderCell.xib */; };
+		B136BAD61E87692E00B9382D /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BAD51E87692E00B9382D /* PlaySound.swift */; };
 		B17CA7201E803FC700E3DB92 /* EditOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17CA71E1E803FC700E3DB92 /* EditOptions.swift */; };
 		B17CA7211E803FC700E3DB92 /* EditOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = B17CA71F1E803FC700E3DB92 /* EditOptions.xib */; };
 		B1809FD21E67435D004FA67D /* DownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1809FD11E67435D004FA67D /* DownloadViewModel.swift */; };
@@ -147,6 +148,7 @@
 		B131EF1F1E81A6B800352C57 /* TreeFolder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TreeFolder.xib; sourceTree = "<group>"; };
 		B131EF221E81A86E00352C57 /* TreeFolderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeFolderCell.swift; sourceTree = "<group>"; };
 		B131EF231E81A86E00352C57 /* TreeFolderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TreeFolderCell.xib; sourceTree = "<group>"; };
+		B136BAD51E87692E00B9382D /* PlaySound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		B17CA71E1E803FC700E3DB92 /* EditOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditOptions.swift; sourceTree = "<group>"; };
 		B17CA71F1E803FC700E3DB92 /* EditOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditOptions.xib; sourceTree = "<group>"; };
 		B1809FD11E67435D004FA67D /* DownloadViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadViewModel.swift; sourceTree = "<group>"; };
@@ -341,6 +343,14 @@
 				CBE315591E82311800790D8F /* CopyView.swift */,
 			);
 			name = TreeFolder;
+			sourceTree = "<group>";
+		};
+		B136BAD01E87690900B9382D /* PlaySound */ = {
+			isa = PBXGroup;
+			children = (
+				B136BAD51E87692E00B9382D /* PlaySound.swift */,
+			);
+			name = PlaySound;
 			sourceTree = "<group>";
 		};
 		B17CA71D1E803FAC00E3DB92 /* EditOptions */ = {
@@ -627,6 +637,7 @@
 		CB80C8051E49735C00690D4D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B136BAD01E87690900B9382D /* PlaySound */,
 				B17CA71D1E803FAC00E3DB92 /* EditOptions */,
 				CB3EEE5F1E7D3BEA00A1D576 /* DetailFolder */,
 				976CFB9B1E7A95100072B820 /* BasicViewController.swift */,
@@ -912,6 +923,7 @@
 				CB3651501E602EA5006EFAB6 /* SettingObjects.swift in Sources */,
 				971ABB241E78EA0400C91F66 /* M3U8MasterPlaylist.m in Sources */,
 				CB5119941E56B8A2009D38E9 /* SettingsViewModel.swift in Sources */,
+				B136BAD61E87692E00B9382D /* PlaySound.swift in Sources */,
 				CBFB10001E497FF500992989 /* MediaView.swift in Sources */,
 				B1E216F61E67B0AE0045A784 /* DetailImageView.swift in Sources */,
 				CB3EEE431E7D1EBE00A1D576 /* VENTouchLockSplashViewController.m in Sources */,

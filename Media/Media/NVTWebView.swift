@@ -221,7 +221,7 @@ extension NVTWebView: HGPageScrollViewDataSource
     }
     func pageScrollView(_ scrollView: HGPageScrollView!, viewForPageAt index: Int) -> HGPageView! {
         //        var currentWebView = webviewModel.myPageDataArray[index] as! MyPageView
-        var customWebView = self.webviewModel.getPage(indexPage: index)
+        let customWebView = self.webviewModel.getPage(indexPage: index)
         //        if (customWebView == nil)
         //        {
         //           customWebView = Bundle.main.loadNibNamed("CustomWebView", owner: self, options: nil)?.first as? CustomWebView
