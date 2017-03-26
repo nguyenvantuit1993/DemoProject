@@ -59,7 +59,7 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
          object:self];
     }
     else {
-        if(settings.settings.fakeCodeLock == true && self.isSettingsView == false)
+        if(settings.settings.fakeCodeLock == true && self.isSettingsView == NO)
         {
             if([settings.settings.fakeCodeString isEqualToString:passcode] ||
                ([settings.settings.fakeCodeString isEqualToString:@""] && [passcode isEqualToString:defaultPassword]))
@@ -73,6 +73,7 @@ NSString *const VENTouchLockEnterPasscodeUserDefaultsKeyNumberOfConsecutivePassc
                 return;
             }
         }
+        
         [self.passcodeView shakeAndVibrateCompletion:^{
             self.passcodeView.title = [self.touchLock appearance].enterPasscodeIncorrectLabelText;
             [self clearPasscode];
