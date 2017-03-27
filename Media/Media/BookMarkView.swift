@@ -9,15 +9,19 @@
 import Foundation
 import UIKit
 import CoreData
+import GoogleMobileAds
 protocol BookMarkDelegate {
     func didSelectBookMarkAt(index: Int)
 }
 class BookMarkView: BasicViewController{
+    
+    @IBOutlet weak var bannerBookmark: GADBannerView!
     var delegate: BookMarkDelegate!
     var bookmarkViewModel = BookMarkViewModel()
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.bannerBookmark = self.adBannerView
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "BookMarkCell", bundle: Bundle.main), forCellReuseIdentifier: "BookMarkCell")

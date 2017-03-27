@@ -10,9 +10,11 @@ import Foundation
 import UIKit
 import AVKit
 import AVFoundation
+import GoogleMobileAds
 
 class MediaView: BaseClearBarItemsViewController{
     
+    @IBOutlet weak var bannerMediaView: GADBannerView!
     @IBOutlet weak var btn_Filter: UIButton!
     @IBOutlet weak var headerView: UIView!
     var currentIndex: Int!
@@ -23,6 +25,7 @@ class MediaView: BaseClearBarItemsViewController{
     var docController: UIDocumentInteractionController!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.bannerMediaView = self.adBannerView
         if(self.currentPath == nil)
         {
             self.currentPath = documentsPath
@@ -254,7 +257,7 @@ extension MediaView: UICollectionViewDelegate
             self.showImageAt(index: indexPath.row, isFilter: isFilter)
             break
         case .Video:
-            
+            self.playInterstitailAdMod()
             self.playVideo(atIndex: indexPath.row)
             break
         case .Other:

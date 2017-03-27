@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 //        self.setStatusBarBackgroundColor(color: UIColor.darkGray)
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-5942433079799456~1452849924")
         VENTouchLock.sharedInstance().setKeychainService("mediaService",
                                                          keychainAccount: "mediaKeychainAccount",
                                                          touchIDReason: "Scan your fingerprint to use the app.", passcodeAttemptLimit: 5,

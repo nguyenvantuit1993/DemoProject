@@ -273,6 +273,9 @@ extension CustomWebView: WKNavigationDelegate
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         self.searchBar?.setImage(UIImage(named: "CloseButton"), for: .bookmark, state: .normal)
     }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print(navigation)
+    }
     
 }
 extension CustomWebView: UISearchBarDelegate

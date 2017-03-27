@@ -9,16 +9,19 @@
 import Foundation
 import UIKit
 import MediaPlayer
+import GoogleMobileAds
 protocol DownloadViewDelegate {
     func reloadCellAt(indexPath: IndexPath)
 }
 class DownloadView: BasicViewController {
     
+    @IBOutlet weak var bannerDownloadView: GADBannerView!
     @IBOutlet weak var txt_Link: UITextField!
     @IBOutlet weak var tableView: UITableView!
     var downloadViewModel = DownloadViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.bannerDownloadView = self.adBannerView
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: Notification.Name("ReloadDownloadView"), object: nil)
         tableView.delegate = self
         tableView.dataSource = self

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 protocol DetailImageViewDelegate {
     func numberOfRowInSection() -> Int
     func getImageAt(index: Int) -> UIImage?
@@ -15,6 +16,8 @@ protocol DetailImageViewDelegate {
 }
 class DetailImageView: BasicViewController {
     var items: [Item]!
+    
+    @IBOutlet weak var banner_DetailImages: GADBannerView!
     var delegate: DetailImageViewDelegate!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageView: UIImageView!
@@ -23,6 +26,7 @@ class DetailImageView: BasicViewController {
     var isFirstLoad = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.banner_DetailImages = self.adBannerView
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: cellId)

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s4D-Q4-5ae">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s4D-Q4-5ae">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,14 +29,14 @@
                                         <rect key="frame" x="0.0" y="-64" width="375" height="900"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQc-RG-4wQ">
-                                                <rect key="frame" x="0.0" y="64" width="375" height="60"/>
+                                                <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="rkh-Ru-WR7"/>
+                                                    <constraint firstAttribute="height" constant="50" id="rkh-Ru-WR7"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4S-TY-ayu">
-                                                <rect key="frame" x="8" y="132" width="359" height="135"/>
+                                                <rect key="frame" x="8" y="122" width="359" height="135"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7l-Sn-y2M">
                                                         <rect key="frame" x="8" y="0.0" width="343" height="45"/>
@@ -117,7 +117,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRB-56-eqm">
-                                                <rect key="frame" x="8" y="297" width="359" height="45"/>
+                                                <rect key="frame" x="8" y="287" width="359" height="45"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlG-vd-ClT">
                                                         <rect key="frame" x="0.0" y="0.0" width="359" height="45"/>
@@ -160,7 +160,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hw6-ot-MbF">
-                                                <rect key="frame" x="8" y="372" width="359" height="45"/>
+                                                <rect key="frame" x="8" y="362" width="359" height="45"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHf-Wa-yvN">
                                                         <rect key="frame" x="8" y="8" width="343" height="29"/>
@@ -244,7 +244,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="k1f-mm-4b5">
-                                <rect key="frame" x="0.0" y="135" width="375" height="468"/>
+                                <rect key="frame" x="0.0" y="125" width="375" height="478"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="y8o-ou-dRh">
                                     <size key="itemSize" width="70" height="70"/>
@@ -283,11 +283,11 @@
                                     <constraint firstAttribute="height" constant="40" id="an0-PG-6zj"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cg-MI-GoI">
-                                <rect key="frame" x="0.0" y="75" width="375" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cg-MI-GoI" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="75" width="375" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="JWE-lc-r6q"/>
+                                    <constraint firstAttribute="height" constant="50" id="JWE-lc-r6q"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -312,6 +312,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="aoF-kC-fF2"/>
                     <connections>
+                        <outlet property="bannerMediaView" destination="7cg-MI-GoI" id="Elr-vL-pem"/>
                         <outlet property="btn_Filter" destination="1kR-wK-MRF" id="dH0-th-eIF"/>
                         <outlet property="collectionView" destination="k1f-mm-4b5" id="ltJ-aq-Z6k"/>
                         <outlet property="headerView" destination="J3f-QH-NUE" id="KLX-ca-qLn"/>
@@ -334,7 +335,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SCe-lq-XMP">
-                                <rect key="frame" x="0.0" y="60" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPa-hK-KBe">
@@ -390,11 +391,11 @@
                                     <constraint firstAttribute="bottom" secondItem="8am-Gw-aBY" secondAttribute="bottom" constant="4" id="wYL-hf-Kf2"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGd-51-DJb">
-                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGd-51-DJb" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="s0J-W3-ExY"/>
+                                    <constraint firstAttribute="height" constant="50" id="s0J-W3-ExY"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -413,6 +414,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerDownloadView" destination="QGd-51-DJb" id="PrV-I3-Gvb"/>
                         <outlet property="tableView" destination="SCe-lq-XMP" id="LUn-1N-9oU"/>
                         <outlet property="txt_Link" destination="FkB-mI-kQ2" id="Bw8-ic-1bb"/>
                     </connections>
@@ -449,14 +451,14 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="joB-La-j8L">
-                                <rect key="frame" x="0.0" y="66" width="375" height="541"/>
+                                <rect key="frame" x="0.0" y="66" width="375" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGq-OZ-aFT">
-                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGq-OZ-aFT" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="N7R-Lb-ZXY"/>
+                                    <constraint firstAttribute="height" constant="50" id="N7R-Lb-ZXY"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -474,6 +476,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerBookmark" destination="kGq-OZ-aFT" id="KMb-ED-5P5"/>
                         <outlet property="tableView" destination="joB-La-j8L" id="tGs-ol-Bi4"/>
                     </connections>
                 </viewController>
@@ -493,8 +496,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sxi-JW-Ysv" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="MW6-3t-gT4"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kp8-eE-tk1">
-                                <rect key="frame" x="294" y="28" width="65" height="30"/>
+                                <rect key="frame" x="294" y="78" width="65" height="30"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="UMh-dH-94i"/>
@@ -511,10 +521,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Kp8-eE-tk1" firstAttribute="top" secondItem="Tdj-A8-5qY" secondAttribute="bottom" constant="8" id="C05-Sm-uxO"/>
+                            <constraint firstAttribute="trailing" secondItem="sxi-JW-Ysv" secondAttribute="trailing" id="6w3-nx-ZYR"/>
                             <constraint firstItem="Kp8-eE-tk1" firstAttribute="trailing" secondItem="rzs-rq-IYY" secondAttribute="trailingMargin" id="EWr-uU-1wo"/>
+                            <constraint firstItem="sxi-JW-Ysv" firstAttribute="leading" secondItem="rzs-rq-IYY" secondAttribute="leading" id="WEN-Ti-JD7"/>
+                            <constraint firstItem="sxi-JW-Ysv" firstAttribute="top" secondItem="Tdj-A8-5qY" secondAttribute="bottom" id="t5S-CQ-Kok"/>
+                            <constraint firstItem="Kp8-eE-tk1" firstAttribute="top" secondItem="sxi-JW-Ysv" secondAttribute="bottom" constant="8" id="tnJ-L6-MOf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="banner_DetailFile" destination="sxi-JW-Ysv" id="tdK-xV-yY1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBa-L6-c6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -536,13 +552,13 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="559"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZGx-yN-Mz8">
-                                        <rect key="frame" x="0.0" y="60" width="375" height="499"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="509"/>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sh-Ow-R1Y">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sh-Ow-R1Y" customClass="GADBannerView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="2kJ-dE-oYw"/>
+                                            <constraint firstAttribute="height" constant="50" id="2kJ-dE-oYw"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -593,6 +609,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="banner_DetailImages" destination="3Sh-Ow-R1Y" id="j3P-wM-CaG"/>
                         <outlet property="collectionView" destination="9MR-1U-e3x" id="YWl-1w-5A7"/>
                         <outlet property="imageView" destination="ZGx-yN-Mz8" id="gyL-Zj-8Le"/>
                     </connections>

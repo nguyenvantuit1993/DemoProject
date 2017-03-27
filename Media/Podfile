@@ -6,6 +6,8 @@ target 'Media' do
   #use_frameworks!
   	pod 'SSKeychain', '~> 1.2.2'
     pod 'TS2MP4'
+    pod 'Firebase/Core'
+    pod 'Firebase/AdMob'
   # Pods for Media
 
 end

@@ -8,13 +8,16 @@
 
 import UIKit
 import WebKit
-
+import GoogleMobileAds
 
 class DetailFile: BasicViewController {
     var urlFile: URL!
     var webView: WKWebView!
+    
+    @IBOutlet weak var banner_DetailFile: GADBannerView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.banner_DetailFile = self.adBannerView
         addWebView()
         webView.load(URLRequest(url: urlFile))
         // Do any additional setup after loading the view.
@@ -30,7 +33,7 @@ class DetailFile: BasicViewController {
         
         webView.translatesAutoresizingMaskIntoConstraints = false
         let horizontalConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0)
-        let verticalConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 55)
+        let verticalConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 105)
         let widthConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0)
         let heightConstraint = NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
         self.view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])

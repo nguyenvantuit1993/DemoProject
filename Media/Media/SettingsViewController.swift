@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class SettingsViewController: BasicViewController {
+    @IBOutlet weak var bannerSettings: GADBannerView!
     
     @IBOutlet weak var defaultBrowserLink: UITextField!
     @IBOutlet weak var switch_SetPassCode: UISwitch!
@@ -24,6 +26,7 @@ class SettingsViewController: BasicViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bannerSettings = self.adBannerView
         let tap = UITapGestureRecognizer(target: self, action: #selector(dissmissKeyboard))
         self.view.addGestureRecognizer(tap)
         settingsViewModel.delegate = self
@@ -55,9 +58,11 @@ class SettingsViewController: BasicViewController {
                     SettingTypes.privateBrowsing.rawValue: false] as [String : Any]
     }
     @IBAction func userTappedSetPasscode(_ sender: UISwitch) {
+        self.playVideoAdMob()
         self.settingsViewModel.setPassCode()
     }
     @IBAction func userTappedSetFakePass(_ sender: AnyObject) {
+        self.playVideoAdMob()
     }
     @IBAction func rateApp(_ sender: Any) {
         self.rateApp(appId: "1209839038") { (finished) in
