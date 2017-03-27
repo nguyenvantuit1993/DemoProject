@@ -54,7 +54,7 @@ class MediaView: BaseClearBarItemsViewController{
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "CustomCollectionCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ImagesViewCell")
         
-        self.reloadData()
+        
         self.view.backgroundColor = UIColor.black
         
     }
@@ -68,6 +68,7 @@ class MediaView: BaseClearBarItemsViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.reloadData()
     }
     func addDropDown()
     {
