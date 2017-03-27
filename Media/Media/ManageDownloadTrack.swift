@@ -381,7 +381,10 @@ extension ManageDownloadTrack: URLSessionDelegate {
     }
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)
     {
-        self.delegate.showError(description: (error?.localizedDescription)!)
+        if(error != nil)
+        {
+            self.delegate?.showError(description: (error?.localizedDescription)!)
+        }
     }
 }
 extension URLSession {

@@ -115,23 +115,27 @@ class BaseClearBarItemsViewController: BasicViewController {
     func importMedia()
     {
         print("import Media")
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        self.imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.imagePicker.mediaTypes = ["public.image", "public.movie"]
+                    self.imagePicker.videoQuality = .typeHigh
+        self.present(self.imagePicker, animated: true, completion: nil)
+//        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+//        
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (UIAlertAction) -> Void in
+//            self.dismiss(animated: true, completion: nil)
+//        }
+//        
+//        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (UIAlertAction) -> Void in
+//            self.imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+//            self.imagePicker.mediaTypes = ["public.image", "public.movie"]
+//            //            self.imagePicker.videoQuality = .typeHigh
+//            self.present(self.imagePicker, animated: true, completion: nil)
+//        }
+//        
+//        actionSheet.addAction(photoLibraryAction)
+//        actionSheet.addAction(cancelAction)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (UIAlertAction) -> Void in
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (UIAlertAction) -> Void in
-            self.imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            self.imagePicker.mediaTypes = ["public.image", "public.movie"]
-            //            self.imagePicker.videoQuality = .typeHigh
-            self.present(self.imagePicker, animated: true, completion: nil)
-        }
-        
-        actionSheet.addAction(photoLibraryAction)
-        actionSheet.addAction(cancelAction)
-        
-        self.present(actionSheet, animated: true, completion: nil)
+//        self.present(actionSheet, animated: true, completion: nil)
     }
     func popBack()
     {
