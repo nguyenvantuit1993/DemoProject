@@ -530,18 +530,7 @@ extension MediaView: UIDocumentInteractionControllerDelegate
 extension MediaView: GADInterstitialDelegate
 {
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        self.showImageAt(index: self.currentIndex, isFilter: self.checkIsFilter())
-    }
-}
-extension MediaView: GADRewardBasedVideoAdDelegate
-{
-    func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         self.playVideo(atIndex: self.currentIndex)
     }
-    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
-                            didRewardUserWith reward: GADAdReward) {
-        //het quang cao
-//        self.playVideo(atIndex: self.currentIndex)
-        
-    }
 }
+

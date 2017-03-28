@@ -575,10 +575,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mHU-FY-MCz">
-                                <rect key="frame" x="0.0" y="28" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="579"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZGx-yN-Mz8">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="509"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="529"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sh-Ow-R1Y" customClass="GADBannerView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -600,10 +600,10 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9MR-1U-e3x">
-                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <color key="backgroundColor" red="0.25882352941176467" green="0.27843137254901962" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="24A-3k-NvI"/>
+                                    <constraint firstAttribute="height" constant="60" id="24A-3k-NvI"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tRL-Zh-i6i">
                                     <size key="itemSize" width="50" height="50"/>
@@ -613,7 +613,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="mj4-X1-Dli" customClass="ImageCell" customModule="Media" customModuleProvider="target">
-                                        <rect key="frame" x="1" y="15" width="50" height="50"/>
+                                        <rect key="frame" x="1" y="5" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>

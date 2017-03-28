@@ -22,6 +22,7 @@ class ImageCell: UICollectionViewCell {
     
     func addSubviews() {
         if (imageView == nil) {
+            self.center = CGPoint(x: self.center.x, y: self.center.y + 10)
             imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: kCellWidth, height: kCellHeight))
             imageView.layer.borderColor = tintColor.cgColor
             imageView.contentMode = .scaleToFill
