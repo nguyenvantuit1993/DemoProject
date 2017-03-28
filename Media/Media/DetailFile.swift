@@ -17,7 +17,8 @@ class DetailFile: BasicViewController {
     @IBOutlet weak var banner_DetailFile: GADBannerView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.banner_DetailFile = self.adBannerView
+        self.setupWith(banner: self.banner_DetailFile, id: "ca-app-pub-5942433079799456/9848917526")
+        self.banner_DetailFile.load(GADRequest())
         addWebView()
         webView.load(URLRequest(url: urlFile))
         // Do any additional setup after loading the view.

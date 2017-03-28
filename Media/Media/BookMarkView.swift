@@ -21,7 +21,8 @@ class BookMarkView: BasicViewController{
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.bannerBookmark = self.adBannerView
+        self.setupWith(banner: self.bannerBookmark)
+        self.bannerBookmark.load(GADRequest())
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "BookMarkCell", bundle: Bundle.main), forCellReuseIdentifier: "BookMarkCell")

@@ -26,7 +26,8 @@ class DetailImageView: BasicViewController {
     var isFirstLoad = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.banner_DetailImages = self.adBannerView
+        self.setupWith(banner: self.banner_DetailImages, id: "ca-app-pub-5942433079799456/2325650727")
+        self.banner_DetailImages.load(GADRequest())
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: cellId)

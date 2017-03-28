@@ -229,7 +229,10 @@ extension NVTWebView: HGPageScrollViewDataSource
         //            customWebView = CustomWebView(frame: CGRect(x:0, y:0, width: self.myPageScrollView.frame.width*0.65, height: self.myPageScrollView.frame.height*0.8 - 160))
         //        }
         customWebView?.delegateCustomWeb = self
-        customWebView?.loadRequest(url: SettingObjects.sharedInstance.browser, isPosibleLoad: true)
+        if(customWebView?.webView.url == nil)
+        {
+            customWebView?.loadRequest(url: SettingObjects.sharedInstance.browser, isPosibleLoad: true)
+        }
         //        customWebView = webviewModel.setupDataToView(currentView: customWebView)
         return customWebView
         

@@ -21,7 +21,8 @@ class DownloadView: BasicViewController {
     var downloadViewModel = DownloadViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.bannerDownloadView = self.adBannerView
+        self.setupWith(banner: self.bannerDownloadView, id: "ca-app-pub-5942433079799456/3802383928")
+        self.bannerDownloadView.load(GADRequest())
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: Notification.Name("ReloadDownloadView"), object: nil)
         tableView.delegate = self
         tableView.dataSource = self

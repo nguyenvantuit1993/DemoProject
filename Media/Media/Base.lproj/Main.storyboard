@@ -28,7 +28,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSl-D3-mm9">
                                         <rect key="frame" x="0.0" y="-64" width="375" height="900"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQc-RG-4wQ">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQc-RG-4wQ" customClass="GADBannerView">
                                                 <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -69,12 +69,36 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOE-Vc-oRB">
                                                         <rect key="frame" x="8" y="45" width="343" height="90"/>
                                                         <subviews>
-                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1XW-NA-VQa">
-                                                                <rect key="frame" x="294" y="4" width="51" height="31"/>
-                                                                <connections>
-                                                                    <action selector="userTappedSetFakePass:" destination="pWH-nb-Yrz" eventType="valueChanged" id="hgQ-vS-knv"/>
-                                                                </connections>
-                                                            </switch>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBA-HY-iRe">
+                                                                <rect key="frame" x="273" y="0.0" width="70" height="46"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Chr-uu-Fc8">
+                                                                        <rect key="frame" x="30" y="4" width="40" height="38"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="40" id="TVV-u8-lmf"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1XW-NA-VQa">
+                                                                        <rect key="frame" x="21" y="4" width="51" height="38"/>
+                                                                        <connections>
+                                                                            <action selector="userTappedSetFakePass:" destination="pWH-nb-Yrz" eventType="valueChanged" id="hgQ-vS-knv"/>
+                                                                        </connections>
+                                                                    </switch>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="1XW-NA-VQa" firstAttribute="top" secondItem="nBA-HY-iRe" secondAttribute="top" constant="4" id="N1y-eW-FI0"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Chr-uu-Fc8" secondAttribute="trailing" id="RF1-t6-sbd"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="1XW-NA-VQa" secondAttribute="trailing" id="ZN0-VR-NsU"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="1XW-NA-VQa" secondAttribute="bottom" constant="4" id="bqT-Os-aEA"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Chr-uu-Fc8" secondAttribute="bottom" constant="4" id="c7T-Dr-H8B"/>
+                                                                    <constraint firstAttribute="width" constant="70" id="car-Og-MEV"/>
+                                                                    <constraint firstItem="Chr-uu-Fc8" firstAttribute="top" secondItem="nBA-HY-iRe" secondAttribute="top" constant="4" id="jTY-Wu-YJ6"/>
+                                                                </constraints>
+                                                            </view>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Default is 1234" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0jM-df-5pp">
                                                                 <rect key="frame" x="0.0" y="46" width="343" height="30"/>
                                                                 <nil key="textColor"/>
@@ -82,7 +106,7 @@
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fake Pascode Lock:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sd-LU-ew0">
-                                                                <rect key="frame" x="0.0" y="1" width="294" height="37"/>
+                                                                <rect key="frame" x="0.0" y="1" width="151.5" height="37"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="37" id="yIb-jO-34a"/>
                                                                 </constraints>
@@ -93,14 +117,14 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstItem="0jM-df-5pp" firstAttribute="top" secondItem="nBA-HY-iRe" secondAttribute="bottom" id="1Xx-fZ-LaV"/>
                                                             <constraint firstItem="5Sd-LU-ew0" firstAttribute="top" secondItem="nOE-Vc-oRB" secondAttribute="top" constant="1" id="4au-V2-NVY"/>
-                                                            <constraint firstItem="1XW-NA-VQa" firstAttribute="leading" secondItem="5Sd-LU-ew0" secondAttribute="trailing" id="9dz-Pr-c5f"/>
                                                             <constraint firstAttribute="trailing" secondItem="0jM-df-5pp" secondAttribute="trailing" id="FhK-1X-VIK"/>
                                                             <constraint firstItem="0jM-df-5pp" firstAttribute="top" secondItem="5Sd-LU-ew0" secondAttribute="bottom" constant="8" id="HqX-ZW-DUf"/>
                                                             <constraint firstItem="0jM-df-5pp" firstAttribute="leading" secondItem="nOE-Vc-oRB" secondAttribute="leading" id="IDf-6r-Tj8"/>
-                                                            <constraint firstAttribute="trailing" secondItem="1XW-NA-VQa" secondAttribute="trailing" id="Psq-FJ-Tpt"/>
                                                             <constraint firstItem="5Sd-LU-ew0" firstAttribute="leading" secondItem="nOE-Vc-oRB" secondAttribute="leading" id="bhb-ZJ-GUM"/>
-                                                            <constraint firstItem="1XW-NA-VQa" firstAttribute="top" secondItem="nOE-Vc-oRB" secondAttribute="top" constant="4" id="fqg-Cv-aqn"/>
+                                                            <constraint firstItem="nBA-HY-iRe" firstAttribute="top" secondItem="nOE-Vc-oRB" secondAttribute="top" id="rek-bo-CRG"/>
+                                                            <constraint firstAttribute="trailing" secondItem="nBA-HY-iRe" secondAttribute="trailing" id="uRN-JA-ksS"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -221,7 +245,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
+                        <outlet property="bannerSettings" destination="lQc-RG-4wQ" id="eE6-Sf-eMY"/>
                         <outlet property="defaultBrowserLink" destination="HBK-MW-WSY" id="fhQ-QC-mlU"/>
+                        <outlet property="lbl_CountDown" destination="Chr-uu-Fc8" id="Nsp-Os-dc3"/>
                         <outlet property="switch_FakePassCode" destination="1XW-NA-VQa" id="5yb-Tc-hOe"/>
                         <outlet property="switch_SetPassCode" destination="USe-v3-4aH" id="dbb-bQ-sgc"/>
                         <outlet property="txt_FakeCode" destination="0jM-df-5pp" id="C7m-Xc-heg"/>

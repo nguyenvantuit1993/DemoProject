@@ -17,6 +17,7 @@ class MediaView: BaseClearBarItemsViewController{
     @IBOutlet weak var bannerMediaView: GADBannerView!
     @IBOutlet weak var btn_Filter: UIButton!
     @IBOutlet weak var headerView: UIView!
+    var interstitial: GADInterstitial!
     var currentIndex: Int!
     var isFakeLogin: Bool!
     var mediaViewModel: MediaViewModel!
@@ -25,7 +26,8 @@ class MediaView: BaseClearBarItemsViewController{
     var docController: UIDocumentInteractionController!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.bannerMediaView = self.adBannerView
+        self.setupWith(banner: self.bannerMediaView, id: "ca-app-pub-5942433079799456/5279117129")
+        self.bannerMediaView.load(GADRequest())
         if(self.currentPath == nil)
         {
             self.currentPath = documentsPath
@@ -53,6 +55,10 @@ class MediaView: BaseClearBarItemsViewController{
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "CustomCollectionCell", bundle: Bundle.main), forCellWithReuseIdentifier: "ImagesViewCell")
+        
+        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-5942433079799456/5883049523")
+        self.interstitial.delegate = self
+        self.setupWith(interstitial: self.interstitial)
         
         
         self.view.backgroundColor = UIColor.black
@@ -156,7 +162,6 @@ class MediaView: BaseClearBarItemsViewController{
     }
     func showImageAt(index: Int, isFilter: Bool)
     {
-        self.currentIndex = index
         let image = mediaViewModel.getNameItem(atIndex: index, isFilter: isFilter)
         let viewScroll = self.storyboard?.instantiateViewController(withIdentifier: "ViewScroll") as! DetailImageView
         mediaViewModel.type = .Image
@@ -253,12 +258,14 @@ extension MediaView: UICollectionViewDelegate
                 self.editOptions.btn_Rename.isEnabled = true
             }
         }
+        self.currentIndex = indexPath.row
         switch self.mediaViewModel.getItems(isFilter: isFilter)[indexPath.row].getType() {
+            
         case .Image:
             self.showImageAt(index: indexPath.row, isFilter: isFilter)
             break
         case .Video:
-            self.playInterstitailAdMod()
+            self.playInterstitailAdMod(interstitial: self.interstitial)
             self.playVideo(atIndex: indexPath.row)
             break
         case .Other:
@@ -518,5 +525,23 @@ extension MediaView: UIDocumentInteractionControllerDelegate
     
     func documentInteractionController(_ controller: UIDocumentInteractionController, willBeginSendingToApplication application: String?) {
         self.didFinishAction()
+    }
+}
+extension MediaView: GADInterstitialDelegate
+{
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        self.showImageAt(index: self.currentIndex, isFilter: self.checkIsFilter())
+    }
+}
+extension MediaView: GADRewardBasedVideoAdDelegate
+{
+    func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+        self.playVideo(atIndex: self.currentIndex)
+    }
+    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
+                            didRewardUserWith reward: GADAdReward) {
+        //het quang cao
+//        self.playVideo(atIndex: self.currentIndex)
+        
     }
 }
